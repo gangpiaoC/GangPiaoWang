@@ -1,0 +1,59 @@
+//
+//  GPWHomeNewsCell.swift
+//  GangPiaoWang
+//
+//  Created by gangpiaowang on 2017/3/21.
+//  Copyright © 2017年 GC. All rights reserved.
+//
+
+import UIKit
+import SwiftyJSON
+class GPWHomeNewsCell: UITableViewCell {
+    var surperController:UIViewController?
+    fileprivate var bankurl:String?
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.selectionStyle = .none
+        let block = UIView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: 10))
+        block.backgroundColor = bgColor
+        self.contentView.addSubview(block)
+        let  imgArray = ["home_three_bank","home_three_meiti"]
+        
+        for i in 0 ..< imgArray.count {
+            //列表
+            let tempImgView = UIImageView(frame: CGRect(x: 0, y: block.maxY + 16, width: pixw(p: 164), height: pixw(p: 80)))
+            tempImgView.centerX = SCREEN_WIDTH / 4 * CGFloat(1 + i * 2 )
+            tempImgView.isUserInteractionEnabled = true
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.btnClick(_:)))
+            tempImgView.addGestureRecognizer(tapGesture)
+            tempImgView.image = UIImage(named: imgArray[i])
+            tempImgView.tag = 1000 + i
+            self.contentView.addSubview(tempImgView)
+        }
+    }
+    
+    func updata(_ bankUrl:String)  {
+        bankurl = bankUrl
+    }
+    
+    func btnClick( _ sender:UITapGestureRecognizer) {
+        if sender.view?.tag == 1001 {
+            MobClick.event("home", label:"银行存管")
+            surperController?.navigationController?.pushViewController(GPWHomeNewListController(), animated: true)
+        }else{
+            MobClick.event("home", label:"媒体列表")
+            surperController?.navigationController?.pushViewController(GPWWebViewController(subtitle: "", url: self.bankurl!), animated: true)
+        }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+    }
+
+}

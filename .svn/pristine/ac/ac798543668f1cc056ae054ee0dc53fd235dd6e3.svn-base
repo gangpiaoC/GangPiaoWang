@@ -1,0 +1,62 @@
+//
+//  GPWHomeNewsCell.swift
+//  GangPiaoWang
+//
+//  Created by gangpiaowang on 2017/3/21.
+//  Copyright © 2017年 GC. All rights reserved.
+//
+
+import UIKit
+import SwiftyJSON
+class GPWHomeNewsCell: UITableViewCell {
+    var surperController:UIViewController?
+    fileprivate var bankurl:String?
+    private var scrView:UIScrollView!
+    private let titleArray = ["接入北京网贷协会存管通","资金由中信银行联合存管"]
+    private var array:JSON!
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.selectionStyle = .none
+        
+        let block = UIView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: 10))
+        block.backgroundColor = bgColor
+        self.contentView.addSubview(block)
+        let  imgArray = ["home_three_bank","home_three_meiti"]
+        
+        for i in 0 ..< imgArray.count {
+            //列表
+            let  listBtn = UIButton(type: .custom)
+            listBtn.frame = CGRect(x: 0, y: block.maxY + 16, width: 164, height: 80)
+            listBtn.centerX = SCREEN_WIDTH / 4 * CGFloat(1 + i * 2 )
+            listBtn.imageView?.contentMode = .scaleAspectFill
+            listBtn.setImage(UIImage(named: imgArray[i]), for: .normal)
+            listBtn.tag = 1000 + i
+            listBtn.addTarget(self, action: #selector(btnClick(_:)), for: .touchUpInside)
+            self.contentView.addSubview(listBtn)
+        }
+    }
+    
+    func updata(_ bankUrl:String)  {
+        bankurl = bankUrl
+    }
+    
+    func btnClick( _ sender:UIButton) {
+        if sender.tag == 1001 {
+            MobClick.event("index_meiti", label:"列表")
+            surperController?.navigationController?.pushViewController(GPWHomeNewListController(), animated: true)
+        }else{
+            surperController?.navigationController?.pushViewController(GPWWebViewController(subtitle: "", url: self.bankurl!), animated: true)
+        }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+    }
+
+}

@@ -1,0 +1,10 @@
+{
+  "xcodeVersion" : "Xcode 8.3\nBuild version 8E162",
+  "commitish" : "3.6.0",
+  "iOS" : [
+    {
+      "hash" : "1d940fe7919999099485feae150b4fa643429c37dfe3842b6ea7219d2d6cdd76",
+      "name" : "Kingfisher"
+    }
+  ]
+}

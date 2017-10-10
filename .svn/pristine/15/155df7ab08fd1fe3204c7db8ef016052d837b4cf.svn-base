@@ -1,0 +1,203 @@
+//
+//  GPWUserRechargeViewController.swift
+//  GangPiaoWang
+//  充值
+//  Created by gangpiaowang on 2016/12/20.
+//  Copyright © 2016年 GC. All rights reserved.
+//
+
+import UIKit
+
+class GPWUserRechargeViewController: GPWSecBaseViewController ,UITextFieldDelegate{
+    var bankIcon:UIImageView!
+    var bankLabel:RTLabel!
+    var minAmount = 2.00
+    var chongMoney = 0.00
+    var moneyTextField:UITextField!
+    
+    init(money:Double = 0.00){
+        super.init(nibName: nil, bundle: nil)
+        self.chongMoney = money
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.title = "充值"
+        
+        let topBgView = UIView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: 135 + 46  +  30))
+        topBgView.backgroundColor = UIColor.white
+        self.bgView.addSubview(topBgView)
+        
+        let topBlock = UIView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: 15))
+        topBlock.backgroundColor = bgColor
+        bgView.addSubview(topBlock)
+        
+        bankIcon = UIImageView(frame: CGRect(x: 15, y: topBlock.maxY + 22, width: 30, height: 30))
+        if GPWUser.sharedInstance().is_valid == "1" {
+            bankIcon.downLoadImg(imgUrl: GPWUser.sharedInstance().bank_logo!)
+        }
+        bgView.addSubview(bankIcon)
+        
+        //银行名称 + 银行卡号
+        var bankNameStr = "未知银行"
+        var bankNumStr = "尾号***"
+        
+        bankNameStr = "未知银行"
+        if GPWUser.sharedInstance().is_valid == "1" {
+             bankNameStr = GPWUser.sharedInstance().bank_name!
+        }
+        
+        if GPWUser.sharedInstance().is_valid == "1" {
+            let str = ((GPWUser.sharedInstance().bank_num! as NSString)).substring(with: NSRange(location: (GPWUser.sharedInstance().bank_num?.characters.count)! - 4,length: 4))
+            bankNumStr = "尾号" + str
+        }
+        
+        bankLabel = RTLabel(frame: CGRect(x: bankIcon.maxX + 15, y: topBlock.maxY + 12, width: 300, height: 16))
+        bankLabel.font = UIFont.customFont(ofSize: 16)
+        bankLabel.text = "<font size=18 color='#333333'>\(bankNameStr)</font><font size=14 color='#999999'>    \(bankNumStr)</font>"
+        bankLabel.height = bankLabel.optimumSize.height
+        bgView.addSubview(bankLabel)
+        
+        //右侧图标
+        let rightImbView = UIImageView(frame: CGRect(x: SCREEN_WIDTH - 16 - 6, y: 0, width: 6, height: 11))
+        rightImbView.image = UIImage(named: "user_rightImg")
+        rightImbView.centerY = bankIcon.centerY
+        bgView.addSubview(rightImbView)
+        
+        //限制说明
+        let   xianzhiLabel = UILabel(frame: CGRect(x: bankLabel.x, y: bankLabel.maxY + 12, width: 260, height: 14))
+        xianzhiLabel.font = UIFont.customFont(ofSize: 12)
+        xianzhiLabel.text = "单笔限额\(GPWUser.sharedInstance().single_limit ?? 0)元,单日限额\(GPWUser.sharedInstance().day_limit ?? 0)元"
+        xianzhiLabel.textColor = UIColor.hex("999999")
+        bgView.addSubview(xianzhiLabel)
+
+        let sceBlock = UIView(frame: CGRect(x: 0, y: xianzhiLabel.maxY + 20, width: SCREEN_WIDTH, height: 15))
+        sceBlock.backgroundColor = bgColor
+        bgView.addSubview(sceBlock)
+        
+        //设置图标位置
+        bankIcon.centerY = sceBlock.y / 2
+        rightImbView.centerY = bankIcon.centerY
+        
+        //银行信息按钮
+        let bankBtn = UIButton(type: .custom)
+        bankBtn.frame = CGRect(x: 0, y: topBlock.maxY, width: SCREEN_WIDTH, height: sceBlock.y - topBlock.maxY)
+        bankBtn.tag = 100
+        bankBtn.addTarget(self, action: #selector(self.btnClick(sender:)), for: .touchUpInside)
+        bgView.addSubview(bankBtn)
+        
+        //账户余额
+        let temp2Label = UILabel (frame: CGRect(x: 16, y: sceBlock.maxY, width: 58, height: 46))
+        temp2Label.textColor = UIColor.hex("333333")
+        temp2Label.text = "账户余额"
+        temp2Label.font = UIFont.customFont(ofSize: 14)
+        bgView.addSubview(temp2Label)
+        
+        let yueLabel = UILabel(frame: CGRect(x: temp2Label.maxX + 15, y: temp2Label.y, width: SCREEN_WIDTH - temp2Label.maxX - 15 - 16, height: temp2Label.height))
+        yueLabel.text = "\(GPWUser.sharedInstance().money!)元"
+        //yueLabel.textAlignment = .right
+        yueLabel.font = UIFont.customFont(ofSize: 14)
+        yueLabel.textColor = UIColor.hex("333333")
+        bgView.addSubview(yueLabel)
+        
+        let line = UIView(frame: CGRect(x: 0, y: temp2Label.maxY, width: SCREEN_WIDTH, height: 0.5))
+        line.backgroundColor = lineColor
+        bgView.addSubview(line)
+        
+        //充值金额
+        let temp1Label = UILabel(frame: CGRect(x: 16, y: line.maxY, width: 58, height: 45))
+        temp1Label.textColor = UIColor.hex("333333")
+        temp1Label.text = "充值金额"
+        temp1Label.font = UIFont.customFont(ofSize: 14)
+        bgView.addSubview(temp1Label)
+        
+        moneyTextField = UITextField(frame: CGRect(x: temp1Label.maxX + 15, y: temp1Label.y, width: SCREEN_WIDTH - temp1Label.maxX - 15 - 16, height: temp1Label.height))
+        moneyTextField.placeholder = "不能少于2元"
+        moneyTextField.delegate = self
+        moneyTextField.keyboardType = .decimalPad
+        if self.chongMoney > 0 {
+            moneyTextField.text = "\(self.chongMoney)"
+        }
+        moneyTextField.font = UIFont.customFont(ofSize: 14)
+        moneyTextField.textColor = UIColor.hex("333333")
+        bgView.addSubview(moneyTextField)
+        
+        
+        let btn = UIButton(type: .custom)
+        btn.frame = CGRect(x: 16, y:  temp1Label.maxY + 30, width: SCREEN_WIDTH - 16 * 2, height: 64)
+        btn.setBackgroundImage(UIImage(named: "btn_bg"), for: .normal)
+        btn.setTitle("确定", for: .normal)
+        btn.titleLabel?.font = UIFont.customFont(ofSize: 18)
+        btn.tag = 101
+        btn.addTarget(self, action: #selector(self.btnClick(sender:)), for: .touchUpInside)
+        self.bgView.addSubview(btn)
+        
+        let indictorView = GPWIndicatorView.indicatorView()
+        indictorView.frame = CGRect(x: 16, y: btn.maxY + 27, width: 3, height: 14)
+        self.bgView.addSubview(indictorView)
+        
+        let titleLabel = UILabel(frame: CGRect(x: 24, y: btn.maxY + 26, width: 300, height: 16))
+        titleLabel.font = UIFont.customFont(ofSize: 16)
+        titleLabel.textColor = UIColor.hex("333333")
+        titleLabel.text = "温馨提示"
+        self.bgView.addSubview(titleLabel)
+        
+        let contentLabel = RTLabel(frame: CGRect(x: 16, y: titleLabel.maxY + 10, width: SCREEN_WIDTH - 32, height: 240))
+        contentLabel.text = "<font size=14 color='#888888'>1、充值服务手续费为0，最低充值金额2元。 \n2、请使用借记卡充值，信用卡无法充值。\n3、每日的充值限额依据各银行限额为准，请注意您的银行卡充值限制，以免造成不便。\n4、如果遇到问题请联系客服400-900-9017。</font>"
+        contentLabel.height = contentLabel.optimumSize.height
+        self.bgView.addSubview(contentLabel)
+        
+        GPWNetwork.requetWithGet(url: Api_user_accounts_recharge, parameters: nil, responseJSON:  {
+            [weak self] (json, msg) in
+            guard let strongSelf = self else { return }
+            strongSelf.minAmount = json["min_amount"].doubleValue
+            strongSelf.moneyTextField.placeholder = "不能少于\(json["min_amount"])元"
+            printLog(message: json)
+            }, failure: { error in
+                
+        })
+    }
+
+    func btnClick(sender:UIButton)  {
+        if sender.tag == 100 {
+            printLog(message: "银行")
+            self.navigationController?.pushViewController(UserBankViewController(), animated: true)
+        }else{
+            printLog(message: "确定")
+            let money = moneyTextField.text ?? "0"
+            if money == "" {
+                self.bgView.makeToast("请输入金额")
+                return
+            }
+            if Double(money)! < self.minAmount {
+                self.bgView.makeToast("充值金额过小")
+                return
+            }
+            GPWNetwork.requetWithPost(url: Api_user_deposit_recharge, parameters: ["amount":money], responseJSON: { [weak self] (json, msg) in
+                guard let strongSelf = self else { return }
+                printLog(message: json)
+                GPWUser.sharedInstance().getUserInfo()
+                let vc = GPWOhterWebViewController(subtitle: "", url: json.stringValue)
+                vc.moneyStr = money
+                strongSelf.navigationController?.show(vc, sender: nil)
+                }, failure: { error in
+            
+            })
+        }
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        let expression = "^[0-9]*((\\.)[0-9]{0,2})?$"
+        let regex = try! NSRegularExpression(pattern: expression, options: NSRegularExpression.Options.allowCommentsAndWhitespace)
+        let numberOfMatches = regex.numberOfMatches(in: newString, options:NSRegularExpression.MatchingOptions.reportProgress, range: NSMakeRange(0, (newString as NSString).length))
+        return numberOfMatches != 0
+    }
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+}

@@ -1,0 +1,177 @@
+//
+//  UserReadInfoViewController.swift
+//  GangPiaoWang
+//  实名认证
+//  Created by gangpiaowang on 2016/12/19.
+//  Copyright © 2016年 GC. All rights reserved.
+//
+
+import UIKit
+
+class UserReadInfoViewController: GPWSecBaseViewController {
+    fileprivate let NAMETAG       = 1001
+    fileprivate let SHENFENTAG  = 1002
+    fileprivate let BANKTAG        = 1004
+    fileprivate let PHONETAG      = 1005
+    fileprivate var  tempBgView:UIView!
+    //根据类型跳转
+    var type:String?
+    let contentArray = [
+                            ["name":"实名认证","title":""],
+                            ["name":"真实姓名","title":"请输入姓名"],
+                            ["name":"身份证号","title":"请输入身份证号"],
+                             ["name":"银行卡信息","title":""],
+                            ["name":"银行卡号","title":"请输入本人银行卡号"],
+                            ["name":"预留手机号","title":"请输入预留手机号"]
+                       ]
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+         (navigationController as! GPWNavigationController).canDrag = false
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        (navigationController as! GPWNavigationController).canDrag = true
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.title = "开通存管账户"
+        let bgscrollview = UIScrollView(frame: self.bgView.bounds)
+        self.bgView.addSubview(bgscrollview)
+        
+        tempBgView = UIView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: 56*4))
+        tempBgView.backgroundColor = UIColor.white
+        bgscrollview.addSubview(tempBgView)
+        
+//        let  topTitleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: 28))
+//        topTitleLabel.font = UIFont.customFont(ofSize: 14)
+//        topTitleLabel.textColor = UIColor.hex("f6a623")
+//        topTitleLabel.textAlignment = .center
+//        topTitleLabel.backgroundColor = UIColor.hex("fff4e1")
+//        topTitleLabel.text = "钢票网携手恒丰银行开通资金存管服务"
+//        tempBgView.addSubview(topTitleLabel)
+        
+//        var maxHeight = topTitleLabel.maxY
+        var maxHeight:CGFloat = 0.0
+        for i in 0 ..< contentArray.count {
+            if i == 0 || i == 3 {
+                let  tempLabel = UILabel(frame: CGRect(x: 0, y: maxHeight, width: SCREEN_WIDTH, height: 42))
+                tempLabel.backgroundColor = UIColor.hex("f3f3f3")
+                tempLabel.textAlignment = .center
+                tempLabel.font = UIFont.customFont(ofSize: 16)
+                tempLabel.textColor = UIColor.hex("666666")
+                tempLabel.text = contentArray[i]["name"]
+                tempBgView.addSubview(tempLabel)
+                maxHeight = tempLabel.maxY
+            }else{
+                let  line = UIView(frame: CGRect(x: 16, y: maxHeight, width: SCREEN_WIDTH - 16, height: 0.5))
+                line.backgroundColor = UIColor.hex("f3f3f3")
+                tempBgView.addSubview(line)
+                maxHeight = line.maxY
+                let  tempLabel = UILabel(frame: CGRect(x: 15, y: maxHeight, width: 82, height: 56))
+                tempLabel.font = UIFont.customFont(ofSize: 16)
+                tempLabel.textColor = UIColor.hex("333333")
+                tempLabel.text = contentArray[i]["name"]
+                tempBgView.addSubview(tempLabel)
+
+                
+                let textField = UITextField(frame: CGRect(x: tempLabel.maxX + 16, y: CGFloat(maxHeight), width: SCREEN_WIDTH - tempLabel.maxX - 32, height: 56))
+                textField.font = UIFont.customFont(ofSize: 16)
+                textField.tag = 1000 + i
+                textField.textColor = UIColor.hex("333333")
+                textField.placeholder = contentArray[i]["title"]
+                tempBgView.addSubview(textField)
+                
+                if  i == 4 || i == 5{
+                    textField.keyboardType = .numberPad
+                }
+                maxHeight = textField.maxY
+            }
+        }
+        tempBgView.height = maxHeight
+        
+        let  btn = UIButton(type: .custom)
+        btn.frame = CGRect(x: 16, y:  CGFloat(maxHeight) + 30, width: SCREEN_WIDTH - 32, height: 64)
+        btn.setBackgroundImage(UIImage(named: "btn_bg"), for: .normal)
+        btn.setTitle("确定", for: .normal)
+        btn.addTarget(self, action: #selector(self.btnClick), for: .touchUpInside)
+        btn.titleLabel?.font = UIFont.customFont(ofSize: 18)
+        bgscrollview.addSubview(btn)
+        
+        bgscrollview.contentSize = CGSize(width: SCREEN_WIDTH , height: SCREEN_HEIGHT + 100)
+    }
+    
+    func btnClick() {
+        
+        //Auth_user
+        var dic = [String:String]()
+        //姓名
+        let temp1Str = (self.tempBgView.viewWithTag(NAMETAG) as! UITextField).text ?? ""
+        if temp1Str.characters.count < 2 || temp1Str.characters.count > 5{
+            bgView.makeToast("请输入真实姓名")
+            return
+        }
+        dic["name"] = temp1Str
+        
+        //身份证号
+        let temp2Str = (self.tempBgView.viewWithTag(SHENFENTAG) as! UITextField).text ?? ""
+        let regex = "(^[0-9]{15}$)|([0-9]{17}([0-9]|[0-9a-zA-Z])$)"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
+        if predicate.evaluate(with: temp2Str) {
+            dic["idcard"] = temp2Str
+        }else{
+            bgView.makeToast("请输入正确身份证")
+            return
+        }
+        
+        //银行卡
+        let temp3Str = (self.tempBgView.viewWithTag(BANKTAG) as! UITextField).text ?? ""
+        if temp3Str.characters.count >= 15  {
+            dic["banck"] = temp3Str
+        }else{
+            bgView.makeToast("请输入正确银行卡")
+            return
+        }
+    
+        //手机号
+        let temp4Str = (self.tempBgView.viewWithTag(PHONETAG) as! UITextField).text ?? ""
+        if GPWHelper.judgePhoneNum(temp4Str)  {
+            dic["phone"] = temp4Str
+        }else{
+            bgView.makeToast("请输入正确手机号")
+            return
+        }
+        
+        printLog(message: dic)
+        
+         MobClick.event("certification_button", label: nil)
+        GPWNetwork.requetWithPost(url: Auth_user, parameters: dic, responseJSON:  {
+            [weak self] (json, msg) in
+            guard let strongSelf = self else { return }
+            printLog(message: json)
+            let vc = GPWOhterWebViewController(subtitle: "", url: json.stringValue )
+            strongSelf.navigationController?.show(vc, sender: nil)
+            }, failure: { error in
+        })
+    }
+    override func back(sender: GPWButton) {
+        if type == "shenfen"{
+            _ = self.navigationController?.popToRootViewController(animated: true)
+            GPWHelper.selectTabBar(index: 2)
+        }else{
+            if let viewControllers = self.navigationController?.viewControllers {
+                for vc in viewControllers {
+                    if vc.isKind(of: GPWProjectDetailViewController.self) {
+                        _ = self.navigationController?.popToViewController(vc, animated: true)
+                        return
+                    }
+                }
+                self.navigationController?.popToRootViewController(animated: true)
+            }
+        }
+    }
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+}

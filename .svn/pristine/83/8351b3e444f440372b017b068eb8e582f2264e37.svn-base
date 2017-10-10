@@ -1,0 +1,241 @@
+//
+//  GPWHomeGetBageController.swift
+//  GangPiaoWang
+//  拼手气
+//  Created by gangpiaowang on 2017/7/21.
+//  Copyright © 2017年 GC. All rights reserved.
+//
+
+import UIKit
+
+class GPWHomeGetBageController: GPWSecBaseViewController {
+   
+    //规则视图tag
+    fileprivate let ROLEVIEWTAG = 1000
+    
+    //今日还有几次机会
+    fileprivate var chanceLabel:UILabel!
+    
+    //人数
+    fileprivate var numLabel:UILabel!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.title = "拼手气"
+        //背景图片
+        let  bgimgView = UIImageView(frame: self.bgView.bounds)
+        bgimgView.image = UIImage(named: "home_getbag_bg")
+        bgimgView.contentMode = .scaleAspectFill
+        self.bgView.addSubview(bgimgView)
+        
+        //顶部图片
+        let  bgtopImgView = UIImageView(frame: CGRect(x: 0, y: pixh(p: 68), width: pixw(p: 272), height: pixw(p: 133)))
+        bgtopImgView.centerX = SCREEN_WIDTH / 2
+        bgtopImgView.image = UIImage(named: "home_getbag_top")
+         self.bgView.addSubview(bgtopImgView)
+        
+        chanceLabel = UILabel(frame: CGRect(x: 0, y: bgtopImgView.maxY + pixh(p: 15), width: pixw(p: 150), height: pixw(p: 20)))
+        chanceLabel.textColor = UIColor.hex("ffffff")
+        chanceLabel.font = UIFont.customFont(ofSize: pixw(p: 14))
+        chanceLabel.text = "您今日还有 2 次机会"
+        chanceLabel.textAlignment = .center
+        chanceLabel.backgroundColor = UIColor.hex("7700ad")
+        chanceLabel.centerX = SCREEN_WIDTH / 2
+        chanceLabel.layer.masksToBounds = true
+        chanceLabel.layer.cornerRadius = chanceLabel.height / 2
+        self.bgView.addSubview(chanceLabel)
+        
+        //规则按钮
+        let  roleBtn = UIButton(type: .custom)
+        roleBtn.frame = CGRect(x: SCREEN_WIDTH - pixw(p: 52), y: pixh(p: 144), width: pixw(p: 52), height: pixw(p: 28))
+        roleBtn.setImage(UIImage(named:"home_getbag_role"), for: .normal)
+        roleBtn.addTarget(self, action: #selector(btnClick(_:)), for: .touchUpInside)
+        roleBtn.tag = 100
+         self.bgView.addSubview(roleBtn)
+        
+        //抢按钮
+        let  qiangBtn = UIButton(type: .custom)
+        qiangBtn.frame = CGRect(x: 0, y: bgtopImgView.maxY + pixh(p: 45), width: pixw(p: 180), height: pixw(p: 180))
+        qiangBtn.setImage(UIImage(named:"home_getbag_qiang"), for: .normal)
+        qiangBtn.addTarget(self, action: #selector(btnClick(_:)), for: .touchUpInside)
+        qiangBtn.tag = 101
+        qiangBtn.centerX = SCREEN_WIDTH / 2
+        self.bgView.addSubview(qiangBtn)
+        
+        numLabel = UILabel(frame: CGRect(x: 0, y: qiangBtn.maxY + pixh(p: 7), width: SCREEN_WIDTH, height: pixw(p: 18)))
+        numLabel.textColor = UIColor.hex("ffffff")
+        numLabel.font = UIFont.customFont(ofSize: pixw(p: 16))
+        numLabel.text = "已有345位用户获得拼手气大礼"
+        numLabel.textAlignment = .center
+        self.bgView.addSubview(numLabel)
+        
+        //底部图片
+        let  bottomImgView = UIImageView(frame: CGRect(x: pixw(p: 23), y: numLabel.maxY + pixh(p: 14), width: SCREEN_WIDTH - pixw(p: 23) * 2 , height: pixh(p: 120)))
+        bottomImgView.centerX = SCREEN_WIDTH / 2
+        bottomImgView.image = UIImage(named: "home_getbag_bottom")
+        self.bgView.addSubview(bottomImgView)
+        
+        let  scrollview = InvestScrollView(frame: CGRect(x: 20, y: 20, width: bottomImgView.width - 40, height: bottomImgView.height - 20 * 2))
+        scrollview.investArray = ["拼友183****3567获得    30元投资红包","拼友183****3567获得    1%加息券","拼友183****3567获得    6666元体验金","拼友183****3567获得    1%加息券","拼友183****3567获得    6666元体验金","拼友183****3567获得    1%加息券","拼友183****3567获得    6666元体验金","拼友183****3567获得    1%加息券","拼友183****3567获得    6666元体验金","拼友183****3567获得    1%加息券","拼友183****3567获得    6666元体验金","拼友183****3567获得    1%加息券","拼友183****3567获得    6666元体验金"]
+        bottomImgView.addSubview(scrollview)
+    }
+    
+    @objc fileprivate func btnClick( _ sender:UIButton){
+        if sender.tag == 100 {
+            //规则
+            self.roleClick()
+        }else if sender.tag == 101 {
+            //抢红包
+            self.showrRedBags()
+        }
+    }
+    
+    //规则
+    func roleClick() {
+        let tempView = UIView(frame: self.bgView.bounds)
+        tempView.backgroundColor = UIColor.hex("000000", alpha: 0.6)
+        tempView.tag = ROLEVIEWTAG
+        self.bgView.addSubview(tempView)
+        
+        let roleBgView = UIImageView(frame: CGRect(x: 0, y: 0, width: 320, height: 183))
+        roleBgView.image = UIImage(named: "home_getbag_role_bg")
+        roleBgView.center = tempView.center
+        tempView.addSubview(roleBgView)
+        
+        let titleImgView = UIImageView(frame: CGRect(x: 0, y: roleBgView.y - 5, width: 104, height: 27))
+        titleImgView.image = UIImage(named: "home_getbag_role_title")
+        titleImgView.centerX = roleBgView.centerX
+        tempView.addSubview(titleImgView)
+        
+        let cancelBtn = UIButton(type: .custom)
+        cancelBtn.frame = CGRect(x: 0, y: roleBgView.maxY + 26, width: 40, height: 40)
+        cancelBtn.setImage(UIImage(named: "home_getbag_role_cancel"), for: .normal)
+        cancelBtn.centerX = roleBgView.centerX
+        cancelBtn.addTarget(self, action: #selector(self.cancelClick), for: .touchUpInside)
+        tempView.addSubview(cancelBtn)
+        
+        let  contentArray = [
+                                      "每人每天有*次拼手气机会。",
+                                      "参加可获得红包、体验金、加息券等奖励，所得奖励放入个人账户。",
+                                      "若出现作弊行为，将取消您参加的资格。"
+                                    ]
+        
+        var maxY:CGFloat = 46
+        for i in 0 ..< contentArray.count {
+            let numLabel = UILabel(frame: CGRect(x: 30, y: maxY + 2, width: 23, height: 15))
+            numLabel.text = "\(i+1)、"
+            numLabel.textColor = UIColor.hex("333333")
+            numLabel.font = UIFont.customFont(ofSize: 14)
+            roleBgView.addSubview(numLabel)
+            
+            let contentLabel = RTLabel(frame: CGRect(x: numLabel.maxX + 2, y: maxY, width: roleBgView.width - numLabel.maxX - 2, height: 0))
+            contentLabel.text = "<font size=14 color='#333333'>\(contentArray[i])</font>"
+            contentLabel.height = contentLabel.optimumSize.height
+            roleBgView.addSubview(contentLabel)
+            maxY = maxY +  contentLabel.height + 14
+        }
+    }
+    
+    //红包雨
+    func showrRedBags() {
+        let  redbagVC = RedBagViewController()
+        self.bgView.addSubview(redbagVC.view)
+        redbagVC.buttonBlock = {
+            self.getPrize()
+            redbagVC.view.removeFromSuperview()
+        }
+    }
+    
+    func cancelClick() {
+        self.bgView.viewWithTag(ROLEVIEWTAG)?.removeFromSuperview()
+    }
+    
+    //获取奖品
+    func getPrize(){
+        let tempView = UIView(frame: self.bgView.bounds)
+        tempView.backgroundColor = UIColor.hex("000000", alpha: 0.6)
+        tempView.tag = ROLEVIEWTAG
+        self.bgView.addSubview(tempView)
+        
+        let prizeBgView = UIImageView(frame: CGRect(x: 0, y: 0, width: 343, height: 267))
+        prizeBgView.center = tempView.center
+        prizeBgView.backgroundColor = UIColor.white
+        prizeBgView.layer.masksToBounds = true
+        prizeBgView.isUserInteractionEnabled = true
+        prizeBgView.layer.cornerRadius = 5
+        tempView.addSubview(prizeBgView)
+        
+        let topImgView = UIImageView(frame: CGRect(x: 15, y: 22, width: prizeBgView.width - 15 * 2, height: 107))
+        topImgView.image = UIImage(named: "home_getbag_getprize")
+        topImgView.centerX = prizeBgView.width / 2
+        prizeBgView.addSubview(topImgView)
+        
+        let  moneyLabel = RTLabel(frame: CGRect(x: 9, y: 0, width: 200, height: 30))
+        moneyLabel.text = "<font size=20 color='#ffffff'>￥</font><font size=26 color='#ffffff'>66666</font>"
+        moneyLabel.size = moneyLabel.optimumSize
+        moneyLabel.centerY = topImgView.height / 2
+        topImgView.addSubview(moneyLabel)
+        
+        //限制
+        let  roleLabel = UILabel(frame: CGRect(x: 141, y: 33, width: topImgView.width - 141 - 16, height: 15))
+        roleLabel.text = "仅现于体验标"
+        roleLabel.font = UIFont.customFont(ofSize: 14)
+        roleLabel.textColor = UIColor.hex("4a4a4a")
+        topImgView.addSubview(roleLabel)
+        
+        //时间
+        let  timeLabel = UILabel(frame: CGRect(x: roleLabel.x, y: roleLabel.maxY + 10, width: roleLabel.width, height: 15))
+        timeLabel.text = "有效期至2017-7-12"
+        timeLabel.font = UIFont.customFont(ofSize: 14)
+        timeLabel.textColor = UIColor.hex("4a4a4a")
+        topImgView.addSubview(timeLabel)
+        
+        //提示
+        let  tipLabel = UILabel(frame: CGRect(x:0, y: topImgView.maxY + 22, width: topImgView.width, height: 19))
+        tipLabel.text = "恭喜您，抽中6666元体验金"
+        tipLabel.textAlignment = .center
+        tipLabel.font = UIFont.customFont(ofSize: 16)
+        tipLabel.textColor = UIColor.hex("666666")
+        prizeBgView.addSubview(tipLabel)
+        
+        //在拼一次
+        let nextBtn = UIButton(type: .custom)
+        nextBtn.frame = CGRect(x: 0, y: tipLabel.maxY + 25, width: 136, height: 52)
+        nextBtn.setImage(UIImage(named: "home_getbag_getprize_next"), for: .normal)
+        nextBtn.centerX = prizeBgView.width / 4
+        nextBtn.tag = 1000
+        nextBtn.addTarget(self, action: #selector(self.priseClick(_:)), for: .touchUpInside)
+        prizeBgView.addSubview(nextBtn)
+        
+        //去使用
+        let toBtn = UIButton(type: .custom)
+        toBtn.frame = CGRect(x: 0, y: tipLabel.maxY + 25, width: 136, height: 52)
+        toBtn.setImage(UIImage(named: "home_getbag_getprize_use"), for: .normal)
+        toBtn.centerX = prizeBgView.width / 4 * 3
+        toBtn.tag = 1001
+        toBtn.addTarget(self, action: #selector(self.priseClick(_:)), for: .touchUpInside)
+        prizeBgView.addSubview(toBtn)
+        
+        let cancelBtn = UIButton(type: .custom)
+        cancelBtn.frame = CGRect(x: 0, y: prizeBgView.maxY + 26, width: 40, height: 40)
+        cancelBtn.setImage(UIImage(named: "home_getbag_role_cancel"), for: .normal)
+        cancelBtn.centerX = prizeBgView.centerX
+        cancelBtn.addTarget(self, action: #selector(self.cancelClick), for: .touchUpInside)
+        tempView.addSubview(cancelBtn)
+    }
+    
+    func priseClick( _ sender:UIButton) {
+        self.cancelClick()
+        if sender.tag == 1000 {
+            //再来一次
+            self.showrRedBags()
+        }else{
+            //去使用
+            GPWHelper.selectTabBar(index: 1)
+        }
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+}

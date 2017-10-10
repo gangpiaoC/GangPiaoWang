@@ -1,0 +1,290 @@
+//
+//  GPWUserTixianViewController.swift
+//  GangPiaoWang
+//  提现
+//  Created by gangpiaowang on 2016/12/29.
+//  Copyright © 2016年 GC. All rights reserved.
+//
+
+import UIKit
+import SwiftyJSON
+class GPWUserTixianViewController: GPWSecBaseViewController,UITextFieldDelegate,UIScrollViewDelegate{
+    var bankIcon:UIImageView!
+    var tixianMoneyTextField:UITextField!
+    var bankLabel:RTLabel!
+    var dic:JSON?
+    var tixianLvLabel:UILabel!
+    var btn:UIButton!
+    var bool = false
+    var contentLabel:RTLabel!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.title = "提现"
+        self.getNetData()
+        
+        let scrollView = UIScrollView(frame: self.bgView.bounds)
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.delegate = self
+        scrollView.contentSize = CGSize(width: SCREEN_WIDTH, height: 667)
+        self.bgView.addSubview(scrollView)
+        
+        let bgView = UIView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: 135 + 46))
+        bgView.backgroundColor = UIColor.white
+        scrollView.addSubview(bgView)
+        
+        let topBlock = UIView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: 15))
+        topBlock.backgroundColor = bgColor
+        bgView.addSubview(topBlock)
+        
+        bankIcon = UIImageView(frame: CGRect(x: 15, y: topBlock.maxY + 17, width: 30, height: 30))
+        if GPWUser.sharedInstance().is_valid == "1" {
+            bankIcon.downLoadImg(imgUrl: GPWUser.sharedInstance().bank_logo!)
+        }
+        bgView.addSubview(bankIcon)
+        
+        //银行名称 + 银行卡号
+        var bankNameStr = "未知银行"
+        var bankNumStr = "尾号***"
+        
+        bankNameStr = "未知银行"
+        if GPWUser.sharedInstance().is_valid == "1" {
+            bankNameStr = GPWUser.sharedInstance().bank_name!
+        }
+        if GPWUser.sharedInstance().is_valid == "1" {
+            let str = ((GPWUser.sharedInstance().bank_num! as NSString)).substring(with: NSRange(location: (GPWUser.sharedInstance().bank_num?.characters.count)! - 4,length: 4))
+            bankNumStr = "尾号" + str
+        }
+        
+        bankLabel = RTLabel(frame: CGRect(x: bankIcon.maxX + 15, y: topBlock.maxY + 12, width: 300, height: 16))
+        bankLabel.font = UIFont.customFont(ofSize: 16)
+        bankLabel.text = "<font size=16 color='#333333'>\(bankNameStr)</font><font size=13 color='#999999'>    \(bankNumStr)</font>"
+        bankLabel.height = bankLabel.optimumSize.height
+        bankLabel.centerY = bankIcon.centerY
+        bgView.addSubview(bankLabel)
+        
+        let rightImbView = UIImageView(frame: CGRect(x: SCREEN_WIDTH - 16 - 6, y: 0, width: 6, height: 11))
+        rightImbView.image = UIImage(named: "user_rightImg")
+        rightImbView.centerY = bankIcon.centerY
+        bgView.addSubview(rightImbView)
+        
+        let sceBlock = UIView(frame: CGRect(x: 0, y: topBlock.maxY + 66, width: SCREEN_WIDTH, height: 15))
+        sceBlock.backgroundColor = bgColor
+        bgView.addSubview(sceBlock)
+        
+        //银行信息按钮
+        let bankBtn = UIButton(type: .custom)
+        bankBtn.frame = CGRect(x: 0, y: topBlock.maxY, width: SCREEN_WIDTH, height: sceBlock.y - topBlock.maxY)
+        bankBtn.tag = 100
+        bankBtn.addTarget(self, action: #selector(self.btnClick(sender:)), for: .touchUpInside)
+        bgView.addSubview(bankBtn)
+        
+        let temp1Label = UILabel(frame: CGRect(x: 16, y: sceBlock.maxY, width: 58, height: 46))
+        temp1Label.textColor = UIColor.hex("333333")
+        temp1Label.text = "提现金额"
+        temp1Label.font = UIFont.customFont(ofSize: 14)
+        bgView.addSubview(temp1Label)
+        
+        tixianMoneyTextField = UITextField(frame: CGRect(x: temp1Label.maxX + 15, y: temp1Label.y, width: SCREEN_WIDTH - temp1Label.maxX - 15 - 16, height: temp1Label.height))
+        tixianMoneyTextField.delegate = self
+        tixianMoneyTextField.keyboardType = .decimalPad
+        tixianMoneyTextField.addTarget(self, action: #selector(valueChanged(sender:)), for: .allEditingEvents)
+        tixianMoneyTextField.placeholder = "可提金额\(GPWUser.sharedInstance().money!)元"
+        tixianMoneyTextField.font = UIFont.customFont(ofSize: 14)
+        tixianMoneyTextField.textColor = UIColor.hex("333333")
+        bgView.addSubview(tixianMoneyTextField)
+        
+        let line = UIView(frame: CGRect(x: 0, y: tixianMoneyTextField.maxY, width: SCREEN_WIDTH, height: 0.5))
+        line.backgroundColor = lineColor
+        bgView.addSubview(line)
+        
+        let temp2Label = UILabel(frame: CGRect(x: 16, y: line.maxY, width: 58, height: 45))
+        temp2Label.textColor = UIColor.hex("333333")
+        temp2Label.text = "提现费用"
+        temp2Label.font = UIFont.customFont(ofSize: 14)
+        bgView.addSubview(temp2Label)
+        
+        tixianLvLabel = UILabel(frame: CGRect(x: temp2Label.maxX + 15, y: temp2Label.y, width: SCREEN_WIDTH - temp2Label.maxX - 15 - 16, height: temp2Label.height))
+        tixianLvLabel.text = "0.00元"
+        //tixianLvLabel.textAlignment = .right
+        tixianLvLabel.font = UIFont.customFont(ofSize: 14)
+        tixianLvLabel.textColor = UIColor.hex("333333")
+        bgView.addSubview(tixianLvLabel)
+        
+        btn = UIButton(type: .custom)
+        btn.frame = CGRect(x: 16, y: bgView.maxY + 30, width: SCREEN_WIDTH - 32, height: 64)
+       btn.setBackgroundImage(UIImage(named: "btn_bg"), for: .normal)
+        btn.setTitle("确定", for: .normal)
+        btn.titleLabel?.font = UIFont.customFont(ofSize: 18)
+        btn.tag = 101
+        btn.addTarget(self, action: #selector(self.btnClick(sender:)), for: .touchUpInside)
+        scrollView.addSubview(btn)
+        
+        let indictorView = GPWIndicatorView.indicatorView()
+        indictorView.frame = CGRect(x: 16, y: btn.maxY + 27, width: 3, height: 14)
+        scrollView.addSubview(indictorView)
+        
+        let titleLabel = UILabel(frame: CGRect(x: 24, y: btn.maxY + 26, width: 300, height: 16))
+        titleLabel.font = UIFont.customFont(ofSize: 16)
+        titleLabel.textColor = UIColor.hex("333333")
+        titleLabel.text = "温馨提示"
+        scrollView.addSubview(titleLabel)
+        
+        contentLabel = RTLabel(frame: CGRect(x: 16, y: titleLabel.maxY + 10, width: SCREEN_WIDTH - 32, height: 240))
+        contentLabel.text = "<font size=14 color='#888888'>1、充值未出借金额和项目回款金额分别计算提现手续费，优先提现回款金额。 \n2、充值未出借提现，收取手续费0.5%，每笔最低2元。 \n3、出借回款金额提现，每月2次免费机会，超出后，每笔提现收取2元手续费。 \n4、每日21:00之前提现，预计T+1个工作日到账。\n5、提现只能提现到借记卡，不能提现到信用卡。\n6、如果遇到问题请联系客服400-900-9017。</font>"
+        contentLabel.height = contentLabel.optimumSize.height
+        scrollView.addSubview(contentLabel)
+    }
+     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        let expression = "^[0-9]*((\\.)[0-9]{0,2})?$"
+        let regex = try! NSRegularExpression(pattern: expression, options: NSRegularExpression.Options.allowCommentsAndWhitespace)
+        let numberOfMatches = regex.numberOfMatches(in: newString, options:NSRegularExpression.MatchingOptions.reportProgress, range: NSMakeRange(0, (newString as NSString).length))
+        return numberOfMatches != 0
+    }
+    
+    func btnClick(sender:UIButton)  {
+        if sender.tag == 100 {
+            printLog(message: "银行")
+            self.navigationController?.pushViewController(UserBankViewController(), animated: true)
+        }else{
+            if tixianMoneyTextField.text!.characters.count > 0 {
+                if bool {
+                    GPWNetwork.requetWithPost(url: Api_user_withdrawals, parameters: ["amount":tixianMoneyTextField.text ?? "0"], responseJSON: {
+                        [weak self] (json, msg) in
+                        printLog(message: json)
+                        guard let strongSelf = self else { return }
+                        let vc = GPWOhterWebViewController(subtitle: "", url: json.stringValue)
+                        vc.moneyStr = strongSelf.tixianMoneyTextField.text ?? "0"
+                        strongSelf.navigationController?.show(vc, sender: nil)
+                        }, failure: { error in
+                    })
+                }else{
+                     UIApplication.shared.keyWindow?.makeToast("手续费大于或等于提现金额")
+                }
+               
+            }else{
+                UIApplication.shared.keyWindow?.makeToast("请输入金额")
+            }
+        }
+    }
+    
+    func getNetData() {
+        GPWNetwork.requetWithGet(url: Api_newcash_fee, parameters: nil, responseJSON: {
+            [weak self] (json, msg) in
+            guard let strongSelf = self else { return }
+            strongSelf.dic = json
+            strongSelf.contentLabel.text = "<font size=14 color='#888888'>1、充值未出借金额和项目回款金额分别计算提现手续费，优先提现回款金额。 \n2、充值未出借提现，收取手续费\(json["money_deposit_fee"].doubleValue * 100)%，每笔最低2元。 \n3、出借回款金额提现，每月2次免费机会，超出后，每笔提现收取\(json["money_live_fee_min"].intValue)元手续费。 \n4、每日21:00之前提现，预计T+1个工作日到账。\n5、提现只能提现到借记卡，不能提现到信用卡。\n6、如果遇到问题请联系客服400-900-9017。</font>"
+            printLog(message: json)
+        }) { (error) in
+            
+        }
+    }
+    
+    func valueChanged(sender: UITextField) {
+        if self.dic == nil {
+            return
+        }
+        printLog(message: self.dic)
+        var tempStr:Double = 0.00
+        let tempMoney = sender.text
+        if tempMoney == nil {
+            
+        }else{
+            //充值未出借提现最小金额
+            let  money_deposit_fee_min = self.dic?["money_deposit_fee_min"].doubleValue ?? 2.00
+            //充值未出借提现手续费率
+            let  money_deposit_fee = self.dic?["money_deposit_fee"].doubleValue ?? 0.005
+            
+            //回款及福利最小提现金额
+            let  money_live_fee_min = self.dic?["money_live_fee_min"].doubleValue ?? 2.00
+            
+            //免手续费次数（充值未出借除外）
+            let  month_free_count = self.dic?["monthcount"].intValue ?? 0
+            
+            //红包金额
+            let money_award = Double((self.dic?["money_award"].stringValue.replacingOccurrences(of: ",", with: ""))!) ?? 0
+            //回款金额
+            let money_return = Double((self.dic?["money_return"].stringValue.replacingOccurrences(of: ",", with: ""))!) ?? 0
+            //充值未出借
+            let money_deposit = Double((self.dic?["money_deposit"].stringValue.replacingOccurrences(of: ",", with: ""))!) ?? 0
+            
+            var  doubleMoney = Double(tempMoney!)  ?? 0
+            
+            if doubleMoney >  money_award + money_return + money_deposit {
+                let index =  sender.text?.index( (sender.text?.endIndex)!, offsetBy: -1)
+                sender.text = sender.text?.substring(to: index!)
+                self.bgView.makeToast("提现金额不可大于账户余额")
+            }
+            doubleMoney = Double(sender.text!)  ?? 0
+            
+            let all = money_award + money_return
+            
+            //判断是否有免费次数
+            if month_free_count <= 0 {
+                if doubleMoney - all  <= 0 {
+                    tempStr = money_live_fee_min
+                }else{
+                    tempStr = ( all > 0 ? money_deposit_fee_min : 0 ) + (( doubleMoney - all ) * money_deposit_fee < money_deposit_fee_min ? money_deposit_fee_min : (doubleMoney - all ) * money_deposit_fee)
+                }
+            }else{
+                if doubleMoney - all <= 0 {
+                    tempStr = 0.00
+                }else {
+                    tempStr = (doubleMoney - all) * money_deposit_fee < money_deposit_fee_min ? money_deposit_fee_min : (doubleMoney - all) * money_deposit_fee
+                }
+            }
+            if sender.text == "" {
+                tempStr = 0.00
+                bool = false
+            }
+            
+            if doubleMoney > tempStr {
+                bool = true
+            }else{
+                bool = false
+            }
+            printLog(message: "------------------")
+            printLog(message: tempStr)
+            //转两位小数字符串
+            let  fourStr = String(format: "%.4f元", tempStr)
+            printLog(message: fourStr)
+            //字符串转double
+            let fourDouble =  (fourStr as NSString).doubleValue
+
+            
+            let  threeStr = String(format: "%.3f元", fourDouble)
+            printLog(message: threeStr)
+            //字符串转double
+            var threeDouble =  (threeStr as NSString).doubleValue
+            printLog(message: threeDouble)
+            if threeDouble < fourDouble {
+                threeDouble = threeDouble + 0.001
+            }
+
+            let  twoStr = String(format: "%.2f元", threeDouble)
+            printLog(message: twoStr)
+            //字符串转double
+            var twoDouble =  (twoStr as NSString).doubleValue
+            
+            if twoDouble < threeDouble {
+                twoDouble = twoDouble + 0.01
+            }
+            
+            if doubleMoney == 0 {
+                twoDouble = 0.00
+            }
+            printLog(message: twoDouble)
+            tixianLvLabel.text = String(format: "%.2f元", twoDouble)
+        }
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        tixianMoneyTextField.resignFirstResponder()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+}
