@@ -111,6 +111,7 @@ class GPWUserQSetPWViewController: GPWSecBaseViewController {
         if yaoCodeTextField != nil {
             dic["invite_code"] = yaoCodeTextField.text ?? ""
         }
+        ////
         GPWNetwork.requetWithPost(url: User_setpwd, parameters: dic, responseJSON: {
             [weak self]  (json, msg) in
             guard let strongSelf = self else { return }
