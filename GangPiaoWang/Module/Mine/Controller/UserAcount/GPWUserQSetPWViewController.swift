@@ -96,19 +96,22 @@ class GPWUserQSetPWViewController: GPWSecBaseViewController {
             self.bgView.makeToast("密码不正确")
             return
         }
-        var dic = ["pwd":temp1Str!]
+
         
         if (temp2Str?.characters.count)! < 6 {
             self.bgView.makeToast("密码不正确")
             return
         }
-//        dic.
-        
+
         if temp1Str != temp2Str {
             self.bgView.makeToast("两次密码不一致")
             return
         }
-        GPWNetwork.requetWithPost(url: User_setpwd, parameters: ["pwd":temp1Str!,"surepwd":temp2Str!], responseJSON: {
+         var dic = ["pwd":temp1Str!,"surepwd":temp2Str!]
+        if yaoCodeTextField != nil {
+            dic["invite_code"] = yaoCodeTextField.text ?? ""
+        }
+        GPWNetwork.requetWithPost(url: User_setpwd, parameters: dic, responseJSON: {
             [weak self]  (json, msg) in
             guard let strongSelf = self else { return }
             strongSelf.bgView.makeToast(msg)
