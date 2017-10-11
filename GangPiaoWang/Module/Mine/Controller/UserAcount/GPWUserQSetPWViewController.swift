@@ -11,7 +11,7 @@ import UIKit
 class GPWUserQSetPWViewController: GPWSecBaseViewController {
 
     fileprivate var topBgView:UIView!
-
+    fileprivate var sureBtn:UIButton!
     fileprivate var yaoCodeTextField:UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,12 +58,14 @@ class GPWUserQSetPWViewController: GPWSecBaseViewController {
         let  yaoBtn = UIButton(type: .custom)
         yaoBtn.frame = CGRect(x: 0, y: maxHeiht, width: 32 + 70 + 32, height: 20)
         yaoBtn.setTitle("我有邀请人", for: .normal)
+        yaoBtn.tag = 1000
+        yaoBtn.addTarget(self, action: #selector(self.yaoBtnClick(sender:)), for: .touchUpInside)
         yaoBtn.setTitleColor(UIColor.hex("fcc30b"), for: .normal)
         yaoBtn.titleLabel?.font = UIFont.customFont(ofSize: 14)
         self.bgView.addSubview(yaoBtn)
 
-        let yaoImgView = UIImageView(frame: CGRect(x: 16, y: 4, width: 12, height: 8))
-        yaoImgView.image = UIImage(named:"user_q_setpw_selected")
+        let yaoImgView = UIImageView(frame: CGRect(x: 16, y: 4, width: 8, height: 12))
+        yaoImgView.image = UIImage(named:"user_q_setpw_normal")
         yaoImgView.centerY = yaoBtn.titleLabel?.centerY ?? 0
         yaoImgView.tag = 10000
         yaoBtn.addSubview(yaoImgView)
@@ -75,19 +77,51 @@ class GPWUserQSetPWViewController: GPWSecBaseViewController {
         yaoCodeTextField.textColor = UIColor.hex("333333")
         self.bgView.addSubview(yaoCodeTextField)
         maxHeiht = yaoCodeTextField.maxY + 18
-
-        topBgView.height = maxHeiht
+        topBgView.height = yaoCodeTextField.y
+        yaoCodeTextField.isHidden = true
         
-        maxHeiht += 40
-        let btn = UIButton(type: .custom)
-        btn.frame = CGRect(x: 16, y: maxHeiht, width: SCREEN_WIDTH - 16 * 2, height: 64)
-        btn.setBackgroundImage(UIImage(named: "btn_bg"), for: .normal)
-        btn.addTarget(self, action: #selector(self.btnClick), for: .touchUpInside)
-        btn.setTitle("确定", for: .normal)
-        btn.titleLabel?.font = UIFont.customFont(ofSize: 18)
-        self.bgView.addSubview(btn)
-        maxHeiht = btn.maxY + 21
+        maxHeiht = yaoBtn.maxY + 40
+        sureBtn = UIButton(type: .custom)
+        sureBtn.frame = CGRect(x: 16, y: maxHeiht, width: SCREEN_WIDTH - 16 * 2, height: 64)
+        sureBtn.setBackgroundImage(UIImage(named: "btn_bg"), for: .normal)
+        sureBtn.addTarget(self, action: #selector(self.btnClick), for: .touchUpInside)
+        sureBtn.setTitle("确定", for: .normal)
+        sureBtn.titleLabel?.font = UIFont.customFont(ofSize: 18)
+        self.bgView.addSubview(sureBtn)
+        maxHeiht = sureBtn.maxY + 21
     }
+
+    func yaoBtnClick(sender:UIButton) {
+        yaoCodeTextField.resignFirstResponder()
+        let  tempImgView = sender.viewWithTag(10000) as! UIImageView
+        let tempPoint = tempImgView.center
+        var tempImgName = "user_q_setpw_selected"
+        var tempWidth = 12
+        var tempHeight = 8
+        var tempFlag = false
+        var bottomY = yaoCodeTextField.maxY + 27
+        if sender.tag == 1000 {
+            sender.tag = 1001
+        }else{
+            sender.tag = 1000
+            tempFlag = true
+            tempImgName = "user_q_setpw_normal"
+            tempWidth = 8
+            tempHeight = 12
+            bottomY = yaoCodeTextField.y
+        }
+
+        UIView.animate(withDuration: 0.3) {
+             self.topBgView.height = bottomY
+            self.yaoCodeTextField.isHidden = tempFlag
+            tempImgView.width = CGFloat(tempWidth)
+            tempImgView.height = CGFloat(tempHeight)
+            tempImgView.center = tempPoint
+            tempImgView.image = UIImage(named:tempImgName)
+            self.sureBtn.y = self.topBgView.maxY + 40
+        }
+    }
+    //网络请求
     func btnClick(){
         let  temp1Str = (self.bgView.viewWithTag(100) as! UITextField).text
          let  temp2Str = (self.bgView.viewWithTag(101) as! UITextField).text
@@ -111,7 +145,6 @@ class GPWUserQSetPWViewController: GPWSecBaseViewController {
         if yaoCodeTextField != nil {
             dic["invite_code"] = yaoCodeTextField.text ?? ""
         }
-        //////
         GPWNetwork.requetWithPost(url: User_setpwd, parameters: dic, responseJSON: {
             [weak self]  (json, msg) in
             guard let strongSelf = self else { return }
