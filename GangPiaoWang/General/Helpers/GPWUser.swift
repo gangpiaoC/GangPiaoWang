@@ -125,6 +125,9 @@ class GPWUser {
     
     //口令码
     var kouling:Int = 0
+
+    //用户体验金
+    var userTiyanMoney:Int = 58888
     
      let userPath = "userPath"
     static func sharedInstance() ->GPWUser {
@@ -143,6 +146,7 @@ class GPWUser {
         saveAccount(dic: dic)
         printLog(message: dic)
         self.isLogin = true
+        self.userTiyanMoney = dic["tiyan_amount"].intValue
         self.staue = dic["staue"].intValue
         self.kouling = dic["kouling"].intValue
         self.identity = dic["identity"].intValue
@@ -251,6 +255,7 @@ class GPWUser {
         self.staue = 0
         self.kouling = 0
         self.identity = 3
+        self.userTiyanMoney = 58888
         self.show_iden = 0
     }
 }

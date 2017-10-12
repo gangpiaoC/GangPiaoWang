@@ -82,8 +82,10 @@ class UserReadInfoViewController: GPWSecBaseViewController,UITextFieldDelegate,U
         pickerView.y = SCREEN_HEIGHT - pickerView.height
         pickerView.dataSource = self
         pickerView.delegate = self
-        pickerView.selectRow(0, inComponent: 0, animated: true)
-        pickerView.selectRow(0, inComponent: 1, animated: true)
+        if self.cityArray?.count != 0 {
+            pickerView.selectRow(0, inComponent: 0, animated: true)
+            pickerView.selectRow(0, inComponent: 1, animated: true)
+        }
         self.proIndex = 0
         self.bgVickerView.addSubview(pickerView)
 
@@ -387,6 +389,9 @@ extension UserReadInfoViewController{
     }
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        if cityArray?.count == 0{
+            return 0
+        }
         return 3
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {

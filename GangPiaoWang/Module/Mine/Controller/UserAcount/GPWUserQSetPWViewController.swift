@@ -150,10 +150,15 @@ class GPWUserQSetPWViewController: GPWSecBaseViewController {
             guard let strongSelf = self else { return }
             strongSelf.bgView.makeToast(msg)
             GPWUser.sharedInstance().getUserInfo()
-            _ = strongSelf.navigationController?.pushViewController(UserReadInfoViewController(), animated: true)
+            _ = strongSelf.navigationController?.popToRootViewController(animated: true)
         }) { (error) in
         
         }
+    }
+
+    override func back(sender: GPWButton) {
+        GPWGlobal.sharedInstance().gotoNiceNameFlag = true
+        super.back(sender: sender)
     }
 
     override func didReceiveMemoryWarning() {

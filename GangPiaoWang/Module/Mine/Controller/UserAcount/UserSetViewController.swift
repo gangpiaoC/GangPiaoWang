@@ -63,7 +63,7 @@ class UserSetViewController: GPWSecBaseViewController,UITableViewDelegate,UITabl
         super.viewDidLoad()
         self.title = "账户信息"
         
-        showTableView = UITableView(frame: self.bgView.bounds, style: .grouped)
+        showTableView = UITableView(frame: self.bgView.bounds, style: .plain)
         showTableView?.backgroundColor = bgColor
         showTableView?.delegate = self
         showTableView?.dataSource = self
@@ -94,6 +94,11 @@ class UserSetViewController: GPWSecBaseViewController,UITableViewDelegate,UITabl
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
        return 10
+    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let  tempView = UIView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: 10))
+        tempView.backgroundColor = UIColor.clear
+        return tempView
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

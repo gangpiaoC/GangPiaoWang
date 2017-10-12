@@ -194,9 +194,7 @@ class GPWUserRegisterViewController: GPWSecBaseViewController,RTLabelDelegate {
     }
     
     func updateTimer(timer:Timer) {
-        
         num  = num! - 1
-        
         if (num == 0) {
             timer.invalidate()
             CFRunLoopStop(CFRunLoopGetCurrent())
@@ -209,29 +207,58 @@ class GPWUserRegisterViewController: GPWSecBaseViewController,RTLabelDelegate {
     func btnClick() {
         let phoneNum = (self.bgView.viewWithTag(100) as! UITextField).text!
         let code = (self.bgView.viewWithTag(101) as! UITextField).text!
-        if  phoneNum.characters.count == 0 {
-            self.bgView.makeToast("请输入手机号")
+        let pw = (self.bgView.viewWithTag(102) as! UITextField).text ?? ""
+
+        //验证密码是否符合
+        let regex = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
+        if  phoneNum.characters.count != 11 {
+            self.bgView.makeToast("请输入正确手机号")
         }else if self.flag == false {
             self.bgView.makeToast("手机已注册过")
-        }else if GPWHelper.judgePhoneNum(phoneNum){
-            if code.characters.count > 0{
-                GPWNetwork.requetWithPost(url: Register_next, parameters: ["mobile":phoneNum,"news_captcha":code], responseJSON: { [weak self]  (json, msg) in
-                    guard let strongSelf = self else { return }
-                    printLog(message: json)
-                    let setLoginpwControl = GPWUserSetLoginPwViewController()
-                    setLoginpwControl.acountPhone = phoneNum
-                    strongSelf.navigationController?.pushViewController(setLoginpwControl, animated: true)
-                }) { (error) in
-                    
+        }else{
+            if predicate.evaluate(with: pw) {
+                if GPWHelper.judgePhoneNum(phoneNum){
+                    if code.characters.count > 0{
+                        GPWNetwork.requetWithPost(url: Register_next, parameters: ["mobile":phoneNum,"news_captcha":code], responseJSON: { [weak self]  (json, msg) in
+                            guard let strongSelf = self else { return }
+                            printLog(message: json)
+                            strongSelf.zhuceData()
+                        }) { (error) in
+
+                        }
+                    }else{
+                        self.bgView.makeToast("请输入验证码")
+                    }
+                }else{
+                    self.bgView.makeToast("请输入正确手机号")
                 }
             }else{
-                self.bgView.makeToast("请输入验证码")
+                self.bgView.makeToast("密码为6-16个字符，由字母+数字和符号两种以上组合")
             }
-        }else{
-            self.bgView.makeToast("请输入正确手机号")
         }
     }
-    
+
+    //注册
+    func zhuceData() {
+        let phoneNum = (self.bgView.viewWithTag(100) as! UITextField).text!
+        let code = (self.bgView.viewWithTag(101) as! UITextField).text!
+        let pw = (self.bgView.viewWithTag(102) as! UITextField).text!
+        var dic = ["mobile":phoneNum]
+        dic["password"] = pw
+        let yaostr = yaoCodeTextField.text ?? ""
+        if yaostr.characters.count > 1 {
+            dic["invite_code"] = yaostr
+        }
+        GPWNetwork.requetWithPost(url: Depose_register, parameters: dic, responseJSON:  {
+            [weak self] (json, msg) in
+            guard let strongSelf = self else { return }
+            GPWUser.sharedInstance().analyUser(dic: json)
+            strongSelf.navigationController?.pushViewController(GPWUserRegisterSViewController(), animated: true)
+            }, failure: { error in
+
+        })
+    }
 
     func rtLabel(_ rtLabel: Any!, didSelectLinkWithURL url: String!) {
         if url == "gotoxieyi" {

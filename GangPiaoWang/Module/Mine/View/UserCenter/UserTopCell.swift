@@ -13,7 +13,10 @@ class UserTopCell: UITableViewCell {
     var superController:UIViewController?
     
     //用户手机号
-    var phoneLabel:UILabel!
+    var phoneLabel:RTLabel!
+
+    //名称右侧箭头
+    var  prightImgView:UIImageView!
     
     //收益
     var everyAddMoneyLabel:UILabel!
@@ -26,19 +29,23 @@ class UserTopCell: UITableViewCell {
         self.contentView.backgroundColor = UIColor.clear
         self.selectionStyle = .none
         
-        let userImgView = UIImageView(frame: CGRect(x: 16, y: pixw(p: 35), width: 31, height: 31))
+        let userImgView = UIImageView(frame: CGRect(x: 16, y: 35, width: 31, height: 31))
         userImgView.image = UIImage(named: "user_center_toplogo")
         contentView.addSubview(userImgView)
         
-        phoneLabel = UILabel(frame: CGRect(x: userImgView.maxX + 8,y:  0,width: 200,height:  pixw(p: 15)))
-        phoneLabel.text = "***********"
-        phoneLabel.font = UIFont.customFont(ofSize: 16)
+        phoneLabel = RTLabel(frame: CGRect(x: userImgView.maxX + 8,y:  0,width: 200,height: 16))
+        phoneLabel.text = "<font size=16 color='#ffffff'>***********</font>"
+        phoneLabel.size = phoneLabel.optimumSize
         phoneLabel.centerY = userImgView.centerY
-        phoneLabel.textColor = UIColor.white
         self.contentView.addSubview(phoneLabel)
+
+        prightImgView = UIImageView(frame: CGRect(x: phoneLabel.maxX + 10, y: 0, width: 7, height: 13))
+        prightImgView.image = UIImage(named: "user_center_topright")
+        prightImgView.centerY = userImgView.centerY + 3
+        contentView.addSubview(prightImgView)
         
         let  userInfoBtn = UIButton(type: .custom)
-        userInfoBtn.frame = CGRect(x: userImgView.x, y: userImgView.y, width: phoneLabel.maxX - userImgView.x, height: userImgView.height)
+        userInfoBtn.frame = CGRect(x: userImgView.x, y: userImgView.y, width: prightImgView.maxX - userImgView.x, height: userImgView.height)
         userInfoBtn.tag = 103
         userInfoBtn.addTarget(self, action: #selector(self.setClick(_:)), for: .touchUpInside)
         contentView.addSubview(userInfoBtn)
@@ -98,7 +105,9 @@ class UserTopCell: UITableViewCell {
         tempformat1.numberStyle = .decimal
         let double1Num = tempformat1.number(from: acountMoney)
         self.acountMoneyLabel.changNum(toNumber:double1Num as! Double , withDurTime: 1)
-        self.phoneLabel.text = phone
+        self.phoneLabel.text =  "<font size=16 color='#ffffff'>\(phone)</font>"
+        self.phoneLabel.size = self.phoneLabel.optimumSize
+        self.prightImgView.x = self.phoneLabel.maxX + 10
         self.superController = superC
     }
     

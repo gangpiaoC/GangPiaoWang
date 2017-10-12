@@ -47,6 +47,9 @@ class GPWGlobal {
 
     //最新网络接口返回的msg
     var msg = ""
+
+    //快捷注册后弹窗去实名~
+    var  gotoNiceNameFlag = false
     
     static func sharedInstance() ->GPWGlobal {
         if userAccount == nil {

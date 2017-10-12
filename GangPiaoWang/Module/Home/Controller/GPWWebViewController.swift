@@ -132,8 +132,6 @@ class GPWWebViewController: GPWSecBaseViewController,WKUIDelegate,WKNavigationDe
         }else{
             self.title = subSitle
         }
-        let cookie = HTTPCookieStorage.shared.cookies(for: URL(string: self.url!)!)
-        printLog(message: cookie)
     }
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         printLog(message: userContentController)

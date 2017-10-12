@@ -42,6 +42,12 @@ class UserController: GPWBaseViewController,UITableViewDelegate,UITableViewDataS
         }else{
            self.noLogin()
         }
+
+        //开通存管
+        if GPWGlobal.sharedInstance().gotoNiceNameFlag {
+            GPWGlobal.sharedInstance().gotoNiceNameFlag = false
+            self.showQuireInfo()
+        }
         self.showTableView.reloadData()
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -92,13 +98,65 @@ class UserController: GPWBaseViewController,UITableViewDelegate,UITableViewDataS
         }
     }
 
+    //快捷注册后如果没有实名就会提示
+    func showQuireInfo() {
+        let wid = UIApplication.shared.keyWindow
+
+        let  bgView = UIView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
+        bgView.backgroundColor = UIColor.hex("000000", alpha: 0.6)
+        bgView.tag = 10001
+        wid?.addSubview(bgView)
+
+        let  quireView = UIView(frame: CGRect(x: 0, y: 0, width: 332, height: 228))
+        quireView.layer.masksToBounds = true
+        quireView.layer.cornerRadius = 5
+        quireView.backgroundColor = UIColor.white
+        quireView.center = CGPoint(x: SCREEN_WIDTH / 2, y: SCREEN_HEIGHT / 2)
+        bgView.addSubview(quireView)
+
+        let  quireImgView = UIImageView(frame: CGRect(x: 0, y: 30, width: 100, height: 60))
+        quireImgView.image = UIImage(named:"user_regiter_show_top")
+        quireImgView.centerX = quireView.width / 2
+        quireView.addSubview(quireImgView)
+
+        let quireLabel = RTLabel(frame: CGRect(x: 0, y: quireImgView.maxY + 16, width: quireView.width, height: 20))
+        quireLabel.text = "<font size=18 color='#f6390d'>\(GPWUser.sharedInstance().userTiyanMoney)元体验金</font><font size=18 color='#666666'>已塞入您的账户</font>"
+        quireLabel.textAlignment = RTTextAlignmentCenter
+        quireLabel.height = quireLabel.optimumSize.height
+        quireView.addSubview(quireLabel)
+
+        let btn = UIButton(type: .custom)
+        btn.frame = CGRect(x: 0, y: quireView.height - 29 - 58, width: 290, height: 58)
+        btn.setImage(UIImage(named:"user_regiter_show_kt"), for: .normal)
+        btn.tag = 1000
+        btn.centerX = quireImgView.centerX
+        btn.addTarget(self, action: #selector(self.quireClick(sender:)), for: .touchUpInside)
+        quireView.addSubview(btn)
+
+        let cancelBtn = UIButton(type: .custom)
+        cancelBtn.frame = CGRect(x: 0, y: quireView.maxY + 30, width: 36, height: 36)
+        cancelBtn.setImage(UIImage(named:"version_cancel"), for: .normal)
+        cancelBtn.centerX = quireView.centerX
+        cancelBtn.tag = 1001
+        cancelBtn.addTarget(self, action: #selector(self.quireClick(sender:)), for: .touchUpInside)
+        bgView.addSubview(cancelBtn)
+
+
+    }
+
+    func quireClick(sender:UIButton) {
+        UIApplication.shared.keyWindow?.viewWithTag(10001)?.removeFromSuperview()
+        if sender.tag == 1000 {
+            self.navigationController?.pushViewController(UserReadInfoViewController(), animated: true)
+        }
+    }
     //添加消息按钮
     func addMessageBtn() {
         let  messageBtn = UIButton(type: .custom)
         messageBtn.tag = 101
-        messageBtn.frame = CGRect(x: SCREEN_WIDTH - 28 - 16, y: 27, width: 35, height: 35)
+        messageBtn.frame = CGRect(x: SCREEN_WIDTH - 28 - 16, y: 22, width: 35, height: 35)
         messageBtn.addTarget(self, action: #selector(self.toMessageControll), for: .touchUpInside)
-        self.bgView.addSubview(messageBtn)
+        self.showTableView.addSubview(messageBtn)
 
         messageImgView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
         messageImgView.image = UIImage(named: "user_message_no")
