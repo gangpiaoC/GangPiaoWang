@@ -85,7 +85,7 @@ class GPWGetFriendsHeadView: UITableViewHeaderFooterView {
         yaotypeLabel.textColor = UIColor.hex("333333")
         bgView.addSubview(yaotypeLabel)
         
-        nameLabel = UILabel(frame: CGRect(x: yaotypeLabel.maxX + pixw(p: 12), y: 0, width: pixw(p: 50), height: pixw(p: 45)))
+        nameLabel = UILabel(frame: CGRect(x: yaotypeLabel.maxX + pixw(p: 10), y: 0, width: pixw(p: 54), height: pixw(p: 45)))
         nameLabel.text = "张**"
         nameLabel.centerY = yaotypeLabel.centerY
         nameLabel.font = UIFont.customFont(ofSize: 12)
@@ -103,7 +103,7 @@ class GPWGetFriendsHeadView: UITableViewHeaderFooterView {
         timeLabel = UILabel(frame: CGRect(x: phoneLabel.maxX + pixw(p: 12), y: 0, width: pixw(p: 61), height: pixw(p: 40)))
         timeLabel.text = "2017.02.14"
         timeLabel.centerY = yaotypeLabel.centerY
-        timeLabel.font = UIFont.customFont(ofSize: 12)
+        timeLabel.font = UIFont.customFont(ofSize: 11.8)
         timeLabel.textColor = UIColor.hex("333333")
         bgView.addSubview(timeLabel)
         

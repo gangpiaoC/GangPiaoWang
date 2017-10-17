@@ -45,13 +45,12 @@ class GPWUserRSubView: LazyScrollSubView,UITableViewDelegate,UITableViewDataSour
             strongSelf.showTableView.endFooterRefreshing()
             strongSelf.showTableView.endHeaderRefreshing()
             if strongSelf.page == 1 {
+                strongSelf.dataArr.removeAll()
                 strongSelf.dataArr = json.array!
-                if (json.arrayObject?.count)! > 0 {
+                if strongSelf.dataArr.count > 0 {
                     strongSelf.showTableView.footerRefresh.isHidden = false
                     strongSelf.page += 1
-                    (self?.inCtl as! GPWSecBaseViewController).noDataImgView.isHidden = true
                 }else{
-                   (self?.inCtl as! GPWSecBaseViewController).noDataImgView.isHidden = false
                     strongSelf.showTableView.setFooterNoMoreData()
                 }
             }else{
@@ -61,6 +60,12 @@ class GPWUserRSubView: LazyScrollSubView,UITableViewDelegate,UITableViewDataSour
                 }else{
                     strongSelf.showTableView.endFooterRefreshingWithNoMoreData()
                 }
+            }
+
+            if strongSelf.dataArr.count > 0 {
+                (self?.inCtl as! GPWSecBaseViewController).noDataImgView.isHidden = true
+            }else{
+                (self?.inCtl as! GPWSecBaseViewController).noDataImgView.isHidden = false
             }
             strongSelf.showTableView.reloadData()
             }, failure: { [weak self] error in
@@ -73,12 +78,9 @@ class GPWUserRSubView: LazyScrollSubView,UITableViewDelegate,UITableViewDataSour
 
     
     override func reloadData(withDict dict: [AnyHashable : Any]!) {
-        
-        if type == nil {
-            type = dict["type"] as! String
-           self.getNetData()
-            showTableView.reloadData()
-        }
+        type = dict["type"] as! String
+        self.getNetData()
+        showTableView.reloadData()
         MobClick.event("mine_reward", label: dict["title"] as! String)
     }
     

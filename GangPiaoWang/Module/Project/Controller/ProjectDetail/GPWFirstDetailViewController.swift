@@ -22,7 +22,7 @@ class GPWFirstDetailViewController: UIViewController, UITableViewDelegate, UITab
     var  isHiddenFull = 0
     
     private var cell2LeftText: [String] = ["起息方式", "还款方式", "温馨提示"]
-    private var cell2RightText: [String] = ["立即起息", "一次性还本付息", "新手用户仅有一次出借机会"]
+    private var cell2RightText: [String] = ["立即起息", "一次性还本付息", "新手用户出借仅享有一次加息机会"]
     var projectID: String!
     var superController:GPWProjectDetailViewController?
     private var json: JSON?
@@ -78,7 +78,7 @@ class GPWFirstDetailViewController: UIViewController, UITableViewDelegate, UITab
             if json["is_index"].intValue == 1 {
                 if GPWUser.sharedInstance().staue == 0 {
                     strongSelf.cell2LeftText.append("温馨提示")
-                    strongSelf.cell2RightText.append("新手用户仅有一次出借机会")
+                    strongSelf.cell2RightText.append("新手用户出借仅享有一次加息机会")
                 }
             }
             

@@ -22,7 +22,7 @@ class GPWVipFDetailViewController: UIViewController, UITableViewDelegate, UITabl
     var  isHiddenFull = 0
     
      var cell2LeftText: [String] = ["起息方式", "还款方式", "温馨提示"]
-     var cell2RightText: [String] = ["立即起息", "一次性还本付息", "新手用户仅有一次出借机会"]
+     var cell2RightText: [String] = ["立即起息", "一次性还本付息", "新手用户出借仅享有一次加息机会"]
     var projectID: String!
      var json: JSON?
     override func viewDidLoad() {

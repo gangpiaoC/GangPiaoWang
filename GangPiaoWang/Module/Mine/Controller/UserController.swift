@@ -24,23 +24,16 @@ class UserController: GPWBaseViewController,UITableViewDelegate,UITableViewDataS
     
     let imgArray = ["user_jilu","user_liushui","user_jiangli","user_yaoqing","user_fankui"]
     let titleArray = ["出借记录","资金流水","我的奖励","我的邀请","意见反馈"]
-    
+
     override func viewWillAppear(_ animated: Bool) { 
         super.viewWillAppear(animated)
         self.getMessageNum()
        self.navigationController?.navigationBar.barStyle = .black
         self.bgView.viewWithTag(10000)?.removeFromSuperview()
         if GPWUser.sharedInstance().isLogin {
-            GPWNetwork.requetWithGet(url: User_informition, parameters: nil, responseJSON:  {
-                [weak self] (json, msg) in
-                guard let strongSelf = self else { return }
-                GPWUser.sharedInstance().analyUser(dic: json)
-                strongSelf.showTableView.reloadData()
-                }, failure: { error in
-            
-            })
+            self.showTableView.reloadData()
         }else{
-           self.noLogin()
+            self.noLogin()
         }
 
         //开通存管

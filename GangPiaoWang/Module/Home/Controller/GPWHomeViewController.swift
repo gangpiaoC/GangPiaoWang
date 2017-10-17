@@ -48,6 +48,11 @@ class GPWHomeViewController: GPWBaseViewController,UITableViewDelegate,UITableVi
         initView()
         //获取数据
         getNetData()
+
+        if GPWGlobal.sharedInstance().pushDic != nil {
+            (UIApplication.shared.delegate as! AppDelegate).dealMessageFromXG(GPWGlobal.sharedInstance().pushDic!)
+            GPWGlobal.sharedInstance().pushDic = nil
+        }
     }
     
     func initView() {

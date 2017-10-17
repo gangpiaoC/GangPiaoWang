@@ -50,6 +50,9 @@ class GPWGlobal {
 
     //快捷注册后弹窗去实名~
     var  gotoNiceNameFlag = false
+
+    //推送字段
+    var  pushDic:[String:Any]?
     
     static func sharedInstance() ->GPWGlobal {
         if userAccount == nil {

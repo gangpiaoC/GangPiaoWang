@@ -162,9 +162,10 @@ class GPWUser {
         self.user_id = dic["userinfo"]["user_id"].int
         self.user_name = dic["userinfo"]["user_name"].string
         self.telephone = dic["userinfo"]["telephone"].string
-        JPUSHService.setAlias(self.telephone, callbackSelector: nil, object: nil)
+        JPUSHService.setAlias(self.telephone, completion: { (num1, msg, num2) in
+
+        }, seq: 1)
         self.invite_code = dic["userinfo"]["invite_code"].string
-        
         self.money = dic["amount"]["money"].string
         self.capital = dic["amount"]["capital"].string
         self.wait_accrual = dic["amount"]["wait_accrual"].string

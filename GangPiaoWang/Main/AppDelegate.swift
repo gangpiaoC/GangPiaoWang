@@ -90,12 +90,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         // 注册极光推送
         JPUSHService.setup(withOption: launchOptions, appKey: "c6e8bb9d040bb6d064c7a7ee", channel:"App Store" , apsForProduction: false);
         // 获取推送消息
-        let remote = launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] as? Dictionary<String,Any>
+        let remote = launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] as? [String:Any]
         // 如果remote不为空，就代表应用在未打开的时候收到了推送消息
         if remote != nil {
             // 收到推送消息实现的方法
-            printLog(message: "remote")
-            self.perform(#selector(self.dealMessageFromXG(_:)), with: remote, afterDelay: 0.5)
+            printLog(message:remote)
+            GPWGlobal.sharedInstance().pushDic = remote
         }
     }
     @available(iOS 10.0, *)
@@ -144,8 +144,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
             if  tempType == "1"{
                 let vc = GPWWebViewController(subtitle: "", url: userInfo["link"] as! String)
                 navController?.pushViewController(vc, animated: true)
-            }else{
-                
+            }else if tempType == "2"{
+                let ttzController = GPWFTTZHController()
+                ttzController.urlstr = userInfo["link"] as? String
+                navController?.pushViewController(ttzController, animated: true)
+            }else if tempType == "3"{
+                navController?.pushViewController(GPWProjectDetailViewController(projectID: userInfo["link"] as! String), animated: true)
             }
         }
     }

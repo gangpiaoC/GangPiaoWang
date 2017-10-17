@@ -93,7 +93,7 @@ class GPWGetFriendsCell: UITableViewCell {
         timeLabel = UILabel(frame: CGRect(x: phoneLabel.maxX + pixw(p: 12), y: 0, width: pixw(p: 61), height: pixw(p: 40)))
         timeLabel.text = "2017.02.14"
         timeLabel.centerY = yaotypeLabel.centerY
-        timeLabel.font = UIFont.customFont(ofSize: pixw(p: 12))
+        timeLabel.font = UIFont.customFont(ofSize: pixw(p: 11.8))
         timeLabel.textColor = UIColor.hex("333333")
         bgView.addSubview(timeLabel)
         

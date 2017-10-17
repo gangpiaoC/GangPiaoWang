@@ -101,7 +101,6 @@
 		8010FC761E852E3600A94577 /* GPWHomeMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8010FC751E852E3600A94577 /* GPWHomeMessageController.swift */; };
 		80118F6E1F78E0AC00A18370 /* GPWHTLCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80118F6D1F78E0AC00A18370 /* GPWHTLCell.swift */; };
 		80118F701F78E5E500A18370 /* GPWHTLController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80118F6F1F78E5E500A18370 /* GPWHTLController.swift */; };
-		80184D5F1F7A5BEA0095F1FE /* GPWNewTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80184D5E1F7A5BEA0095F1FE /* GPWNewTabBarController.swift */; };
 		8027DDB11F41D7EB00CC923A /* GPWVFschooliewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8027DDB01F41D7EB00CC923A /* GPWVFschooliewController.swift */; };
 		8027DDB31F41DA3400CC923A /* GPWFschoolCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8027DDB21F41DA3400CC923A /* GPWFschoolCell.swift */; };
 		8027DDB51F46BBC200CC923A /* GPWFoundBottomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8027DDB41F46BBC200CC923A /* GPWFoundBottomCell.swift */; };
@@ -113,6 +112,8 @@
 		803D05351E0D1FAB0098C2AD /* GPWOutRcordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803D05341E0D1FAB0098C2AD /* GPWOutRcordCell.swift */; };
 		8045C1061EC03F0C00DEFB5D /* GPWActiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8045C1051EC03F0C00DEFB5D /* GPWActiveViewController.swift */; };
 		8045C1081EC0420100DEFB5D /* GPWActiveCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8045C1071EC0420100DEFB5D /* GPWActiveCell.swift */; };
+		804730AB1F90B136003F4CAB /* jcore-ios-1.1.6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 804730A61F90B136003F4CAB /* jcore-ios-1.1.6.a */; };
+		804730AD1F90B136003F4CAB /* jpush-ios-3.0.7.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 804730A81F90B136003F4CAB /* jpush-ios-3.0.7.a */; };
 		8051098B1F26089D001010CA /* myImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 805109881F26089D001010CA /* myImageView.m */; };
 		8051098C1F26089D001010CA /* RedBagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8051098A1F26089D001010CA /* RedBagViewController.m */; };
 		805687FF1E837EED006E9C19 /* GPWUserQSetPWViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805687FE1E837EED006E9C19 /* GPWUserQSetPWViewController.swift */; };
@@ -216,8 +217,6 @@
 		809DCE3F1EAF219000F07D52 /* GPWGetIP.m in Sources */ = {isa = PBXBuildFile; fileRef = 809DCE3E1EAF219000F07D52 /* GPWGetIP.m */; };
 		80A183411F0CDDF500F5EA57 /* GPWFirstDetailCell2_0.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A183401F0CDDF500F5EA57 /* GPWFirstDetailCell2_0.swift */; };
 		80A183431F0DE09800F5EA57 /* GPWFirstDetailCell2_1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A183421F0DE09800F5EA57 /* GPWFirstDetailCell2_1.swift */; };
-		80A241641F74EC9400B442C9 /* jcore-ios-1.1.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 80A241621F74EC9400B442C9 /* jcore-ios-1.1.5.a */; };
-		80A241651F74EC9400B442C9 /* jpush-ios-3.0.6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 80A241631F74EC9400B442C9 /* jpush-ios-3.0.6.a */; };
 		80A3E7601F78EA6200E0C465 /* GPWHTListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A3E75F1F78EA6200E0C465 /* GPWHTListCell.swift */; };
 		80A518601EE6947D003C9093 /* GPWRiskAssessmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A5185F1EE6947D003C9093 /* GPWRiskAssessmentViewController.swift */; };
 		80A518621EE6BD46003C9093 /* risk_assessment.json in Resources */ = {isa = PBXBuildFile; fileRef = 80A518611EE6BD46003C9093 /* risk_assessment.json */; };
@@ -482,7 +481,6 @@
 		8010FC751E852E3600A94577 /* GPWHomeMessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWHomeMessageController.swift; sourceTree = "<group>"; };
 		80118F6D1F78E0AC00A18370 /* GPWHTLCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWHTLCell.swift; sourceTree = "<group>"; };
 		80118F6F1F78E5E500A18370 /* GPWHTLController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWHTLController.swift; sourceTree = "<group>"; };
-		80184D5E1F7A5BEA0095F1FE /* GPWNewTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWNewTabBarController.swift; sourceTree = "<group>"; };
 		8027DDB01F41D7EB00CC923A /* GPWVFschooliewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWVFschooliewController.swift; sourceTree = "<group>"; };
 		8027DDB21F41DA3400CC923A /* GPWFschoolCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWFschoolCell.swift; sourceTree = "<group>"; };
 		8027DDB41F46BBC200CC923A /* GPWFoundBottomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWFoundBottomCell.swift; sourceTree = "<group>"; };
@@ -495,6 +493,10 @@
 		803D05341E0D1FAB0098C2AD /* GPWOutRcordCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWOutRcordCell.swift; sourceTree = "<group>"; };
 		8045C1051EC03F0C00DEFB5D /* GPWActiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWActiveViewController.swift; sourceTree = "<group>"; };
 		8045C1071EC0420100DEFB5D /* GPWActiveCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWActiveCell.swift; sourceTree = "<group>"; };
+		804730A61F90B136003F4CAB /* jcore-ios-1.1.6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jcore-ios-1.1.6.a"; sourceTree = "<group>"; };
+		804730A81F90B136003F4CAB /* jpush-ios-3.0.7.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-3.0.7.a"; sourceTree = "<group>"; };
+		804730A91F90B136003F4CAB /* JPushNotificationExtensionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPushNotificationExtensionService.h; sourceTree = "<group>"; };
+		804730AA1F90B136003F4CAB /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
 		805109871F26089D001010CA /* myImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myImageView.h; sourceTree = "<group>"; };
 		805109881F26089D001010CA /* myImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myImageView.m; sourceTree = "<group>"; };
 		805109891F26089D001010CA /* RedBagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedBagViewController.h; sourceTree = "<group>"; };
@@ -632,8 +634,6 @@
 		809DCE3E1EAF219000F07D52 /* GPWGetIP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPWGetIP.m; sourceTree = "<group>"; };
 		80A183401F0CDDF500F5EA57 /* GPWFirstDetailCell2_0.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWFirstDetailCell2_0.swift; sourceTree = "<group>"; };
 		80A183421F0DE09800F5EA57 /* GPWFirstDetailCell2_1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWFirstDetailCell2_1.swift; sourceTree = "<group>"; };
-		80A241621F74EC9400B442C9 /* jcore-ios-1.1.5.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jcore-ios-1.1.5.a"; sourceTree = "<group>"; };
-		80A241631F74EC9400B442C9 /* jpush-ios-3.0.6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-3.0.6.a"; sourceTree = "<group>"; };
 		80A3E75F1F78EA6200E0C465 /* GPWHTListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWHTListCell.swift; sourceTree = "<group>"; };
 		80A5185F1EE6947D003C9093 /* GPWRiskAssessmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWRiskAssessmentViewController.swift; sourceTree = "<group>"; };
 		80A518611EE6BD46003C9093 /* risk_assessment.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = risk_assessment.json; sourceTree = "<group>"; };
@@ -750,7 +750,6 @@
 		80BE2A3F1F1361CC00D6F718 /* GPWProjectTypeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWProjectTypeController.swift; sourceTree = "<group>"; };
 		80C22B571EB04ACC000FEAFC /* GPWUserExpCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWUserExpCell.swift; sourceTree = "<group>"; };
 		80CFF4CE1EA5ADDB00C080E7 /* GPWProjectInSecondVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWProjectInSecondVC.swift; sourceTree = "<group>"; };
-		80D805161E8C187F000E08AE /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
 		80DCE6261F594CB100FF8CC5 /* GPWFTTZHController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWFTTZHController.swift; sourceTree = "<group>"; };
 		80DCE6281F594CC800FF8CC5 /* GPWVipListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWVipListViewController.swift; sourceTree = "<group>"; };
 		80E6967F1F7CEFE20088A880 /* GPWFailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWFailController.swift; sourceTree = "<group>"; };
@@ -793,6 +792,7 @@
 				5B781FDD1DF5497D00748955 /* libz.tbd in Frameworks */,
 				5B78200E1DF5796500748955 /* Security.framework in Frameworks */,
 				80A570271E7F7A1B00CCB2C7 /* UIKit.framework in Frameworks */,
+				804730AB1F90B136003F4CAB /* jcore-ios-1.1.6.a in Frameworks */,
 				80A570251E7F7A0F00CCB2C7 /* Foundation.framework in Frameworks */,
 				806587701E8BA9F500456034 /* CoreGraphics.framework in Frameworks */,
 				5B781FF71DF56F5C00748955 /* SystemConfiguration.framework in Frameworks */,
@@ -807,9 +807,8 @@
 				80B49B2D1E6FCADF0042198A /* MobileCoreServices.framework in Frameworks */,
 				80B49B2B1E6FCAC70042198A /* AudioToolbox.framework in Frameworks */,
 				80B49B291E6FCABB0042198A /* AssetsLibrary.framework in Frameworks */,
+				804730AD1F90B136003F4CAB /* jpush-ios-3.0.7.a in Frameworks */,
 				80B49B271E6FCA720042198A /* AVFoundation.framework in Frameworks */,
-				80A241641F74EC9400B442C9 /* jcore-ios-1.1.5.a in Frameworks */,
-				80A241651F74EC9400B442C9 /* jpush-ios-3.0.6.a in Frameworks */,
 				5B781FE51DF549D400748955 /* libsqlite3.tbd in Frameworks */,
 				806EDCF71F3AE9AF006A06AF /* ShareSDK.framework in Frameworks */,
 				5B7F2E5E1E2CD088009F8276 /* UMMobClick.framework in Frameworks */,
@@ -936,7 +935,6 @@
 			isa = PBXGroup;
 			children = (
 				5B781F8F1DF16CB000748955 /* GPWTabBarController.swift */,
-				80184D5E1F7A5BEA0095F1FE /* GPWNewTabBarController.swift */,
 			);
 			path = TabBarController;
 			sourceTree = "<group>";
@@ -1381,6 +1379,17 @@
 				802C34C31F726E29007A504D /* UILabel+YXYNumberAnimationLabel.m */,
 			);
 			path = "UIlabel+YXY";
+			sourceTree = "<group>";
+		};
+		804730A51F90B136003F4CAB /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				804730A61F90B136003F4CAB /* jcore-ios-1.1.6.a */,
+				804730A81F90B136003F4CAB /* jpush-ios-3.0.7.a */,
+				804730A91F90B136003F4CAB /* JPushNotificationExtensionService.h */,
+				804730AA1F90B136003F4CAB /* JPUSHService.h */,
+			);
+			path = Lib;
 			sourceTree = "<group>";
 		};
 		805109861F26089D001010CA /* redBags(红包雨) */ = {
@@ -1984,19 +1993,9 @@
 		80D805121E8C187F000E08AE /* jiguang */ = {
 			isa = PBXGroup;
 			children = (
-				80D805131E8C187F000E08AE /* Lib */,
+				804730A51F90B136003F4CAB /* Lib */,
 			);
 			path = jiguang;
-			sourceTree = "<group>";
-		};
-		80D805131E8C187F000E08AE /* Lib */ = {
-			isa = PBXGroup;
-			children = (
-				80A241621F74EC9400B442C9 /* jcore-ios-1.1.5.a */,
-				80A241631F74EC9400B442C9 /* jpush-ios-3.0.6.a */,
-				80D805161E8C187F000E08AE /* JPUSHService.h */,
-			);
-			path = Lib;
 			sourceTree = "<group>";
 		};
 		80DCE6251F594CB100FF8CC5 /* Vip */ = {
@@ -2404,7 +2403,6 @@
 				5B3EEB6E1E0BA3E80092014C /* GPWAvailableRateCouponViewController.swift in Sources */,
 				808690491F5D35DD008F4FB7 /* GPWVipFDetailViewController.swift in Sources */,
 				80A5707D1E82451100CCB2C7 /* GPWUserMDetailViewController.swift in Sources */,
-				80184D5F1F7A5BEA0095F1FE /* GPWNewTabBarController.swift in Sources */,
 				806EDCD31F3AE34D006A06AF /* VierticalScrollView.swift in Sources */,
 				80625ECB1E06982C00456B63 /* UIScrollView+TwitterCover.m in Sources */,
 				80A93C291F3ED0760006C1E0 /* AFImageDownloader.m in Sources */,
