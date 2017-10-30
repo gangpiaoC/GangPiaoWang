@@ -16,7 +16,7 @@ class UserSecondCell: UITableViewCell {
         self.selectionStyle = .none
         
         let tempLabel = UILabel(frame: CGRect(x: 23,y: 23,width: 102,height: 16))
-        tempLabel.text = "可用余额(元)"
+        tempLabel.text = "账户余额(元)"
         tempLabel.font = UIFont.customFont(ofSize:  16)
         tempLabel.textColor = UIColor.hex("666666")
         self.contentView.addSubview(tempLabel)

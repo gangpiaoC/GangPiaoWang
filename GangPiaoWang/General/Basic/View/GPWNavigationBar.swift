@@ -38,11 +38,9 @@ class GPWNavigationBar: UIView {
     }
     
     fileprivate func addTitleLabel() {
-        titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH / 2.0, height: 42))
-        var center = self.center
-        center.y += 8
-        titleLabel.center = center
+        titleLabel = UILabel(frame: CGRect(x: 0, y: self.height - 44, width: SCREEN_WIDTH / 2.0, height: 44))
         titleLabel.textColor = titleColor
+        titleLabel.centerX = self.width / 2
         titleLabel.textAlignment = .center
         titleLabel.font = UIFont.customFont(ofSize: 18)
         self.addSubview(titleLabel)

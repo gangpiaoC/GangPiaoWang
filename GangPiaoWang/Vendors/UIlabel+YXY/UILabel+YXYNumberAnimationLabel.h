@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 @interface UILabel (YXYNumberAnimationLabel)
 @property (nonatomic, assign) CGFloat toNumber;
+@property (nonatomic, strong) NSString * strNumber;
 -(void)changeFromNumber:(double) originalnumber toNumber:(double) newnumber withAnimationTime:(NSTimeInterval)timeSpan;
--(void)changNumToNumber:(double)number withDurTime:(double)time;
+-(void)changNumToNumber:(double)number withDurTime:(double)time withStrnumber:(NSString *)str;
 -(double)animationSpeed;
 -(void)setAnimationSpeed:(double)speed;
 @end

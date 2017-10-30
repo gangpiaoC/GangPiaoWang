@@ -61,7 +61,7 @@ class GPWHomeSecViewCell: UITableViewCell {
             self.superControl?.navigationController?.pushViewController(GPWWebViewController(subtitle: "", url:  HTML_SERVER +  (self.dataDic?["insurance"].string)!), animated: true)
         }else if sender.tag == 102 {
             MobClick.event("home", label: "菜单栏-平台列表")
-            let con = GPWUserQSetPWViewController()
+            let con = GPWActiveViewController()
            self.superControl?.navigationController?.pushViewController(con, animated: true)
         }else if sender.tag == 103 {
             MobClick.event("home", label: "菜单栏-拼手气")

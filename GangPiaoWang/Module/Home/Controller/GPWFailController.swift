@@ -52,7 +52,7 @@ class GPWFailController: GPWBaseViewController {
         let  tipleLabel = UILabel(frame: CGRect(x: 0, y: titleLabel.maxY + 14, width: SCREEN_WIDTH, height: 14))
         tipleLabel.textColor = UIColor.hex("999999")
         tipleLabel.font = UIFont.customFont(ofSize: 14)
-        tipleLabel.text = self.tipStr
+        tipleLabel.text = self.tipStr.removingPercentEncoding
         tipleLabel.textAlignment = .center
         self.bgView.addSubview(tipleLabel)
 
@@ -104,7 +104,14 @@ class GPWFailController: GPWBaseViewController {
                 }
             }
         }else if type == FailType.CUNGUANTYPE {
-            GPWHelper.selectTabBar(index: MINEBARTAG)
+            if let viewControllers = self.navigationController?.viewControllers {
+                for vc in viewControllers {
+                    if vc.isKind(of: UserReadInfoViewController.self) {
+                        _ = self.navigationController?.popToViewController(vc, animated: true)
+                        return
+                    }
+                }
+            }
         }else if type == FailType.CHUJIETYPE {
             for vc in self.navigationController!.viewControllers {
                 if vc.isKind(of: GPWProjectDetailViewController.self) {

@@ -84,7 +84,7 @@ class GPWLoginViewController: GPWSecBaseViewController {
         }
         
         if flag == false {
-            super.back(sender: GPWButton())
+            super.back(sender: sender)
         }
     }
     

@@ -102,7 +102,9 @@ class GPWADView: UIView {
     
     //去往web或者标的
     func gotoController() {
-        if (self.urlStr.range(of: "https")) != nil{
+        if self.urlStr.characters.count < 5 {
+
+        }else if (self.urlStr.range(of: "https")) != nil{
             if self.urlStr.characters.count > 6 {
                 GPWHelper.selectedNavController()?.pushViewController(GPWWebViewController(subtitle: "", url: self.urlStr), animated: true)
             }

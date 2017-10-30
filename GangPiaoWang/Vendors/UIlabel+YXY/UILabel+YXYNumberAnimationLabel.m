@@ -24,10 +24,11 @@
         [self setFont:[UIFont fontWithName:self.font.fontName size:22]];
     }
 }
--(void)changNumToNumber:(double)number withDurTime:(double)time{
+-(void)changNumToNumber:(double)number withDurTime:(double)time withStrnumber:(NSString *)str{
     double timeNum = time / TIMEINTERVAL;
     [self setAnimationSpeed:number / timeNum];
     self.toNumber = number;
+    self.strNumber = str;
     [self changeFromNumber:0 toNumber:number withAnimationTime:TIMEINTERVAL];
 }
 
@@ -45,10 +46,11 @@
         if(originalnumber < newnumber){
             [self changeFromNumber:originalnumber + self.animationSpeed toNumber:newnumber withAnimationTime:timeSpan];
         }else{
-            self.text = [NSString stringWithFormat:@"%.2f",self.toNumber];
+            self.text = self.strNumber;
         }
     }];
 }
+
 
 
 -(double)animationSpeed{
@@ -69,6 +71,14 @@
 -(CGFloat)toNumber{
     double number = ((NSNumber *)objc_getAssociatedObject(self, @selector(toNumber))).doubleValue;
     return number;
+}
+-(void)setStrNumber:(NSString *)strNumber{
+    objc_setAssociatedObject(self, @selector(strNumber), strNumber, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+-(NSString *)strNumber{
+    NSString *str =  ((NSString *)objc_getAssociatedObject(self, @selector(strNumber)));
+    return str;
 }
 
 @end

@@ -132,8 +132,13 @@ extension GPWHomeTiyanViewController{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 2 {
-            self.navigationController?.pushViewController(GPWHTLController(), animated: true)
-            printLog(message: "去往投资记录")
+
+            if GPWUser.sharedInstance().isLogin {
+                self.navigationController?.pushViewController(GPWHTLController(), animated: true)
+                printLog(message: "去往投资记录")
+            }else{
+                self.navigationController?.pushViewController(GPWLoginViewController(), animated: true)
+            }
         }
     }
 }

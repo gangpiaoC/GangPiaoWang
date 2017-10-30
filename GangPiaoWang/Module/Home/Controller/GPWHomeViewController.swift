@@ -48,7 +48,6 @@ class GPWHomeViewController: GPWBaseViewController,UITableViewDelegate,UITableVi
         initView()
         //获取数据
         getNetData()
-
         if GPWGlobal.sharedInstance().pushDic != nil {
             (UIApplication.shared.delegate as! AppDelegate).dealMessageFromXG(GPWGlobal.sharedInstance().pushDic!)
             GPWGlobal.sharedInstance().pushDic = nil
@@ -61,10 +60,15 @@ class GPWHomeViewController: GPWBaseViewController,UITableViewDelegate,UITableVi
         self.navigationBar.alpha = 0.0
         self.bgView.y = -20
         self.bgView.height =   self.bgView.height + 64 + 20
+        if SCREEN_HEIGHT == 812.0 {
+            self.bgView.y = self.bgView.y - 25
+            self.bgView.height = self.bgView.height  + 25
+        }
         self.navigationBar.backgroundColor = redTitleColor
         self.navigationBar.titleLabel.textColor = UIColor.white
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = self.navigationBar.bounds
+
         //设置渐变的主颜色
         gradientLayer.colors = [UIColor.hex("ff790c").cgColor, redTitleColor.cgColor]
         //将gradientLayer作为子layer添加到主layer上
@@ -78,12 +82,14 @@ class GPWHomeViewController: GPWBaseViewController,UITableViewDelegate,UITableVi
         showTableView.showsVerticalScrollIndicator = false
         showTableView.separatorStyle = .none
         self.bgView.addSubview(showTableView)
+
         showTableView.setUpHeaderRefresh {
             [weak self] in
             guard let self1 = self else {return}
             self1.getNetData()
         }
     }
+    
     func getNetData(){
         GPWNetwork.requetWithGet(url: Index, parameters: nil, responseJSON:  {
             [weak self] (json, msg) in

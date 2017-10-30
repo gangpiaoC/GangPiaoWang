@@ -394,7 +394,7 @@ class GPWHomeGetBageController: GPWSecBaseViewController {
         if self.prizeDic!["type"].stringValue == "exper"  {
             tipLabel.text = "恭喜您，抽中\(self.prizeDic?["amount"].intValue ?? 0)元体验金"
         }else if self.prizeDic!["type"].stringValue == "award" {
-             tipLabel.text = "恭喜您，抽中\(self.prizeDic?["amount"].intValue ?? 0)元投资红包"
+             tipLabel.text = "恭喜您，抽中\(self.prizeDic?["amount"].intValue ?? 0)元红包"
         }else{
             tipLabel.text = "恭喜您，抽中\(self.prizeDic?["amount"].stringValue ?? "0")%加息券"
         }

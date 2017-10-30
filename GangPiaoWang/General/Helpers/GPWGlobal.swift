@@ -31,7 +31,7 @@ class GPWGlobal {
     var  commFlag : String = "0"
     
     //体验金
-    var app_exper_amount:String = "6666"
+    var app_exper_amount:String = "58888"
     
     //红包
     var app_accountsred:String = "618"

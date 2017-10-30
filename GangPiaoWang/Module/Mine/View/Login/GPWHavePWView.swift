@@ -53,7 +53,7 @@ class GPWHavePWView: UIView {
             }
             self.addSubview(textField)
             
-            let line = UIView(frame: CGRect(x: imgView.x, y: textField.maxY + 8, width: SCREEN_WIDTH - imgView.x - 36, height: 0.5))
+            let line = UIView(frame: CGRect(x: imgView.x, y: textField.maxY + 8, width: SCREEN_WIDTH - imgView.x * 2, height: 0.5))
             line.backgroundColor = lineColor
             self.addSubview(line)
             maxHeiht = line.maxY

@@ -20,7 +20,7 @@ class GPWHTLController: GPWSecBaseViewController,UITableViewDelegate,UITableView
         super.viewDidLoad()
         self.title = "体验记录"
         showTableView = UITableView(frame: self.bgView.bounds, style: .plain)
-        showTableView.backgroundColor = bgColor
+        showTableView.backgroundColor = UIColor.clear
         showTableView.separatorStyle = .none
         showTableView.setUpHeaderRefresh {
             [weak self] in
@@ -63,6 +63,11 @@ class GPWHTLController: GPWSecBaseViewController,UITableViewDelegate,UITableView
                 }else{
                     strongSelf.showTableView.endFooterRefreshingWithNoMoreData()
                 }
+            }
+            if strongSelf.dataArr.count > 0 {
+               strongSelf.noDataImgView.isHidden = true
+            }else{
+                strongSelf.noDataImgView.isHidden = false
             }
             strongSelf.showTableView.reloadData()
             }, failure: { [weak self] error in

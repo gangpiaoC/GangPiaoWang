@@ -100,14 +100,17 @@ class UserTopCell: UITableViewCell {
         let  tempformat = NumberFormatter()
         tempformat.numberStyle = .decimal
         let doubleNum = tempformat.number(from: everyAddMoney)
-        self.everyAddMoneyLabel.changNum(toNumber: doubleNum as! Double, withDurTime: 1)
+        printLog(message: doubleNum)
+        self.everyAddMoneyLabel.changNum(toNumber: doubleNum as! Double, withDurTime: 1, withStrnumber: everyAddMoney)
         let  tempformat1 = NumberFormatter()
         tempformat1.numberStyle = .decimal
         let double1Num = tempformat1.number(from: acountMoney)
-        self.acountMoneyLabel.changNum(toNumber:double1Num as! Double , withDurTime: 1)
+        self.acountMoneyLabel.changNum(toNumber:double1Num as! Double , withDurTime: 1, withStrnumber: acountMoney)
+        self.phoneLabel.width = 300
         self.phoneLabel.text =  "<font size=16 color='#ffffff'>\(phone)</font>"
         self.phoneLabel.size = self.phoneLabel.optimumSize
         self.prightImgView.x = self.phoneLabel.maxX + 10
+        self.prightImgView.centerY = self.phoneLabel.centerY
         self.superController = superC
     }
     

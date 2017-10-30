@@ -77,7 +77,12 @@ class GPWNetwork: NSObject {
     //MARK: /*************GET***************
     class func requetWithGet(url: String, parameters: [String: Any]?, responseJSON:@escaping (_ json: JSON, _ msg: String) -> Void, failure:@escaping (_ error: Error) -> Void) {
         GPWNetwork.shareNetwork.urlPath = url
-        let urlString = SERVER + url
+        var urlString = ""
+        if (url.range(of: "https")) != nil {
+            urlString =  url
+        }else{
+            urlString = SERVER + url
+        }
         UIApplication.shared.keyWindow?.makeToastActivity(.center)
         var headers:Dictionary = [String:String]()
         headers["Cookie"] = GPWNetwork.shareNetwork.getCookie()
@@ -90,12 +95,17 @@ class GPWNetwork: NSObject {
                 case .success(let value):
                     UIApplication.shared.keyWindow?.hideToastActivity()
                     let json = JSON(value)
-                    let code = json["code"]
-                    let msg = json["msg"]
-                    let data = json["data"]
                     printLog(message: json)
+                    let code = json["code"]
+                    var  msg = json["msg"]
+                    if (url.range(of: "https")) != nil {
+                        msg = json["reason"]
+                    }
+                    let data = json["data"]
                     if code == 1000 {
                         responseJSON(data, msg.stringValue)
+                    }else if json["error_code"] == 0 {
+                        responseJSON(json["result"], "银行卡信息查询")
                     } else if code == 935 {
                         if GPWUser.sharedInstance().isLogin{
                             GPWUser.sharedInstance().outLogin()
@@ -118,7 +128,12 @@ class GPWNetwork: NSObject {
     //MARK: /*************POST***************
     class func requetWithPost(url: String, parameters: [String: Any]?, responseJSON: @escaping (_ json: JSON, _ msg: String) -> Void, failure:@escaping (_ error: Error) -> Void) {
         GPWNetwork.shareNetwork.urlPath = url
-        let urlString = SERVER + url
+        var urlString = ""
+        if (url.range(of: "https")) != nil {
+             urlString =  url
+        }else{
+            urlString = SERVER + url
+        }
         UIApplication.shared.keyWindow?.makeToastActivity(.center)
         var headers:Dictionary = [String:String]()
         headers["Cookie"] = GPWNetwork.shareNetwork.getCookie()
@@ -131,12 +146,15 @@ class GPWNetwork: NSObject {
                 case .success(let value):
                     UIApplication.shared.keyWindow?.hideToastActivity()
                     let json = JSON(value)
+                    printLog(message: json)
                     let code = json["code"]
                     let msg = json["msg"]
                     let data = json["data"]
-                    if code == 1000 {
+                    if code == 1000{
                         responseJSON(data, msg.stringValue)
-                    } else if code == 935 {
+                    } else if json["reason"] == "Succes" {
+                         responseJSON(data, "银行卡信息查询")
+                    }else if code == 935 {
                         if GPWUser.sharedInstance().isLogin{
                             GPWUser.sharedInstance().outLogin()
                             GPWHelper.gotoLogin()

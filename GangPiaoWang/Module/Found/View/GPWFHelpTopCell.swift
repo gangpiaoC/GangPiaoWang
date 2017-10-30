@@ -25,7 +25,7 @@ class GPWFHelpTopCell: UITableViewCell {
         self.contentView.addSubview(topBlock)
         
         let timeLabel = UILabel(frame: CGRect(x: 0, y: topBlock.maxY, width: SCREEN_WIDTH, height: 52))
-        timeLabel.attributedText = NSAttributedString.attributedBoldString( "服务时间：", mainColor: UIColor.hex("999999"), mainFont: 16, second: "工作日 9：30-18：30", secondColor: UIColor.hex("333333"), secondFont: 16)
+        timeLabel.attributedText = NSAttributedString.attributedBoldString( "服务时间：", mainColor: UIColor.hex("999999"), mainFont: 16, second: "工作日 9:30-18:30", secondColor: UIColor.hex("333333"), secondFont: 16)
         timeLabel.textAlignment = .center
         self.contentView.addSubview(timeLabel)
         

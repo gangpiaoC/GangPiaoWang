@@ -48,15 +48,20 @@ class GPWBaseViewController: UIViewController {
     }
     
     fileprivate func commonUI() {
-        let navBarFrame = CGRect(x: 0.0, y: 0.0, width: SCREEN_WIDTH, height: 64.0)
+
+        var  navHeight:CGFloat = 64
+        if SCREEN_HEIGHT == 812.0 {
+            navHeight = 88
+        }
+        let navBarFrame = CGRect(x: 0.0, y: 0.0, width: SCREEN_WIDTH, height: navHeight)
         self.bgView.frame = CGRect(x: 0.0, y: navBarFrame.maxY, width: SCREEN_WIDTH, height: SCREEN_HEIGHT - navBarFrame.height - 49)
         self.bgView.backgroundColor = bgColor
         self.view.addSubview(self.bgView)
         
-        noDataImgView = UIImageView(frame: CGRect(x: 0, y: 0, width: 111, height: 158))
+        noDataImgView = UIImageView(frame: CGRect(x: 0, y: 0, width: 76, height: 112))
         noDataImgView.centerX = SCREEN_WIDTH / 2
         noDataImgView.image = UIImage(named: "comm_noData")
-        noDataImgView.centerY = SCREEN_HEIGHT / 2
+        noDataImgView.centerY = SCREEN_HEIGHT / 2 - 60
         self.noDataImgView.isHidden = true
         self.bgView.addSubview(noDataImgView)
         

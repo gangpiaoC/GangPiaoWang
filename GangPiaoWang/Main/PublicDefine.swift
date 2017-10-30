@@ -65,11 +65,10 @@ let redTitleColor = UIColor.hex("f6390c")
 //    let SHARE_URL = "https://tpc.gangpiaowang.com/Web/share"
 //    let HTML_SERVER = "https://tpc.gangpiaowang.com"
 //#else
-//正式服务器地址
+    //正式服务器地址
 let SERVER = "https://api.gangpiaowang.com/Api/"
 let SHARE_URL = "https://www.gangpiaowang.com/Web/share"
-
-//网页前缀
+    //网页前缀
 let HTML_SERVER = "https://www.gangpiaowang.com"
 //#endif
 

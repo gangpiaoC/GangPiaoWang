@@ -41,7 +41,6 @@ class GPWOutRcordController: GPWSecBaseViewController,UITableViewDelegate,UITabl
         
         self.getNetData()
     }
-    
     //顶部视图
     func initTopView()  {
         //设置背景

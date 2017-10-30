@@ -27,7 +27,7 @@ class GPWIntroduceView: UIView, UIScrollViewDelegate {
         scrollView = UIScrollView(frame: self.bounds)
         scrollView.isPagingEnabled = true
         scrollView.delegate = self
-        scrollView.contentSize = CGSize(width: CGFloat(pageCount) * self.bounds.width, height: self.bounds.height)
+        scrollView.contentSize = CGSize(width: CGFloat(pageCount) * SCREEN_WIDTH, height: self.bounds.height)
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
         addSubview(scrollView)

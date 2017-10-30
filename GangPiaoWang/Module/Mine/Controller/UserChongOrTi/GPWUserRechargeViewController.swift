@@ -98,12 +98,12 @@ class GPWUserRechargeViewController: GPWSecBaseViewController ,UITextFieldDelega
         //账户余额
         let temp2Label = UILabel (frame: CGRect(x: 16, y: sceBlock.maxY, width: 70, height: 46))
         temp2Label.textColor = UIColor.hex("333333")
-        temp2Label.text = "账户余额"
+        temp2Label.text = "可用余额"
         temp2Label.font = UIFont.customFont(ofSize: 16)
         bgView.addSubview(temp2Label)
         
         let yueLabel = UILabel(frame: CGRect(x: temp2Label.maxX + 10, y: temp2Label.y, width: SCREEN_WIDTH - temp2Label.maxX - 15 - 16, height: temp2Label.height))
-        yueLabel.text = "\(GPWUser.sharedInstance().money!)元"
+        yueLabel.text = "\(GPWUser.sharedInstance().real_money ?? "0.00" )元"
         yueLabel.font = UIFont.customFont(ofSize: 16)
         yueLabel.textColor = redColor
         bgView.addSubview(yueLabel)

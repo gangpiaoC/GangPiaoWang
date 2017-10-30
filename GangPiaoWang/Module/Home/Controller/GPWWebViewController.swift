@@ -13,6 +13,9 @@ class GPWWebViewController: GPWSecBaseViewController,WKUIDelegate,WKNavigationDe
 
     //跳转列表
     fileprivate let APPACT = "appAct"
+
+    //网页分享
+     fileprivate let H5SHARE = "h5share"
     
     //跳转标的
     fileprivate let BIAODI = "biaodi"
@@ -205,6 +208,9 @@ class GPWWebViewController: GPWSecBaseViewController,WKUIDelegate,WKNavigationDe
             }else if APPACT == message.body as! String {
                 //跳转标列表
              GPWHelper.selectTabBar(index: PROJECTBARTAG)
+            }else if H5SHARE == message.body as! String{
+                //h5分享
+                self.shareClick()
             }
         }
     }

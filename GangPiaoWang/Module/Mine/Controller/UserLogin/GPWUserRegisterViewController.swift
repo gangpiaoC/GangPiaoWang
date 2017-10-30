@@ -134,7 +134,7 @@ class GPWUserRegisterViewController: GPWSecBaseViewController,RTLabelDelegate {
         maxheight = loginBtn.maxY + 50
         
         let  bottomLabel = RTLabel(frame: CGRect(x: 0, y: maxheight, width: SCREEN_WIDTH, height: 22))
-        bottomLabel.text = "<font size=16 color='#f6390d'>注册就送\(GPWGlobal.sharedInstance().app_exper_amount)元体验金 </font>"
+        bottomLabel.text = "<font size=16 color='#f6390d'>注册送\(GPWGlobal.sharedInstance().app_exper_amount)元体验金 </font>"
         bottomLabel.textAlignment = RTTextAlignmentCenter
         bottomLabel.height = bottomLabel.optimumSize.height
         bottomView.addSubview(bottomLabel)

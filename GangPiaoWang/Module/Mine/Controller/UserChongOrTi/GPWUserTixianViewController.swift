@@ -106,7 +106,7 @@ class GPWUserTixianViewController: GPWSecBaseViewController,UITextFieldDelegate,
         }
         
         let tiyanLabel = RTLabel(frame: CGRect(x: 16, y: 6, width: SCREEN_WIDTH -  32, height: 32))
-        tiyanLabel.text = "<font size=14 color='#333333'>体验金收益</font><font size=14 color='#f6390d'>\(self.dic?["money_tyj"] ?? "0.00")</font><font size=14 color='#333333'>元，单笔投资满\(self.dic?["money_quota"].intValue ?? 0)元即可提现</font>"
+        tiyanLabel.text = "<font size=14 color='#333333'>体验金收益</font><font size=14 color='#f6390d'>\(self.dic?["money_tyj"] ?? "0.00")</font><font size=14 color='#333333'>元，出借满\(self.dic?["money_quota"].intValue ?? 0)元即可提现</font>"
         tiyanLabel.height = tiyanLabel.optimumSize.height
         tipView.addSubview(tiyanLabel)
         
@@ -266,10 +266,9 @@ class GPWUserTixianViewController: GPWSecBaseViewController,UITextFieldDelegate,
         tempView.addSubview(cancelBtn)
         
         let  contentArray = [
-            "充值未出借金额和项目回款金额分别计算提现手续费，优先提现回款金额；",
-            "出借回款金额提现，每月\(self.dic?["month_free_count"].string ?? "2")次免费机会，超出后，每笔提现收取2元手续费；",
-            "充值未出借提现，收取手续费\(String(format: "%.1f", (self.dic?["money_deposit_fee"].floatValue ?? 0.005) * 100))%，最低\(self.dic?["money_live_fee_min"].intValue ?? 2)元起；",
-            "当日提现，预计T+1个工作日到账。"
+            "提现每月2次免费机会,超出后,每笔提现收取2元手续费;",
+            "当日提现,预计T+1个工作日到账,节假日顺延;",
+            "如有任何疑问以及建议,请致电钢票网官方客服:400-900-9017。"
         ]
         
         var maxY:CGFloat = 46

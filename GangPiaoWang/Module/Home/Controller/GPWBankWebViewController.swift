@@ -20,14 +20,13 @@ class GPWBankWebViewController:  GPWSecBaseViewController,WKUIDelegate,WKNavigat
     fileprivate let  GPWWITHDRAWALSERROR = "gpw_cunguan_withdraw_error"
     //出借成功
     fileprivate let GPWINVESTMENT = "gpwInvestment"
-
+    //出借失败
+    fileprivate let GPWINVESTMENTERROR = "gpwInvestmentError"
     //网页失败（暂时为实名认证失败）
     fileprivate let GPWFAIL = "api_user_deposit_realname_faile"
     
     //修改支付密码
     fileprivate let GPWMODIFEPAYMENT = "api_user_trade_rece_pwdsucces"
-    
-
     
     //投资成功使用的json
     fileprivate var sureJson:JSON?
@@ -114,22 +113,29 @@ class GPWBankWebViewController:  GPWSecBaseViewController,WKUIDelegate,WKNavigat
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if let url = navigationAction.request.url?.absoluteString{
             printLog(message: url)
-            if  url.hasSuffix(GPWRECHARGE){
-                //充值成功
-                GPWUser.sharedInstance().getUserInfo()
-                let control = GPWTiorChongSucessController()
-                control.type = TiorChongType.CHONGZHI
-                control.money = self.moneyStr ?? "0"
-                self.navigationController?.pushViewController(control, animated: true)
-                decisionHandler(.cancel)
-            }else  if  url.contains(GPWRECHARGEERROR){
+         if  url.contains(GPWRECHARGEERROR){
                 //充值失败
                 GPWUser.sharedInstance().getUserInfo()
                 //获取描述
                 let tempArray = url.components(separatedBy: "resp_desc=")
                self.navigationController?.pushViewController(GPWFailController(type: FailType.CHONGTYPE, tip: tempArray[1]), animated: true)
                 decisionHandler(.cancel)
-            }else  if  url.hasSuffix(GPWWITHDRAWALS){
+         }else  if  url.hasSuffix(GPWRECHARGE){
+            //充值成功
+            GPWUser.sharedInstance().getUserInfo()
+            let control = GPWTiorChongSucessController()
+            control.type = TiorChongType.CHONGZHI
+            control.money = self.moneyStr ?? "0"
+            self.navigationController?.pushViewController(control, animated: true)
+            decisionHandler(.cancel)
+         }else  if  url.contains(GPWWITHDRAWALSERROR){
+            //提现失败
+            GPWUser.sharedInstance().getUserInfo()
+            //获取描述
+            let tempArray = url.components(separatedBy: "resp_desc=")
+            self.navigationController?.pushViewController(GPWFailController(type: FailType.TIXIANTYPE, tip: tempArray[1]), animated: true)
+            decisionHandler(.cancel)
+         }else  if  url.hasSuffix(GPWWITHDRAWALS){
                 //提现成功
                 GPWUser.sharedInstance().getUserInfo()
                 let control = GPWTiorChongSucessController()
@@ -137,13 +143,6 @@ class GPWBankWebViewController:  GPWSecBaseViewController,WKUIDelegate,WKNavigat
                 control.money = self.moneyStr ?? "0"
                 control.shouxu = self.shouxu
                 self.navigationController?.pushViewController(control, animated: true)
-                decisionHandler(.cancel)
-            }else  if  url.contains(GPWWITHDRAWALSERROR){
-                //提现失败
-                GPWUser.sharedInstance().getUserInfo()
-                //获取描述
-                let tempArray = url.components(separatedBy: "resp_desc=")
-                self.navigationController?.pushViewController(GPWFailController(type: FailType.TIXIANTYPE, tip: tempArray[1]), animated: true)
                 decisionHandler(.cancel)
             }else  if  url.hasSuffix(GPWMODIFEPAYMENT){
                 //修改交易密码成功
@@ -153,7 +152,14 @@ class GPWBankWebViewController:  GPWSecBaseViewController,WKUIDelegate,WKNavigat
                     _ = self.navigationController?.popViewController(animated: true)
                 }
                 decisionHandler(.cancel)
-            }else  if (url.range(of: GPWINVESTMENT) != nil){
+         }else  if  url.contains(GPWINVESTMENTERROR){
+            //出借失败
+            GPWUser.sharedInstance().getUserInfo()
+            //获取描述
+            let tempArray = url.components(separatedBy: "resp_desc=")
+            self.navigationController?.pushViewController(GPWFailController(type: FailType.CHUJIETYPE, tip: tempArray[1]), animated: true)
+            decisionHandler(.cancel)
+         }else  if (url.range(of: GPWINVESTMENT) != nil){
                 if GPWUser.sharedInstance().identity == 2 {
                     MobClick.event("__cust_event_4")
                 }

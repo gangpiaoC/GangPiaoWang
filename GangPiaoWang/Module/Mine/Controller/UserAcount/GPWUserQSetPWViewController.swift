@@ -10,6 +10,8 @@ import UIKit
 
 class GPWUserQSetPWViewController: GPWSecBaseViewController {
 
+    //0  不展示填写邀请人  1 显示
+    var  setpwFlag = 1
     fileprivate var topBgView:UIView!
     fileprivate var sureBtn:UIButton!
     fileprivate var yaoCodeTextField:UITextField!
@@ -20,7 +22,7 @@ class GPWUserQSetPWViewController: GPWSecBaseViewController {
     }
     func comminit()  {
         let array = [
-            ["title":"登录密码","place":"由字母、数字或者符号两种以上6-16个字符组成"],
+            ["title":"登录密码","place":"含字母+数字和符号的6-16个字符"],
             ["title":"确认密码","place":"请确认密码"]
         ]
 
@@ -45,6 +47,7 @@ class GPWUserQSetPWViewController: GPWSecBaseViewController {
             textField.placeholder = array[i]["place"]
             textField.tag = 100 + i
             textField.textColor = UIColor.hex("333333")
+            textField.isSecureTextEntry = true
             textField.font = UIFont.customFont(ofSize: 14)
             self.bgView.addSubview(textField)
             
@@ -55,32 +58,39 @@ class GPWUserQSetPWViewController: GPWSecBaseViewController {
         }
         maxHeiht = maxHeiht + 12
         //有邀请人按钮
-        let  yaoBtn = UIButton(type: .custom)
-        yaoBtn.frame = CGRect(x: 0, y: maxHeiht, width: 32 + 70 + 32, height: 20)
-        yaoBtn.setTitle("我有邀请人", for: .normal)
-        yaoBtn.tag = 1000
-        yaoBtn.addTarget(self, action: #selector(self.yaoBtnClick(sender:)), for: .touchUpInside)
-        yaoBtn.setTitleColor(UIColor.hex("fcc30b"), for: .normal)
-        yaoBtn.titleLabel?.font = UIFont.customFont(ofSize: 14)
-        self.bgView.addSubview(yaoBtn)
+        if setpwFlag == 1 {
+            let  yaoBtn = UIButton(type: .custom)
+            yaoBtn.frame = CGRect(x: 0, y: maxHeiht, width: 32 + 70 + 32, height: 20)
+            yaoBtn.setTitle("我有邀请人", for: .normal)
+            yaoBtn.tag = 1000
+            yaoBtn.addTarget(self, action: #selector(self.yaoBtnClick(sender:)), for: .touchUpInside)
+            yaoBtn.setTitleColor(UIColor.hex("fcc30b"), for: .normal)
+            yaoBtn.titleLabel?.font = UIFont.customFont(ofSize: 14)
+            self.bgView.addSubview(yaoBtn)
 
-        let yaoImgView = UIImageView(frame: CGRect(x: 16, y: 4, width: 8, height: 12))
-        yaoImgView.image = UIImage(named:"user_q_setpw_normal")
-        yaoImgView.centerY = yaoBtn.titleLabel?.centerY ?? 0
-        yaoImgView.tag = 10000
-        yaoBtn.addSubview(yaoImgView)
-        maxHeiht = yaoBtn.maxY + 14
+            let yaoImgView = UIImageView(frame: CGRect(x: 16, y: 4, width: 8, height: 12))
+            yaoImgView.image = UIImage(named:"user_q_setpw_normal")
+            yaoImgView.centerY = yaoBtn.titleLabel?.centerY ?? 0
+            yaoImgView.tag = 10000
+            yaoBtn.addSubview(yaoImgView)
+            maxHeiht = yaoBtn.maxY + 14
 
-        yaoCodeTextField = UITextField(frame: CGRect(x: 16, y: maxHeiht, width: SCREEN_WIDTH - 32, height: 17))
-        yaoCodeTextField.placeholder = "请输入邀请码(选填)"
-        yaoCodeTextField.font = UIFont.customFont(ofSize: 16)
-        yaoCodeTextField.textColor = UIColor.hex("333333")
-        self.bgView.addSubview(yaoCodeTextField)
-        maxHeiht = yaoCodeTextField.maxY + 18
-        topBgView.height = yaoCodeTextField.y
-        yaoCodeTextField.isHidden = true
-        
-        maxHeiht = yaoBtn.maxY + 40
+            yaoCodeTextField = UITextField(frame: CGRect(x: 16, y: maxHeiht, width: SCREEN_WIDTH - 32, height: 17))
+            yaoCodeTextField.placeholder = "请输入邀请码(选填)"
+            yaoCodeTextField.font = UIFont.customFont(ofSize: 16)
+            yaoCodeTextField.textColor = UIColor.hex("333333")
+            self.bgView.addSubview(yaoCodeTextField)
+            maxHeiht = yaoCodeTextField.maxY + 18
+            topBgView.height = yaoCodeTextField.y
+            yaoCodeTextField.isHidden = true
+
+            maxHeiht = yaoBtn.maxY + 40
+        }else{
+            topBgView.height = maxHeiht - 12
+            maxHeiht = maxHeiht + 28
+
+        }
+
         sureBtn = UIButton(type: .custom)
         sureBtn.frame = CGRect(x: 16, y: maxHeiht, width: SCREEN_WIDTH - 16 * 2, height: 64)
         sureBtn.setBackgroundImage(UIImage(named: "btn_bg"), for: .normal)
@@ -150,15 +160,14 @@ class GPWUserQSetPWViewController: GPWSecBaseViewController {
             guard let strongSelf = self else { return }
             strongSelf.bgView.makeToast(msg)
             GPWUser.sharedInstance().getUserInfo()
-            _ = strongSelf.navigationController?.popToRootViewController(animated: true)
+            _ = strongSelf.navigationController?.pushViewController(UserReadInfoViewController(), animated: true)
         }) { (error) in
         
         }
     }
 
     override func back(sender: GPWButton) {
-        GPWGlobal.sharedInstance().gotoNiceNameFlag = true
-        super.back(sender: sender)
+        self.navigationController?.popToRootViewController(animated: true)
     }
 
     override func didReceiveMemoryWarning() {

@@ -48,7 +48,7 @@ class GPWInvestViewController: GPWSecBaseViewController,UIScrollViewDelegate{
     fileprivate let rateLabel = UILabel(title: "暂无可用加息券", color: UIColor.hex("999999"), fontSize: 12, textAlign: .center)
     
     //账户余额
-    fileprivate let acountBaLabel: UILabel = UILabel(title: "账户余额：\(GPWUser.sharedInstance().money!)", color: UIColor.hex("999999"), fontSize: 16, textAlign: .left)
+    fileprivate let acountBaLabel: UILabel = UILabel(title: "可用余额：\(GPWUser.sharedInstance().real_money ?? "0.00" )", color: UIColor.hex("999999"), fontSize: 16, textAlign: .left)
     
     //项目id
     fileprivate var itemID: String!
@@ -411,7 +411,7 @@ class GPWInvestViewController: GPWSecBaseViewController,UIScrollViewDelegate{
         }
         
         let  bottomTitleLabel = RTLabel()
-        bottomTitleLabel.text = "<a href='sure'><font size=12 color='#666666'>阅读并同意</font><font size=12 color='#2e7cd6'>《服务协议书》</font><font size=12 color='#666666'>、</font></a><a  href='xieyishu'><font size=12 color='#2e7cd6'>《网络接借贷风险和禁止性行为提示书》和《资金合法来源承诺书》</font><font size=12 color='#666666'>\n市场有风险,出借需谨慎</font></a>"
+        bottomTitleLabel.text = "<a href='fuwuxieyi'><font size=12 color='#666666'>阅读并同意</font><font size=12 color='#2e7cd6'>《服务协议书》</font></a><font size=12 color='#666666'>、</font><a href='wangluojiedai'><font size=12 color='#2e7cd6'>《网络借贷风险和禁止性行为提示书》</font></a><font size=12 color='#666666'>和</font><a href='zijinhefa'><font size=12 color='#2e7cd6'>《资金合法来源承诺书》</font></a><font size=12 color='#666666'>\n市场有风险,出借需谨慎</font>"
         bottomTitleLabel.delegate = self
         cell5.addSubview(bottomTitleLabel)
         bottomTitleLabel.snp.makeConstraints { (maker) in
@@ -493,6 +493,13 @@ class GPWInvestViewController: GPWSecBaseViewController,UIScrollViewDelegate{
             let vc = GPWBankWebViewController(url:  json.stringValue, sureJson: strongSelf.shareJson!)
             vc.moneyStr = strongSelf.textField.text
             vc.vipFlag = strongSelf.vipFlag
+            //标剩余金额
+            let balance_amount =  Int(strongSelf.dicJson["balance_amount"].stringValue.replacingOccurrences(of: ",", with: "")) ?? 0
+            //投资金额
+            let  tempAmount  = Int(strongSelf.textField.text ?? "0")
+            if balance_amount == tempAmount {
+                vc.market_regamount = balance_amount
+            }
             vc.proName = strongSelf.dicJson["title"].stringValue
             vc.shouyi = strongSelf.incomeLabel.text
             strongSelf.navigationController?.show(vc, sender: nil)
@@ -537,14 +544,18 @@ class GPWInvestViewController: GPWSecBaseViewController,UIScrollViewDelegate{
 
 extension GPWInvestViewController:RTLabelDelegate {
     func rtLabel(_ rtLabel: Any!, didSelectLinkWithURL url: String!) {
-        printLog(message: "sure")
-        if url == "sure" {
-            self.agree()
-        }else  if url == "xieyishu"{
-           //协议书
-            let vc = GPWWebViewController(subtitle: "", url:  dicJson["url_fx"].stringValue)
-            navigationController?.show(vc, sender: nil)
+        printLog(message:url)
+        var  strUrl:String = ""
+        if url == "fuwuxieyi" {
+            strUrl = dicJson["url"].stringValue
+        }else  if url == "wangluojiedai" {
+            strUrl = dicJson["url_fx"].stringValue
+        }else if url == "zijinhefa" {
+            strUrl = dicJson["url_hf"].stringValue
         }
+        //协议书
+        let vc = GPWWebViewController(subtitle: "", url:  strUrl)
+        navigationController?.show(vc, sender: nil)
     }
     
     //MARK: /*************Helper方法***************
@@ -705,13 +716,7 @@ extension GPWInvestViewController {
         }
         self.navigationController?.show(vc, sender: nil)
     }
-    
-    //MARK: /*************同意协议***************
-    @objc fileprivate func agree() {
-        textField.resignFirstResponder()
-        let vc = GPWWebViewController(subtitle: "", url:  dicJson["url"].stringValue)
-        navigationController?.show(vc, sender: nil)
-    }
+
     
     //MARK: /*************确认投资***************
     @objc fileprivate func join() {
@@ -763,7 +768,7 @@ extension GPWInvestViewController {
             return
         }
         
-        guard let money = Double(GPWUser.sharedInstance().money!.replacingOccurrences(of: ",", with: "")) else {
+        guard let money = Double((GPWUser.sharedInstance().real_money ?? "0.00").replacingOccurrences(of: ",", with: "")) else {
             self.bgView.makeToast("账户异常")
             return
         }

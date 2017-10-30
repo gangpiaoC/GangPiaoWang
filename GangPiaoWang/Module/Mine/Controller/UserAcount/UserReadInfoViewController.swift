@@ -22,17 +22,41 @@ class UserReadInfoViewController: GPWSecBaseViewController,UITextFieldDelegate,U
     fileprivate var showPickViewFlag:Bool!
     //银行名称
     fileprivate var bankLabel:UILabel!
+
+    //银行类别
+    fileprivate var abbreviation:String?
     //根据类型跳转
     var type:String?
 
     //展示表
-    var bgVickerView:UIView!
+    fileprivate var bgVickerView:UIView!
 
     //城市数据
-    var cityArray:[JSON]?
+    fileprivate var cityArray:[JSON]?
 
     //城市编码
-    var  cityCode:Int!
+    fileprivate var  cityCode:Int!
+
+    //选择器
+    var pickerView:UIPickerView!
+
+    fileprivate let  bankCodeArray =  [
+        "CITIC":"CIBK",
+        "PSBC":"PSBC",
+        "SPABANK":"SZDB",
+         "ABC":"ABOC",
+          "CMBC":"MSBC",
+           "CEB":"EVER",
+            "ICBC":"ICBK",
+            "CMB":"CMBC",
+             "CIB":"FJIB",
+              "SPDB":"SPDB",
+               "COMM":"COMM",
+                "CCB":"PCBC",
+                 "HXBANK":"HXBK",
+                  "CGB":"GDBK",
+                   "BOC":"BKCH"
+    ]
     let contentArray = [
         ["name":"实名认证","title":""],
         ["name":"真实姓名","title":"请输入姓名"],
@@ -50,7 +74,7 @@ class UserReadInfoViewController: GPWSecBaseViewController,UITextFieldDelegate,U
         super.viewDidLoad()
         self.title = "开通存管账户"
         cityArray = [JSON]()
-        showPickViewFlag = true
+        showPickViewFlag = false
         GPWNetwork.requetWithGet(url: CityAddress, parameters: nil, responseJSON: {
             [weak self] (json, msg) in
             guard let strongSelf = self else { return }
@@ -75,7 +99,7 @@ class UserReadInfoViewController: GPWSecBaseViewController,UITextFieldDelegate,U
         //加入手势
         let  gesture = UITapGestureRecognizer(target: self, action: #selector(self.pickShowOrHideClick))
         self.bgVickerView.addGestureRecognizer(gesture)
-        let pickerView = UIPickerView()
+        pickerView = UIPickerView()
         pickerView.backgroundColor = UIColor.white
         pickerView.x = 0
         pickerView.width = SCREEN_WIDTH
@@ -167,6 +191,8 @@ class UserReadInfoViewController: GPWSecBaseViewController,UITextFieldDelegate,U
                 if  i == 4{
                     textField.keyboardType = .numberPad
                     textField.delegate = self
+                }else if i == 2 {
+                    textField.keyboardType = .numbersAndPunctuation
                 }
                 maxHeight = textField.maxY
             }
@@ -271,16 +297,22 @@ class UserReadInfoViewController: GPWSecBaseViewController,UITextFieldDelegate,U
 
         //银行卡
         let temp3Str = (self.tempBgView.viewWithTag(BANKTAG) as! UITextField).text ?? ""
-        if temp3Str.characters.count >= 15  {
+
+        if temp3Str.characters.count >= 15 && temp3Str.characters.count <= 19 {
             dic["banck"] = temp3Str
         }else{
-            bgView.makeToast("请输入正确银行卡")
+            bgView.makeToast("不支持或错误的银行卡号")
+            return
+        }
+        
+        if self.abbreviation == ""{
+            bgView.makeToast("不支持或错误的银行卡号")
             return
         }
 
+
         //开户行名称
-        let banNameArray = bankLabel.text!.components(separatedBy: "·")
-        dic["parent_bank_id"] = banNameArray[0]
+        dic["parent_bank_id"] = self.abbreviation
 
         //手机号
         let temp4Str = (self.bottomView.viewWithTag(PHONETAG) as! UITextField).text ?? ""
@@ -364,6 +396,7 @@ class UserReadInfoViewController: GPWSecBaseViewController,UITextFieldDelegate,U
         }else{
             //隐藏
              self.bgVickerView.isHidden = showPickViewFlag
+            self.pickerView(pickerView, didSelectRow: 0, inComponent: 0)
             showPickViewFlag = true
         }
     }
@@ -376,16 +409,42 @@ extension UserReadInfoViewController{
     func textFieldDidEndEditing(_ textField: UITextField) {
         let  tempStr = textField.text ?? ""
         var maxHeight:CGFloat = 0.00
-        if tempStr.characters.count < 6 {
+
+        if tempStr.characters.count < 15 || tempStr.characters.count > 19 {
             bankLabel.height = 0
             maxHeight = bankLabel.maxY + 5
-        }else{
-            bankLabel.text = RTLabel.returnBankName(tempStr)
-            bankLabel.height = 22
-            maxHeight = bankLabel.maxY + 3
+            tempBgView.height = maxHeight
+            bottomView.y = tempBgView.maxY
+            return
         }
-        tempBgView.height = maxHeight
-        bottomView.y = tempBgView.maxY
+
+        GPWNetwork.requetWithGet(url: "https://v.apistore.cn/api/v4/bankCard/", parameters: ["key":"953cdcb6c61be3aeac141a1daa9d57c7","bankcard":tempStr], responseJSON: {
+            [weak self] (json, msg) in
+            printLog(message: json)
+            guard let strongSelf = self else { return }
+            strongSelf.bankLabel.text = json["bankname"].stringValue + "·" + json["cardtype"].stringValue
+            let tempAbb = strongSelf.bankCodeArray[json["abbreviation"].stringValue] ?? ""
+
+            if tempAbb  == "" {
+                strongSelf.bankLabel.height = 0
+                maxHeight = strongSelf.bankLabel.maxY + 5
+                strongSelf.tempBgView.height = maxHeight
+                strongSelf.bottomView.y = strongSelf.tempBgView.maxY
+            }else{
+                strongSelf.abbreviation = strongSelf.bankCodeArray[json["abbreviation"].stringValue] ?? ""
+                strongSelf.bankLabel.height = 22
+                maxHeight = strongSelf.bankLabel.maxY + 3
+                strongSelf.tempBgView.height = maxHeight
+                strongSelf.bottomView.y = strongSelf.tempBgView.maxY
+            }
+
+        }) {   [weak self] msg in
+            guard let strongSelf = self else { return }
+            strongSelf.bankLabel.height = 0
+            maxHeight = strongSelf.bankLabel.maxY + 5
+            strongSelf.tempBgView.height = maxHeight
+            strongSelf.bottomView.y = strongSelf.tempBgView.maxY
+        }
     }
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -425,7 +484,7 @@ extension UserReadInfoViewController{
             pickerView.reloadComponent(1)
             pickerView.selectRow(0, inComponent: 1, animated: true)
             let pro = cityArray?[row]["name"].stringValue ?? ""
-            textField.text = pro
+            textField.text = pro + ( cityArray?[proIndex]["city"][0]["name"].stringValue ?? "" )
             cityCode = cityArray?[proIndex]["city"][0]["code"].intValue ?? 00
         }else if component == 1 {
             let pro = cityArray?[proIndex]["name"].stringValue ?? ""

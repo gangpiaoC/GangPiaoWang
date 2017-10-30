@@ -39,7 +39,7 @@ class GPWHTListCell: UITableViewCell {
         self.contentView.addSubview(getLilvLabel)
 
         let temp2Label = UILabel(frame: CGRect(x: contentView.width / 2 + 16, y: 0, width: 60, height: 14))
-        temp2Label.text = "出借日期"
+        temp2Label.text = "体验时间"
         temp2Label.textColor = UIColor.hex("999999")
         temp2Label.centerY = temp1Label.centerY
         temp2Label.font = UIFont.customFont(ofSize: 14)
@@ -60,13 +60,13 @@ class GPWHTListCell: UITableViewCell {
 
         inMoneyLabel = UILabel(frame: CGRect(x: temp3Label.maxX + 10, y: 0, width: 200, height: 14))
         inMoneyLabel.text = "1000元"
-        inMoneyLabel.textColor = UIColor.hex("999999")
+        inMoneyLabel.textColor = UIColor.hex("666666")
         inMoneyLabel.font = UIFont.customFont(ofSize: 14)
         inMoneyLabel.centerY = temp3Label.centerY
         self.contentView.addSubview(inMoneyLabel)
 
         let temp4Label = UILabel(frame: CGRect(x: temp2Label.x, y: 0, width: 60, height: 14))
-        temp4Label.text = "回款日期"
+        temp4Label.text = "回款时间"
         temp4Label.textColor = UIColor.hex("999999")
         temp4Label.font = UIFont.customFont(ofSize: 14)
         temp4Label.centerY = temp3Label.centerY
@@ -74,7 +74,7 @@ class GPWHTListCell: UITableViewCell {
 
         outTimeLabel = UILabel(frame: CGRect(x: temp4Label.maxX + 10, y: temp4Label.y, width: 200, height: 14))
         outTimeLabel.text = "2016-12-6"
-        outTimeLabel.textColor = UIColor.hex("999999")
+        outTimeLabel.textColor = UIColor.hex("666666")
         outTimeLabel.centerY = temp3Label.centerY
         outTimeLabel.font = UIFont.customFont(ofSize: 14)
         self.contentView.addSubview(outTimeLabel)

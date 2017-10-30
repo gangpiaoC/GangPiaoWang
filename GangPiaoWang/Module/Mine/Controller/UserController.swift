@@ -37,7 +37,7 @@ class UserController: GPWBaseViewController,UITableViewDelegate,UITableViewDataS
         }
 
         //开通存管
-        if GPWGlobal.sharedInstance().gotoNiceNameFlag {
+        if GPWGlobal.sharedInstance().gotoNiceNameFlag && GPWUser.sharedInstance().isLogin{
             GPWGlobal.sharedInstance().gotoNiceNameFlag = false
             self.showQuireInfo()
         }
@@ -67,32 +67,23 @@ class UserController: GPWBaseViewController,UITableViewDelegate,UITableViewDataS
         showTableView?.dataSource = self
         showTableView.separatorStyle = .none
         self.bgView.addSubview(showTableView)
-
      self.addMessageBtn()
 
         if GPWUser.sharedInstance().isLogin == false {
             //未登录
             self.noLogin()
         }
-        
-        //判断是否需要弹窗提示设置密码
-        let tempStr =   UserDefaults().string(forKey: "firstFlag")
-       if GPWUser.sharedInstance().isLogin == true && GPWUser.sharedInstance().set_pwd == 0 && tempStr == nil{
-            UserDefaults().setValue("firstFlag", forKey: "firstFlag")
-            let alertContol = UIAlertController(title: nil, message: "您还没有设置登录密码哦", preferredStyle: .alert)
-            let cancalAction = UIAlertAction(title: "稍后再说", style: .cancel, handler: nil)
-            alertContol.addAction(cancalAction)
-            let okAction = UIAlertAction(title: "去设置", style: .default) { (alert) in
-                MobClick.event("mine", label: "设置密码")
-                self.navigationController?.pushViewController(GPWUserQSetPWViewController(), animated: true)
-            }
-            alertContol.addAction(okAction)
-            self.navigationController?.present(alertContol, animated: true, completion: nil)
-        }
     }
 
     //快捷注册后如果没有实名就会提示
     func showQuireInfo() {
+
+         let tempStr =  UserDefaults().string(forKey: "firstTiyanFlag")
+
+        if tempStr == GPWUser.sharedInstance().telephone {
+            return
+        }
+        UserDefaults().setValue(GPWUser.sharedInstance().telephone, forKey: "firstTiyanFlag")
         let wid = UIApplication.shared.keyWindow
 
         let  bgView = UIView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
@@ -113,7 +104,12 @@ class UserController: GPWBaseViewController,UITableViewDelegate,UITableViewDataS
         quireView.addSubview(quireImgView)
 
         let quireLabel = RTLabel(frame: CGRect(x: 0, y: quireImgView.maxY + 16, width: quireView.width, height: 20))
-        quireLabel.text = "<font size=18 color='#f6390d'>\(GPWUser.sharedInstance().userTiyanMoney)元体验金</font><font size=18 color='#666666'>已塞入您的账户</font>"
+
+        var tempTiyan:String = "\(GPWUser.sharedInstance().userTiyanMoney)"
+        if tempTiyan.characters.count < 10 {
+            tempTiyan = GPWGlobal.sharedInstance().app_exper_amount
+        }
+        quireLabel.text = "<font size=18 color='#f6390d'>\(tempTiyan)元体验金</font><font size=18 color='#666666'>已塞入您的账户</font>"
         quireLabel.textAlignment = RTTextAlignmentCenter
         quireLabel.height = quireLabel.optimumSize.height
         quireView.addSubview(quireLabel)
@@ -133,8 +129,6 @@ class UserController: GPWBaseViewController,UITableViewDelegate,UITableViewDataS
         cancelBtn.tag = 1001
         cancelBtn.addTarget(self, action: #selector(self.quireClick(sender:)), for: .touchUpInside)
         bgView.addSubview(cancelBtn)
-
-
     }
 
     func quireClick(sender:UIButton) {
@@ -188,7 +182,6 @@ class UserController: GPWBaseViewController,UITableViewDelegate,UITableViewDataS
             self.navigationController?.pushViewController(GPWUserMoneyFundViewController(), animated: true)
         }
     }
-    
     func noLogin() {
         let noLoginView = UIView(frame: self.bgView.bounds)
         noLoginView.backgroundColor = UIColor.white

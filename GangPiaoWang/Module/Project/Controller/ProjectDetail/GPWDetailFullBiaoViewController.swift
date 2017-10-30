@@ -47,7 +47,7 @@ class GPWDetailFullBiaoViewController: GPWSecBaseViewController {
         redImgView.addSubview(redNumLabel)
         
         let detailLabel = RTLabel(frame: CGRect(x: 0, y: redImgView.maxY + 9, width: 255, height: 10))
-        detailLabel.text = "<font size=16 color='#333333'>单个标最后一位满标者可获得</font><font size=16 color='#f6390c'>\(self.paraJson?["amount"] ?? "0")元</font><font size=16 color=#333333''>投资红包奖励</font>"
+        detailLabel.text = "<font size=16 color='#333333'>单个标的促成满标者可获得</font><font size=16 color='#f6390c'>\(self.paraJson?["amount"] ?? "0")元</font><font size=16 color=#333333''>红包奖励</font>"
         detailLabel.centerX = scrollView.width / 2
         detailLabel.textAlignment = RTTextAlignmentCenter
         detailLabel.height = detailLabel.optimumSize.height
@@ -63,7 +63,7 @@ class GPWDetailFullBiaoViewController: GPWSecBaseViewController {
         bottomImgView.image = UIImage(named: "project_detail_full_shuoming")
         bottomView.addSubview(bottomImgView)
         
-        let contentArray = ["\(self.paraJson?["amount"].intValue ?? 0)元投资红包，投资\((self.paraJson?["amount"].intValue ?? 100) * (self.paraJson?["restrict"].intValue ?? 250))以上的标可用；","红包有效期为\(self.paraJson?["limits"] ?? "0")天，请及时使用，以免过期；","红包不可转让，也不可拆分；","本活动最终解释权归钢票网所有，如有疑问请致电客服："]
+        let contentArray = ["\(self.paraJson?["amount"].intValue ?? 0)元红包,项目期限≥\(self.paraJson?["limit"].intValue ?? 90)天且出借金额≥\((self.paraJson?["amount"].intValue ?? 100) * (self.paraJson?["restrict"].intValue ?? 250))元时方可使用；","红包有效期为\(self.paraJson?["limits"] ?? "0")天，请及时使用，以免过期；","红包不可转让，也不可拆分；","本活动最终解释权归钢票网所有，如有疑问请致电客服："]
         
         var maxY = bottomImgView.maxY + 25
         for i in 0 ..< contentArray.count {

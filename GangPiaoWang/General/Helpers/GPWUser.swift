@@ -128,6 +128,9 @@ class GPWUser {
 
     //用户体验金
     var userTiyanMoney:Int = 58888
+
+    //账户真实金额
+    var real_money:String? = "0.00"
     
      let userPath = "userPath"
     static func sharedInstance() ->GPWUser {
@@ -168,6 +171,7 @@ class GPWUser {
         self.invite_code = dic["userinfo"]["invite_code"].string
         self.money = dic["amount"]["money"].string
         self.capital = dic["amount"]["capital"].string
+        self.real_money = dic["amount"]["real_money"].string
         self.wait_accrual = dic["amount"]["wait_accrual"].string
         self.money_collection = "\(dic["amount"]["money_collection"])"
         self.accrual = dic["amount"]["accrual"].string
@@ -258,5 +262,6 @@ class GPWUser {
         self.identity = 3
         self.userTiyanMoney = 58888
         self.show_iden = 0
+        self.real_money = "0.00"
     }
 }

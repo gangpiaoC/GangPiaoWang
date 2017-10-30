@@ -17,12 +17,12 @@ class GPWSafeMangerController: GPWSecBaseViewController ,UITableViewDelegate,UIT
         let password = GYCircleConst.getGestureWithKey(gestureFinalSaveKey) ?? ""
         if password.characters.count >= 4 {
             self.titleArray = [["修改登录密码","修改支付密码"],["手势密码","修改手势密码"]]
-            if (GPWUser.sharedInstance().password?.characters.count)! < 4 {
+            if GPWUser.sharedInstance().set_pwd == 1 {
                  self.titleArray = [["设置登录密码","修改支付密码"],["手势密码","修改手势密码"]]
             }
         }else{
              self.titleArray = [["修改登录密码","修改支付密码"],["手势密码"]]
-            if (GPWUser.sharedInstance().password?.characters.count)! < 4 {
+            if GPWUser.sharedInstance().set_pwd == 0 {
                 self.titleArray = [["设置登录密码","修改支付密码"],["手势密码"]]
             }
         }
@@ -33,16 +33,6 @@ class GPWSafeMangerController: GPWSecBaseViewController ,UITableViewDelegate,UIT
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "安全管理"
-        if GPWUser.sharedInstance().set_pwd == 1 {
-            self.titleArray = [["修改登录密码","修改支付密码"],["手势密码"]]
-        }
-        
-        let password = GYCircleConst.getGestureWithKey(gestureFinalSaveKey) ?? ""
-        if password.characters.count >= 4 {
-            self.titleArray = [["修改登录密码","修改支付密码"],["手势密码","修改手势密码"]]
-        }
-        
-        
         showTableView = UITableView(frame: self.bgView.bounds , style: .plain)
         showTableView?.delegate = self
         showTableView?.dataSource = self
@@ -108,7 +98,9 @@ class GPWSafeMangerController: GPWSecBaseViewController ,UITableViewDelegate,UIT
                 }
                
                 if GPWUser.sharedInstance().set_pwd == 0 {
-                    self.navigationController?.pushViewController(GPWUserQSetPWViewController(), animated: true)
+                    let con = GPWUserQSetPWViewController()
+                    con.setpwFlag = 0
+                    self.navigationController?.pushViewController(con, animated: true)
                 }else{
                     self.navigationController?.pushViewController(GPWUserChangepwViewController(), animated: true)
                 }

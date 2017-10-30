@@ -41,7 +41,7 @@ class GPWBidRecordViewController: GPWSubPageBaseViewController, UITableViewDataS
         self.tableView.register(GPWBidRecordCell.self, forCellReuseIdentifier: "bidCell")
         self.view.addSubview(tableView)
         
-        noDataImgView = UIImageView(frame: CGRect(x: 0, y: 0, width: 111, height: 158))
+        noDataImgView = UIImageView(frame: CGRect(x: 0, y: 0, width: 76, height: 112))
         noDataImgView.centerX = view.centerX
         noDataImgView.centerY = view.centerY - 158
         noDataImgView.image = UIImage(named: "comm_noData")

@@ -53,6 +53,12 @@ class GPWQuirstView: UIView,RTLabelDelegate {
                 numRtlabel.height = numRtlabel.optimumSize.height
                 numRtlabel.centerY = textField.centerY
                 self.addSubview(numRtlabel)
+
+                let  shuLine = UIView(frame: CGRect(x: numRtlabel.x - 18, y: 0, width: 0.5, height: 20))
+                shuLine.backgroundColor = lineColor
+                shuLine.centerY = textField.centerY
+                self.addSubview(shuLine)
+
             }else{
                 let phone = UserDefaults.standard.value(forKey: USER了OGINPHONE)
                 if phone != nil {
@@ -60,7 +66,7 @@ class GPWQuirstView: UIView,RTLabelDelegate {
                 }
             }
             self.addSubview(textField)
-            let line = UIView(frame: CGRect(x: imgView.x, y: textField.maxY + 8, width: SCREEN_WIDTH - imgView.x - 36, height: 0.5))
+            let line = UIView(frame: CGRect(x: imgView.x, y: textField.maxY + 8, width: SCREEN_WIDTH - imgView.x * 2 , height: 0.5))
             line.backgroundColor = lineColor
             self.addSubview(line)
             maxHeiht = line.maxY
@@ -91,12 +97,13 @@ class GPWQuirstView: UIView,RTLabelDelegate {
                   //登录
                     GPWNetwork.requetWithPost(url: Quick_login, parameters: ["mobile":acountNum,"captcha":codeStr], responseJSON: {[weak self] (json, msg) in
                         guard let strongSelf = self else { return }
+                        GPWUser.sharedInstance().getUserInfo()
                         GPWUser.sharedInstance().analyUser(dic: json)
-
                          UserDefaults.standard.set(acountNum, forKey: USER了OGINPHONE)
                         MobClick.event("__cust_event_3")
                         MobClick.event("__login", attributes:["userid":GPWUser.sharedInstance().user_name ?? "00"])
                         if json["userinfo"]["zhu"].intValue == 1 {
+                            GPWGlobal.sharedInstance().gotoNiceNameFlag = true
                             strongSelf.superController?.navigationController?.pushViewController(GPWUserQSetPWViewController(), animated: true)
                         }else{
                             //获取存储的用户帐号和手势密码

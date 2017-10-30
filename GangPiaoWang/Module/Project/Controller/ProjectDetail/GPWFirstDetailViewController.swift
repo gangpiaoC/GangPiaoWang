@@ -190,7 +190,7 @@ class GPWFirstDetailViewController: UIViewController, UITableViewDelegate, UITab
                 cell.contentView.addSubview(rightImbView)
                 
                 let  detailLabel = UILabel(frame: CGRect(x: rightImbView.x - 70, y: 0, width: 80, height: 13))
-                detailLabel.text = "领投资红包"
+                detailLabel.text = "领红包"
                 detailLabel.textColor = redTitleColor
                 detailLabel.tag = 10000
                 detailLabel.font = UIFont.customFont(ofSize: 12)

@@ -74,8 +74,10 @@ class GPWVipFDetailViewController: UIViewController, UITableViewDelegate, UITabl
             strongSelf.cell2RightText = [json["start_interest"].stringValue, json["refund_type"].stringValue]
             
             if GPWUser.sharedInstance().staue == 0 {
-                strongSelf.cell2LeftText.append("温馨提示")
-                strongSelf.cell2RightText.append("新手用户出借仅享有一次加息机会")
+                if GPWUser.sharedInstance().identity != 1 {
+                    strongSelf.cell2LeftText.append("温馨提示")
+                    strongSelf.cell2RightText.append("新手用户出借仅享有一次加息机会")
+                }
             }
             
             strongSelf.tableView.reloadData()
@@ -122,23 +124,28 @@ class GPWVipFDetailViewController: UIViewController, UITableViewDelegate, UITabl
                 strongSelf.superController?.joinButton.setBackgroundImage(UIImage(named: ""), for: .normal)
                 strongSelf.superController?.joinButton.backgroundColor = UIColor.hex("c3c3c3")
             }else if  json["leader_id"].intValue  == GPWUser.sharedInstance().user_id {
-                
                 if  GPWGlobal.sharedInstance().vipSucessFlag{
                     GPWGlobal.sharedInstance().vipSucessFlag = false
                 }else{
                     strongSelf.showShareView()
                 }
+
+                if status == "COLLECTING" {
+                    strongSelf.superController?.joinButton.isEnabled = true
+                    strongSelf.superController?.joinButton.setBackgroundImage(UIImage(named: "project_right_pay"), for: .normal)
+                    strongSelf.superController?.joinButton.backgroundColor = UIColor.clear
+                }else{
+                    strongSelf.superController?.joinButton.isEnabled = false
+                    strongSelf.superController?.joinButton.setTitle("立即加入", for: .normal)
+                    strongSelf.superController?.joinButton.setBackgroundImage(UIImage(named: ""), for: .normal)
+                    strongSelf.superController?.joinButton.backgroundColor = UIColor.hex("c3c3c3")
+                }
+            }else if json["amount_collect"].intValue > 0 && GPWUser.sharedInstance().identity == 1 {
                 strongSelf.superController?.joinButton.isEnabled = false
                 strongSelf.superController?.joinButton.setTitle("立即加入", for: .normal)
                 strongSelf.superController?.joinButton.setBackgroundImage(UIImage(named: ""), for: .normal)
                 strongSelf.superController?.joinButton.backgroundColor = UIColor.hex("c3c3c3")
             }
-//            else if json["amount_collect"].intValue > 0 && GPWUser.sharedInstance().identity == 1 {
-//                strongSelf.superController?.joinButton.isEnabled = false
-//                strongSelf.superController?.joinButton.setTitle("立即加入", for: .normal)
-//                strongSelf.superController?.joinButton.setBackgroundImage(UIImage(named: ""), for: .normal)
-//                strongSelf.superController?.joinButton.backgroundColor = UIColor.hex("c3c3c3")
-//            }
             }, failure: { error in
         })
     }
@@ -273,7 +280,7 @@ extension GPWVipFDetailViewController{
                 cell.contentView.addSubview(rightImbView)
                 
                 let  detailLabel = UILabel(frame: CGRect(x: rightImbView.x - 70, y: 0, width: 80, height: 13))
-                detailLabel.text = "领投资红包"
+                detailLabel.text = "领红包"
                 detailLabel.textColor = redTitleColor
                 detailLabel.tag = 10000
                 detailLabel.font = UIFont.customFont(ofSize: 12)
