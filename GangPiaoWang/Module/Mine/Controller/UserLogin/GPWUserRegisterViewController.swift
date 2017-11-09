@@ -43,7 +43,6 @@ class GPWUserRegisterViewController: GPWSecBaseViewController,RTLabelDelegate {
             let  textField = UITextField(frame: CGRect(x: imgView.maxX + 14, y: imgView.y, width: 200, height: imgView.height))
             textField.placeholder = array[i]["place"]
             textField.tag = 100 + i
-            textField.keyboardType = .numberPad
             textField.font = UIFont.customFont(ofSize: 16)
             self.bgView.addSubview(textField)
             
@@ -60,7 +59,12 @@ class GPWUserRegisterViewController: GPWSecBaseViewController,RTLabelDelegate {
                 let line = UIView(frame: CGRect(x: numRtlabel.x, y: maxheight + 22, width: 1, height: 20))
                 line.backgroundColor = lineColor
                 self.bgView.addSubview(line)
-                
+            }
+
+            if i != 2 {
+                textField.keyboardType = .numberPad
+            }else{
+                textField.isSecureTextEntry = true
             }
             maxheight = textField.maxY + 10
             let line = UIView(frame: CGRect(x: imgView.x, y: maxheight, width: SCREEN_WIDTH - imgView.x * 2, height: 0.5))
@@ -90,6 +94,7 @@ class GPWUserRegisterViewController: GPWSecBaseViewController,RTLabelDelegate {
 
         yaoCodeTextField = UITextField(frame: CGRect(x: 16, y: maxheight, width: SCREEN_WIDTH - 32, height: 16 + 16 + 16))
         yaoCodeTextField.placeholder = "请输入邀请码(选填)"
+        yaoCodeTextField.keyboardType = .numberPad
         yaoCodeTextField.font = UIFont.customFont(ofSize: 16)
         yaoCodeTextField.textColor = UIColor.hex("333333")
         self.bgView.addSubview(yaoCodeTextField)
@@ -242,7 +247,6 @@ class GPWUserRegisterViewController: GPWSecBaseViewController,RTLabelDelegate {
     //注册
     func zhuceData() {
         let phoneNum = (self.bgView.viewWithTag(100) as! UITextField).text!
-        let code = (self.bgView.viewWithTag(101) as! UITextField).text!
         let pw = (self.bgView.viewWithTag(102) as! UITextField).text!
         var dic = ["mobile":phoneNum]
         dic["password"] = pw
@@ -256,7 +260,6 @@ class GPWUserRegisterViewController: GPWSecBaseViewController,RTLabelDelegate {
             GPWUser.sharedInstance().analyUser(dic: json)
             strongSelf.navigationController?.pushViewController(GPWUserRegisterSViewController(), animated: true)
             }, failure: { error in
-
         })
     }
 

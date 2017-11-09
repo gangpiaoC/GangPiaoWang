@@ -82,7 +82,7 @@ class GestureViewController: GPWSecBaseViewController {
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        (navigationController as! GPWNavigationController).canDrag = true
+        (navigationController as? GPWNavigationController)?.canDrag = true
     }
     
     override func viewDidLoad() {

@@ -53,6 +53,9 @@ class GPWBankWebViewController:  GPWSecBaseViewController,WKUIDelegate,WKNavigat
     //充值或者提现金额
     var moneyStr:String?
     var shouxu:CGFloat = 0
+
+    var startImgView:UIImageView!
+
     init(subtitle:String,url:String){
         super.init(nibName: nil, bundle: nil)
         self.subSitle = subtitle
@@ -105,9 +108,20 @@ class GPWBankWebViewController:  GPWSecBaseViewController,WKUIDelegate,WKNavigat
         if let url = URL(string: self.url!) {
             _webView.load(URLRequest(url: url))
         }
+
+        let gifImgView = UIImage.gif(name: "pageStart")
+        startImgView = UIImageView(frame: CGRect(x: 0, y: 0, width: 90, height: 90))
+        startImgView.center = CGPoint(x: self.bgView.width / 2, y: self.bgView.height / 2)
+        startImgView.image = gifImgView
+        startImgView.stopAnimating()
+        self.bgView.addSubview(startImgView)
+        
     }
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         self.title = webView.title
+        if startImgView != nil {
+            startImgView.removeFromSuperview()
+        }
     }
 
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {

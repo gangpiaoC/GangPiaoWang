@@ -278,7 +278,7 @@ class UserReadInfoViewController: GPWSecBaseViewController,UITextFieldDelegate,U
         var dic = [String:String]()
         //姓名
         let temp1Str = (self.tempBgView.viewWithTag(NAMETAG) as! UITextField).text ?? ""
-        if temp1Str.characters.count < 2 || temp1Str.characters.count > 5{
+        if temp1Str.characters.count < 2 {
             bgView.makeToast("请输入真实姓名")
             return
         }

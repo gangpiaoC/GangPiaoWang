@@ -37,7 +37,7 @@ class UserController: GPWBaseViewController,UITableViewDelegate,UITableViewDataS
         }
 
         //开通存管
-        if GPWGlobal.sharedInstance().gotoNiceNameFlag && GPWUser.sharedInstance().isLogin{
+        if GPWGlobal.sharedInstance().gotoNiceNameFlag && GPWUser.sharedInstance().isLogin && GPWUser.sharedInstance().is_idcard == 0 {
             GPWGlobal.sharedInstance().gotoNiceNameFlag = false
             self.showQuireInfo()
         }
@@ -77,13 +77,25 @@ class UserController: GPWBaseViewController,UITableViewDelegate,UITableViewDataS
 
     //快捷注册后如果没有实名就会提示
     func showQuireInfo() {
-
          let tempStr =  UserDefaults().string(forKey: "firstTiyanFlag")
-
         if tempStr == GPWUser.sharedInstance().telephone {
             return
         }
-        UserDefaults().setValue(GPWUser.sharedInstance().telephone, forKey: "firstTiyanFlag")
+
+        if tempStr != nil {
+            let tempArray = tempStr?.components(separatedBy: "$")
+            for temp in tempArray ?? ["00","00"] {
+                if temp == GPWUser.sharedInstance().telephone {
+                    return
+                }
+            }
+        }
+        if tempStr != nil {
+            UserDefaults().setValue(( tempStr ?? "0" ) + "$"  + ( GPWUser.sharedInstance().telephone ?? "0" ), forKey: "firstTiyanFlag")
+        }else{
+                UserDefaults().setValue(GPWUser.sharedInstance().telephone, forKey: "firstTiyanFlag")
+        }
+
         let wid = UIApplication.shared.keyWindow
 
         let  bgView = UIView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))

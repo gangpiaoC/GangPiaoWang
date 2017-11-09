@@ -86,8 +86,8 @@ class GPWInvestViewController: GPWSecBaseViewController,UIScrollViewDelegate{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let balance = GPWUser.sharedInstance().money ?? "0.00"
-        acountBaLabel.text =  "账户余额:\(balance)"
+        let balance = GPWUser.sharedInstance().real_money ?? "0.00"
+        acountBaLabel.text =  "可用余额:\(balance)"
     }
     
     override func viewDidLoad() {
@@ -102,10 +102,12 @@ class GPWInvestViewController: GPWSecBaseViewController,UIScrollViewDelegate{
             printLog(message: json)
             guard let strongSelf = self else { return }
             strongSelf.dicJson = json
+            strongSelf.tempRedEnvelops.removeAll()
             let tempRedEnvelops = json["award"].arrayValue
             strongSelf.shareJson = json["share"]
             for object in tempRedEnvelops {
                 let redEnvelop = RedEnvelop(object)
+                strongSelf.tempRedEnvelops.append(redEnvelop)
                 if Int(redEnvelop.limit) ?? 300 <= json["deadline"].intValue {
                     strongSelf.redEnvelops.append(redEnvelop)
                 }
@@ -666,7 +668,7 @@ extension GPWInvestViewController {
     @objc fileprivate func redBagTap(_ tapGesture: UITapGestureRecognizer) {
         textField.resignFirstResponder()
 
-        if textField.text == nil || textField.text == "" {
+        if (textField.text == nil || textField.text == "") && self.tempRedEnvelops.count > 0 {
             let  alertViewContoll = UIAlertController(title: "", message: "请输入出借金额", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "确定", style: .default, handler: { (alert) in
             })

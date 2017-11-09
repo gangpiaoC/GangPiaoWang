@@ -212,6 +212,8 @@
 		808F05581E8F4FAC00BFF5CA /* introduce2.png in Resources */ = {isa = PBXBuildFile; fileRef = 808F05501E8F4FAC00BFF5CA /* introduce2.png */; };
 		808F05591E8F4FAC00BFF5CA /* introduce3_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 808F05511E8F4FAC00BFF5CA /* introduce3_3.png */; };
 		808F055A1E8F4FAC00BFF5CA /* introduce3.png in Resources */ = {isa = PBXBuildFile; fileRef = 808F05521E8F4FAC00BFF5CA /* introduce3.png */; };
+		809212391FB43B8700A6D65C /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809212381FB43B8700A6D65C /* UIImage+Gif.swift */; };
+		8092123B1FB43CB500A6D65C /* pageStart.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8092123A1FB43CB500A6D65C /* pageStart.gif */; };
 		809C4B371E71701A00816DD5 /* GPWFriendCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809C4B351E71701A00816DD5 /* GPWFriendCellModel.swift */; };
 		809C4B381E71701A00816DD5 /* GPWFriendSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809C4B361E71701A00816DD5 /* GPWFriendSectionModel.swift */; };
 		809DCE3F1EAF219000F07D52 /* GPWGetIP.m in Sources */ = {isa = PBXBuildFile; fileRef = 809DCE3E1EAF219000F07D52 /* GPWGetIP.m */; };
@@ -628,6 +630,8 @@
 		808F05501E8F4FAC00BFF5CA /* introduce2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = introduce2.png; sourceTree = "<group>"; };
 		808F05511E8F4FAC00BFF5CA /* introduce3_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = introduce3_3.png; sourceTree = "<group>"; };
 		808F05521E8F4FAC00BFF5CA /* introduce3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = introduce3.png; sourceTree = "<group>"; };
+		809212381FB43B8700A6D65C /* UIImage+Gif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
+		8092123A1FB43CB500A6D65C /* pageStart.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = pageStart.gif; sourceTree = "<group>"; };
 		809C4B351E71701A00816DD5 /* GPWFriendCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWFriendCellModel.swift; sourceTree = "<group>"; };
 		809C4B361E71701A00816DD5 /* GPWFriendSectionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWFriendSectionModel.swift; sourceTree = "<group>"; };
 		809DCE3D1EAF219000F07D52 /* GPWGetIP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPWGetIP.h; sourceTree = "<group>"; };
@@ -1015,6 +1019,7 @@
 		5B84DC871DEFC62C00C4CABC /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				809212381FB43B8700A6D65C /* UIImage+Gif.swift */,
 				80625EDA1E078AA600456B63 /* UIView+XH.h */,
 				80625EDB1E078AA600456B63 /* UIView+XH.m */,
 				80625EC91E06982C00456B63 /* UIScrollView+TwitterCover.h */,
@@ -2012,6 +2017,7 @@
 		80F095C31EEAA1B60039318C /* animation */ = {
 			isa = PBXGroup;
 			children = (
+				8092123A1FB43CB500A6D65C /* pageStart.gif */,
 				80F095C41EEAA1B60039318C /* gpwAnimation_0.png */,
 				80F095C51EEAA1B60039318C /* gpwAnimation_1.png */,
 				80F095C61EEAA1B60039318C /* gpwAnimation_10.png */,
@@ -2214,6 +2220,7 @@
 				8002D1781E76AB02007E7B4C /* Main.strings in Resources */,
 				80F095DA1EEAA1B60039318C /* gpwAnimation_10.png in Resources */,
 				806EDD221F3C77DA006A06AF /* problemCenter.plist in Resources */,
+				8092123B1FB43CB500A6D65C /* pageStart.gif in Resources */,
 				80F095DC1EEAA1B60039318C /* gpwAnimation_12.png in Resources */,
 				808F05541E8F4FAC00BFF5CA /* introduce0.png in Resources */,
 				808F05551E8F4FAC00BFF5CA /* introduce1_1.png in Resources */,
@@ -2412,6 +2419,7 @@
 				5B3EEC0A1E0E93790092014C /* PhotoViewCell.swift in Sources */,
 				5B84DC8D1DEFC64C00C4CABC /* GPWHelper.swift in Sources */,
 				80A570A81E8246BC00CCB2C7 /* GPWQuirstView.swift in Sources */,
+				809212391FB43B8700A6D65C /* UIImage+Gif.swift in Sources */,
 				809C4B381E71701A00816DD5 /* GPWFriendSectionModel.swift in Sources */,
 				8086904A1F5D35DD008F4FB7 /* GPWVipPDetailViewController.swift in Sources */,
 				5B84DBFB1DEBDB2200C4CABC /* GPWButton.swift in Sources */,

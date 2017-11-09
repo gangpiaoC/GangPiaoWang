@@ -55,14 +55,18 @@ class GPWHomeViewController: GPWBaseViewController,UITableViewDelegate,UITableVi
     }
     
     func initView() {
+        let iosVersion = UIDevice.current.systemVersion //iOS版本
+        let strNum = NSString(string:iosVersion).doubleValue
         self.navigationBar.title = "钢票网"
         self.isBarHidden = true
         self.navigationBar.alpha = 0.0
-        self.bgView.y = -20
-        self.bgView.height =   self.bgView.height + 64 + 20
+
         if SCREEN_HEIGHT == 812.0 {
             self.bgView.y = self.bgView.y - 25
             self.bgView.height = self.bgView.height  + 25
+        }else if strNum != 10 {
+            self.bgView.y = -20
+            self.bgView.height =   self.bgView.height + 64 + 20
         }
         self.navigationBar.backgroundColor = redTitleColor
         self.navigationBar.titleLabel.textColor = UIColor.white

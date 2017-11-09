@@ -45,7 +45,8 @@ class GPWWebViewController: GPWSecBaseViewController,WKUIDelegate,WKNavigationDe
     fileprivate var subSitle: String?
     fileprivate var url:String?
     fileprivate var _webView:WKWebView!
-    
+
+    var startImgView:UIImageView!
     init(subtitle:String,url:String){
         super.init(nibName: nil, bundle: nil)
         self.subSitle = subtitle
@@ -92,7 +93,6 @@ class GPWWebViewController: GPWSecBaseViewController,WKUIDelegate,WKNavigationDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         for (_,subControl) in (self.navigationController?.viewControllers.enumerated())! {
             if subControl.isKind(of: GestureViewController.self) {
                 backRootFlag = true
@@ -110,14 +110,14 @@ class GPWWebViewController: GPWSecBaseViewController,WKUIDelegate,WKNavigationDe
                 navigationBar.addSubview(button)
             }
         }
-        
+
         // 创建配置
         let config = WKWebViewConfiguration()
         // 创建UserContentController（提供JavaScript向webView发送消息的方法）
         let userContent = WKUserContentController()
         // 添加消息处理，注意：self指代的对象需要遵守WKScriptMessageHandler协议，结束时需要移除
         userContent.add(self , name: "NativeMethod")
-        
+
         // 将UserConttentController设置到配置文件
         config.userContentController = userContent
         _webView = WKWebView(frame: self.bgView.bounds, configuration: config)
@@ -127,15 +127,26 @@ class GPWWebViewController: GPWSecBaseViewController,WKUIDelegate,WKNavigationDe
         if let url = URL(string: self.url!) {
             _webView.load(URLRequest(url: url))
         }
+
+        let gifImgView = UIImage.gif(name: "pageStart")
+        startImgView = UIImageView(frame: CGRect(x: 0, y: 0, width: 90, height: 90))
+        startImgView.center = CGPoint(x: self.bgView.width / 2, y: self.bgView.height / 2)
+        startImgView.image = gifImgView
+        self.bgView.addSubview(startImgView)
+
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        if startImgView != nil {
+            startImgView.removeFromSuperview()
+        }
         if self.messageFlag == "0" {
               self.title = webView.title
         }else{
             self.title = subSitle
         }
     }
+    
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         printLog(message: userContentController)
         // 判断是否是调用原生的

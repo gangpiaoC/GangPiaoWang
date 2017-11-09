@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
 class GPWQuirstView: UIView,RTLabelDelegate {
     var superController:UIViewController?
     //如何回去  1首页  其他 上一级
@@ -58,7 +57,6 @@ class GPWQuirstView: UIView,RTLabelDelegate {
                 shuLine.backgroundColor = lineColor
                 shuLine.centerY = textField.centerY
                 self.addSubview(shuLine)
-
             }else{
                 let phone = UserDefaults.standard.value(forKey: USER了OGINPHONE)
                 if phone != nil {
@@ -103,7 +101,6 @@ class GPWQuirstView: UIView,RTLabelDelegate {
                         MobClick.event("__cust_event_3")
                         MobClick.event("__login", attributes:["userid":GPWUser.sharedInstance().user_name ?? "00"])
                         if json["userinfo"]["zhu"].intValue == 1 {
-                            GPWGlobal.sharedInstance().gotoNiceNameFlag = true
                             strongSelf.superController?.navigationController?.pushViewController(GPWUserQSetPWViewController(), animated: true)
                         }else{
                             //获取存储的用户帐号和手势密码

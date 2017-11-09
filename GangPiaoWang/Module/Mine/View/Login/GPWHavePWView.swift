@@ -116,6 +116,7 @@ class GPWHavePWView: UIView {
                 GPWNetwork.requetWithPost(url: Login, parameters: ["phones":acountNum,"pwd":pw], responseJSON: {[weak self] (json, msg) in
                     guard let strongSelf = self else { return }
                     GPWUser.sharedInstance().analyUser(dic: json)
+                    printLog(message: json)
                     MobClick.event("__cust_event_3")
                     MobClick.event("__login", attributes:["userid":GPWUser.sharedInstance().user_name ?? "00"])
                     //获取存储的用户帐号和手势密码

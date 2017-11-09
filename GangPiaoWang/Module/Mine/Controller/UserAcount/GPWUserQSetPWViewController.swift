@@ -141,7 +141,6 @@ class GPWUserQSetPWViewController: GPWSecBaseViewController {
             return
         }
 
-        
         if (temp2Str?.characters.count)! < 6 {
             self.bgView.makeToast("密码不正确")
             return
@@ -160,14 +159,24 @@ class GPWUserQSetPWViewController: GPWSecBaseViewController {
             guard let strongSelf = self else { return }
             strongSelf.bgView.makeToast(msg)
             GPWUser.sharedInstance().getUserInfo()
-            _ = strongSelf.navigationController?.pushViewController(UserReadInfoViewController(), animated: true)
+            if strongSelf.setpwFlag == 0 {
+                strongSelf.navigationController?.popViewController(animated: true)
+            }else{
+                GPWGlobal.sharedInstance().gotoNiceNameFlag = true
+                _ = strongSelf.navigationController?.popToRootViewController(animated: true)
+            }
         }) { (error) in
         
         }
     }
 
     override func back(sender: GPWButton) {
-        self.navigationController?.popToRootViewController(animated: true)
+        if setpwFlag == 0 {
+            self.navigationController?.popViewController(animated: true)
+        }else{
+            GPWGlobal.sharedInstance().gotoNiceNameFlag = true
+            self.navigationController?.popToRootViewController(animated: true)
+        }
     }
 
     override func didReceiveMemoryWarning() {

@@ -47,7 +47,7 @@ extension GPWHomeTopCell{
         let imgView = UIImageView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: 136 + 64))
         if (_data?.count)! > 0 {
             let dic = self._data![Int(index)]
-            imgView.downLoadImg(imgUrl: dic["img_url"].string!)
+            imgView.downLoadImg(imgUrl: dic["img_url"].string ?? "")
         }else{
             imgView.downLoadImg(imgUrl: linshiImgUrl)
         }

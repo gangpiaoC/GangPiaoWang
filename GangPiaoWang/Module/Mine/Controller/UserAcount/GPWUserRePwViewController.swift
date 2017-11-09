@@ -56,7 +56,7 @@ class GPWUserRePwViewController: GPWSecBaseViewController {
     }
     
     func btnClick() {
-        let newpw = (self.bgView.viewWithTag(100) as! UITextField).text
+        let newpw = (self.bgView.viewWithTag(100) as! UITextField).text 
         if newpw?.characters.count == 0 {
             self.bgView.makeToast("请输入新密码")
             return
@@ -74,7 +74,6 @@ class GPWUserRePwViewController: GPWSecBaseViewController {
             self.bgView.makeToast("两次密码不统一")
             return
         }
-        printLog(message: "www====\(self.phone)     \(newpw)")
         GPWNetwork.requetWithPost(url: Forget, parameters: ["phone":self.phone!,"newpwd":newpw ?? "","surepwd":surepw ?? ""], responseJSON:  { [weak self] (json, msg) in
             guard let strongSelf = self else { return }
             strongSelf.bgView.makeToast(msg)
