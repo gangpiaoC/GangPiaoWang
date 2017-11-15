@@ -30,7 +30,7 @@ class GPWHomeTopCell: UITableViewCell,EScrollerViewDelegate {
             return
         }
         _scrollView?.removeFromSuperview()
-        _scrollView = EScrollerView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: 186), pageCount: (_data?.count)!, delegate: self)
+        _scrollView = EScrollerView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: 206), pageCount: (_data?.count)!, delegate: self)
         let line = UIView(frame: CGRect(x: 0, y: (_scrollView?.height)! - 0.5, width: SCREEN_WIDTH, height: 0.5))
         line.backgroundColor = lineColor
         _scrollView?.addSubview(line)
@@ -44,7 +44,7 @@ class GPWHomeTopCell: UITableViewCell,EScrollerViewDelegate {
 
 extension GPWHomeTopCell{
     func eScrollerInitView(for index: UInt) -> UIView! {
-        let imgView = UIImageView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: 136 + 64))
+        let imgView = UIImageView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: 206))
         if (_data?.count)! > 0 {
             let dic = self._data![Int(index)]
             imgView.downLoadImg(imgUrl: dic["img_url"].string ?? "")

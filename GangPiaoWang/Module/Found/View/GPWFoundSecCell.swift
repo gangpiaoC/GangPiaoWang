@@ -12,35 +12,36 @@ class GPWFoundSecCell: UITableViewCell {
     var superControl:UIViewController?
     fileprivate var weixin:String?
     let array = [
-                  ["img":"found_weixin","title":"关注微信"],
-                  ["img":"found_action","title":"热门活动"],
-                  ["img":"found_kefu","title":"我的客服"]
+                  ["img":"found_sec_action","title":"热门活动"],
+                  ["img":"found_sec_school","title":"钢票学院"],
+                  ["img":"found_sec_user","title":"用户故事"],
+                  ["img":"found_sec_team","title":"团队故事"]
                 ]
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
-        let btnWith = SCREEN_WIDTH / 3
+        let btnWith = (SCREEN_WIDTH - 23 * 2 ) / CGFloat(array.count)
         for i in 0..<array.count {
             let btn = UIButton(type: .custom)
-            btn.frame = CGRect(x: btnWith * CGFloat(i), y: 0, width: btnWith, height: 79)
+            btn.frame = CGRect(x: 23 + btnWith * CGFloat(i), y: 0, width: btnWith, height: 93)
             btn.tag = 100 + i
             btn.addTarget(self, action: #selector(self.btnClick(sender:)), for: .touchUpInside)
             self.contentView.addSubview(btn)
             
-            let imgView = UIImageView(frame: CGRect(x: 36, y: 0, width: 38, height: 38))
+            let imgView = UIImageView(frame: CGRect(x: 36, y: 10, width: 40, height: 40))
             imgView.image = UIImage(named: array[i]["img"]!)
             imgView.centerX = btn.width / 2
             btn.addSubview(imgView)
             
-            let titleLabel = UILabel(frame: CGRect(x: 0, y: imgView.maxY + 3, width: btn.width, height: 16))
+            let titleLabel = UILabel(frame: CGRect(x: 0, y: imgView.maxY + 8, width: btn.width, height: 16))
             titleLabel.text = array[i]["title"]
-            titleLabel.font = UIFont.customFont(ofSize: 16)
+            titleLabel.font = UIFont.customFont(ofSize: 14)
             titleLabel.textAlignment = .center
             titleLabel.textColor = UIColor.hex("666666")
             btn.addSubview(titleLabel)
         }
         
-        let block = UIView(frame: CGRect(x: 0, y: 79, width: SCREEN_WIDTH, height: 10))
+        let block = UIView(frame: CGRect(x: 0, y: 93, width: SCREEN_WIDTH, height: 10))
         block.backgroundColor = bgColor
         self.contentView.addSubview(block)
     }
@@ -52,13 +53,17 @@ class GPWFoundSecCell: UITableViewCell {
     
     func btnClick(sender:UIButton) {
         if sender.tag == 100 {
-            MobClick.event("found", label: "菜单-微信")
-            self.superControl?.navigationController?.pushViewController(GPWWebViewController(subtitle: "", url: self.weixin ?? ""), animated: true)
+            MobClick.event("found", label: "菜单-热门活动")
+             self.superControl?.navigationController?.pushViewController(GPWActiveViewController(), animated: true)
+//            self.superControl?.navigationController?.pushViewController(GPWWebViewController(subtitle: "", url: self.weixin ?? ""), animated: true)
         }else if sender.tag == 101 {
-            MobClick.event("found", label: "菜单-活动")
+            MobClick.event("found", label: "菜单-钢票故事")
             self.superControl?.navigationController?.pushViewController(GPWActiveViewController(), animated: true)
         }else if sender.tag == 102 {
-            MobClick.event("found", label: "菜单-客服")
+            MobClick.event("found", label: "菜单-用户故事")
+            self.myCustem()
+        }else if sender.tag == 102 {
+            MobClick.event("found", label: "菜单-团队故事")
             self.myCustem()
         }
     }

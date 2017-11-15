@@ -66,7 +66,7 @@ class GPWHomeGetBageController: GPWSecBaseViewController {
             strongSelf.allnumber = json["allnumber"].intValue
             strongSelf.dicArray?.removeAll()
             for tempDic in json["data"].arrayValue {
-                strongSelf.dicArray?.append("拼友\(tempDic["telephone"])获得    \(tempDic["content"])")
+                strongSelf.dicArray?.append("<font size=14 color='#ffffff'>拼友\(tempDic["telephone"])获得    \(tempDic["content"])</font>")
             }
             strongSelf.initView()
             if strongSelf.num == 0 {

@@ -15,8 +15,8 @@ class GPWHomeSecViewCell: UITableViewCell {
     let array = [
                   ["img":"home_zhiyin","title":"平台介绍"],
                   ["img":"home_safe","title":"安全保障"],
-                  ["img":"home_yaoqing","title":"热门活动"],
-                  ["img":"home_getredbag","title":"拼手气"]
+                  ["img":"home_yaoqing","title":"邀请有礼"],
+                  ["img":"home_getrb_bg","title":"拼手气"]
                 ]
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -24,27 +24,46 @@ class GPWHomeSecViewCell: UITableViewCell {
         let btnWith = SCREEN_WIDTH / 4
         for i in 0..<array.count {
             let btn = UIButton(type: .custom)
-            btn.frame = CGRect(x: btnWith * CGFloat(i), y: 0, width: btnWith, height: 120)
+            btn.frame = CGRect(x: btnWith * CGFloat(i), y: 0, width: btnWith, height: 114)
             btn.tag = 100 + i
             btn.addTarget(self, action: #selector(self.btnClick(sender:)), for: .touchUpInside)
             self.contentView.addSubview(btn)
             
-            let imgView = UIImageView(frame: CGRect(x: 36, y: 18, width: 44, height: 44))
+            let imgView = UIImageView(frame: CGRect(x: 36, y: 21, width: 46, height: 46))
             imgView.image = UIImage(named: array[i]["img"]!)
             imgView.centerX = btn.width / 2
             btn.addSubview(imgView)
+            if i == 3 {
+                //红包
+                let bgImgView = UIImageView(frame: CGRect(x: 0, y: 0, width: 26, height: 60))
+                bgImgView.image = UIImage(named: "home_getredbag")
+                bgImgView.centerX = btn.width / 2
+                bgImgView.y = imgView.y + 10
+                btn.addSubview(bgImgView)
+                self.rorateAnimation(holdView: bgImgView)
+            }
+
             
-            let titleLabel = UILabel(frame: CGRect(x: 0, y: imgView.maxY + 12, width: btn.width, height: 16))
+            let titleLabel = UILabel(frame: CGRect(x: 0, y: imgView.maxY + 7, width: btn.width, height: 16))
             titleLabel.text = array[i]["title"]
-            titleLabel.font = UIFont.customFont(ofSize: 15)
+            titleLabel.font = UIFont.customFont(ofSize: 16)
             titleLabel.textAlignment = .center
-            titleLabel.textColor = UIColor.hex("666666")
+            titleLabel.textColor = UIColor.hex("555555")
             btn.addSubview(titleLabel)
         }
         
-        let block = UIView(frame: CGRect(x: 0, y: 110, width: SCREEN_WIDTH, height: 10))
+        let block = UIView(frame: CGRect(x: 0, y: 114, width: SCREEN_WIDTH, height: 10))
         block.backgroundColor = bgColor
         self.contentView.addSubview(block)
+    }
+    //旋转动画
+    func rorateAnimation(holdView: UIView){
+        UIView.animate(withDuration: 0.4, delay: 1.5, options: [.repeat, .autoreverse], animations: {
+            holdView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi / 8))
+        }, completion: { (finish) in
+             holdView.transform = CGAffineTransform(rotationAngle: CGFloat(-Double.pi / 8))
+            self.rorateAnimation(holdView: holdView)
+        })
     }
     
     func updata(dic:JSON,superControl:UIViewController) {

@@ -9,6 +9,7 @@
 #define SCREEN_WIDTH [[UIScreen mainScreen] bounds].size.width
 #import "InvestScrollView.h"
 #import "XHColor.h"
+#import "RTLabel.h"
 @interface InvestScrollView ()<UIScrollViewDelegate>
 /**
  *  滚动视图
@@ -101,19 +102,16 @@
         
         [obj removeFromSuperview];
     }];
+
     
-    
-    UIFont *font = [UIFont systemFontOfSize:SCREEN_WIDTH == 320 ? 13:14];
+    //CGFloat fontNum = SCREEN_WIDTH == 320 ? 13:14;
     
     
     for (int i = 0; i < investArray.count; i++) {
         
         NSString *tempStr  = investArray[i];
-        UILabel *projectLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.labelH*i, self.labelW, self.labelH)];
+        RTLabel *projectLabel = [[RTLabel alloc] initWithFrame:CGRectMake(0, self.labelH*i, self.labelW, self.labelH)];
         projectLabel.text = tempStr;
-        
-        projectLabel.textColor = [UIColor whiteColor];
-        projectLabel.font = font;
         [self.ccpScrollView addSubview:projectLabel];
         
 //        if (i !=objArray.count-1) {

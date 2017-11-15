@@ -38,7 +38,6 @@ class GPWHomeMessageController: GPWSecBaseViewController,UITableViewDelegate,UIT
         showTableView?.delegate = self
         showTableView?.dataSource = self
         self.bgView.addSubview(showTableView)
-        
         self.getNetData()
     }
     

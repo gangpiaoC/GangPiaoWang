@@ -31,7 +31,11 @@ class GPWFoundTopCell: UITableViewCell,EScrollerViewDelegate {
             return
         }
         _scrollView?.removeFromSuperview()
-        _scrollView = EScrollerView(frame: CGRect(x: 16, y: 16, width: SCREEN_WIDTH - 32, height: pixw(p: 138)), pageCount: (_data?.count)!, delegate: self)
+        _scrollView = EScrollerView(frame: CGRect(x: 16, y: 12, width: SCREEN_WIDTH - 32, height: pixw(p: 138)), pageCount: (_data?.count)!, delegate: self)
+        _scrollView?.layer.shadowColor = UIColor.black.cgColor
+        _scrollView?.layer.shadowOpacity = 0.2
+        _scrollView?.layer.shadowRadius = 8
+        _scrollView?.layer.shadowOffset = CGSize(width: 0, height: 4)
         self.contentView.addSubview(_scrollView!)
     }
     required init?(coder aDecoder: NSCoder) {
@@ -64,27 +68,5 @@ extension GPWFoundTopCell {
             _ = GPWHelper.selectedNavController()?.pushViewController(GPWProjectDetailViewController(projectID: url), animated: true)
         }
     }
-//    func sizeForPage(in flowView: NewPagedFlowView!) -> CGSize {
-//        return CGSize(width: SCREEN_WIDTH - 32, height: flowView.height)
-//    }
-//    
-//    func didSelectCell(_ subView: UIView!, withSubViewIndex subIndex: Int) {
-//        printLog(message: "点击了第\(subIndex + 1)张图")
-//    }
-//    
-//    func numberOfPages(in flowView: NewPagedFlowView!) -> Int {
-//        return self.imgArray.count
-//    }
-//    
-//    func flowView(_ flowView: NewPagedFlowView!, cellForPageAt index: Int) -> UIView! {
-//        var bannerView = flowView.dequeueReusableCell() as? PGIndexBannerSubiew
-//        if bannerView == nil {
-//            bannerView = PGIndexBannerSubiew(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH - 32, height: flowView.height))
-//            bannerView?.tag = index
-//            bannerView?.layer.cornerRadius = 6
-//            bannerView?.layer.masksToBounds = true
-//            bannerView?.mainImageView.downLoadImg(imgUrl: self.imgArray[index], placeImg: "")
-//        }
-//        return bannerView
-//    }
+
 }

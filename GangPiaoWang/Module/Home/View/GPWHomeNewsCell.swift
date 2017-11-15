@@ -11,25 +11,56 @@ import SwiftyJSON
 class GPWHomeNewsCell: UITableViewCell {
     var surperController:UIViewController?
     fileprivate var bankurl:String?
+    fileprivate var scrollview:InvestScrollView!
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
-        let block = UIView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: 10))
-        block.backgroundColor = bgColor
-        self.contentView.addSubview(block)
-        let  imgArray = ["home_three_bank","home_three_meiti"]
+
+        let rightImgView = UIImageView(frame: CGRect(x: 16, y: 30, width: 42, height: 40))
+        rightImgView.image = UIImage(named:"home_bottom_right")
+        contentView.addSubview(rightImgView)
+
+        let shuLine = UIView(frame: CGRect(x: rightImgView.maxX + 16, y: 24, width: 0.5, height: 54))
+        shuLine.backgroundColor = UIColor.hex("d8d8d8")
+        contentView.addSubview(shuLine)
+
+        scrollview = InvestScrollView(frame: CGRect(x: shuLine.maxX + 6, y: 20, width: SCREEN_WIDTH - shuLine.maxX - 6 - 16, height: 62))
+        let  gradientLayer = CAGradientLayer()
+        gradientLayer.frame = scrollview.bounds
+        //设置渐变的主颜色
+        gradientLayer.colors = [UIColor.white.cgColor, UIColor.hex("ffffff", alpha: 0.0).cgColor,UIColor.white.cgColor]
+        //将gradientLayer作为子layer添加到主layer上
+        scrollview.layer.addSublayer(gradientLayer)
         
-        for i in 0 ..< imgArray.count {
-            //列表
-            let tempImgView = UIImageView(frame: CGRect(x: 0, y: block.maxY + 16, width: pixw(p: 164), height: pixw(p: 80)))
-            tempImgView.centerX = SCREEN_WIDTH / 4 * CGFloat(1 + i * 2 )
-            tempImgView.isUserInteractionEnabled = true
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.btnClick(_:)))
-            tempImgView.addGestureRecognizer(tapGesture)
-            tempImgView.image = UIImage(named: imgArray[i])
-            tempImgView.tag = 1000 + i
-            self.contentView.addSubview(tempImgView)
-        }
+        let  titileArray = [
+            "<font size=14 color='#333333'>138****41212    钢融宝-第132期  </font><font size=14 color='#f6390c'>2000元</font>",
+            "<font size=14 color='#333333'>138****43213    钢融宝-第142期  </font><font size=14 color='#f6390c'>2000元</font>",
+            "<font size=14 color='#333333'>138****43411    钢融宝-第135期  </font><font size=14 color='#f6390c'>2002元</font>",
+            "<font size=14 color='#333333'>138****43213    钢融宝-第122期  </font><font size=14 color='#f6390c'>2004元</font>",
+            "<font size=14 color='#333333'>138****43413    钢融宝-第142期  </font><font size=14 color='#f6390c'>2030元</font>",
+            "<font size=14 color='#333333'>138****43113    钢融宝-第112期  </font><font size=14 color='#f6390c'>2040元</font>",
+            "<font size=14 color='#333333'>138****43243    钢融宝-第135期  </font><font size=14 color='#f6390c'>2010元</font>",
+            "<font size=14 color='#333333'>138****43214    钢融宝-第136期  </font><font size=14 color='#f6390c'>2000元</font>",
+            "<font size=14 color='#333333'>138****43213    钢融宝-第131期  </font><font size=14 color='#f6390c'>200元</font>",
+            "<font size=14 color='#333333'>138****43212    钢融宝-第132期  </font><font size=14 color='#f6390c'>200元</font>",
+            "<font size=14 color='#333333'>138****43214    钢融宝-第132期  </font><font size=14 color='#f6390c'>200元</font>",
+            "<font size=14 color='#333333'>138****43213    钢融宝-第132期  </font><font size=14 color='#f6390c'>200元</font>",
+            "<font size=14 color='#333333'>138****41212    钢融宝-第132期  </font><font size=14 color='#f6390c'>2000元</font>",
+            "<font size=14 color='#333333'>138****43213    钢融宝-第142期  </font><font size=14 color='#f6390c'>2000元</font>",
+            "<font size=14 color='#333333'>138****43411    钢融宝-第135期  </font><font size=14 color='#f6390c'>2002元</font>",
+            "<font size=14 color='#333333'>138****43213    钢融宝-第122期  </font><font size=14 color='#f6390c'>2004元</font>",
+            "<font size=14 color='#333333'>138****43413    钢融宝-第142期  </font><font size=14 color='#f6390c'>2030元</font>",
+            "<font size=14 color='#333333'>138****43113    钢融宝-第112期  </font><font size=14 color='#f6390c'>2040元</font>",
+            "<font size=14 color='#333333'>138****43243    钢融宝-第135期  </font><font size=14 color='#f6390c'>2010元</font>",
+            "<font size=14 color='#333333'>138****43214    钢融宝-第136期  </font><font size=14 color='#f6390c'>2000元</font>",
+            "<font size=14 color='#333333'>138****43213    钢融宝-第131期  </font><font size=14 color='#f6390c'>200元</font>",
+            "<font size=14 color='#333333'>138****43212    钢融宝-第132期  </font><font size=14 color='#f6390c'>200元</font>",
+            "<font size=14 color='#333333'>138****43214    钢融宝-第132期  </font><font size=14 color='#f6390c'>200元</font>",
+            "<font size=14 color='#333333'>138****43213    钢融宝-第132期  </font><font size=14 color='#f6390c'>200元</font>"
+        ]
+        scrollview.investArray = titileArray
+        contentView.addSubview(scrollview)
+
     }
     
     func updata(_ bankUrl:String)  {

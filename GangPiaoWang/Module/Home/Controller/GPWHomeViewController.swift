@@ -127,9 +127,11 @@ extension GPWHomeViewController{
                 return 2
             }
         }else if section == 2{
-            return self.dic!["Item"].count
+            return self.dic!["Item"].count + 1
+        }else if section == 3 {
+            return 2
         }else{
-            return 1
+            return 0
         }
     }
     
@@ -144,20 +146,31 @@ extension GPWHomeViewController{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
             if indexPath.row == 0 {
-                   return 186
+                   return 206
             }else{
                 return 40
             }
         }else if indexPath.section == 1 {
             if indexPath.row == 0 {
-                return 120
+                return 114 + 10
             }else{
-                return 122 + 10
+                return 120 + 10
             }
         }else if indexPath.section == 2{
-            return 150
-        }else {
-             return 16 + pixw(p: 80) + 30
+
+            if indexPath.row == 0 {
+                return 264 + 12
+            }else{
+                return 151 + 10
+            }
+        }else if indexPath.section == 3 {
+            if indexPath.row == 0 {
+                return 40
+            }else{
+                return 102
+            }
+        }else{
+            return 0
         }
     }
     
@@ -192,7 +205,7 @@ extension GPWHomeViewController{
                 if cell == nil {
                     cell = UITableViewCell(style: .default, reuseIdentifier: "newReisterCell")
                     cell?.selectionStyle = .none
-                    let newImgView = UIImageView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: pixw(p: 122)))
+                    let newImgView = UIImageView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: pixw(p: 120)))
                     newImgView.image = UIImage(named: "home_new_register")
                     cell?.contentView.addSubview(newImgView)
                     
@@ -201,12 +214,7 @@ extension GPWHomeViewController{
                     btn.addTarget(self, action: #selector(self.gotoRegister), for: .touchUpInside)
                     cell?.contentView.addSubview(btn)
                     
-                    let  label = RTLabel(frame: CGRect(x: pixw(p: 16), y: pixw(p: 70), width: SCREEN_WIDTH - pixw(p: 72 + 29), height: 0))
-                    label.text = "<font size=24 color='#f6390c'>\(GPWGlobal.sharedInstance().app_exper_amount)</font><font size=16 color='#f6390c'>元</font><font size=16 color='#999999'>体验金+</font><font size=24 color='#f6390c'>\(GPWGlobal.sharedInstance().app_accountsred)</font><font size=16 color='#f6390c'>元</font><font size=16 color='#999999'>红包</font>"
-                    label.height = label.optimumSize.height
-                    cell?.contentView.addSubview(label)
-                    
-                    let block = UIView(frame: CGRect(x: 0, y: 122, width: SCREEN_WIDTH, height: 10))
+                    let block = UIView(frame: CGRect(x: 0, y: 120, width: SCREEN_WIDTH, height: 10))
                     block.backgroundColor = bgColor
                     cell?.contentView.addSubview(block)
                 }
@@ -214,20 +222,45 @@ extension GPWHomeViewController{
             }
            
         } else  if indexPath.section == 2{
-            var cell = tableView.dequeueReusableCell(withIdentifier: "GPWHomeProjectCell") as? GPWHomeProjectCell
-            if cell == nil {
-                cell = GPWHomeProjectCell(style: .default, reuseIdentifier: "GPWHomeProjectCell")
+
+            if indexPath.row == 0 {
+                var cell = tableView.dequeueReusableCell(withIdentifier: "GPWHPTopCell") as? GPWHPTopCell
+                if cell == nil {
+                    cell = GPWHPTopCell(style: .default, reuseIdentifier: "GPWHPTopCell")
+                }
+                //cell?.setupCell(dict: (self.dic?["Item"][indexPath.row])!, index: indexPath.row)
+                return cell!
+            }else{
+                var cell = tableView.dequeueReusableCell(withIdentifier: "GPWHProjectCell") as? GPWHProjectCell
+                if cell == nil {
+                    cell = GPWHProjectCell(style: .default, reuseIdentifier: "GPWHProjectCell")
+                }
+                cell?.setupCell(dict: (self.dic?["Item"][indexPath.row - 1])!)
+                return cell!
             }
-            cell?.setupCell(dict: (self.dic?["Item"][indexPath.row])!, index: indexPath.row)
-            return cell!
+
         }else {
-            var cell = tableView.dequeueReusableCell(withIdentifier: "GPWHomeNewsCell") as? GPWHomeNewsCell
-            if cell == nil {
-                cell = GPWHomeNewsCell(style: .default, reuseIdentifier: "GPWHomeNewsCell")
+
+            if indexPath.row == 0 {
+                var cell = tableView.dequeueReusableCell(withIdentifier: "GPWHThone")
+                if cell == nil {
+                    cell = UITableViewCell(style: .default, reuseIdentifier: "GPWHThone")
+                    cell?.textLabel?.font = UIFont.customFont(ofSize: 14)
+                    cell?.textLabel?.text = "恒丰银行资金存管"
+                    cell?.textLabel?.textAlignment = .center
+                    cell?.textLabel?.textColor = UIColor.hex("9e9e9e")
+                    cell?.backgroundColor = UIColor.clear
+                }
+                return cell!
+            }else{
+                var cell = tableView.dequeueReusableCell(withIdentifier: "GPWHomeNewsCell") as? GPWHomeNewsCell
+                if cell == nil {
+                    cell = GPWHomeNewsCell(style: .default, reuseIdentifier: "GPWHomeNewsCell")
+                }
+                cell?.updata(self.dic?["bank_url"].stringValue ?? "")
+                cell?.surperController = self
+                return cell!
             }
-            cell?.updata(self.dic?["bank_url"].stringValue ?? "")
-            cell?.surperController = self
-            return cell!
         }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

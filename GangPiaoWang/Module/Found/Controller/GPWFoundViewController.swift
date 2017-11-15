@@ -20,6 +20,8 @@ class GPWFoundViewController: GPWBaseViewController,UITableViewDelegate,UITableV
     
     func initView() {
         self.title = "发现"
+
+        self.addkefuButton()
         showTableView = UITableView(frame: self.bgView.bounds, style: .plain)
         showTableView.backgroundColor = UIColor.clear
         showTableView.showsVerticalScrollIndicator = false
@@ -39,6 +41,46 @@ class GPWFoundViewController: GPWBaseViewController,UITableViewDelegate,UITableV
             strongSelf.requestNetData()
         }
     }
+    private func addkefuButton() {
+        let button = UIButton(type: .custom)
+        button.frame = CGRect(x: SCREEN_WIDTH  - 40 - 6, y: 23, width: 40, height: 40)
+        button.setImage(UIImage(named: "found_top_kefu"), for: .normal)
+        button.adjustsImageWhenHighlighted = false
+        button.addTarget(self, action: #selector(kefuClick), for: .touchUpInside)
+        navigationBar.addSubview(button)
+    }
+
+    @objc private func kefuClick() {
+            self.myCustem()
+    }
+
+    //我的客服
+    func  myCustem(){
+        printLog(message: "客服")
+        MobClick.event("mine_chat", label: "客服")
+        let initInfo = ZCLibInitInfo()
+        initInfo.appKey = "0c7bf5fc11374541be663008ec7d4b8d"
+        initInfo.nickName = GPWUser.sharedInstance().user_name ?? "未登录"
+        initInfo.phone = GPWUser.sharedInstance().telephone ?? "未填写"
+        let uiInfo = ZCKitInfo()
+        // self.customer(kitInfo: uiInfo)
+        uiInfo.info = initInfo
+
+        //启动
+        ZCSobot.startZCChatView(uiInfo, with: self.navigationController, pageBlock: { (object, type) in
+
+        }) { (msg) in
+
+        }
+    }
+    func customer(kitInfo:ZCKitInfo)  {
+        //点击返回是否出发满意度评价
+        kitInfo.isOpenEvaluation = true
+        //是否显示语音按钮
+        kitInfo.isOpenRecord = true
+        kitInfo.isShowTansfer = true
+    }
+
     
     func requestNetData() {
         GPWNetwork.requetWithGet(url: Find, parameters: nil, responseJSON: {
@@ -79,9 +121,9 @@ extension GPWFoundViewController{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
-            return pixw(p: 138) + 32 + 10
+            return pixw(p: 138) + 12 + 10
         }else if indexPath.row == 1{
-            return 89
+            return 93 + 10
         }else if indexPath.row < 2 + (self.dataDic!["phone"].array?.count ?? 0){
             return pixw(p: 122) + 10
         }else if indexPath.row == 2 + (self.dataDic!["phone"].array?.count ?? 0){

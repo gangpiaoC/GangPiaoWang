@@ -129,24 +129,29 @@ class GPWUserForgetPwViewController: GPWSecBaseViewController,RTLabelDelegate {
     }
     func btnClick() {
         let phone = (self.bgView.viewWithTag(100) as! UITextField).text ?? ""
-        if  self.flag == false{
-             bgView.makeToast("手机未注册")
-        }else if GPWHelper.judgePhoneNum(phone) {
-            let code = (self.bgView.viewWithTag(101) as! UITextField).text ?? ""
-            if code.characters.count == 0 {
-                bgView.makeToast("请输入验证码")
-                return
-            }
-            GPWNetwork.requetWithPost(url: Forget_next, parameters: ["mobile":phone,"news_captcha":code], responseJSON: { [weak self]  (json, msg) in
-                guard let strongSelf = self else { return }
-                let setLoginpwControl = GPWUserRePwViewController()
-                setLoginpwControl.phone = phone
-                strongSelf.navigationController?.pushViewController(setLoginpwControl, animated: true)
-            }) { (error) in
-                
+
+        if GPWHelper.judgePhoneNum(phone){
+            if  self.flag == false{
+                bgView.makeToast("手机未注册")
+            }else if GPWHelper.judgePhoneNum(phone) {
+                let code = (self.bgView.viewWithTag(101) as! UITextField).text ?? ""
+                if code.characters.count == 0 {
+                    bgView.makeToast("请输入验证码")
+                    return
+                }
+                GPWNetwork.requetWithPost(url: Forget_next, parameters: ["mobile":phone,"news_captcha":code], responseJSON: { [weak self]  (json, msg) in
+                    guard let strongSelf = self else { return }
+                    let setLoginpwControl = GPWUserRePwViewController()
+                    setLoginpwControl.phone = phone
+                    strongSelf.navigationController?.pushViewController(setLoginpwControl, animated: true)
+                }) { (error) in
+
+                }
+            }else{
+                bgView.makeToast( "请输入正确手机号")
             }
         }else{
-           bgView.makeToast( "请输入正确手机号")
+             bgView.makeToast("请输入正确手机号")
         }
     }
     //获取验证码
