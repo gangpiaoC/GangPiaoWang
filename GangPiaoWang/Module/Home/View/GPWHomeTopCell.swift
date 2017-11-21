@@ -13,7 +13,7 @@ class GPWHomeTopCell: UITableViewCell,EScrollerViewDelegate {
     var linshiImgUrl = ""
     var _scrollView:EScrollerView?
     var _data:JSON?
-    var _indexControl:UIViewController?
+    weak var _indexControl:UIViewController?
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none

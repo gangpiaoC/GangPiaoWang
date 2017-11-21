@@ -8,48 +8,61 @@
 
 import UIKit
 class UserSecondCell: UITableViewCell {
-    var superControl:UserController?
-    var partLabel:UILabel!
-    fileprivate let  DELEVIEWTAG = 10000
+    weak var superControl:UserController?
+    fileprivate var cunBtn:UIButton!
+    fileprivate var block:UIView!
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
-        
-        let tempLabel = UILabel(frame: CGRect(x: 23,y: 23,width: 102,height: 16))
-        tempLabel.text = "账户余额(元)"
-        tempLabel.font = UIFont.customFont(ofSize:  16)
-        tempLabel.textColor = UIColor.hex("666666")
-        self.contentView.addSubview(tempLabel)
-        
-        partLabel = UILabel(frame:CGRect(x: tempLabel.x,y:tempLabel.maxY + 10,width: SCREEN_WIDTH / 2,height:  19))
-        partLabel.text = "0.00"
-        partLabel.font = UIFont.systemFont(ofSize:  18)
-        partLabel.textColor = redTitleColor
-        self.contentView.addSubview(partLabel)
         
         let imgArray = ["user_center_tixian","user_center_chongzhi"]
         
         for i in 0 ..< imgArray.count {
           let btn = UIButton(type: .custom)
-            btn.frame = CGRect(x: pixw(p: 210) + CGFloat(76 * i), y: 29, width: 76, height: 44)
+            btn.frame = CGRect(x: 0, y: 0, width: 100, height: 34)
+            btn.centerX = CGFloat(2 * i + 1) * SCREEN_WIDTH / 4
+            btn.centerY = 76 / 2
             btn.setImage(UIImage(named: imgArray[i]), for: .normal)
             btn.tag = 100 + i
             btn.addTarget(self, action: #selector(self.btnClick(_:)), for: .touchUpInside)
             contentView.addSubview(btn)
+
+            if i == 0 {
+                let line = UIView(frame: CGRect(x: SCREEN_WIDTH / 2, y: 0, width: 0.5, height: 32))
+                line.backgroundColor = UIColor.hex("d8d8d8")
+                line.centerY = btn.centerY
+                contentView.addSubview(line)
+            }
         }
-        let block = UIView(frame: CGRect(x: 0, y: 89, width: SCREEN_WIDTH, height: 10))
+
+        //开通存管按钮
+        cunBtn = UIButton(type: .custom)
+        cunBtn.frame = CGRect(x: 0, y: 76, width: SCREEN_WIDTH, height: 32)
+        cunBtn.backgroundColor = UIColor.hex("fff4e1")
+        cunBtn.titleLabel?.font = UIFont.customFont(ofSize: 14)
+        cunBtn.setTitle("开通恒丰银行存管账户，立即领取618红包 >", for: .normal)
+        cunBtn.addTarget(self, action: #selector(btnClick(_:)), for: .touchUpInside)
+        cunBtn.setTitleColor(UIColor.hex("f6a623"), for: .normal)
+        contentView.addSubview(cunBtn)
+
+        block = UIView(frame: CGRect(x: 0, y: 76 + 32, width: SCREEN_WIDTH, height: 10))
         block.backgroundColor = bgColor
         self.contentView.addSubview(block)
     }
-    
-    func updata(_ part:String) {
-        partLabel.text = part
+    func updata(flag:Bool) {
+        cunBtn.isHidden = flag
+        if flag {
+                block.y = 76
+        }else{
+                block.y = cunBtn.maxY
+
+        }
     }
     
     func btnClick(_ sender:UIButton) {
         if GPWUser.sharedInstance().isLogin == false{
             self.superControl?.navigationController?.pushViewController(GPWLoginViewController(), animated: true)
-        }else if GPWUser.sharedInstance().is_idcard == 0 || GPWUser.sharedInstance().is_valid == "0"{
+        }else if GPWUser.sharedInstance().is_idcard == 0{
             self.superControl?.navigationController?.pushViewController(UserReadInfoViewController(), animated: true)
         }else{
             if sender.tag == 101 {

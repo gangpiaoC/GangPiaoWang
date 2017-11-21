@@ -11,7 +11,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate,JPUSHRegisterDelegate {
     var window: UIWindow?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
+
         //解析用户信息
         GPWUser.sharedInstance().getUserInfo()
         self.window = UIWindow(frame: UIScreen.main.bounds)

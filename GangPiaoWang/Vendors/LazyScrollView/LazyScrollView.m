@@ -14,7 +14,6 @@
 @property(nonatomic,assign) float btnWith;
 //视图选择数组，最多存3个，超过3个把最早的移除
 @property(nonatomic,strong) NSMutableArray *viewSelectArray;
-
 @property(nonatomic,strong) UIView *maskView;
 @end
 @implementation LazyScrollView
@@ -25,7 +24,7 @@
         _btnWith=(self.width-dataArray.count*0.5)/dataArray.count;
         _topBtnArray=[[NSMutableArray alloc]initWithCapacity:0];
         _btnSpace=22.5;
-        _scrollView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 35, self.width,self.height-35)];
+        _scrollView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.width,self.height)];
         [self addSubview:_scrollView];
         
         _dataArray=dataArray;
@@ -141,7 +140,8 @@
 -(void)addViewForIndex:(int)index{
     if ([self.lazyDelegate respondsToSelector:@selector(lazyViewAtIndex:)]) {
         LazyScrollSubView *indexView=[self.lazyDelegate lazyViewAtIndex:index];
-        indexView.frame=CGRectMake(self.frame.size.width*index, 0, self.frame.size.width, self.frame.size.height);
+        indexView.frame=CGRectMake(self.frame.size.width*index, 0, self.frame.size.width, _scrollView.frame.size.height - 50);
+        NSLog(@"qqqqqq2===%f",indexView.height);
         [_scrollView addSubview:indexView];
         [_viewsArray replaceObjectAtIndex:index withObject:indexView];
     }
@@ -188,17 +188,6 @@
     float offX=scrollView.contentOffset.x;
     int index=offX/self.frame.size.width;
     [self setTopOffSetWithIndex:index];
-    
-    
-    
-    
+
 }
 @end
-
-
-
-
-
-
-
-

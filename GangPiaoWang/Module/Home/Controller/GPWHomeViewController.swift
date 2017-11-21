@@ -58,7 +58,7 @@ class GPWHomeViewController: GPWBaseViewController,UITableViewDelegate,UITableVi
         let iosVersion = UIDevice.current.systemVersion //iOS版本
         let strNum = NSString(string:iosVersion).doubleValue
         self.navigationBar.title = "钢票网"
-        self.isBarHidden = true
+        self.isBarHidden = false
         self.navigationBar.alpha = 0.0
 
         if SCREEN_HEIGHT == 812.0 {
@@ -154,7 +154,7 @@ extension GPWHomeViewController{
             if indexPath.row == 0 {
                 return 114 + 10
             }else{
-                return 120 + 10
+                return pixw(p: 120) + 10
             }
         }else if indexPath.section == 2{
 
@@ -214,7 +214,7 @@ extension GPWHomeViewController{
                     btn.addTarget(self, action: #selector(self.gotoRegister), for: .touchUpInside)
                     cell?.contentView.addSubview(btn)
                     
-                    let block = UIView(frame: CGRect(x: 0, y: 120, width: SCREEN_WIDTH, height: 10))
+                    let block = UIView(frame: CGRect(x: 0, y: pixw(p: 120), width: SCREEN_WIDTH, height: 10))
                     block.backgroundColor = bgColor
                     cell?.contentView.addSubview(block)
                 }

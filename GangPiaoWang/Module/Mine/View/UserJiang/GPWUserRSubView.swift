@@ -13,6 +13,9 @@ class GPWUserRSubView: LazyScrollSubView,UITableViewDelegate,UITableViewDataSour
     var type:String!
     var dataArr = [JSON]()
     var page = 1
+
+    //当为true可执行
+    var flag = true
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.clear
@@ -20,6 +23,9 @@ class GPWUserRSubView: LazyScrollSubView,UITableViewDelegate,UITableViewDataSour
         showTableView.backgroundColor = UIColor.clear
         showTableView.separatorStyle = .none
         showTableView.height -= 40
+        showTableView?.delegate = self
+        showTableView?.dataSource = self
+        self.addSubview(showTableView)
         showTableView.setUpHeaderRefresh {
             [weak self] in
             guard let self1 = self else {return}
@@ -30,23 +36,36 @@ class GPWUserRSubView: LazyScrollSubView,UITableViewDelegate,UITableViewDataSour
         showTableView.setUpFooterRefresh {
             [weak self] in
             guard let self1 = self else {return}
-            self1.getNetData()
+            if self1.flag {
+                self1.getNetData()
+            }
         }
-        showTableView?.delegate = self
-        showTableView?.dataSource = self
-        self.addSubview(showTableView)
+    }
+
+    override func reloadData(withDict dict: [AnyHashable : Any]!) {
+        type = dict["type"] as! String
+        if self.flag {
+            self.getNetData()
+            MobClick.event("mine_reward", label: dict["title"] as! String)
+        }
     }
     
     func getNetData() {
+        flag = false
+        let date = NSDate()
+        let timeInterval = date.timeIntervalSince1970 * 1000
+        printLog(message: "wwwww===\(timeInterval)")
         GPWNetwork.requetWithPost(url: type, parameters: ["page":self.page], responseJSON:  {
             [weak self] (json, msg) in
-            printLog(message: json)
             guard let strongSelf = self else { return }
+            let date = NSDate()
+            let timeInterval2 = date.timeIntervalSince1970 * 1000
+            printLog(message: "wwwwweee===\(timeInterval2)")
             strongSelf.showTableView.endFooterRefreshing()
             strongSelf.showTableView.endHeaderRefreshing()
             if strongSelf.page == 1 {
                 strongSelf.dataArr.removeAll()
-                strongSelf.dataArr = json.array!
+                strongSelf.dataArr = json.arrayValue
                 if strongSelf.dataArr.count > 0 {
                     strongSelf.showTableView.footerRefresh.isHidden = false
                     strongSelf.page += 1
@@ -56,32 +75,26 @@ class GPWUserRSubView: LazyScrollSubView,UITableViewDelegate,UITableViewDataSour
             }else{
                 if (json.arrayObject?.count)! > 0 {
                     strongSelf.page += 1
-                    strongSelf.dataArr = strongSelf.dataArr + json.array!
+                    strongSelf.dataArr = strongSelf.dataArr + json.arrayValue
                 }else{
                     strongSelf.showTableView.endFooterRefreshingWithNoMoreData()
                 }
             }
-
             if strongSelf.dataArr.count > 0 {
-                (self?.inCtl as! GPWSecBaseViewController).noDataImgView.isHidden = true
+                (strongSelf.inCtl as! GPWSecBaseViewController).noDataImgView.isHidden = true
             }else{
-                (self?.inCtl as! GPWSecBaseViewController).noDataImgView.isHidden = false
+                (strongSelf.inCtl as! GPWSecBaseViewController).noDataImgView.isHidden = false
             }
+            printLog(message: "qqqqqq====\(strongSelf.page)wwwww====\(strongSelf.dataArr)========\(json)")
             strongSelf.showTableView.reloadData()
+            strongSelf.flag = true
             }, failure: { [weak self] error in
                 guard let strongSelf = self else { return }
                   printLog(message: error)
                 strongSelf.showTableView.endFooterRefreshing()
                 strongSelf.showTableView.endHeaderRefreshing()
+                 strongSelf.flag = true
         })
-    }
-
-    
-    override func reloadData(withDict dict: [AnyHashable : Any]!) {
-        type = dict["type"] as! String
-        self.getNetData()
-        showTableView.reloadData()
-        MobClick.event("mine_reward", label: dict["title"] as! String)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

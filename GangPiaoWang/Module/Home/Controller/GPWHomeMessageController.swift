@@ -8,100 +8,27 @@
 
 import UIKit
 import SwiftyJSON
-class GPWHomeMessageController: GPWSecBaseViewController,UITableViewDelegate,UITableViewDataSource {
-    var showTableView:UITableView!
-    var dataArr = [JSON]()
-    var page = 1
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
+class GPWHomeMessageController: GPWSecBaseViewController,LazyScrollViewDelegate{
+    var _startIndex = 0
+    let contentArray = [
+        ["title":"平台公告","type":News],
+        ["title":"回款公告","type":News]
+    ]
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "平台公告"
-        showTableView = UITableView(frame: self.bgView.bounds, style: .plain)
-        showTableView.backgroundColor = bgColor
-        showTableView.separatorStyle = .none
-        showTableView.setUpHeaderRefresh {
-            [weak self] in
-            guard let self1 = self else {return}
-            self1.page = 1
-            self1.getNetData()
-        }
-        
-        showTableView.setUpFooterRefresh {
-            [weak self] in
-            guard let self1 = self else {return}
-            self1.getNetData()
-        }
-        showTableView?.delegate = self
-        showTableView?.dataSource = self
-        self.bgView.addSubview(showTableView)
-        self.getNetData()
+        self.title = "公告"
+        let lazyScrollView = LazyScrollView(frame: self.bgView.bounds, delegate: self, dataArray: contentArray)
+        self.bgView.addSubview(lazyScrollView!)
     }
-    
-    func getNetData() {
-        GPWNetwork.requetWithPost(url: User_message, parameters: ["page":self.page,"type":"news"], responseJSON:  {
-            [weak self] (json, msg) in
-            printLog(message: json)
-            guard let strongSelf = self else { return }
-            strongSelf.showTableView.endFooterRefreshing()
-            strongSelf.showTableView.endHeaderRefreshing()
-            if strongSelf.page == 1 {
-                strongSelf.dataArr = json.arrayValue
-                if  strongSelf.dataArr.count == 0 {
-                    strongSelf.showTableView.setFooterNoMoreData()
-                } else {
-                    strongSelf.page += 1
-                    strongSelf.showTableView.footerRefresh.isHidden = false
-                }
-            }else{
-                if (json.arrayObject?.count)! > 0 {
-                    strongSelf.page += 1
-                    strongSelf.dataArr += json.array!
-                }else{
-                    strongSelf.showTableView.endFooterRefreshingWithNoMoreData()
-                }
-            }
-            strongSelf.showTableView.reloadData()
-            }, failure: { [weak self] error in
-                guard let strongSelf = self else { return }
-                strongSelf.showTableView.endFooterRefreshing()
-                strongSelf.showTableView.endHeaderRefreshing()
-        })
+
+    func lazyView(at index: Int32) -> LazyScrollSubView! {
+        let view = GPWHMessageView(frame: self.bgView.bounds)
+        view.inCtl = self
+        return view
     }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.dataArr.count
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.0001
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0.0001
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 67
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "GPWUserMessageCell") as? GPWUserMessageCell
-        if cell == nil {
-            cell = GPWUserMessageCell(style: .default, reuseIdentifier: "GPWUserMessageCell")
-        }
-        cell?.setInfo(dic: self.dataArr[indexPath.row],superC:self,type:"news")
-        return cell!
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let dic = self.dataArr[indexPath.row]
-        let autoid = dic["auto_id"]
-        let  vc = GPWWebViewController(subtitle: "", url: "https://www.gangpiaowang.com/Web/account_newshows.html?auto_id=\(autoid)")
-        vc.messageFlag = "1"
-        self.navigationController?.pushViewController( vc, animated: true)
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
 }
+

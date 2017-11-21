@@ -11,7 +11,7 @@ import SwiftyJSON
 import SnapKit
 
 class GPWHTSecCell: UITableViewCell {
-    fileprivate var superControl:GPWHomeTiyanViewController?
+    weak fileprivate var superControl:GPWHomeTiyanViewController?
     fileprivate var noLoginView:UIView!
     fileprivate var marBtnConstraint: Constraint!
     fileprivate var dic:JSON?

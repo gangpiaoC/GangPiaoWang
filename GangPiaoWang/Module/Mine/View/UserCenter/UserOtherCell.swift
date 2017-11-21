@@ -12,7 +12,7 @@ class UserOtherCell: UITableViewCell {
     var imgView:UIImageView!
     var titleLabel:UILabel!
     var detailLabel:UILabel!
-    var superControl:UIViewController?
+    weak var superControl:UIViewController?
     var rightImbView:UIImageView!
     var swicth:UISwitch!
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {

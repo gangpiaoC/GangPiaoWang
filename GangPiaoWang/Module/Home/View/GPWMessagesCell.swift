@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyJSON
 class GPWMessagesCell: UITableViewCell {
-    var superController:UIViewController?
+    weak var superController:UIViewController?
     var viertScrollView:VierticalScrollView?
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

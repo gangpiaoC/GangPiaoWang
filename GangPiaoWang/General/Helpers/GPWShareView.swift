@@ -118,7 +118,7 @@ class GPWShare: NSObject {
     //默认邀请分享
     func shareYao() {
         let title = "“钱”行的路，“钢”好有你！\(GPWGlobal.sharedInstance().app_accountsred)元红包，点击立即领取！"
-        let subtitle = "来钢票网，票据理财新选择，预期年化利率最高可达12%，朋友推荐，靠谱！"
+        let subtitle = "来钢票网，票据理财新选择，预期年化利率最高可达13%，朋友推荐，靠谱！"
         var toUrl = SHARE_URL
         if let inviteCode = GPWUser.sharedInstance().invite_code {
             toUrl = SHARE_URL + "?invite_code=\(inviteCode)"

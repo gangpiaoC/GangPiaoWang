@@ -12,19 +12,15 @@ class GPWUserMoneyToViewController:GPWSecBaseViewController,LazyScrollViewDelega
     
     var _startIndex = 0
     let contentArray = [
-        ["title":"全部","type":""],
-        ["title":"充值","type":"IN_DEPOSIT"],
-        ["title":"提现","type":"DE_CASH"],
-        ["title":"出借","type":"DE_INVEST"],
-        ["title":"回款","type":"IN_REFUND"]
+        ["title":"转入","type":""],
+        ["title":"转出","type":"IN_DEPOSIT"]
         ]
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "资金流水"
         
         let lazyScrollView = LazyScrollView(frame: self.bgView.bounds, delegate: self, dataArray: contentArray)
-        
-//        lazyScrollView?.setTopOffSetWith(Int32(_startIndex))
+        lazyScrollView?.setTopOffSetWith(Int32(_startIndex))
         self.bgView.addSubview(lazyScrollView!)
     }
     

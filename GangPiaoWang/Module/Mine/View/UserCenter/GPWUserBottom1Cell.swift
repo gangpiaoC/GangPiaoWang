@@ -34,23 +34,15 @@ class GPWUserBottom1Cell: UITableViewCell {
        line.isHidden = flag
     }
     func btnClick() {
-        let index:IndexPath?
-        MobClick.event("mine_chat", label: nil)
+        MobClick.event("mine", label: nil)
         if superControl?.flag == false {
+            MobClick.event("mine", label: "客服_展开")
             superControl?.flag = true
-            index = IndexPath(row: 3, section: 2)
             superControl?.showTableView.reloadData()
-            superControl?.showTableView.scrollToRow(at: index!, at:.bottom, animated:true)
         }else{
+            MobClick.event("mine", label: "客服_收起")
             superControl?.flag = false
-            index = IndexPath(row: 1, section: 2)
-            superControl?.showTableView.scrollToRow(at: index!, at:.bottom, animated:true)
-            let time :TimeInterval = 0.3
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + time, execute: {
-                [weak self] in
-                guard let strongSelf = self else { return }
-                strongSelf.superControl?.showTableView.reloadData()
-            })
+            superControl?.showTableView.reloadData()
         }
     }
     

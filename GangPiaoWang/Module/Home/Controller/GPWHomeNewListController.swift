@@ -46,7 +46,7 @@ class GPWHomeNewListController: GPWSecBaseViewController,UITableViewDelegate,UIT
             strongSelf.showTableView.endHeaderRefreshing()
             if strongSelf.page == 1 {
                 strongSelf.dataArray.removeAll()
-                strongSelf.dataArray = json.array!
+                strongSelf.dataArray = json.arrayValue
                 if  strongSelf.dataArray.count == 0 {
                     strongSelf.showTableView.setFooterNoMoreData()
                 } else {
@@ -57,7 +57,7 @@ class GPWHomeNewListController: GPWSecBaseViewController,UITableViewDelegate,UIT
             }else{
                 if (json.arrayObject?.count)! > 0 {
                     strongSelf.page = strongSelf.page! + 1
-                    strongSelf.dataArray = strongSelf.dataArray + json.array!
+                    strongSelf.dataArray = strongSelf.dataArray + json.arrayValue
                     strongSelf.showTableView.reloadData()
                 }else{
                     strongSelf.showTableView.endFooterRefreshingWithNoMoreData()

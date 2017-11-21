@@ -41,8 +41,8 @@ open class DefaultRefreshHeader:UIView,RefreshableHeader{
     }
     open override func layoutSubviews() {
         super.layoutSubviews()
-        imageView.frame = CGRect(x: 0, y: -10, width: 30, height: 30)
-        imageView.center = CGPoint(x: SCREEN_WIDTH / 2, y: frame.size.height/2)
+        imageView.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        imageView.centerX = SCREEN_WIDTH / 2
         imageView.backgroundColor = UIColor.blue
         textLabel.y = imageView.maxY
     }

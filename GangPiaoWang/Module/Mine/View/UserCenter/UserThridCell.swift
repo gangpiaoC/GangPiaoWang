@@ -9,7 +9,7 @@
 import UIKit
 
 class UserThridCell: UITableViewCell {
-    fileprivate var superControl:UserController?
+    weak fileprivate var superControl:UserController?
     fileprivate var dicArray:[[String:String]]?
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

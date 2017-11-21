@@ -51,6 +51,8 @@ class GPWVFschooliewController: GPWSecBaseViewController,UITableViewDelegate,UIT
                 return
             }
             guard let strongSelf = self else { return }
+            strongSelf.showTableView.endHeaderRefreshing()
+            strongSelf.showTableView.endFooterRefreshing()
             if strongSelf.page == 1 {
                 strongSelf.dataArr.removeAll()
             }
@@ -58,12 +60,9 @@ class GPWVFschooliewController: GPWSecBaseViewController,UITableViewDelegate,UIT
             strongSelf.showTableView.footerRefresh.isHidden = false
             if info.count > 0 {
                 strongSelf.dataArr += info
-                strongSelf.showTableView.endFooterRefreshing()
             } else {
                 strongSelf.showTableView.endFooterRefreshingWithNoMoreData()
             }
-            
-            strongSelf.showTableView.endHeaderRefreshing()
             strongSelf.showTableView.reloadData()
             }, failure: { [weak self] error in
                 guard let strongSelf = self else { return }

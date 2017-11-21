@@ -10,7 +10,7 @@ import UIKit
 
 class GPWUserBottom2Cell: UITableViewCell {
     
-    var superControl:UserController?
+    weak var superControl:UserController?
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none

@@ -18,14 +18,14 @@ class GPWBaseViewController: UIViewController {
     var bgView: UIView = UIView()
     var noDataImgView:UIImageView!
     var isBarHidden: Bool = false
-//    {
-//        didSet {
-//             let navBarFrame = isBarHidden ? CGRect.zero : CGRect(x: 0.0, y: 0.0, width: SCREEN_WIDTH, height: 64.0)
-//             self.navigationBar.isHidden = isBarHidden
-//             self.bgView.frame = CGRect(x: 0.0, y: navBarFrame.maxY, width: SCREEN_WIDTH, height: SCREEN_HEIGHT - navBarFrame.height - 49)
-//        }
-//    }
-    
+    {
+        didSet {
+             let navBarFrame = isBarHidden ? CGRect.zero : CGRect(x: 0.0, y: 0.0, width: SCREEN_WIDTH, height: 64.0)
+             self.navigationBar.isHidden = isBarHidden
+             self.bgView.frame = CGRect(x: 0.0, y: navBarFrame.maxY, width: SCREEN_WIDTH, height: SCREEN_HEIGHT - navBarFrame.height - 49)
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.automaticallyAdjustsScrollViewInsets = false

@@ -10,7 +10,7 @@ import UIKit
 import SwiftyJSON
 class GPWHomeSecViewCell: UITableViewCell {
     
-    var superControl:UIViewController?
+   weak var superControl:UIViewController?
     var dataDic:JSON?
     let array = [
                   ["img":"home_zhiyin","title":"平台介绍"],
@@ -40,7 +40,7 @@ class GPWHomeSecViewCell: UITableViewCell {
                 bgImgView.centerX = btn.width / 2
                 bgImgView.y = imgView.y + 10
                 btn.addSubview(bgImgView)
-                self.rorateAnimation(holdView: bgImgView)
+                //self.rorateAnimation(holdView: bgImgView)
             }
 
             
@@ -98,5 +98,4 @@ class GPWHomeSecViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-
 }

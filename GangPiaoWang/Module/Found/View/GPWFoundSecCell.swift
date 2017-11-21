@@ -20,10 +20,10 @@ class GPWFoundSecCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
-        let btnWith = (SCREEN_WIDTH - 23 * 2 ) / CGFloat(array.count)
+        let btnWith = SCREEN_WIDTH / CGFloat(array.count)
         for i in 0..<array.count {
             let btn = UIButton(type: .custom)
-            btn.frame = CGRect(x: 23 + btnWith * CGFloat(i), y: 0, width: btnWith, height: 93)
+            btn.frame = CGRect(x:btnWith * CGFloat(i), y: 0, width: btnWith, height: 93)
             btn.tag = 100 + i
             btn.addTarget(self, action: #selector(self.btnClick(sender:)), for: .touchUpInside)
             self.contentView.addSubview(btn)
@@ -57,8 +57,8 @@ class GPWFoundSecCell: UITableViewCell {
              self.superControl?.navigationController?.pushViewController(GPWActiveViewController(), animated: true)
 //            self.superControl?.navigationController?.pushViewController(GPWWebViewController(subtitle: "", url: self.weixin ?? ""), animated: true)
         }else if sender.tag == 101 {
-            MobClick.event("found", label: "菜单-钢票故事")
-            self.superControl?.navigationController?.pushViewController(GPWActiveViewController(), animated: true)
+            MobClick.event("found", label: "菜单-钢票学院")
+            self.superControl?.navigationController?.pushViewController(GPWVFschooliewController(), animated: true)
         }else if sender.tag == 102 {
             MobClick.event("found", label: "菜单-用户故事")
             self.myCustem()

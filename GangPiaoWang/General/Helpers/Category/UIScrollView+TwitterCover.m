@@ -30,19 +30,23 @@ static char UIScrollViewTwitterCover;
 
 - (void)addTwitterCoverWithImage:(UIImage*)image{
     CHTwitterCoverView *view = [[CHTwitterCoverView alloc] initWithFrame:CGRectMake(0,0, SCREEN_WIDTH, CHTwitterCoverViewHeight)];
-    view.backgroundColor = [UIColor blueColor];
     view.image = image;
     view.scrollView = self;
 
-    if ([self isKindOfClass:[UITableView class]]) {
-        NSLog(@"eeeee");
-        UITableView * tempTabelView = (UITableView *)self;
-        tempTabelView.backgroundView = view;
+    if (@available(iOS 11.0, *)){
+        if ([self isKindOfClass:[UITableView class]]) {
+            NSLog(@"eeeee");
+            UITableView * tempTabelView = (UITableView *)self;
+            tempTabelView.backgroundView = view;
+        }else{
+            [self addSubview:view];
+            [self insertSubview:view atIndex:1];
+        }
     }else{
         [self addSubview:view];
-        [self insertSubview:view atIndex:1];
+        [self sendSubviewToBack:view];
+        self.twitterCoverView = view;
     }
-    self.twitterCoverView = view;
 }
 @end
 
@@ -93,10 +97,11 @@ static char UIScrollViewTwitterCover;
 - (void)layoutSubviews
 {
     [super layoutSubviews];
+    if (@available(iOS 11.0, *)){
+        [[UIScrollView appearance] setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
+    }
     if (self.scrollView.contentOffset.y < 0) {
         CGFloat offset = -self.scrollView.contentOffset.y;
-        
-        
         self.frame = CGRectMake(-offset,-offset, SCREEN_WIDTH+ offset * 2, CHTwitterCoverViewHeight + offset);
         NSInteger index = offset / 10;
         if (index < 0) {

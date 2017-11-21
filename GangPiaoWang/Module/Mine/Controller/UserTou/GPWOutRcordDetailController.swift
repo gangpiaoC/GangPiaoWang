@@ -10,6 +10,8 @@ import UIKit
 import SwiftyJSON
 class GPWOutRcordDetailController: GPWSecBaseViewController {
     var  rcordID :String?
+    var auto_id:String?
+    var pTitle:String?
     private var dicJson:JSON?
     private var scrollView:UIScrollView!
     private var maxY:CGFloat!
@@ -73,12 +75,12 @@ class GPWOutRcordDetailController: GPWSecBaseViewController {
             moneyLabel.text = array[i]["money"]
             moneyLabel.centerY = imgView.centerY
             moneyLabel.font = UIFont.customFont(ofSize: 18)
-            moneyLabel.textColor = UIColor.hex("333333")
+            moneyLabel.textColor = UIColor.hex("f6390d")
             scrollView.addSubview(moneyLabel)
              maxY = moneyLabel.maxY
             if i == 0 {
                 let line = UIView(frame: CGRect(x: 0, y: moneyLabel.maxY + 19, width: SCREEN_WIDTH, height: 8))
-                line.backgroundColor =  lineColor
+                line.backgroundColor =  bgColor
                 scrollView.addSubview(line)
                 maxY = line.maxY + 19
             }
@@ -178,14 +180,14 @@ class GPWOutRcordDetailController: GPWSecBaseViewController {
         for i in 0 ..< array.count {
             let  tempLabel = UILabel(frame: CGRect(x:  imgView.maxX, y: maxY, width: 70, height: 20))
             tempLabel.text = array[i]["title"]
-            tempLabel.font = UIFont.customFont(ofSize: 14)
+            tempLabel.font = UIFont.customFont(ofSize: 16)
             tempLabel.textColor = UIColor.hex("999999")
             scrollView.addSubview(tempLabel)
             
             let  temp1Label = UILabel(frame: CGRect(x: tempLabel.maxX + 17, y: 0, width: 130, height: 20))
             temp1Label.text = array[i]["money"]
             temp1Label.centerY = tempLabel.centerY
-            temp1Label.font = UIFont.customFont(ofSize: 14)
+            temp1Label.font = UIFont.customFont(ofSize: 16)
             temp1Label.textColor = UIColor.hex("333333")
             scrollView.addSubview(temp1Label)
             maxY = tempLabel.maxY
@@ -194,7 +196,31 @@ class GPWOutRcordDetailController: GPWSecBaseViewController {
             scrollView.addSubview(line)
             maxY = line.maxY + 13
         }
+
+        let bottomView = UIView(frame: CGRect(x: 0, y: maxY - 13, width: SCREEN_WIDTH, height: 200))
+        bottomView.backgroundColor = bgColor
+        scrollView.addSubview(bottomView)
+
+        //项目详情
+        let  proDetailBtn = UIButton(type: .custom)
+        proDetailBtn.frame = CGRect(x: 0, y: 22, width: 100, height: 30)
+        proDetailBtn.setTitle("项目详情", for: .normal)
+        proDetailBtn.centerX = SCREEN_WIDTH / 2
+        proDetailBtn.layer.cornerRadius = proDetailBtn.height / 2
+        proDetailBtn.layer.borderColor = UIColor.hex("f6390d").cgColor
+        proDetailBtn.layer.borderWidth = 0.5
+        proDetailBtn.setTitleColor(UIColor.hex("f6390d"), for: .normal)
+        proDetailBtn.addTarget(self, action: #selector(gotoPDetailControl), for: .touchUpInside)
+        proDetailBtn.titleLabel?.font = UIFont.customFont(ofSize: 16)
+        bottomView.addSubview(proDetailBtn)
+        maxY = SCREEN_HEIGHT + 30
         scrollView.contentSize = CGSize(width: SCREEN_WIDTH, height: maxY + 30)
+    }
+
+    func gotoPDetailControl() {
+        let vc = GPWProjectDetailViewController(projectID: auto_id ?? "0")
+        vc.title = self.pTitle
+        self.navigationController?.show(vc, sender: nil)
     }
 
     override func didReceiveMemoryWarning() {

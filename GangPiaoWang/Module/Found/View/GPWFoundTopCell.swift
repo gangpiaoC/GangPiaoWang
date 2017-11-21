@@ -31,6 +31,7 @@ class GPWFoundTopCell: UITableViewCell,EScrollerViewDelegate {
             return
         }
         _scrollView?.removeFromSuperview()
+        _scrollView = nil
         _scrollView = EScrollerView(frame: CGRect(x: 16, y: 12, width: SCREEN_WIDTH - 32, height: pixw(p: 138)), pageCount: (_data?.count)!, delegate: self)
         _scrollView?.layer.shadowColor = UIColor.black.cgColor
         _scrollView?.layer.shadowOpacity = 0.2
@@ -45,8 +46,7 @@ class GPWFoundTopCell: UITableViewCell,EScrollerViewDelegate {
 extension GPWFoundTopCell {
     func eScrollerInitView(for index: UInt) -> UIView! {
         let imgView = UIImageView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: pixw(p: 138)))
-        imgView.layer.masksToBounds = true
-        imgView.layer.cornerRadius = 6
+       imgView.layer.cornerRadius = 6
         if (_data?.count)! > 0 {
             let dic = self._data![Int(index)]
             imgView.downLoadImg(imgUrl: dic["img_url"].stringValue)

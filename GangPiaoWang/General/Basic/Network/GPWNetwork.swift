@@ -146,7 +146,6 @@ class GPWNetwork: NSObject {
                 case .success(let value):
                     UIApplication.shared.keyWindow?.hideToastActivity()
                     let json = JSON(value)
-                    printLog(message: json)
                     let code = json["code"]
                     let msg = json["msg"]
                     let data = json["data"]

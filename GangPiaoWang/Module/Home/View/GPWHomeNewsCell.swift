@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyJSON
 class GPWHomeNewsCell: UITableViewCell {
-    var surperController:UIViewController?
+    weak var surperController:UIViewController?
     fileprivate var bankurl:String?
     fileprivate var scrollview:InvestScrollView!
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {

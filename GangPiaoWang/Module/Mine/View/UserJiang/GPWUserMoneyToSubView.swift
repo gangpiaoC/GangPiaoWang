@@ -40,7 +40,7 @@ class GPWUserMoneyToSubView: LazyScrollSubView,UITableViewDelegate,UITableViewDa
     
     override func reloadData(withDict dict: [AnyHashable : Any]!) {
         type = dict["type"] as! String
-        MobClick.event("mine_capital_flow", label: type)
+        MobClick.event("home", label: "平台公告-\(String(describing: dict["type"]))")
         self.page = 1
         self.getNetData()
     }
@@ -59,7 +59,7 @@ class GPWUserMoneyToSubView: LazyScrollSubView,UITableViewDelegate,UITableViewDa
                 }
             }else{
                 if (json.arrayObject?.count)! > 0 {
-                    strongSelf.dataArr = strongSelf.dataArr + json.arrayObject!
+                    strongSelf.dataArr = strongSelf.dataArr + json.arrayValue
                 }else{
                     strongSelf.showTableView.endFooterRefreshingWithNoMoreData()
                 }

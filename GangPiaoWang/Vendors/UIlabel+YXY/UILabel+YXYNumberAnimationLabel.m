@@ -11,18 +11,18 @@
 #define TIMEINTERVAL 0.01
 @implementation UILabel (YXYNumberAnimationLabel)
 -(void)autochangeFontsize:(double) number{
-    if (number<100000) {
-        [self setFont:[UIFont fontWithName:self.font.fontName size:28]];
-    }
-    else if (number<1000000){
-        [self setFont:[UIFont fontWithName:self.font.fontName size:26]];
-    }
-    else if (number<10000000){
-        [self setFont:[UIFont fontWithName:self.font.fontName size:24]];
-    }
-    else if (number<100000000){
-        [self setFont:[UIFont fontWithName:self.font.fontName size:22]];
-    }
+//    if (number<100000) {
+//        [self setFont:[UIFont fontWithName:self.font.fontName size:28]];
+//    }
+//    else if (number<1000000){
+//        [self setFont:[UIFont fontWithName:self.font.fontName size:26]];
+//    }
+//    else if (number<10000000){
+//        [self setFont:[UIFont fontWithName:self.font.fontName size:24]];
+//    }
+//    else if (number<100000000){
+//        [self setFont:[UIFont fontWithName:self.font.fontName size:22]];
+//    }
 }
 -(void)changNumToNumber:(double)number withDurTime:(double)time withStrnumber:(NSString *)str{
     double timeNum = time / TIMEINTERVAL;

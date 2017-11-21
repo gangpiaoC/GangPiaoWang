@@ -54,15 +54,6 @@
 		5B7F2E581E2CBDE8009F8276 /* GPWMarkAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7F2E571E2CBDE8009F8276 /* GPWMarkAlertView.swift */; };
 		5B7F2E5E1E2CD088009F8276 /* UMMobClick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B7F2E5C1E2CD06F009F8276 /* UMMobClick.framework */; };
 		5B84DBFB1DEBDB2200C4CABC /* GPWButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B84DBF41DEBDB2200C4CABC /* GPWButton.swift */; };
-		5B84DC571DEC048700C4CABC /* Footer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B84DC531DEC048700C4CABC /* Footer.swift */; };
-		5B84DC581DEC048700C4CABC /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B84DC541DEC048700C4CABC /* Header.swift */; };
-		5B84DC591DEC048700C4CABC /* PullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B84DC551DEC048700C4CABC /* PullToRefresh.swift */; };
-		5B84DC5A1DEC048700C4CABC /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B84DC561DEC048700C4CABC /* Utils.swift */; };
-		5B84DC651DEC05BA00C4CABC /* arrow_down@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B84DC5C1DEC05B900C4CABC /* arrow_down@3x.png */; };
-		5B84DC691DEC05BA00C4CABC /* failure@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B84DC621DEC05BA00C4CABC /* failure@3x.png */; };
-		5B84DC6A1DEC05BA00C4CABC /* success@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B84DC631DEC05BA00C4CABC /* success@3x.png */; };
-		5B84DC6D1DEC0EAA00C4CABC /* DefaultRefreshHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B84DC6C1DEC0EAA00C4CABC /* DefaultRefreshHeader.swift */; };
-		5B84DC6F1DEC0EB700C4CABC /* DefaultRefreshFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B84DC6E1DEC0EB700C4CABC /* DefaultRefreshFooter.swift */; };
 		5B84DC721DEC254900C4CABC /* GPWNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B84DC711DEC254900C4CABC /* GPWNetwork.swift */; };
 		5B84DC741DEC3B0800C4CABC /* GPWGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B84DC731DEC3B0700C4CABC /* GPWGlobal.swift */; };
 		5B84DC781DED188C00C4CABC /* GPWUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B84DC771DED188C00C4CABC /* GPWUser.swift */; };
@@ -216,6 +207,15 @@
 		808F055A1E8F4FAC00BFF5CA /* introduce3.png in Resources */ = {isa = PBXBuildFile; fileRef = 808F05521E8F4FAC00BFF5CA /* introduce3.png */; };
 		809212391FB43B8700A6D65C /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809212381FB43B8700A6D65C /* UIImage+Gif.swift */; };
 		8092123B1FB43CB500A6D65C /* pageStart.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8092123A1FB43CB500A6D65C /* pageStart.gif */; };
+		809A87E01FC3CB6100FE0067 /* DefaultRefreshHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809A87D61FC3CB6000FE0067 /* DefaultRefreshHeader.swift */; };
+		809A87E11FC3CB6100FE0067 /* arrow_down@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 809A87D81FC3CB6000FE0067 /* arrow_down@3x.png */; };
+		809A87E21FC3CB6100FE0067 /* success@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 809A87D91FC3CB6000FE0067 /* success@3x.png */; };
+		809A87E31FC3CB6100FE0067 /* failure@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 809A87DA1FC3CB6000FE0067 /* failure@3x.png */; };
+		809A87E41FC3CB6100FE0067 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809A87DB1FC3CB6000FE0067 /* Utils.swift */; };
+		809A87E51FC3CB6100FE0067 /* Footer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809A87DC1FC3CB6000FE0067 /* Footer.swift */; };
+		809A87E61FC3CB6100FE0067 /* PullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809A87DD1FC3CB6000FE0067 /* PullToRefresh.swift */; };
+		809A87E71FC3CB6100FE0067 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809A87DE1FC3CB6100FE0067 /* Header.swift */; };
+		809A87E81FC3CB6100FE0067 /* DefaultRefreshFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809A87DF1FC3CB6100FE0067 /* DefaultRefreshFooter.swift */; };
 		809C4B371E71701A00816DD5 /* GPWFriendCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809C4B351E71701A00816DD5 /* GPWFriendCellModel.swift */; };
 		809C4B381E71701A00816DD5 /* GPWFriendSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809C4B361E71701A00816DD5 /* GPWFriendSectionModel.swift */; };
 		809DCE3F1EAF219000F07D52 /* GPWGetIP.m in Sources */ = {isa = PBXBuildFile; fileRef = 809DCE3E1EAF219000F07D52 /* GPWGetIP.m */; };
@@ -314,7 +314,9 @@
 		80B49B351E6FD0C00042198A /* ZCEmojiExpression.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 80B49B341E6FD0C00042198A /* ZCEmojiExpression.bundle */; };
 		80BE2A3E1F134B4F00D6F718 /* GPWListTopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BE2A3D1F134B4F00D6F718 /* GPWListTopCell.swift */; };
 		80BE2A401F1361CC00D6F718 /* GPWProjectTypeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BE2A3F1F1361CC00D6F718 /* GPWProjectTypeController.swift */; };
+		80BF385C1FBC596D00C2AB85 /* GPWFNewsTopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BF385B1FBC596D00C2AB85 /* GPWFNewsTopCell.swift */; };
 		80C22B581EB04ACC000FEAFC /* GPWUserExpCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C22B571EB04ACC000FEAFC /* GPWUserExpCell.swift */; };
+		80C787EF1FC27D7900E95AD2 /* GPWOutRcordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C787EE1FC27D7900E95AD2 /* GPWOutRcordView.swift */; };
 		80CFF4CF1EA5ADDB00C080E7 /* GPWProjectInSecondVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CFF4CE1EA5ADDB00C080E7 /* GPWProjectInSecondVC.swift */; };
 		80DCE6271F594CB100FF8CC5 /* GPWFTTZHController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DCE6261F594CB100FF8CC5 /* GPWFTTZHController.swift */; };
 		80DCE6291F594CC800FF8CC5 /* GPWVipListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DCE6281F594CC800FF8CC5 /* GPWVipListViewController.swift */; };
@@ -342,6 +344,8 @@
 		80F095E91EEAA1B60039318C /* gpwAnimation_7.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F095D51EEAA1B60039318C /* gpwAnimation_7.png */; };
 		80F095EA1EEAA1B60039318C /* gpwAnimation_8.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F095D61EEAA1B60039318C /* gpwAnimation_8.png */; };
 		80F095EB1EEAA1B60039318C /* gpwAnimation_9.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F095D71EEAA1B60039318C /* gpwAnimation_9.png */; };
+		80F487501FBE7A9F0082D19D /* GPWUserYouhuiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F4874F1FBE7A9F0082D19D /* GPWUserYouhuiCell.swift */; };
+		80F487521FBE88740082D19D /* GPWHMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F487511FBE88740082D19D /* GPWHMessageView.swift */; };
 		80F7F6281F40572500400889 /* GPWBankQuotaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F7F6271F40572500400889 /* GPWBankQuotaViewController.swift */; };
 		80F7F62A1F4057FF00400889 /* GPWBankQCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F7F6291F4057FF00400889 /* GPWBankQCell.swift */; };
 		80F7FC1E1E53434F0026C508 /* GPWBankWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F7FC1D1E53434F0026C508 /* GPWBankWebViewController.swift */; };
@@ -431,15 +435,6 @@
 		5B7F2E571E2CBDE8009F8276 /* GPWMarkAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWMarkAlertView.swift; sourceTree = "<group>"; };
 		5B7F2E5C1E2CD06F009F8276 /* UMMobClick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMMobClick.framework; sourceTree = "<group>"; };
 		5B84DBF41DEBDB2200C4CABC /* GPWButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWButton.swift; sourceTree = "<group>"; };
-		5B84DC531DEC048700C4CABC /* Footer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Footer.swift; sourceTree = "<group>"; };
-		5B84DC541DEC048700C4CABC /* Header.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
-		5B84DC551DEC048700C4CABC /* PullToRefresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullToRefresh.swift; sourceTree = "<group>"; };
-		5B84DC561DEC048700C4CABC /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		5B84DC5C1DEC05B900C4CABC /* arrow_down@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow_down@3x.png"; sourceTree = "<group>"; };
-		5B84DC621DEC05BA00C4CABC /* failure@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "failure@3x.png"; sourceTree = "<group>"; };
-		5B84DC631DEC05BA00C4CABC /* success@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "success@3x.png"; sourceTree = "<group>"; };
-		5B84DC6C1DEC0EAA00C4CABC /* DefaultRefreshHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultRefreshHeader.swift; sourceTree = "<group>"; };
-		5B84DC6E1DEC0EB700C4CABC /* DefaultRefreshFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultRefreshFooter.swift; sourceTree = "<group>"; };
 		5B84DC711DEC254900C4CABC /* GPWNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWNetwork.swift; sourceTree = "<group>"; };
 		5B84DC731DEC3B0700C4CABC /* GPWGlobal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWGlobal.swift; sourceTree = "<group>"; };
 		5B84DC771DED188C00C4CABC /* GPWUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWUser.swift; sourceTree = "<group>"; };
@@ -635,6 +630,15 @@
 		808F05521E8F4FAC00BFF5CA /* introduce3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = introduce3.png; sourceTree = "<group>"; };
 		809212381FB43B8700A6D65C /* UIImage+Gif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
 		8092123A1FB43CB500A6D65C /* pageStart.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = pageStart.gif; sourceTree = "<group>"; };
+		809A87D61FC3CB6000FE0067 /* DefaultRefreshHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultRefreshHeader.swift; sourceTree = "<group>"; };
+		809A87D81FC3CB6000FE0067 /* arrow_down@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow_down@3x.png"; sourceTree = "<group>"; };
+		809A87D91FC3CB6000FE0067 /* success@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "success@3x.png"; sourceTree = "<group>"; };
+		809A87DA1FC3CB6000FE0067 /* failure@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "failure@3x.png"; sourceTree = "<group>"; };
+		809A87DB1FC3CB6000FE0067 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		809A87DC1FC3CB6000FE0067 /* Footer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Footer.swift; sourceTree = "<group>"; };
+		809A87DD1FC3CB6000FE0067 /* PullToRefresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullToRefresh.swift; sourceTree = "<group>"; };
+		809A87DE1FC3CB6100FE0067 /* Header.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
+		809A87DF1FC3CB6100FE0067 /* DefaultRefreshFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultRefreshFooter.swift; sourceTree = "<group>"; };
 		809C4B351E71701A00816DD5 /* GPWFriendCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWFriendCellModel.swift; sourceTree = "<group>"; };
 		809C4B361E71701A00816DD5 /* GPWFriendSectionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWFriendSectionModel.swift; sourceTree = "<group>"; };
 		809DCE3D1EAF219000F07D52 /* GPWGetIP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPWGetIP.h; sourceTree = "<group>"; };
@@ -754,7 +758,9 @@
 		80B49B341E6FD0C00042198A /* ZCEmojiExpression.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ZCEmojiExpression.bundle; sourceTree = "<group>"; };
 		80BE2A3D1F134B4F00D6F718 /* GPWListTopCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWListTopCell.swift; sourceTree = "<group>"; };
 		80BE2A3F1F1361CC00D6F718 /* GPWProjectTypeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWProjectTypeController.swift; sourceTree = "<group>"; };
+		80BF385B1FBC596D00C2AB85 /* GPWFNewsTopCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWFNewsTopCell.swift; sourceTree = "<group>"; };
 		80C22B571EB04ACC000FEAFC /* GPWUserExpCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWUserExpCell.swift; sourceTree = "<group>"; };
+		80C787EE1FC27D7900E95AD2 /* GPWOutRcordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWOutRcordView.swift; sourceTree = "<group>"; };
 		80CFF4CE1EA5ADDB00C080E7 /* GPWProjectInSecondVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWProjectInSecondVC.swift; sourceTree = "<group>"; };
 		80DCE6261F594CB100FF8CC5 /* GPWFTTZHController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWFTTZHController.swift; sourceTree = "<group>"; };
 		80DCE6281F594CC800FF8CC5 /* GPWVipListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWVipListViewController.swift; sourceTree = "<group>"; };
@@ -782,6 +788,8 @@
 		80F095D51EEAA1B60039318C /* gpwAnimation_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gpwAnimation_7.png; sourceTree = "<group>"; };
 		80F095D61EEAA1B60039318C /* gpwAnimation_8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gpwAnimation_8.png; sourceTree = "<group>"; };
 		80F095D71EEAA1B60039318C /* gpwAnimation_9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gpwAnimation_9.png; sourceTree = "<group>"; };
+		80F4874F1FBE7A9F0082D19D /* GPWUserYouhuiCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWUserYouhuiCell.swift; sourceTree = "<group>"; };
+		80F487511FBE88740082D19D /* GPWHMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWHMessageView.swift; sourceTree = "<group>"; };
 		80F7F6271F40572500400889 /* GPWBankQuotaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWBankQuotaViewController.swift; sourceTree = "<group>"; };
 		80F7F6291F4057FF00400889 /* GPWBankQCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWBankQCell.swift; sourceTree = "<group>"; };
 		80F7FC1D1E53434F0026C508 /* GPWBankWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWBankWebViewController.swift; sourceTree = "<group>"; };
@@ -988,25 +996,15 @@
 		5B84DC521DEC048700C4CABC /* PullToRefresh */ = {
 			isa = PBXGroup;
 			children = (
-				5B84DC5B1DEC05B900C4CABC /* Assets */,
-				5B84DC6C1DEC0EAA00C4CABC /* DefaultRefreshHeader.swift */,
-				5B84DC6E1DEC0EB700C4CABC /* DefaultRefreshFooter.swift */,
-				5B84DC541DEC048700C4CABC /* Header.swift */,
-				5B84DC531DEC048700C4CABC /* Footer.swift */,
-				5B84DC551DEC048700C4CABC /* PullToRefresh.swift */,
-				5B84DC561DEC048700C4CABC /* Utils.swift */,
+				809A87D71FC3CB6000FE0067 /* Assets */,
+				809A87DF1FC3CB6100FE0067 /* DefaultRefreshFooter.swift */,
+				809A87D61FC3CB6000FE0067 /* DefaultRefreshHeader.swift */,
+				809A87DC1FC3CB6000FE0067 /* Footer.swift */,
+				809A87DE1FC3CB6100FE0067 /* Header.swift */,
+				809A87DD1FC3CB6000FE0067 /* PullToRefresh.swift */,
+				809A87DB1FC3CB6000FE0067 /* Utils.swift */,
 			);
 			path = PullToRefresh;
-			sourceTree = "<group>";
-		};
-		5B84DC5B1DEC05B900C4CABC /* Assets */ = {
-			isa = PBXGroup;
-			children = (
-				5B84DC5C1DEC05B900C4CABC /* arrow_down@3x.png */,
-				5B84DC621DEC05BA00C4CABC /* failure@3x.png */,
-				5B84DC631DEC05BA00C4CABC /* success@3x.png */,
-			);
-			path = Assets;
 			sourceTree = "<group>";
 		};
 		5B84DC701DEC252E00C4CABC /* Network */ = {
@@ -1235,6 +1233,7 @@
 				8045C1071EC0420100DEFB5D /* GPWActiveCell.swift */,
 				80118F6D1F78E0AC00A18370 /* GPWHTLCell.swift */,
 				80A3E75F1F78EA6200E0C465 /* GPWHTListCell.swift */,
+				80F487511FBE88740082D19D /* GPWHMessageView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1291,6 +1290,7 @@
 				803D05301E0D12F40098C2AD /* GPWAddMoneyOtherCell.swift */,
 				803D05341E0D1FAB0098C2AD /* GPWOutRcordCell.swift */,
 				80F7F6291F4057FF00400889 /* GPWBankQCell.swift */,
+				80C787EE1FC27D7900E95AD2 /* GPWOutRcordView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1548,6 +1548,7 @@
 				806EDD021F3AF52D006A06AF /* GPWFoundTopCell.swift */,
 				8027DDB21F41DA3400CC923A /* GPWFschoolCell.swift */,
 				8027DDB41F46BBC200CC923A /* GPWFoundBottomCell.swift */,
+				80BF385B1FBC596D00C2AB85 /* GPWFNewsTopCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1770,6 +1771,16 @@
 			path = Img;
 			sourceTree = "<group>";
 		};
+		809A87D71FC3CB6000FE0067 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				809A87D81FC3CB6000FE0067 /* arrow_down@3x.png */,
+				809A87D91FC3CB6000FE0067 /* success@3x.png */,
+				809A87DA1FC3CB6000FE0067 /* failure@3x.png */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
 		809DCE3A1EAF215B00F07D52 /* GetIP */ = {
 			isa = PBXGroup;
 			children = (
@@ -1905,6 +1916,7 @@
 				80A570921E8246BC00CCB2C7 /* UserSecondCell.swift */,
 				80A570931E8246BC00CCB2C7 /* UserTopCell.swift */,
 				80F095A31EE942590039318C /* UserThridCell.swift */,
+				80F4874F1FBE7A9F0082D19D /* GPWUserYouhuiCell.swift */,
 			);
 			path = UserCenter;
 			sourceTree = "<group>";
@@ -2214,18 +2226,16 @@
 				80F095E91EEAA1B60039318C /* gpwAnimation_7.png in Resources */,
 				808F05591E8F4FAC00BFF5CA /* introduce3_3.png in Resources */,
 				806EDCFF1F3AE9AF006A06AF /* README.txt in Resources */,
-				5B84DC651DEC05BA00C4CABC /* arrow_down@3x.png in Resources */,
 				808F05571E8F4FAC00BFF5CA /* introduce2_2.png in Resources */,
 				80F095DB1EEAA1B60039318C /* gpwAnimation_11.png in Resources */,
 				80B49B351E6FD0C00042198A /* ZCEmojiExpression.bundle in Resources */,
 				808F05581E8F4FAC00BFF5CA /* introduce2.png in Resources */,
+				809A87E11FC3CB6100FE0067 /* arrow_down@3x.png in Resources */,
 				808F05531E8F4FAC00BFF5CA /* introduce0_0.png in Resources */,
 				80F095E01EEAA1B60039318C /* gpwAnimation_16.png in Resources */,
 				5BAE0A391DE342CA00B4EF3A /* Assets.xcassets in Resources */,
 				808F055A1E8F4FAC00BFF5CA /* introduce3.png in Resources */,
 				5BD1D1771E24C3B800C4198F /* Symantec Basic DV SSL CA - G1.cer in Resources */,
-				5B84DC6A1DEC05BA00C4CABC /* success@3x.png in Resources */,
-				5B84DC691DEC05BA00C4CABC /* failure@3x.png in Resources */,
 				806EDD001F3AE9AF006A06AF /* ShareSDK.bundle in Resources */,
 				8002D1791E76AB02007E7B4C /* SobotLocalizable.strings in Resources */,
 				8002D1781E76AB02007E7B4C /* Main.strings in Resources */,
@@ -2233,6 +2243,7 @@
 				806EDD221F3C77DA006A06AF /* problemCenter.plist in Resources */,
 				8092123B1FB43CB500A6D65C /* pageStart.gif in Resources */,
 				80F095DC1EEAA1B60039318C /* gpwAnimation_12.png in Resources */,
+				809A87E31FC3CB6100FE0067 /* failure@3x.png in Resources */,
 				808F05541E8F4FAC00BFF5CA /* introduce0.png in Resources */,
 				808F05551E8F4FAC00BFF5CA /* introduce1_1.png in Resources */,
 				8002D1761E76AB02007E7B4C /* SobotLocalizable.strings in Resources */,
@@ -2244,6 +2255,7 @@
 				80F095DE1EEAA1B60039318C /* gpwAnimation_14.png in Resources */,
 				8002D1771E76AB02007E7B4C /* LaunchScreen.strings in Resources */,
 				80F095E61EEAA1B60039318C /* gpwAnimation_4.png in Resources */,
+				809A87E21FC3CB6100FE0067 /* success@3x.png in Resources */,
 				80B49B311E6FD0B20042198A /* SobotKit.bundle in Resources */,
 				80A518621EE6BD46003C9093 /* risk_assessment.json in Resources */,
 				80F095EA1EEAA1B60039318C /* gpwAnimation_8.png in Resources */,
@@ -2336,8 +2348,10 @@
 				5B84DC8A1DEFC62C00C4CABC /* UIColor+hex.swift in Sources */,
 				805687FF1E837EED006E9C19 /* GPWUserQSetPWViewController.swift in Sources */,
 				808690461F5D312A008F4FB7 /* GPWFVListCell.swift in Sources */,
+				809A87E81FC3CB6100FE0067 /* DefaultRefreshFooter.swift in Sources */,
 				5B6115491E0974A7000BA2DC /* GPWIndicatorView.swift in Sources */,
 				80625F371E095A4B00456B63 /* PNCircleChart.m in Sources */,
+				809A87E41FC3CB6100FE0067 /* Utils.swift in Sources */,
 				80625F401E095A4B00456B63 /* PNRadarChartDataItem.m in Sources */,
 				80625EDC1E078AA600456B63 /* UIView+XH.m in Sources */,
 				80A570B01E8246BC00CCB2C7 /* GPWUserRBCell.swift in Sources */,
@@ -2365,6 +2379,7 @@
 				806EDD241F3C77DA006A06AF /* AnswerCell.m in Sources */,
 				80625EBE1E06969100456B63 /* UserController.swift in Sources */,
 				80A93C251F3ED0760006C1E0 /* AFURLRequestSerialization.m in Sources */,
+				809A87E51FC3CB6100FE0067 /* Footer.swift in Sources */,
 				80A570791E82451100CCB2C7 /* GPWUserMoneyToViewController.swift in Sources */,
 				808B98EF1EBB0F0B0066AA40 /* GYCircle.swift in Sources */,
 				80A93C2B1F3ED0760006C1E0 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
@@ -2380,6 +2395,7 @@
 				80118F6E1F78E0AC00A18370 /* GPWHTLCell.swift in Sources */,
 				80A93C301F3ED0760006C1E0 /* UIWebView+AFNetworking.m in Sources */,
 				5B84DC781DED188C00C4CABC /* GPWUser.swift in Sources */,
+				809A87E61FC3CB6100FE0067 /* PullToRefresh.swift in Sources */,
 				5B84DC721DEC254900C4CABC /* GPWNetwork.swift in Sources */,
 				803D05311E0D12F40098C2AD /* GPWAddMoneyOtherCell.swift in Sources */,
 				8010FC721E850B3700A94577 /* GPWRuleContentCell.swift in Sources */,
@@ -2401,8 +2417,8 @@
 				808B98ED1EBB0F0B0066AA40 /* CALayer+Anim.swift in Sources */,
 				80625F081E090B2B00456B63 /* GPWHTSecCell.swift in Sources */,
 				80A570731E82451100CCB2C7 /* UserReadInfoViewController.swift in Sources */,
-				5B84DC591DEC048700C4CABC /* PullToRefresh.swift in Sources */,
 				5B3EEC081E0E93790092014C /* PhotoBrowser.swift in Sources */,
+				809A87E01FC3CB6100FE0067 /* DefaultRefreshHeader.swift in Sources */,
 				5B781F971DF16E0000748955 /* GPWNavigationBar.swift in Sources */,
 				5B84DC8B1DEFC62C00C4CABC /* UIImage+scaleToSize.swift in Sources */,
 				5B3EEB721E0BADED0092014C /* GPWAvailableRateCouponCell.swift in Sources */,
@@ -2410,10 +2426,9 @@
 				808B98EE1EBB0F0B0066AA40 /* GYCommon+UIColor.swift in Sources */,
 				5B3EEC0B1E0E93790092014C /* SimpleHUD.swift in Sources */,
 				5B68B6601E08CA9E000355B5 /* GPWSubPageBaseViewController.swift in Sources */,
-				5B84DC6D1DEC0EAA00C4CABC /* DefaultRefreshHeader.swift in Sources */,
 				5B781F931DF16CB000748955 /* GPWTabBarController.swift in Sources */,
+				80F487501FBE7A9F0082D19D /* GPWUserYouhuiCell.swift in Sources */,
 				803D052D1E0D09EE0098C2AD /* GPWAddDayMoneyController.swift in Sources */,
-				5B84DC581DEC048700C4CABC /* Header.swift in Sources */,
 				80A570801E82451100CCB2C7 /* GPWOutRcordDetailController.swift in Sources */,
 				80A93C231F3ED0760006C1E0 /* AFNetworkReachabilityManager.m in Sources */,
 				5B1FA7BC1E0A2021002E3993 /* GPWFAQCell.swift in Sources */,
@@ -2446,11 +2461,10 @@
 				806EDD051F3B0A3A006A06AF /* GPWFoundSecCell.swift in Sources */,
 				80F7F62A1F4057FF00400889 /* GPWBankQCell.swift in Sources */,
 				5BB265B81E14E00200A601A0 /* GPWRedEnvelop.swift in Sources */,
-				5B84DC6F1DEC0EB700C4CABC /* DefaultRefreshFooter.swift in Sources */,
+				809A87E71FC3CB6100FE0067 /* Header.swift in Sources */,
 				80A570761E82451100CCB2C7 /* GPWUserRechargeViewController.swift in Sources */,
 				80A93C311F3ED0760006C1E0 /* DownHTongController.m in Sources */,
 				5B78207C1DF6545E00748955 /* GPWIntroduceViewController.swift in Sources */,
-				5B84DC5A1DEC048700C4CABC /* Utils.swift in Sources */,
 				806E14D11FB9AD7000E6F8F2 /* GPWHPTopCell.swift in Sources */,
 				80A5707F1E82451100CCB2C7 /* GPWOutRcordController.swift in Sources */,
 				806EDCD11F3AE34D006A06AF /* NewPagedFlowView.m in Sources */,
@@ -2489,6 +2503,7 @@
 				80A183431F0DE09800F5EA57 /* GPWFirstDetailCell2_1.swift in Sources */,
 				5B84DC741DEC3B0800C4CABC /* GPWGlobal.swift in Sources */,
 				80625F351E095A4B00456B63 /* PNBarChart.m in Sources */,
+				80F487521FBE88740082D19D /* GPWHMessageView.swift in Sources */,
 				5BAE0A651DE3443B00B4EF3A /* AppDelegate.swift in Sources */,
 				80625F3F1E095A4B00456B63 /* PNRadarChart.m in Sources */,
 				806EDCCF1F3AE34D006A06AF /* InvestScrollView.m in Sources */,
@@ -2523,7 +2538,6 @@
 				80A570721E82451100CCB2C7 /* UserBankViewController.swift in Sources */,
 				5BD1D1651E1E56F700C4198F /* GPWInvestSuccessViewController.swift in Sources */,
 				80A93C221F3ED0760006C1E0 /* AFHTTPSessionManager.m in Sources */,
-				5B84DC571DEC048700C4CABC /* Footer.swift in Sources */,
 				80625EF21E07C23000456B63 /* RTLabel.m in Sources */,
 				8045C1081EC0420100DEFB5D /* GPWActiveCell.swift in Sources */,
 				80625F671E0A91D200456B63 /* GPWMoneyToCell.swift in Sources */,
@@ -2538,6 +2552,7 @@
 				803D052F1E0D0B270098C2AD /* GPWAddMoneyCell.swift in Sources */,
 				80A570BA1E82597000CCB2C7 /* GPWUserRUseRuleViewController.swift in Sources */,
 				5BE67FD71DE81B16004DA71F /* GPWProjectViewController.swift in Sources */,
+				80C787EF1FC27D7900E95AD2 /* GPWOutRcordView.swift in Sources */,
 				5B8E6B171E1600EE000C30C2 /* Toast.swift in Sources */,
 				80F7F6281F40572500400889 /* GPWBankQuotaViewController.swift in Sources */,
 				5B68B6781E09234B000355B5 /* GPWFirstDetailCell3.swift in Sources */,
@@ -2554,6 +2569,7 @@
 				80625F571E0A23B600456B63 /* LazyScrollSubView.m in Sources */,
 				80A5707A1E82451100CCB2C7 /* GPWLoginViewController.swift in Sources */,
 				80E696801F7CEFE20088A880 /* GPWFailController.swift in Sources */,
+				80BF385C1FBC596D00C2AB85 /* GPWFNewsTopCell.swift in Sources */,
 				80A5706C1E82451100CCB2C7 /* GPWUserForgetPwViewController.swift in Sources */,
 				80A3E7601F78EA6200E0C465 /* GPWHTListCell.swift in Sources */,
 				5B68B6761E09233D000355B5 /* GPWFirstDetailCell2.swift in Sources */,
@@ -2734,6 +2750,7 @@
 				APPLICATION_EXTENSION_API_ONLY = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = GangPiaoWang/GangPiaoWang.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Zhibao Wang (D5E9F46SV3)";
@@ -2790,6 +2807,7 @@
 				APPLICATION_EXTENSION_API_ONLY = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = GangPiaoWang/GangPiaoWang.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Steel Network (Beijing) Technology Co., Ltd. (MC44V8D85D)";

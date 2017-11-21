@@ -11,7 +11,7 @@ import SnapKit
 
 class GPWFirstDetailCell2: UITableViewCell {
     
-    private var superVC:UIViewController?
+    weak private var superVC:UIViewController?
     private var clickUrl:String?
     //点击跳转到协议
     private var clickBtn:UIButton = {

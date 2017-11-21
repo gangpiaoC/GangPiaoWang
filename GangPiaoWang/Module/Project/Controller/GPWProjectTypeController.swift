@@ -68,9 +68,9 @@ class GPWProjectTypeController: GPWSecBaseViewController, GPWTableViewDelegate {
             } else {
                 strongSelf.tableView.endFooterRefreshingWithNoMoreData()
             }
-            
-            strongSelf.tableView.endHeaderRefreshing()
+
             strongSelf.tableView.reloadData()
+            strongSelf.tableView.endHeaderRefreshing()
             }, failure: { [weak self] error in
                 guard let strongSelf = self else { return }
                 strongSelf.tableView.endHeaderRefreshing()

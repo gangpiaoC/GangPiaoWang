@@ -13,7 +13,7 @@ class GPWSecBaseViewController: GPWBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.bgView.frame = CGRect(x: 0.0, y: self.navigationBar.maxY, width: SCREEN_WIDTH, height: SCREEN_HEIGHT - self.navigationBar.height)
+        self.bgView.frame = CGRect(x: 0.0, y: self.navigationBar.maxY, width: SCREEN_WIDTH, height: SCREEN_HEIGHT - self.navigationBar.maxY)
         self.noDataImgView?.centerX = self.bgView.width / 2
         self.noDataImgView?.centerY = self.bgView.height / 2
         setupLeftButton()

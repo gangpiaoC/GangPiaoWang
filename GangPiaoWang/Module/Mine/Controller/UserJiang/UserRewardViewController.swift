@@ -10,7 +10,7 @@ import UIKit
 
 class UserRewardViewController: GPWSecBaseViewController,LazyScrollViewDelegate {
     
-    private var _startIndex = 0
+     var _startIndex = 0
     
     //使用规则
     private var button:UIButton!

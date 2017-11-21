@@ -9,8 +9,6 @@
 import UIKit
 
 class UserController: GPWBaseViewController,UITableViewDelegate,UITableViewDataSource {
-    var maxAplha:CGFloat = 1
-    var _scrollviewOffY:CGFloat = 0
     
     var showTableView:UITableView!
 
@@ -24,14 +22,13 @@ class UserController: GPWBaseViewController,UITableViewDelegate,UITableViewDataS
     
     let imgArray = ["user_jilu","user_liushui","user_jiangli","user_yaoqing","user_fankui"]
     let titleArray = ["出借记录","资金流水","我的奖励","我的邀请","意见反馈"]
-
     override func viewWillAppear(_ animated: Bool) { 
         super.viewWillAppear(animated)
         self.getMessageNum()
        self.navigationController?.navigationBar.barStyle = .black
         self.bgView.viewWithTag(10000)?.removeFromSuperview()
         if GPWUser.sharedInstance().isLogin {
-            self.showTableView.reloadData()
+           self.showTableView.reloadData()
         }else{
             self.noLogin()
         }
@@ -41,7 +38,6 @@ class UserController: GPWBaseViewController,UITableViewDelegate,UITableViewDataS
             GPWGlobal.sharedInstance().gotoNiceNameFlag = false
             self.showQuireInfo()
         }
-        self.showTableView.reloadData()
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -55,10 +51,7 @@ class UserController: GPWBaseViewController,UITableViewDelegate,UITableViewDataS
     override func viewDidLoad() {
         super.viewDidLoad()
         self.isBarHidden = true
-        self.navigationBar.alpha = 0.0
-        self.bgView.y = 0
-        self.bgView.height =   self.bgView.height + 64
-        
+        self.bgView.height += 64
         showTableView = UITableView(frame: self.bgView.bounds, style: .plain)
         showTableView.backgroundColor = UIColor.clear
         showTableView.addTwitterCover(with: UIImage(named: "user_center_topbg"))
@@ -67,7 +60,17 @@ class UserController: GPWBaseViewController,UITableViewDelegate,UITableViewDataS
         showTableView?.dataSource = self
         showTableView.separatorStyle = .none
         self.bgView.addSubview(showTableView)
-     self.addMessageBtn()
+
+        if #available(iOS 11.0, *) {
+           showTableView.estimatedRowHeight = 0
+            showTableView.estimatedSectionHeaderHeight = 0
+            showTableView.estimatedSectionFooterHeight = 0
+            showTableView.contentInsetAdjustmentBehavior = .never
+            showTableView.contentInset = UIEdgeInsetsMake(0, 0, 64, 0)//导航栏如果使用系统原生半透明的，top设置为64
+            showTableView.scrollIndicatorInsets = showTableView.contentInset
+        }
+
+        self.addMessageBtn()
 
         if GPWUser.sharedInstance().isLogin == false {
             //未登录
@@ -97,7 +100,6 @@ class UserController: GPWBaseViewController,UITableViewDelegate,UITableViewDataS
         }
 
         let wid = UIApplication.shared.keyWindow
-
         let  bgView = UIView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
         bgView.backgroundColor = UIColor.hex("000000", alpha: 0.6)
         bgView.tag = 10001
@@ -250,7 +252,7 @@ class UserController: GPWBaseViewController,UITableViewDelegate,UITableViewDataS
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 5
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -258,42 +260,52 @@ class UserController: GPWBaseViewController,UITableViewDelegate,UITableViewDataS
             return 1
         }else if section == 1 {
             return 1
+        }else if section == 2{
+            return 1
+        }else if section == 3{
+            return 1
         }else{
             if self.flag == false {
-                return 1 + 1
+                return 1
             }else{
-                return 1 + 3
+                return 1 + 2
             }
         }
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.0001
+        return 0.00001
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0.0001
+        return 0.00001
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return  pixw(p: 222)
+            return  180 + 90 + 8
         }else if indexPath.section == 1 {
-            return  89 + 10
+            if GPWUser.sharedInstance().is_idcard == 0{
+                return  76 + 32 + 10
+            }else{
+                return  76 + 10
+            }
+        }else if indexPath.section == 2{
+            return 105 + 10
+        }else if indexPath.section == 3{
+            return  189
         }else{
-            if indexPath.row == 1 {
+            if indexPath.row == 0 {
                 return  32 + 50 + 20
-            }else if indexPath.row == 2 {
+            }else if indexPath.row == 1 {
                 return  29 + 30
-            }else if indexPath.row == 3 {
+            }else{
                 return  49 + 60
             }
-            return  189
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         if indexPath.section == 0 {
             var cell = tableView.dequeueReusableCell(withIdentifier: "topCell") as? UserTopCell
             if cell == nil {
@@ -305,9 +317,9 @@ class UserController: GPWBaseViewController,UITableViewDelegate,UITableViewDataS
                 if GPWUser.sharedInstance().is_idcard == 1 {
                     phone = GPWUser.sharedInstance().name ?? ""
                 }
-               cell?.updata(GPWUser.sharedInstance().accrual!, acountMoney: GPWUser.sharedInstance().totalMoney!, phone: phone, superC: self)
+                cell?.updata(GPWUser.sharedInstance().accrual!, acountMoney: GPWUser.sharedInstance().totalMoney!, phone: phone, partMoney: GPWUser.sharedInstance().money!, superC: self)
             }else{
-                cell?.updata("****", acountMoney: "****", phone: "***********",superC: self)
+                cell?.updata("0.00", acountMoney: "0.00", phone: "***********", partMoney: "0.00",superC: self)
             }
             return cell!
         } else if indexPath.section == 1 {
@@ -315,11 +327,39 @@ class UserController: GPWBaseViewController,UITableViewDelegate,UITableViewDataS
             if cell == nil {
                 cell = UserSecondCell(style: .default, reuseIdentifier: "secCell")
             }
-            cell?.updata(GPWUser.sharedInstance().money!)
+            cell?.superControl = self
+            if GPWUser.sharedInstance().is_idcard == 0{
+               cell?.updata(flag: false)
+            }else{
+                cell?.updata(flag: true)
+            }
+            return cell!
+        } else if indexPath.section == 2 {
+            var cell = tableView.dequeueReusableCell(withIdentifier: "GPWUserYouhuiCell") as? GPWUserYouhuiCell
+            if cell == nil {
+                cell = GPWUserYouhuiCell(style: .default, reuseIdentifier: "GPWUserYouhuiCell")
+            }
             cell?.superControl = self
             return cell!
-        } else {
-            if indexPath.row == 1 {
+        }else if indexPath.section == 3 {
+            var cell = tableView.dequeueReusableCell(withIdentifier: "UserThridCell") as? UserThridCell
+            if cell == nil {
+                cell = UserThridCell(style: .default, reuseIdentifier: "UserThridCell")
+            }
+            var dicArray = [
+                [ "img":"user_center_jilu","title":"出借记录","detail":"待收:\(GPWUser.sharedInstance().money_collection)"],
+                [ "img":"user_center_rili","title":"回款日历","detail":"出借规划一目了然"],
+                [ "img":"user_center_liushui","title":"资金流水","detail":"了解资金进出"]
+            ]
+            if GPWUser.sharedInstance().show_iden == 0 {
+                dicArray.append( [ "img":"user_center_fengxian","title":"风险测评","detail": (GPWUser.sharedInstance().risk > 0 ? self.checkRiskType() : "检测承受类型")])
+            }else{
+                dicArray.append( [ "img":"user_center_yaoqing","title":"我的邀请","detail":"查看邀请收益"])
+            }
+            cell?.updata(dicArray, superControl: self)
+            return cell!
+        }else{
+            if indexPath.row == 0 {
                 var cell = tableView.dequeueReusableCell(withIdentifier: "GPWUserBottom1Cell") as? GPWUserBottom1Cell
                 if cell == nil {
                     cell = GPWUserBottom1Cell(style: .default, reuseIdentifier: "GPWUserBottom1Cell")
@@ -327,35 +367,18 @@ class UserController: GPWBaseViewController,UITableViewDelegate,UITableViewDataS
                 cell?.superControl = self
                 cell!.lineisHidden(!self.flag)
                 return cell!
-            }else if indexPath.row == 2 {
+            }else if indexPath.row == 1 {
                 var cell = tableView.dequeueReusableCell(withIdentifier: "GPWUserBottom2Cell") as? GPWUserBottom2Cell
                 if cell == nil {
                     cell = GPWUserBottom2Cell(style: .default, reuseIdentifier: "GPWUserBottom2Cell")
                 }
                 cell?.superControl = self
                 return cell!
-            }else if indexPath.row == 3 {
+            }else{
                 var cell = tableView.dequeueReusableCell(withIdentifier: "GPWUserBottom3Cell") as? GPWUserBottom3Cell
                 if cell == nil {
                     cell = GPWUserBottom3Cell(style: .default, reuseIdentifier: "GPWUserBottom3Cell")
                 }
-                return cell!
-            }else{
-                var cell = tableView.dequeueReusableCell(withIdentifier: "UserThridCell") as? UserThridCell
-                if cell == nil {
-                    cell = UserThridCell(style: .default, reuseIdentifier: "UserThridCell")
-                }
-                var dicArray = [
-                [ "img":"user_center_jilu","title":"出借记录","detail":"待收:\(GPWUser.sharedInstance().money_collection)"],
-                [ "img":"user_center_jiangli","title":"优惠券","detail":"红包、加息券"],
-                [ "img":"user_center_liushui","title":"资金流水","detail":"了解资金进出"]
-                ]
-                if GPWUser.sharedInstance().show_iden == 0 {
-                    dicArray.append( [ "img":"user_center_fengxian","title":"风险测评","detail": (GPWUser.sharedInstance().risk > 0 ? self.checkRiskType() : "检测承受类型")])
-                }else{
-                    dicArray.append( [ "img":"user_center_yaoqing","title":"我的邀请","detail":"查看邀请收益"])
-                }
-                cell?.updata(dicArray, superControl: self)
                 return cell!
             }
         }

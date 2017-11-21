@@ -79,8 +79,6 @@ class GPWGetFriendRcordController: GPWSecBaseViewController,UITableViewDelegate,
             [weak self] (json,msg) in
             guard let strongSelf = self else { return }
             printLog(message: json)
-            strongSelf.showTableView.endFooterRefreshing()
-            strongSelf.showTableView.endHeaderRefreshing()
             if strongSelf.page == 1 {
                 strongSelf.dataArray.removeAll()
                 strongSelf.inviteCode = json["user_invite_code"].stringValue
@@ -112,6 +110,8 @@ class GPWGetFriendRcordController: GPWSecBaseViewController,UITableViewDelegate,
                      strongSelf.dataSource = models
                     printLog(message:   strongSelf.dataSource)
                     strongSelf.showTableView.reloadData()
+                    strongSelf.showTableView.endFooterRefreshing()
+                    strongSelf.showTableView.endHeaderRefreshing()
                 })
             }else{
                 if (json["info"].arrayObject?.count)! > 0 {

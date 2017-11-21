@@ -274,6 +274,7 @@ public extension UIView {
      */
     public func makeToastActivity(_ position: ToastPosition) {
         // sanity
+        self.hideToastActivity()
         if let _ = objc_getAssociatedObject(self, &ToastKeys.ActivityView) as? UIView {
             return
         }

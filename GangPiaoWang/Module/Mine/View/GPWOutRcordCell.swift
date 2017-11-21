@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SwiftyJSON
 class GPWOutRcordCell: UITableViewCell {
     
     //背景
@@ -134,12 +134,12 @@ class GPWOutRcordCell: UITableViewCell {
         topbgView.addSubview(outTimeLabel)
     }
     
-    func updata(dic:[String:Any])  {
+    func updata(dic:JSON)  {
         typeLabel.width = 200
-        typeLabel.text = "<font size=16 color='#333333'>\(dic["title"]!)</font>"
+        typeLabel.text = "<font size=16 color='#333333'>\(dic["title"])</font>"
         typeLabel.size = typeLabel.optimumSize
         stateLabel.x = typeLabel.maxX + 8
-        let statusStr = dic["status"] as? String ?? "加载中"
+        let statusStr = dic["status"].stringValue ?? "加载中"
         stateLabel.text = statusStr
         if statusStr == "已完成" {
             stateLabel.backgroundColor = UIColor.hex("d8d8d8", alpha:0.40)
@@ -151,19 +151,19 @@ class GPWOutRcordCell: UITableViewCell {
             stateLabel.backgroundColor = UIColor.hex("ffb700", alpha:0.15)
             stateLabel.textColor = UIColor.hex("ff9b00")
         }
-        stateLabel.text = dic["status"] as? String ?? "未知错误"
-        if  (dic["rate"]  as! NSString).doubleValue > 0 {
+        stateLabel.text = dic["status"].stringValue
+        if  dic["rate"].doubleValue > 0 {
             jiaxiImgView.isHidden = false
             jiaxiImgView.x = stateLabel.maxX + 6 
-            jiaxiLabel.text = "已加息\(dic["rate"]  ?? "0")%"
+            jiaxiLabel.text = "已加息\(dic["rate"].stringValue  ?? "0")%"
         }else{
             jiaxiImgView.isHidden = true
         }
         jiaxiImgView.x = stateLabel.maxX + 6
-        inMoneyLabel.text = "\(dic["amount"] as! Int)元"
-        getLilvLabel.text = "\(dic["expect_earnings"]!)元"
-        inTimeLabel.text = GPWHelper.strFromDate(dic["add_time"] as! Double, format: "yyyy-MM-dd")
-        outTimeLabel.text = dic["repaying_time"] as? String
+        inMoneyLabel.text = "\(dic["amount"])元"
+        getLilvLabel.text = "\(dic["expect_earnings"])元"
+        inTimeLabel.text = GPWHelper.strFromDate(dic["add_time"].doubleValue, format: "yyyy-MM-dd")
+        outTimeLabel.text = dic["repaying_time"].stringValue
     }
     
     required init?(coder aDecoder: NSCoder) {

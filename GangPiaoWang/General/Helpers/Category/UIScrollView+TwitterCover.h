@@ -24,7 +24,7 @@
 //  THE SOFTWARE.
 
 #import <UIKit/UIKit.h>
-#define CHTwitterCoverViewHeight SCREEN_WIDTH / 375.0 *222
+#define CHTwitterCoverViewHeight SCREEN_WIDTH / 375.0 * 187
 
 @interface CHTwitterCoverView : UIImageView
 @property (nonatomic, weak) UIScrollView *scrollView;

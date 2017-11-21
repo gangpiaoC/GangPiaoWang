@@ -12,7 +12,7 @@
 #define normalColor @"333333"
 #define selectedColor @"f6390d"
 #define lineBackClor [XHColor colorWithHexString:@"f2f2f2"]
-#define selfHeight 40
+#define selfHeight 50
 @interface XHItemsScrollView()
 {
     float _btnSpace;
@@ -72,9 +72,9 @@
         CGSize size=[name sizeWithFont:btn.titleLabel.font];
         sumWidth+=size.width;
         if (lastBtn) {
-            btn.frame=CGRectMake(CGRectGetMaxX(lastBtn.frame)+_btnSpace, 0, size.width, self.height);
+            btn.frame=CGRectMake(CGRectGetMaxX(lastBtn.frame)+_btnSpace, 0, size.width, self.height - 10);
         }else{
-            btn.frame=CGRectMake(_startX, 0, size.width, self.height);
+            btn.frame=CGRectMake(_startX, 0, size.width, self.height - 10);
         }
         [_topBtnArray addObject:btn];
         [btn setTitleColor:[XHColor colorWithHexString:normalColor] forState:UIControlStateNormal];
@@ -86,6 +86,11 @@
         view.backgroundColor=[XHColor colorWithHexString:selectedColor];
         lastBtn=btn;
     }
+
+    UIView *block = [[UIView alloc]initWithFrame:CGRectMake(0, self.height - 10, self.width, 10)];
+    block.backgroundColor = [XHColor colorWithHexString:@"f2f2f2" ];
+    [self addSubview:block];
+    
     if (!_enableAlignCenter) {
         [self setContentSize:CGSizeMake(CGRectGetMaxX(lastBtn.frame)+_startX, self.height)];
         return;
