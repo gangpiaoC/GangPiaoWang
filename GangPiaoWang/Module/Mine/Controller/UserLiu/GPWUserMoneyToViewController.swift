@@ -12,8 +12,8 @@ class GPWUserMoneyToViewController:GPWSecBaseViewController,LazyScrollViewDelega
     
     var _startIndex = 0
     let contentArray = [
-        ["title":"转入","type":""],
-        ["title":"转出","type":"IN_DEPOSIT"]
+        ["title":"转入","type":"switch"],
+        ["title":"支出","type":"turnout"]
         ]
     override func viewDidLoad() {
         super.viewDidLoad()

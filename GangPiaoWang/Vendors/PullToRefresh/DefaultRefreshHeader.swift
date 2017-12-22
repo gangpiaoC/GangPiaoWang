@@ -10,22 +10,26 @@ import UIKit
 
 open class DefaultRefreshHeader:UIView,RefreshableHeader{
     open let textLabel:UILabel = UILabel(frame: CGRect(x: 0,y: 0,width: SCREEN_WIDTH,height: 20))
-    open let imageView:UIImageView = UIImageView(frame: CGRect.zero)
+    fileprivate var  startImgView:UIImageView!
+    fileprivate var pulImgView:UIImageView!
     open var durationWhenHide = 0.5
     fileprivate var textDic = [RefreshKitHeaderText:String]()
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(textLabel)
-        addSubview(imageView)
-        var imgArray = [UIImage]()
-        for i in 0 ..< 20 {
-            let image: UIImage = UIImage(named: "gpwAnimation_\(i)")!
-            imgArray.append(image)
-        }
-        imageView.image = UIImage(named: "gpwAnimation_0")
-        imageView.animationImages = imgArray
-        imageView.animationRepeatCount = 0
-        imageView.animationDuration = 0.8
+        //addSubview(textLabel)
+        pulImgView = UIImageView(frame: CGRect(x: 0, y: 15, width: 45, height: 45))
+        pulImgView.centerX = SCREEN_WIDTH / 2
+
+        startImgView = UIImageView(frame: pulImgView.frame)
+        textLabel.y = startImgView.maxY
+
+        addSubview(pulImgView)
+        addSubview(startImgView)
+
+        pulImgView.image = UIImage.gif(name: "pulling")
+        pulImgView.isHidden = true
+        startImgView.image = UIImage.gif(name: "pullStart")
+        
         textLabel.font = UIFont.customFont(ofSize: 14)
         textLabel.textColor = UIColor.hex("555555")
         textLabel.textAlignment = .center
@@ -41,10 +45,9 @@ open class DefaultRefreshHeader:UIView,RefreshableHeader{
     }
     open override func layoutSubviews() {
         super.layoutSubviews()
-        imageView.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        imageView.centerX = SCREEN_WIDTH / 2
-        imageView.backgroundColor = UIColor.blue
-        textLabel.y = imageView.maxY
+//        imageView.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+//        imageView.centerX = SCREEN_WIDTH / 2
+
     }
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -63,11 +66,13 @@ open class DefaultRefreshHeader:UIView,RefreshableHeader{
         printLog(message: "ddddddddd====\(oldState.rawValue)=====\(newState.rawValue)")
         if oldState == RefreshHeaderState.pulling && newState == RefreshHeaderState.refreshing{
             textLabel.text = textDic[.releaseToRefresh]
-            imageView.startAnimating()
+            startImgView.isHidden = true
+            pulImgView.isHidden = false
         }
         if oldState == RefreshHeaderState.refreshing && newState == RefreshHeaderState.idle {
             textLabel.text = textDic[.pullToRefresh]
-            imageView.stopAnimating()
+            startImgView.isHidden = false
+            pulImgView.isHidden = true
         }
     }
     open func durationWhenEndRefreshing() -> Double {

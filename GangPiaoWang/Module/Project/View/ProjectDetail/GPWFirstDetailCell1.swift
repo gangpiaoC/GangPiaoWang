@@ -72,7 +72,7 @@ class GPWFirstDetailCell1: UITableViewCell {
     
     private let staticMoneyLabel: UILabel = {
         let label = UILabel()
-        label.text = "借款金额"
+        label.text = "出借次数"
         label.textColor = UIColor.hex("999999")
         label.font = UIFont.customFont(ofSize: 14.0)
         return label
@@ -254,7 +254,7 @@ class GPWFirstDetailCell1: UITableViewCell {
             }
         }
         dateLabel.attributedText = NSAttributedString.attributedString(dict["deadline"].stringValue, second: "天")
-        moneyLabel.attributedText = NSAttributedString.attributedString(dict["amount"].stringValue, second: "万元")
+        moneyLabel.attributedText = NSAttributedString.attributedString(dict["count"].stringValue, second: "次")
         startInvestLabel.attributedText = NSAttributedString.attributedString(dict["begin_amount"].stringValue, second: "元")
         balanceLabel.text = "剩余金额: \(dict["balance_amount"].stringValue)元"
         progressLabel.text =  "\(dict["jindu"].floatValue)%"

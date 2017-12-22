@@ -40,5 +40,16 @@ typedef void(^clickLabelBlock)(NSInteger index,NSString *titleString);
 
 - (void) clickTitleLabel:(clickLabelBlock) clickLabelBlock;
 
+/**
+ *  传递数组并把视图宽度传过来
+ */
+
+- (void)pushArray:(NSArray *)array withW:(CGFloat)width;
+
+/**
+ * 注销界面
+ */
+
+-(void)viewDealloc;
 
 @end

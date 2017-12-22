@@ -16,10 +16,8 @@
 }
 - (instancetype)initWithDict:(NSDictionary *)dict withIndex:(NSInteger)index{
     if (self = [super init]) {
-         NSLog(@"eeeeee====%@",dict);
         self.title = dict[@"title"];
         _index = index;
-        NSLog(@"eeeeee====%ld  %ld",_index,(long)index);
         NSMutableArray *tempArray = [NSMutableArray array];
         AnswerModel *answer = [AnswerModel answerWithDict:dict];
         [tempArray addObject:answer];

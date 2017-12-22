@@ -21,7 +21,7 @@ class GPWHomeViewController: GPWBaseViewController,UITableViewDelegate,UITableVi
         super.viewWillAppear(animated)
         showNum = showNum + 1
         if showNum == 1 && GYCircleConst.getGestureWithKey(gestureFinalSaveKey) != nil  {
-            if GPWGlobal.sharedInstance().initJson?["app_popup"]["img_url"].stringValue.characters.count ?? 0 > 7 {
+            if GPWGlobal.sharedInstance().initJson?["app_popup"]["img_url"].stringValue.count ?? 0 > 7 {
                 if  GPWHelper.getDay()[3] == "0" {
                     GPWHelper.showHomeAD(url: (GPWGlobal.sharedInstance().initJson?["app_popup"]["img_url"].stringValue)!)
                     GPWGlobal.sharedInstance().homeADtoUrl = GPWGlobal.sharedInstance().initJson?["app_popup"]["link"].stringValue
@@ -49,10 +49,37 @@ class GPWHomeViewController: GPWBaseViewController,UITableViewDelegate,UITableVi
         //获取数据
         getNetData()
         if GPWGlobal.sharedInstance().pushDic != nil {
-            (UIApplication.shared.delegate as! AppDelegate).dealMessageFromXG(GPWGlobal.sharedInstance().pushDic!)
+            UIApplication.shared.keyWindow?.makeToast("\(String(describing: GPWGlobal.sharedInstance().pushDic!))")
+           self.dealMessageFromXG(GPWGlobal.sharedInstance().pushDic!)
             GPWGlobal.sharedInstance().pushDic = nil
         }
     }
+    // 接收到推送实现的方法
+    func dealMessageFromXG(_ userInfo : [String:Any]) {
+        printLog(message: userInfo)
+        if  UIApplication.shared.applicationState == .active {
+            return
+        }
+        let  navController = GPWHelper.selectedNavController()
+        printLog(message: navController)
+        UIApplication.shared.applicationIconBadgeNumber = 0
+
+        if let type = userInfo["type"] {
+            let tempType = type as! String
+            printLog(message: type)
+            if  tempType == "1"{
+                let vc = GPWWebViewController(subtitle: "", url: userInfo["link"] as! String)
+                navController?.pushViewController(vc, animated: true)
+            }else if tempType == "2"{
+                let ttzController = GPWFTTZHController()
+                ttzController.urlstr = userInfo["link"] as? String
+                navController?.pushViewController(ttzController, animated: true)
+            }else if tempType == "3"{
+                navController?.pushViewController(GPWProjectDetailViewController(projectID: userInfo["link"] as! String), animated: true)
+            }
+        }
+    }
+
     
     func initView() {
         let iosVersion = UIDevice.current.systemVersion //iOS版本
@@ -65,8 +92,8 @@ class GPWHomeViewController: GPWBaseViewController,UITableViewDelegate,UITableVi
             self.bgView.y = self.bgView.y - 25
             self.bgView.height = self.bgView.height  + 25
         }else if strNum != 10 {
-            self.bgView.y = -20
-            self.bgView.height =   self.bgView.height + 64 + 20
+            self.bgView.y = 0
+            self.bgView.height =   self.bgView.height + 64
         }
         self.navigationBar.backgroundColor = redTitleColor
         self.navigationBar.titleLabel.textColor = UIColor.white
@@ -86,12 +113,22 @@ class GPWHomeViewController: GPWBaseViewController,UITableViewDelegate,UITableVi
         showTableView.showsVerticalScrollIndicator = false
         showTableView.separatorStyle = .none
         self.bgView.addSubview(showTableView)
+        if #available(iOS 11.0, *) {
+            showTableView.estimatedRowHeight = 0
+            showTableView.estimatedSectionHeaderHeight = 0
+            showTableView.estimatedSectionFooterHeight = 0
+            showTableView.contentInsetAdjustmentBehavior = .never
+            showTableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)//导航栏如果使用系统原生半透明的，top设置为64
+            showTableView.scrollIndicatorInsets = showTableView.contentInset
+        }
 
         showTableView.setUpHeaderRefresh {
             [weak self] in
             guard let self1 = self else {return}
             self1.getNetData()
         }
+
+        self.appInfo()
     }
     
     func getNetData(){
@@ -108,11 +145,28 @@ class GPWHomeViewController: GPWBaseViewController,UITableViewDelegate,UITableVi
                 strongSelf.showTableView.endHeaderRefreshing()
         })
     }
+    //版本升级
+    func appInfo()  {
+        //最新版本
+        if let json = GPWGlobal.sharedInstance().appUpdata {
+            let newStr = json["ios"].stringValue.replacingOccurrences(of: ".", with: "")
+            let newInt = (newStr as NSString).intValue
+
+            //当前版本
+            let currentVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
+            let currentStr = currentVersion.replacingOccurrences(of: ".", with: "")
+            let currentInt = (currentStr as NSString).intValue
+            if currentInt < newInt{
+                GPWHelper.showVersionView(versionStr:   json["update_content"].stringValue,flag: json["mandatory_update"].intValue, version: json["ios"].stringValue)
+                GPWGlobal.sharedInstance().appUpdata = nil
+            }
+        }
+    }
 }
 extension GPWHomeViewController{
     func numberOfSections(in tableView: UITableView) -> Int {
         if self.dic != nil {
-            return 4
+            return 5
         }
        return 0
     }
@@ -127,11 +181,11 @@ extension GPWHomeViewController{
                 return 2
             }
         }else if section == 2{
-            return self.dic!["Item"].count + 1
+            return self.dic!["Item"].count
         }else if section == 3 {
             return 2
         }else{
-            return 0
+            return 1
         }
     }
     
@@ -146,7 +200,7 @@ extension GPWHomeViewController{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
             if indexPath.row == 0 {
-                   return 206
+                   return pixw(p: 206)
             }else{
                 return 40
             }
@@ -170,7 +224,7 @@ extension GPWHomeViewController{
                 return 102
             }
         }else{
-            return 0
+            return 118 / 2 
         }
     }
     
@@ -213,6 +267,12 @@ extension GPWHomeViewController{
                     btn.frame = CGRect(x: SCREEN_WIDTH - pixw(p: 116), y: pixw(p: 16), width: pixw(p: 100), height: pixw(p: 36))
                     btn.addTarget(self, action: #selector(self.gotoRegister), for: .touchUpInside)
                     cell?.contentView.addSubview(btn)
+
+                    let  label = RTLabel(frame: CGRect(x: pixw(p: 16), y: pixw(p: 79), width: SCREEN_WIDTH - pixw(p: 72 + 29), height: 0))
+                    label.text = "<font size=22 color='#666666'>\(GPWGlobal.sharedInstance().app_exper_amount)</font><font size=14 color='#666666'>元</font><font size=14 color='#666666'>体验金+</font><font size=22 color='#666666'>\(GPWGlobal.sharedInstance().app_accountsred)</font><font size=14 color='#666666'>元</font><font size=14 color='#666666'>红包</font>"
+                    label.height = label.optimumSize.height
+                    cell?.contentView.addSubview(label)
+
                     
                     let block = UIView(frame: CGRect(x: 0, y: pixw(p: 120), width: SCREEN_WIDTH, height: 10))
                     block.backgroundColor = bgColor
@@ -220,27 +280,23 @@ extension GPWHomeViewController{
                 }
                 return cell!
             }
-           
         } else  if indexPath.section == 2{
-
             if indexPath.row == 0 {
                 var cell = tableView.dequeueReusableCell(withIdentifier: "GPWHPTopCell") as? GPWHPTopCell
                 if cell == nil {
                     cell = GPWHPTopCell(style: .default, reuseIdentifier: "GPWHPTopCell")
                 }
-                //cell?.setupCell(dict: (self.dic?["Item"][indexPath.row])!, index: indexPath.row)
+                cell?.setupCell(dict: (self.dic?["Item"][indexPath.row])!, index: indexPath.row)
                 return cell!
             }else{
                 var cell = tableView.dequeueReusableCell(withIdentifier: "GPWHProjectCell") as? GPWHProjectCell
                 if cell == nil {
                     cell = GPWHProjectCell(style: .default, reuseIdentifier: "GPWHProjectCell")
                 }
-                cell?.setupCell(dict: (self.dic?["Item"][indexPath.row - 1])!)
+                cell?.setupCell(dict: (self.dic?["Item"][indexPath.row])!)
                 return cell!
             }
-
-        }else {
-
+        }else  if indexPath.section == 3{
             if indexPath.row == 0 {
                 var cell = tableView.dequeueReusableCell(withIdentifier: "GPWHThone")
                 if cell == nil {
@@ -257,28 +313,39 @@ extension GPWHomeViewController{
                 if cell == nil {
                     cell = GPWHomeNewsCell(style: .default, reuseIdentifier: "GPWHomeNewsCell")
                 }
-                cell?.updata(self.dic?["bank_url"].stringValue ?? "")
+                cell?.updata((self.dic?["invest"].arrayValue)!)
                 cell?.surperController = self
                 return cell!
             }
+        }else{
+            var cell = tableView.dequeueReusableCell(withIdentifier: "GPWHomeBottomCell") as? GPWHomeBottomCell
+            if cell == nil {
+                cell = GPWHomeBottomCell(style: .default, reuseIdentifier: "GPWHomeBottomCell")
+            }
+            cell?.updata()
+            return cell!
         }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 2 {
-            let projectID = self.dic?["Item"][indexPath.row]["auto_id"]
-            let  type = self.dic?["Item"][indexPath.row]["type"].stringValue
-            if type == "TIYAN" {
+        var arrayIndex = 0
+        if indexPath.section == 2 || indexPath.section == 3{
+            if indexPath.section == 3 {
+                arrayIndex = 1
+            }
+            let projectID = self.dic?["Item"][indexPath.row - arrayIndex]["auto_id"]
+            let  type = self.dic?["Item"][indexPath.row - arrayIndex]["is_index"].intValue
+            if type == 2 {
                 MobClick.event("home", label: "体验标")
                 self.navigationController?.pushViewController(GPWHomeTiyanViewController(tiyanID:"\(projectID!)"), animated: true)
-            }else if type == "GENERAL" {
-                MobClick.event("home", label: "普通标")
-                let vc = GPWProjectDetailViewController(projectID: "\(projectID!)")
-                vc.title = self.dic?["Item"][indexPath.row]["title"].string
-                self.navigationController?.show(vc, sender: nil)
-            }else{
+            }else if type == 1 {
                 MobClick.event("home", label: "新手标")
                 let vc = GPWProjectDetailViewController(projectID: "\(projectID!)")
-                vc.title = self.dic?["Item"][indexPath.row]["title"].string
+                vc.title = self.dic?["Item"][indexPath.row - arrayIndex]["title"].string
+                self.navigationController?.show(vc, sender: nil)
+            }else{
+                MobClick.event("home", label: "热门标")
+                let vc = GPWProjectDetailViewController(projectID: "\(projectID!)")
+                vc.title = self.dic?["Item"][indexPath.row - arrayIndex]["title"].string
                 self.navigationController?.show(vc, sender: nil)
             }
         }
@@ -304,6 +371,16 @@ extension GPWHomeViewController{
             }
         }
          self.navigationBar.alpha = navAlpha
-          _scrollviewOffY = scrollView.contentOffset.y
-       }
+        _scrollviewOffY = scrollView.contentOffset.y
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if self.dic != nil {
+            let index = IndexPath(row: 0, section: 4)
+            let  cell = showTableView.cellForRow(at: index) as? GPWHomeBottomCell
+            if cell != nil {
+                cell?.updata()
+            }
+        }
+    }
 }

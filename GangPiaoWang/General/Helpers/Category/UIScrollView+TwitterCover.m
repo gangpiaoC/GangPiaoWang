@@ -35,7 +35,6 @@ static char UIScrollViewTwitterCover;
 
     if (@available(iOS 11.0, *)){
         if ([self isKindOfClass:[UITableView class]]) {
-            NSLog(@"eeeee");
             UITableView * tempTabelView = (UITableView *)self;
             tempTabelView.backgroundView = view;
         }else{

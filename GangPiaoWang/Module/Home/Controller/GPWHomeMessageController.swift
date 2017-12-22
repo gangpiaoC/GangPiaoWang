@@ -12,7 +12,7 @@ class GPWHomeMessageController: GPWSecBaseViewController,LazyScrollViewDelegate{
     var _startIndex = 0
     let contentArray = [
         ["title":"平台公告","type":News],
-        ["title":"回款公告","type":News]
+        ["title":"回款公告","type":Payment]
     ]
     override func viewDidLoad() {
         super.viewDidLoad()

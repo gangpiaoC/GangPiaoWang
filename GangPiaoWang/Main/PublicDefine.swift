@@ -65,7 +65,7 @@ let redTitleColor = UIColor.hex("f6390c")
 //    let SHARE_URL = "https://tpc.gangpiaowang.com/Web/share"
 //    let HTML_SERVER = "https://tpc.gangpiaowang.com"
 //#else
-    //正式服务器地址
+//    //正式服务器地址
 let SERVER = "https://api.gangpiaowang.com/Api/"
 let SHARE_URL = "https://www.gangpiaowang.com/Web/share"
     //网页前缀
@@ -123,6 +123,9 @@ let Index = "index"
 //平台公告
 let  News = "news"
 
+//回款公告
+let  Payment = "payment"
+
 //出借记录
 let Invest_record = "invest_record"
 
@@ -143,6 +146,9 @@ let User_ticket = "user_ticket"
 
 //我的体验金
 let  User_experient = "user_experient"
+
+//日历
+let  Api_refund_calendar = "api_refund_calendar"
 
 //获取充值最小金额
 let Api_user_accounts_recharge = "api_user_accounts_recharge"

@@ -35,7 +35,7 @@
     if (self) {
         _enableAlignCenter=YES;
         _enableLeftMargin=YES;
-        _startX=15;
+        _startX=0;
         self.backgroundColor=[UIColor whiteColor];
         self.tag=1000;
         self.showsHorizontalScrollIndicator=NO;
@@ -65,7 +65,7 @@
         UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
         btn.backgroundColor=[UIColor whiteColor];
         [btn setTitle:name forState:UIControlStateNormal];
-        btn.titleLabel.font=[UIFont systemFontOfSize:14 weight:UIFontWeightLight];
+        btn.titleLabel.font=[UIFont systemFontOfSize:16];
         btn.tag=1000+i;
         [btn addTarget:self action:@selector(topBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:btn];
@@ -79,7 +79,7 @@
         [_topBtnArray addObject:btn];
         [btn setTitleColor:[XHColor colorWithHexString:normalColor] forState:UIControlStateNormal];
 
-        UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, btn.height - 1, btn.width, 1)];
+        UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, btn.height - 2, btn.width, 2)];
         view.tag=2000;
         view.centerX = btn.width / 2;
         [btn addSubview:view];
@@ -173,11 +173,13 @@
             UIButton *button =_topBtnArray[i];
             UIView *subView=[button viewWithTag:2000];
             if (i == index) {
+                subView.hidden = NO;
                 [button setTitleColor:[XHColor colorWithHexString:selectedColor] forState:UIControlStateNormal];
                 subView.backgroundColor = [XHColor colorWithHexString:selectedColor] ;
 
             } else {
                 subView.backgroundColor = lineBackClor;
+                subView.hidden = YES;
                 [button setTitleColor:[XHColor colorWithHexString:normalColor] forState:UIControlStateNormal];
             }
         }

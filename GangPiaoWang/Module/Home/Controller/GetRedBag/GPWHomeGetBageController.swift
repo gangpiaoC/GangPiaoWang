@@ -75,14 +75,12 @@ class GPWHomeGetBageController: GPWSecBaseViewController {
                 strongSelf.chanceLabel.centerX = SCREEN_WIDTH / 2
                 strongSelf.chanceLabel.text = "今天机会已用完，明天再来哦"
                 strongSelf.bgimgView.image = UIImage(named: "home_getbag_end_bg")
-                strongSelf.bgimgView.height = pixw(p: 826)
                 strongSelf.showTodayPrize()
             }
         }) { (error) in
             
         }
     }
-    
     func initView()  {
         
         bgScrollview = UIScrollView(frame: self.bgView.bounds)
@@ -174,7 +172,8 @@ class GPWHomeGetBageController: GPWSecBaseViewController {
         bottomView.addSubview(temp2Label)
         
         bottomView.height = temp2Label.maxY + 15
-        
+        bgimgView.height = bottomView.maxY
+        bgScrollview.contentSize = CGSize(width: SCREEN_WIDTH, height: bottomView.maxY)
     }
     @objc fileprivate func btnClick( _ sender:UIButton){
         if sender.tag == 100 {
@@ -231,7 +230,7 @@ class GPWHomeGetBageController: GPWSecBaseViewController {
             roleBgView.addSubview(contentLabel)
             maxY = maxY +  contentLabel.height + 14
         }
-        bgScrollview.contentSize = CGSize(width: SCREEN_WIDTH, height: bottomImgView.maxY + 30)
+        bgScrollview.contentSize = CGSize(width: SCREEN_WIDTH, height: bottomView.maxY)
     }
     
     //红包雨
@@ -335,9 +334,10 @@ class GPWHomeGetBageController: GPWSecBaseViewController {
             toBtn.tag = 1001
             toBtn.addTarget(self, action: #selector(strongSelf.priseClick(_:)), for: .touchUpInside)
             strongSelf.bgScrollview.addSubview(toBtn)
-            tempMaxY = toBtn.maxY + 24
+            tempMaxY = toBtn.maxY + 25
             strongSelf.bottomView.y = tempMaxY
-            strongSelf.bgScrollview.contentSize = CGSize(width: SCREEN_WIDTH, height: strongSelf.bottomView.maxY - 5)
+            strongSelf.bgScrollview.contentSize = CGSize(width: SCREEN_WIDTH, height: strongSelf.bottomView.maxY)
+            strongSelf.bgimgView.height = strongSelf.bgScrollview.contentSize.height
         }) { (error) in
             
         }
@@ -468,6 +468,12 @@ class GPWHomeGetBageController: GPWSecBaseViewController {
             //去使用
             GPWHelper.selectTabBar(index: PROJECTBARTAG)
         }
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        scrollview.viewDealloc()
+        bgScrollview.removeFromSuperview()
     }
 
     override func didReceiveMemoryWarning() {

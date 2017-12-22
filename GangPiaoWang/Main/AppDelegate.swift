@@ -14,9 +14,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
 
         //解析用户信息
         GPWUser.sharedInstance().getUserInfo()
+
+        //初始化全局
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window!.backgroundColor = UIColor.white
-        self.window?.rootViewController = UIViewController()
+        self.window?.rootViewController = GPWGlobal.sharedInstance().gpwbarController
         self.window!.makeKeyAndVisible()
         self.getAppInit()
         
@@ -51,31 +53,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
             GPWGlobal.sharedInstance().initJson = json
             GPWGlobal.sharedInstance().app_accountsred = "\(json["app_accountsred"].intValue)"
             GPWGlobal.sharedInstance().app_exper_amount = "\(json["app_exper_amount"].intValue)"
-            strongSelf.window!.rootViewController = GPWTabBarController()
             if UserDefaults.standard.value(forKey: "new") as? String == "true" {
                  UIApplication.shared.isStatusBarHidden = false
                 if  let  json = GPWGlobal.sharedInstance().initJson {
-                    let currentVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
-                    
-                    //当前版本
-                    let currentStr = currentVersion.replacingOccurrences(of: ".", with: "")
-                    let currentInt = (currentStr as NSString).intValue
-                    printLog(message: currentVersion)
-                    
-                    //最新版本
-                    let newStr = json["app_info"]["ios"].stringValue.replacingOccurrences(of: ".", with: "")
-                    let newInt = (newStr as NSString).intValue
                     GPWGlobal.sharedInstance().commFlag =   json["app_info"]["give_praise"].stringValue
-                    if currentInt < newInt{
-                        GPWHelper.showVersionView(versionStr:   json["app_info"]["update_content"].stringValue,flag: json["app_info"]["mandatory_update"].intValue)
-                    }else{
-                        if json["app_info"]["advert_picture"].stringValue.characters.count > 5 && json["app_info"]["is_vaild"].intValue == 1 {
-                            strongSelf.window!.addSubview(GPWADView(imgStr: json["app_info"]["advert_picture"].stringValue,toUrl:json["app_info"]["advert_url"].stringValue))
-                        }
+                    GPWGlobal.sharedInstance().appUpdata = json["app_info"]
+                    printLog(message: json)
+                    if json["app_info"]["advert_picture"].stringValue.count > 5 && json["app_info"]["is_vaild"].intValue == 1 {
+                        let adController = GPWADViewController(imgStr: json["app_info"]["advert_picture"].stringValue, toUrl: json["app_info"]["advert_url"].stringValue)
+                        strongSelf.window?.rootViewController = adController
                     }
                 }
             }else{
-                strongSelf.window!.addSubview(GPWIntroduceView())
+                self?.window?.rootViewController = GPWIntroduceViewController()
                 UserDefaults.standard.set("true", forKey: "new")
             }
         }) { (error) in

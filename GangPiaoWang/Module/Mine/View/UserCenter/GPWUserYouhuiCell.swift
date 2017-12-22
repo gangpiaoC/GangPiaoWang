@@ -42,6 +42,7 @@ class GPWUserYouhuiCell: UITableViewCell {
             numLabel.text = array[i]["num"]
             numLabel.font = UIFont.customFont(ofSize: 14)
             numLabel.textAlignment = .center
+            numLabel.tag = 1000
             numLabel.textColor = UIColor.hex("666666")
             btn.addSubview(numLabel)
         }
@@ -49,6 +50,15 @@ class GPWUserYouhuiCell: UITableViewCell {
         let block = UIView(frame: CGRect(x: 0, y: 105, width: SCREEN_WIDTH, height: 10))
         block.backgroundColor = bgColor
         self.contentView.addSubview(block)
+    }
+
+    func updata() {
+        let  redLabel = self.contentView.viewWithTag(100)?.viewWithTag(1000) as! UILabel
+        redLabel.text = "\(GPWUser.sharedInstance().data_award)元"
+        let  jiaxiLabel = self.contentView.viewWithTag(101)?.viewWithTag(1000) as! UILabel
+        jiaxiLabel.text = "\(GPWUser.sharedInstance().data_ticket)张"
+        let  tiyanLabel = self.contentView.viewWithTag(102)?.viewWithTag(1000) as! UILabel
+        tiyanLabel.text = "\(GPWUser.sharedInstance().data_exper)元"
     }
 
     func btnClick(sender:UIButton) {

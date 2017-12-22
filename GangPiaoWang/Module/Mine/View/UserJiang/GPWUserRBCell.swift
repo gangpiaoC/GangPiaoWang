@@ -92,6 +92,7 @@ class GPWUserRBCell: UITableViewCell {
         bagLabel.text = "<font size=24 color='#ffffff'>￥\(dic["amount"])</font>"
         temp1Label.text = "单笔出借满\(dic["restrict_amount"])元"
         temp2Label.text = "\(dic["limitse"])"
+
         temp3Label.text = "有效期至" + GPWHelper.strFromDate(dic["due_time"].doubleValue, format: "yyyy-MM-dd")
         let status = dic["status"].stringValue
         printLog(message: status)
@@ -133,7 +134,7 @@ class GPWUserRBCell: UITableViewCell {
         bagLabel.text = "<font size=24 color='#ffffff'>￥\(redCoupon.amount)</font>"
         temp1Label.text = "单笔出借满\(redCoupon.restrict_amount)元"
         temp2Label.text = redCoupon.limitse
-        temp3Label.text = "有效期至" + GPWHelper.strFromDate(3333222222, format: "yyyy-MM-dd")
+        temp3Label.text = "有效期至" + GPWHelper.strFromDate(redCoupon.expire, format: "yyyy-MM-dd")
         let status = redCoupon.status
         printLog(message: status)
         bgImgView.image = UIImage(named: "user_reward_use")

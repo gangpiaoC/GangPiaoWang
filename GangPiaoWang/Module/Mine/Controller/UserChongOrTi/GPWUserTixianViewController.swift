@@ -341,7 +341,6 @@ class GPWUserTixianViewController: GPWSecBaseViewController,UITextFieldDelegate,
             let money_deposit = Double((self.dic?["money_deposit"].stringValue.replacingOccurrences(of: ",", with: ""))!) ?? 0
             
             var  doubleMoney = Double(sender.text!)  ?? 0
-            printLog(message: "eeeeeeee====\(money_award + money_return + money_deposit )  qqqqq=====\(doubleMoney)")
             if doubleMoney >  money_award + money_return + money_deposit {
                 let index =  sender.text?.index( (sender.text?.endIndex)!, offsetBy: -1)
                 sender.text = sender.text?.substring(to: index!)

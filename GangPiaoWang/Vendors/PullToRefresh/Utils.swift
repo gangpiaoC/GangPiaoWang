@@ -16,7 +16,7 @@ struct PullToRefreshKitConst{
     static let KPathContentSize = "contentSize"
     
     //Default const
-    static let defaultHeaderHeight:CGFloat = 55.0
+    static let defaultHeaderHeight:CGFloat = 70.0
     static let defaultFooterHeight:CGFloat = 44.0
     
     //Tags

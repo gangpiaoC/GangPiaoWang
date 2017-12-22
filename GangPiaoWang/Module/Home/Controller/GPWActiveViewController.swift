@@ -16,6 +16,7 @@ class GPWActiveViewController: GPWSecBaseViewController,UITableViewDelegate,UITa
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()

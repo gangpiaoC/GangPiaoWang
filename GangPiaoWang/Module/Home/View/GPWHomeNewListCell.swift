@@ -18,7 +18,6 @@ class GPWHomeNewListCell: UITableViewCell {
         iconImgView = UIImageView(frame: CGRect(x: 16, y: 20, width: 120, height: 80))
         iconImgView.backgroundColor = UIColor.hex("f6f6f6")
         self.contentView.addSubview(iconImgView)
-        
         titleLabel = RTLabel(frame: CGRect(x:iconImgView.maxX + 13, y: 17, width:  SCREEN_WIDTH - 16 - iconImgView.maxX - 13, height: 30))
         titleLabel.text = "<font size=16 color='#333333'>专注于钢铁产业金融，\"钢票网\"将挺进互联网理财市场</font>"
         titleLabel.height = titleLabel.optimumSize.height

@@ -17,7 +17,7 @@ class GPWHelper {
         if num == "" {
             return false
         }
-        let regex = "^1(3[0-9]|4[57]|5[0-35-9]|7[01678]|8[0-9])\\d{8}$"
+        let regex = "[1][35789]\\d{9}"
         let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
         return predicate.evaluate(with: num)
     }
@@ -83,7 +83,7 @@ class GPWHelper {
     /*
      *版本升级
      */
-    static func  showVersionView(versionStr:String,flag:Int){
+    static func  showVersionView(versionStr:String,flag:Int,version:String){
         let  array = versionStr.components(separatedBy: "&")
         let bgView = UIView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
         bgView.backgroundColor = UIColor.hex("000000", alpha: 0.75)
@@ -106,7 +106,9 @@ class GPWHelper {
 
         //哪个版本
         let versionLabel = UILabel(frame: CGRect(x: 0, y: 0, width: contentBgView.width, height: 19))
-        versionLabel.text = "V2.9发现新版本"
+        let infoDictionary = Bundle.main.infoDictionary
+        let majorVersion  = infoDictionary!["CFBundleShortVersionString"] as! String
+        versionLabel.text = "V\(majorVersion)发现新版本"
         versionLabel.textColor = UIColor.hex("333333")
         versionLabel.textAlignment = .center
         versionLabel.font = UIFont.customFont(ofSize: 18)

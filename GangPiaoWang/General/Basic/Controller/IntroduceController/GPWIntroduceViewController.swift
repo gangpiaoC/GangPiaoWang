@@ -8,33 +8,28 @@
 
 import UIKit
 
-class GPWIntroduceView: UIView, UIScrollViewDelegate {
+class GPWIntroduceViewController: UIViewController, UIScrollViewDelegate {
     fileprivate let pageCount = 4
     fileprivate var isRemoved = false
     fileprivate var scrollView: UIScrollView!
-    
-    init() {
-        super.init(frame: UIScreen.main.bounds)
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
         commonInit()
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     private func commonInit() {
-        self.alpha = 1.0
-        scrollView = UIScrollView(frame: self.bounds)
+        scrollView = UIScrollView(frame: self.view.bounds)
         scrollView.isPagingEnabled = true
         scrollView.delegate = self
-        scrollView.contentSize = CGSize(width: CGFloat(pageCount) * SCREEN_WIDTH, height: self.bounds.height)
+        scrollView.contentSize = CGSize(width: CGFloat(pageCount) * SCREEN_WIDTH, height: self.view.bounds.height)
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
-        addSubview(scrollView)
+        self.view.addSubview(scrollView)
         
         
         for index in 0..<pageCount {
-            let imageView = UIImageView(frame: CGRect(x: CGFloat(index) * self.bounds.width, y: 0, width: self.bounds.width, height: self.bounds.height))
+            let imageView = UIImageView(frame: CGRect(x: CGFloat(index) * self.view.bounds.width, y: 0, width: self.view.bounds.width, height: self.view.bounds.height))
             printLog(message: SCREEN_HEIGHT)
             if SCREEN_HEIGHT < 568 {
                 imageView.image = UIImage(named: "introduce\(index)")
@@ -47,8 +42,8 @@ class GPWIntroduceView: UIView, UIScrollViewDelegate {
             
             if index == pageCount - 1 {
                 let button = UIButton(type: .custom)
-                button.frame = CGRect(x: 0, y: self.bounds.height / 10 * 8.5, width: 216, height: 56)
-                button.center.x = self.bounds.width / 2
+                button.frame = CGRect(x: 0, y: self.view.bounds.height / 10 * 8.5, width: 216, height: 56)
+                button.center.x = self.view.bounds.width / 2
                 button.setBackgroundImage(UIImage(named: "induct_btn"), for: .normal)
                 button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
                 imageView.isUserInteractionEnabled = true
@@ -74,14 +69,18 @@ class GPWIntroduceView: UIView, UIScrollViewDelegate {
     func remove() {
         isRemoved = true
         if let dic = GPWGlobal.sharedInstance().initJson{
-            if dic["app_info"]["advert_picture"].stringValue.characters.count > 5  && dic["app_info"]["is_vaild"].intValue == 1 {
-                self.window!.addSubview(GPWADView(imgStr: dic["app_info"]["advert_picture"].stringValue,toUrl:dic["app_info"]["advert_url"].stringValue))
+            if dic["app_info"]["advert_picture"].stringValue.count > 5  && dic["app_info"]["is_vaild"].intValue == 1 {
+                let adController = GPWADViewController(imgStr: dic["app_info"]["advert_picture"].stringValue, toUrl: dic["app_info"]["advert_url"].stringValue)
+                let wid = UIApplication.shared.delegate?.window
+                wid??.rootViewController = adController
             }
-        }
-        UIView.animate(withDuration: 0.25, animations: {
-            self.alpha = 0.0
-        }) { (isFinished) in
-            self.removeFromSuperview()
+        }else{
+            UIView.animate(withDuration: 0.25, animations: {
+                self.view.alpha = 0.0
+            }) { (isFinished) in
+                let wid = UIApplication.shared.delegate?.window
+                wid??.rootViewController = GPWGlobal.sharedInstance().gpwbarController
+            }
         }
     }
 }

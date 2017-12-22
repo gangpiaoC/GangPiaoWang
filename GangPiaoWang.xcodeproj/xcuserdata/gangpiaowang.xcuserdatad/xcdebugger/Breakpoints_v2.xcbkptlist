@@ -116,12 +116,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GangPiaoWang/Module/Project/Controller/GPWInvestViewController.swift"
-            timestampString = "532613632.829797"
+            timestampString = "534842634.978807"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "510"
             endingLineNumber = "510"
             landmarkName = "showBtnClick(sender:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GangPiaoWang/Module/Mine/View/UserCenter/UserThridCell.swift"
+            timestampString = "534852651.792777"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "observeValue(forKeyPath:of:change:context:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

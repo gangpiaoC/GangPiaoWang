@@ -7,12 +7,12 @@
 //
 
 import UIKit
-
+import SwiftyJSON
 class GPWUserMoneyToSubView: LazyScrollSubView,UITableViewDelegate,UITableViewDataSource {
     
     var showTableView:UITableView!
     var type:String!
-    var dataArr = [Any]()
+    var dataArr = [JSON]()
     var page = 1
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -51,7 +51,7 @@ class GPWUserMoneyToSubView: LazyScrollSubView,UITableViewDelegate,UITableViewDa
             strongSelf.showTableView.endFooterRefreshing()
             strongSelf.showTableView.endHeaderRefreshing()
             if strongSelf.page == 1 {
-                strongSelf.dataArr = json.arrayObject!
+                strongSelf.dataArr = json.arrayValue
                 if  strongSelf.dataArr.count == 0 {
                     strongSelf.showTableView.setFooterNoMoreData()
                 }else{
@@ -107,7 +107,7 @@ class GPWUserMoneyToSubView: LazyScrollSubView,UITableViewDelegate,UITableViewDa
         if cell == nil {
             cell = GPWMoneyToCell(style: .default, reuseIdentifier: "GPWMoneyToCell")
         }
-         cell?.setInfo(dic: self.dataArr[indexPath.row] as! [String:Any],superC:self.inCtl)
+         cell?.setInfo(dic: self.dataArr[indexPath.row],superC:self.inCtl)
         return cell!
         
     }

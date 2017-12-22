@@ -29,6 +29,8 @@ class GPWGlobal {
     
     //是否给好评
     var  commFlag : String = "0"
+
+    var  appUpdata:JSON?
     
     //体验金
     var app_exper_amount:String = "58888"
@@ -53,16 +55,20 @@ class GPWGlobal {
 
     //推送字段
     var  pushDic:[String:Any]?
-    
+
+    //初始化app tabbar
+    var gpwbarController:GPWTabBarController?
     static func sharedInstance() ->GPWGlobal {
         if userAccount == nil {
             userAccount = GPWGlobal()
         }
         return userAccount!
     }
-    
     init() {
         emptyData()
+        if  gpwbarController == nil {
+            gpwbarController = GPWTabBarController()
+        }
     }
     fileprivate func emptyData() {
         deviceToken = ""

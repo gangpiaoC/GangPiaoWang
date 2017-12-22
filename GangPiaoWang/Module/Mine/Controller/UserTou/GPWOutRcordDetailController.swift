@@ -49,7 +49,7 @@ class GPWOutRcordDetailController: GPWSecBaseViewController {
             //合同
             let btn = UIButton(type: .custom)
             btn.frame = CGRect(x: SCREEN_WIDTH - 75 - 16, y: 33, width: 73, height: 21)
-            btn.setTitle("查看合同", for: .normal)
+            btn.setTitle("出借合同", for: .normal)
             btn.setTitleColor(redColor, for: .normal)
             btn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
             btn.addTarget(self, action: #selector(self.btnClick), for: .touchUpInside)

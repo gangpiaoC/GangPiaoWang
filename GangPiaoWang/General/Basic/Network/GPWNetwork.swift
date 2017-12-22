@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-class GPWSessionManager: SessionManager {
+public class GPWSessionManager: SessionManager {
     
     enum ServerHost: String {
         case trust1 = "www.gangpiaowang.com"
@@ -95,7 +95,6 @@ class GPWNetwork: NSObject {
                 case .success(let value):
                     UIApplication.shared.keyWindow?.hideToastActivity()
                     let json = JSON(value)
-                    printLog(message: json)
                     let code = json["code"]
                     var  msg = json["msg"]
                     if (url.range(of: "https")) != nil {
@@ -199,7 +198,6 @@ class GPWNetwork: NSObject {
         properties["version"] =  currentVersion as AnyObject?
          properties["system"] = "ios" as AnyObject?
          properties["phone_ip"] = GPWGetIP.getip() as AnyObject?
-//        printLog(message: GPWGetIP.getip())
          properties["phone_origin"] = "ios" as AnyObject?
          properties["phone_brand"] = "App Store" as AnyObject?
         var cookies = [HTTPCookie]()

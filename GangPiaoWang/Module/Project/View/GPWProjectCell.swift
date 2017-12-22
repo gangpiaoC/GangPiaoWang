@@ -20,7 +20,7 @@ class GPWProjectCell: UITableViewCell {
     }()
     fileprivate let titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.textColor = UIColor.hex("666666")
+        titleLabel.textColor = UIColor.hex("333333")
         titleLabel.font = UIFont.customFont(ofSize: 16.0)
         return titleLabel
     }()
@@ -29,15 +29,20 @@ class GPWProjectCell: UITableViewCell {
         imgView.image = UIImage(named: "project_list_tiyan")
         return imgView
     }()
+
+    //公司背景图
+    fileprivate let companyImgView:UIImageView = {
+        let imgView = UIImageView()
+        imgView.image = UIImage(named: "home_project_commany")
+        return imgView
+    }()
+
     fileprivate let  companyLabel: UILabel = {
         let companyLabel = UILabel()
         companyLabel.text = "中国建业承兑"
-        companyLabel.textColor = redTitleColor
+        companyLabel.textColor = UIColor.white
         companyLabel.textAlignment = .center
-        companyLabel.layer.masksToBounds = true
-        companyLabel.layer.cornerRadius = 11
         companyLabel.font = UIFont.customFont(ofSize: 14.0)
-        companyLabel.backgroundColor = UIColor.hex("ffecdf")
         return companyLabel
     }()
     fileprivate let staticIncomeLabel: UILabel = {
@@ -108,6 +113,7 @@ class GPWProjectCell: UITableViewCell {
         contentView.addSubview(titleLabel)
         contentView.addSubview(tiyanImgView)
         contentView.addSubview(rightImgView)
+        contentView.addSubview(companyImgView)
         contentView.addSubview(companyLabel)
         contentView.addSubview(staticIncomeLabel)
         contentView.addSubview(incomeLabel)
@@ -130,10 +136,16 @@ class GPWProjectCell: UITableViewCell {
             maker.left.equalTo(contentView).offset(16)
             maker.height.equalTo(46)
         }
+
+        companyImgView.snp.makeConstraints { (maker) in
+            maker.centerY.equalTo(titleLabel)
+            maker.left.equalTo(titleLabel.snp.right).offset(6)
+            maker.width.equalTo(98)
+            maker.height.equalTo(22)
+        }
+        
         companyLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(12)
-            make.left.equalTo(titleLabel.snp.right).offset(6)
-            make.height.equalTo(22)
+           make.top.left.bottom.right.equalTo(companyImgView)
         }
         
         tiyanImgView.snp.makeConstraints { (maker) in
@@ -150,7 +162,7 @@ class GPWProjectCell: UITableViewCell {
             maker.height.equalTo(12)
         }
         staticDateLabel.snp.makeConstraints { (maker) in
-            maker.left.equalTo(contentView).offset(167)
+            maker.left.equalTo(contentView).offset(pixw(p: 189))
             maker.centerY.equalTo(staticIncomeLabel)
             maker.height.equalTo(staticIncomeLabel)
         }
@@ -196,12 +208,14 @@ class GPWProjectCell: UITableViewCell {
         let  dic = dict["acceptance_enterprise"].string ?? "0"
         if dic == "0" {
             companyLabel.isHidden = true
+            companyImgView.isHidden = true
         }else{
             companyLabel.isHidden = false
+            companyImgView.isHidden = false
             companyLabel.text = dict["acceptance_enterprise"].string ?? "0"
             let companyWidth = self.getWith(str: companyLabel.text!, font: companyLabel.font)
-            companyLabel.snp.remakeConstraints({ (make) in
-                make.top.equalTo(12)
+            companyImgView.snp.remakeConstraints({ (make) in
+                make.centerY.equalTo(titleLabel)
                 make.left.equalTo(titleLabel.snp.right).offset(6)
                 make.width.equalTo(companyWidth + 20)
                 make.height.equalTo(22)
@@ -240,7 +254,6 @@ class GPWProjectCell: UITableViewCell {
             balanceLabel.text = "已满标"
         case "COLLECTING":
             button.setBackgroundImage(UIImage(named: "project_list_pay"), for: .normal)
-            //balanceLabel.text = " "
         case "RELEASE":
             button.setBackgroundImage(UIImage(named: "project_list_rightnow"), for: .normal)
         default:

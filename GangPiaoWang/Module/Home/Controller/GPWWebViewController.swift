@@ -83,6 +83,7 @@ class GPWWebViewController: GPWSecBaseViewController,WKUIDelegate,WKNavigationDe
             tempUrl = tempUrl + "comefrom=ios&"
             if GPWUser.sharedInstance().isLogin {
                 tempUrl = tempUrl + "user_id=\(GPWUser.sharedInstance().user_id!)"
+                tempUrl = tempUrl + "&invite_code=\(GPWUser .sharedInstance().invite_code ?? "00")"
             }
             printLog(message: tempUrl)
             if let url = URL(string:tempUrl) {
@@ -151,13 +152,11 @@ class GPWWebViewController: GPWSecBaseViewController,WKUIDelegate,WKNavigationDe
         printLog(message: userContentController)
         // 判断是否是调用原生的
         if "NativeMethod" == message.name {
-            
             let date = NSDate()
             let timeInterval = date.timeIntervalSince1970
             if let tempDic = shareJson{
                 if tempDic["due_time"].doubleValue < timeInterval{
                     let  alertViewContoll = UIAlertController(title: "", message: "活动已经过期", preferredStyle: .alert)
-
                     let okAction = UIAlertAction(title: "确定", style: .default, handler: { (alert) in
                         
                     })
@@ -222,6 +221,17 @@ class GPWWebViewController: GPWSecBaseViewController,WKUIDelegate,WKNavigationDe
             }else if H5SHARE == message.body as! String{
                 //h5分享
                 self.shareClick()
+                printLog(message: "eeee====\(message.body)")
+            }else{
+                printLog(message: "eeee====\(message.body)")
+                if (message.body as! String).hasPrefix("hmShareDesc") {
+                    let  array = (message.body as! String).components(separatedBy: "***")
+                    let title = (array[1].components(separatedBy: "title="))[1]
+                    let subtitle = (array[2].components(separatedBy: "content="))[1]
+                    let toUrl = (array[3].components(separatedBy: "url="))[1]
+                    let logo = (array[4].components(separatedBy: "urlicon="))[1]
+                    GPWShare.shared.show(title: title, subtitle: subtitle, imgUrl: logo, toUrl: toUrl)
+                }
             }
         }
     }
@@ -272,5 +282,10 @@ extension GPWWebViewController{
         alertController.addAction(UIAlertAction(title: "完成", style: .default, handler: { (action) in
             completionHandler(alertController.textFields?.first?.text)
         }))
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        _webView.configuration.userContentController.removeScriptMessageHandler(forName: "NativeMethod")
     }
 }

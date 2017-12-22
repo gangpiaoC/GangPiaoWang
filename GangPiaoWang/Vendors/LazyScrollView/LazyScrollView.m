@@ -21,7 +21,7 @@
 -(id)initWithFrame:(CGRect)frame delegate:(id)delegate dataArray:(NSArray *)dataArray{
     self=[super initWithFrame:frame];
     if (self) {
-        _btnWith=(self.width-dataArray.count*0.5)/dataArray.count;
+        _btnWith= self.width / dataArray.count;
         _topBtnArray=[[NSMutableArray alloc]initWithCapacity:0];
         _btnSpace=22.5;
         _scrollView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.width,self.height)];

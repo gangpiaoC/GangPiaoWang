@@ -71,13 +71,8 @@ class UserSecondCell: UITableViewCell {
                 superControl?.navigationController?.pushViewController(control, animated: true)
             }else{
                 MobClick.event("mine_withdraw", label: nil)
-                if GPWUser.sharedInstance().real == 0 {
-                    let control = GPWUserTixianViewController()
-                    superControl?.navigationController?.pushViewController(control, animated: true)
-                }else{
-                    let control = GPWUserTixianViewController()
-                    superControl?.navigationController?.pushViewController(control, animated: true)
-                }
+                let control = GPWUserTixianViewController()
+                superControl?.navigationController?.pushViewController(control, animated: true)
             }
         }
     }

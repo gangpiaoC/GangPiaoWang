@@ -35,15 +35,12 @@ class GPWHomeSecViewCell: UITableViewCell {
             btn.addSubview(imgView)
             if i == 3 {
                 //红包
-                let bgImgView = UIImageView(frame: CGRect(x: 0, y: 0, width: 26, height: 60))
-                bgImgView.image = UIImage(named: "home_getredbag")
-                bgImgView.centerX = btn.width / 2
-                bgImgView.y = imgView.y + 10
-                btn.addSubview(bgImgView)
-                //self.rorateAnimation(holdView: bgImgView)
+                let bgImgView = UIImageView(frame: CGRect(x: 0, y: 0, width: 46, height: 46))
+                bgImgView.center = imgView.center
+                 btn.addSubview(bgImgView)
+                bgImgView.tag = 1000
+                bgImgView.image = UIImage.gif(name: "redbag")
             }
-
-            
             let titleLabel = UILabel(frame: CGRect(x: 0, y: imgView.maxY + 7, width: btn.width, height: 16))
             titleLabel.text = array[i]["title"]
             titleLabel.font = UIFont.customFont(ofSize: 16)
@@ -56,19 +53,13 @@ class GPWHomeSecViewCell: UITableViewCell {
         block.backgroundColor = bgColor
         self.contentView.addSubview(block)
     }
-    //旋转动画
-    func rorateAnimation(holdView: UIView){
-        UIView.animate(withDuration: 0.4, delay: 1.5, options: [.repeat, .autoreverse], animations: {
-            holdView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi / 8))
-        }, completion: { (finish) in
-             holdView.transform = CGAffineTransform(rotationAngle: CGFloat(-Double.pi / 8))
-            self.rorateAnimation(holdView: holdView)
-        })
-    }
     
     func updata(dic:JSON,superControl:UIViewController) {
         self.dataDic = dic
         self.superControl = superControl
+        let  btn = self.contentView.viewWithTag(103) as! UIButton
+        let  imgView = btn.viewWithTag(1000) as! UIImageView
+        imgView.image = UIImage.gif(name: "redbag")
     }
     
     func btnClick(sender:UIButton) {
@@ -79,9 +70,8 @@ class GPWHomeSecViewCell: UITableViewCell {
             MobClick.event("home", label: "菜单栏-安全保障")
             self.superControl?.navigationController?.pushViewController(GPWWebViewController(subtitle: "", url:  HTML_SERVER +  (self.dataDic?["insurance"].string)!), animated: true)
         }else if sender.tag == 102 {
-            MobClick.event("home", label: "菜单栏-平台列表")
-            let con = GPWActiveViewController()
-           self.superControl?.navigationController?.pushViewController(con, animated: true)
+            MobClick.event("home", label: "菜单栏-邀请有礼")
+            self.superControl?.navigationController?.pushViewController(GPWWebViewController(subtitle: "", url:  HTML_SERVER +  (self.dataDic?["invite_courtesy"].string)!), animated: true)
         }else if sender.tag == 103 {
             MobClick.event("home", label: "菜单栏-拼手气")
             if GPWUser.sharedInstance().isLogin {

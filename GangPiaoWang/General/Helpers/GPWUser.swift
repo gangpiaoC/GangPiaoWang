@@ -8,9 +8,19 @@
 
 import Foundation
 import SwiftyJSON
-class GPWUser {
+public class GPWUser:NSObject {
     
     fileprivate static var userAccount: GPWUser?
+
+    //红包钱数
+    var  data_award:String = ""
+
+    //加息券个数
+    var  data_ticket:String = ""
+
+    //体验金
+    var  data_exper:String = ""
+
     
     //真实名字
     var name:String? = ""
@@ -133,7 +143,7 @@ class GPWUser {
     var real_money:String? = "0.00"
     
      let userPath = "userPath"
-    static func sharedInstance() ->GPWUser {
+    public static func sharedInstance() ->GPWUser {
         if userAccount == nil {
             userAccount = GPWUser()
             let str = try? NSString(contentsOfFile: APP_DATA_PATH, encoding: String.Encoding.utf8.rawValue)
@@ -149,6 +159,11 @@ class GPWUser {
         saveAccount(dic: dic)
         printLog(message: dic)
         self.isLogin = true
+        
+        self.data_award = dic["data_award"].stringValue
+        self.data_ticket = dic["data_ticket"].stringValue
+        self.data_exper = dic["data_exper"].stringValue
+
         self.userTiyanMoney = dic["tiyan_amount"].intValue
         self.staue = dic["staue"].intValue
         self.kouling = dic["kouling"].intValue
@@ -263,5 +278,8 @@ class GPWUser {
         self.userTiyanMoney = 58888
         self.show_iden = 0
         self.real_money = "0.00"
+        self.data_award = ""
+        self.data_ticket = ""
+        self.data_exper = ""
     }
 }

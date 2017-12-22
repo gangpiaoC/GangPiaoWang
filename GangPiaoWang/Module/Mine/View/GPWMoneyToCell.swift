@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SwiftyJSON
 class GPWMoneyToCell: UITableViewCell {
     
     //类型
@@ -59,18 +59,18 @@ class GPWMoneyToCell: UITableViewCell {
         self.contentView.addSubview(line)
     }
     
-    func setInfo(dic:[String:Any],superC:UIViewController) {
+    func setInfo(dic:JSON,superC:UIViewController) {
         self.superControl = superC
-        typeLabel.text = dic["type"] as? String
-        timeLabel.text = GPWHelper.strFromDate(dic["add_time"] as! Double, format: "yyyy-MM-dd  HH:mm")
-        let  amount = dic["amount"] as! String
+        typeLabel.text = dic["type"].stringValue
+        timeLabel.text = GPWHelper.strFromDate(dic["add_time"].doubleValue, format: "yyyy-MM-dd  HH:mm")
+        let  amount = dic["amount"].stringValue
         if amount.hasPrefix("-") {
             inMoneyLabel.textColor = UIColor.hex("3ebe18")
         }else{
             inMoneyLabel.textColor = redColor
         }
-        inMoneyLabel.text = "\(dic["amount"]!)"
-        partMoneyLabel.text = "账户余额:\(dic["update_after"]!)元"
+        inMoneyLabel.text = "\(dic["amount"])"
+        partMoneyLabel.text = "账户余额:\(dic["update_after"])元"
         
     }
     

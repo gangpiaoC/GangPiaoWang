@@ -33,48 +33,33 @@ class GPWHomeNewsCell: UITableViewCell {
         scrollview.layer.addSublayer(gradientLayer)
         
         let  titileArray = [
-            "<font size=14 color='#333333'>138****41212    钢融宝-第132期  </font><font size=14 color='#f6390c'>2000元</font>",
-            "<font size=14 color='#333333'>138****43213    钢融宝-第142期  </font><font size=14 color='#f6390c'>2000元</font>",
-            "<font size=14 color='#333333'>138****43411    钢融宝-第135期  </font><font size=14 color='#f6390c'>2002元</font>",
-            "<font size=14 color='#333333'>138****43213    钢融宝-第122期  </font><font size=14 color='#f6390c'>2004元</font>",
-            "<font size=14 color='#333333'>138****43413    钢融宝-第142期  </font><font size=14 color='#f6390c'>2030元</font>",
-            "<font size=14 color='#333333'>138****43113    钢融宝-第112期  </font><font size=14 color='#f6390c'>2040元</font>",
-            "<font size=14 color='#333333'>138****43243    钢融宝-第135期  </font><font size=14 color='#f6390c'>2010元</font>",
-            "<font size=14 color='#333333'>138****43214    钢融宝-第136期  </font><font size=14 color='#f6390c'>2000元</font>",
-            "<font size=14 color='#333333'>138****43213    钢融宝-第131期  </font><font size=14 color='#f6390c'>200元</font>",
-            "<font size=14 color='#333333'>138****43212    钢融宝-第132期  </font><font size=14 color='#f6390c'>200元</font>",
-            "<font size=14 color='#333333'>138****43214    钢融宝-第132期  </font><font size=14 color='#f6390c'>200元</font>",
-            "<font size=14 color='#333333'>138****43213    钢融宝-第132期  </font><font size=14 color='#f6390c'>200元</font>",
-            "<font size=14 color='#333333'>138****41212    钢融宝-第132期  </font><font size=14 color='#f6390c'>2000元</font>",
-            "<font size=14 color='#333333'>138****43213    钢融宝-第142期  </font><font size=14 color='#f6390c'>2000元</font>",
-            "<font size=14 color='#333333'>138****43411    钢融宝-第135期  </font><font size=14 color='#f6390c'>2002元</font>",
-            "<font size=14 color='#333333'>138****43213    钢融宝-第122期  </font><font size=14 color='#f6390c'>2004元</font>",
-            "<font size=14 color='#333333'>138****43413    钢融宝-第142期  </font><font size=14 color='#f6390c'>2030元</font>",
-            "<font size=14 color='#333333'>138****43113    钢融宝-第112期  </font><font size=14 color='#f6390c'>2040元</font>",
-            "<font size=14 color='#333333'>138****43243    钢融宝-第135期  </font><font size=14 color='#f6390c'>2010元</font>",
-            "<font size=14 color='#333333'>138****43214    钢融宝-第136期  </font><font size=14 color='#f6390c'>2000元</font>",
-            "<font size=14 color='#333333'>138****43213    钢融宝-第131期  </font><font size=14 color='#f6390c'>200元</font>",
-            "<font size=14 color='#333333'>138****43212    钢融宝-第132期  </font><font size=14 color='#f6390c'>200元</font>",
-            "<font size=14 color='#333333'>138****43214    钢融宝-第132期  </font><font size=14 color='#f6390c'>200元</font>",
-            "<font size=14 color='#333333'>138****43213    钢融宝-第132期  </font><font size=14 color='#f6390c'>200元</font>"
+            [ "<font size=14 color='#333333'>138****41212</font>", "<font size=14 color='#333333'>钢融宝-第132期</font>","<font size=14 color='#f6390c'>2000元</font>"],
+            [ "<font size=14 color='#333333'>138****41212</font>", "<font size=14 color='#333333'>钢融宝-第132期</font>","<font size=14 color='#f6390c'>2000元</font>"],
+            [ "<font size=14 color='#333333'>138****41212</font>", "<font size=14 color='#333333'>钢融宝-第132期</font>","<font size=14 color='#f6390c'>2000元</font>"],
+            [ "<font size=14 color='#333333'>138****41212</font>", "<font size=14 color='#333333'>钢融宝-第132期</font>","<font size=14 color='#f6390c'>2000元</font>"],
+            [ "<font size=14 color='#333333'>138****41212</font>", "<font size=14 color='#333333'>钢融宝-第132期</font>","<font size=14 color='#f6390c'>2000元</font>"],
+            [ "<font size=14 color='#333333'>138****41212</font>", "<font size=14 color='#333333'>钢融宝-第132期</font>","<font size=14 color='#f6390c'>2000元</font>"],
+            [ "<font size=14 color='#333333'>138****41212</font>", "<font size=14 color='#333333'>钢融宝-第132期</font>","<font size=14 color='#f6390c'>2000元</font>"],
+            [ "<font size=14 color='#333333'>138****41212</font>", "<font size=14 color='#333333'>钢融宝-第132期</font>","<font size=14 color='#f6390c'>2000元</font>"],
+            [ "<font size=14 color='#333333'>138****41212</font>", "<font size=14 color='#333333'>钢融宝-第132期</font>","<font size=14 color='#f6390c'>2000元</font>"],
+            [ "<font size=14 color='#333333'>138****41212</font>", "<font size=14 color='#333333'>钢融宝-第132期</font>","<font size=14 color='#f6390c'>2000元</font>"],
+            [ "<font size=14 color='#333333'>138****41212</font>", "<font size=14 color='#333333'>钢融宝-第132期</font>","<font size=14 color='#f6390c'>2000元</font>"],
+            [ "<font size=14 color='#333333'>138****41212</font>", "<font size=14 color='#333333'>钢融宝-第132期</font>","<font size=14 color='#f6390c'>2000元</font>"],
+            [ "<font size=14 color='#333333'>138****41212</font>", "<font size=14 color='#333333'>钢融宝-第132期</font>","<font size=14 color='#f6390c'>2000元</font>"],
+            [ "<font size=14 color='#333333'>138****41212</font>", "<font size=14 color='#333333'>钢融宝-第132期</font>","<font size=14 color='#f6390c'>2000元</font>"],
+            [ "<font size=14 color='#333333'>138****41212</font>", "<font size=14 color='#333333'>钢融宝-第132期</font>","<font size=14 color='#f6390c'>2000元</font>"],
+            [ "<font size=14 color='#333333'>138****41212</font>", "<font size=14 color='#333333'>钢融宝-第132期</font>","<font size=14 color='#f6390c'>2000元</font>"]
         ]
-        scrollview.investArray = titileArray
+        scrollview.push(titileArray, withW: scrollview.width)
         contentView.addSubview(scrollview)
-
     }
     
-    func updata(_ bankUrl:String)  {
-        bankurl = bankUrl
-    }
-    
-    func btnClick( _ sender:UITapGestureRecognizer) {
-        if sender.view?.tag == 1001 {
-            MobClick.event("home", label:"银行存管")
-            surperController?.navigationController?.pushViewController(GPWHomeNewListController(), animated: true)
-        }else{
-            MobClick.event("home", label:"媒体列表")
-            surperController?.navigationController?.pushViewController(GPWWebViewController(subtitle: "", url: self.bankurl!), animated: true)
+    func updata(_ inveArray:[JSON])  {
+        var titleArray = [[String]]()
+        for tempJson in inveArray {
+            titleArray.append([ "<font size=13 color='#333333'>\(tempJson["telephone"])</font>", "<font size=13 color='#333333'>\(tempJson["title"])</font>","<font size=13 color='#f6390c'>\(tempJson["amount"])元</font>"])
         }
+        scrollview.push(titleArray, withW: scrollview.width)
     }
     
     required init?(coder aDecoder: NSCoder) {

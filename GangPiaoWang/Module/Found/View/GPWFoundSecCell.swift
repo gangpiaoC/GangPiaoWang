@@ -10,7 +10,8 @@ import UIKit
 class GPWFoundSecCell: UITableViewCell {
     
     var superControl:UIViewController?
-    fileprivate var weixin:String?
+    fileprivate var userStory:String?
+     fileprivate var teamStory:String?
     let array = [
                   ["img":"found_sec_action","title":"热门活动"],
                   ["img":"found_sec_school","title":"钢票学院"],
@@ -46,8 +47,9 @@ class GPWFoundSecCell: UITableViewCell {
         self.contentView.addSubview(block)
     }
     
-    func updata(weixin:String,superControl:UIViewController) {
-        self.weixin = weixin
+    func updata(userStory:String,teamStory:String,superControl:UIViewController) {
+        self.userStory = userStory
+        self.teamStory = teamStory
         self.superControl = superControl
     }
     
@@ -55,16 +57,15 @@ class GPWFoundSecCell: UITableViewCell {
         if sender.tag == 100 {
             MobClick.event("found", label: "菜单-热门活动")
              self.superControl?.navigationController?.pushViewController(GPWActiveViewController(), animated: true)
-//            self.superControl?.navigationController?.pushViewController(GPWWebViewController(subtitle: "", url: self.weixin ?? ""), animated: true)
         }else if sender.tag == 101 {
             MobClick.event("found", label: "菜单-钢票学院")
             self.superControl?.navigationController?.pushViewController(GPWVFschooliewController(), animated: true)
         }else if sender.tag == 102 {
             MobClick.event("found", label: "菜单-用户故事")
-            self.myCustem()
-        }else if sender.tag == 102 {
+            self.superControl?.navigationController?.pushViewController(GPWWebViewController(subtitle: "", url: self.userStory ?? ""), animated: true)
+        }else if sender.tag == 103 {
             MobClick.event("found", label: "菜单-团队故事")
-            self.myCustem()
+                        self.superControl?.navigationController?.pushViewController(GPWWebViewController(subtitle: "", url: self.teamStory ?? ""), animated: true)
         }
     }
     

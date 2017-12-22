@@ -7,9 +7,11 @@
 //
 
 import UIKit
-
+typealias userTopcallback = (_ flag:Bool)->Void
 class UserTopCell: UITableViewCell {
-    
+
+    var callBack:userTopcallback?
+
     weak var superController:UIViewController?
 
     fileprivate var prightImgView:UIImageView!
@@ -37,8 +39,8 @@ class UserTopCell: UITableViewCell {
         self.backgroundColor = UIColor.clear
         self.contentView.backgroundColor = UIColor.clear
         self.selectionStyle = .none
-        
-        let userImgView = UIImageView(frame: CGRect(x: 16, y: 25, width: 31, height: 31))
+
+        let userImgView = UIImageView(frame: CGRect(x: 16, y: 35, width: 31, height: 31))
         userImgView.image = UIImage(named: "user_center_toplogo")
         contentView.addSubview(userImgView)
         
@@ -83,7 +85,7 @@ class UserTopCell: UITableViewCell {
         moneyBgView.addSubview(temp1Label)
 
         eyeBtn = UIButton(type: .custom)
-        eyeBtn.frame = CGRect(x: 226, y: 0, width: 9 + 18 + 9, height: 18)
+        eyeBtn.frame = CGRect(x: pixw(p: 214), y: 0, width: 9 + 18 + 9, height: 18)
         eyeBtn.addTarget(self, action: #selector(eyeClick), for: .touchUpInside)
         eyeBtn.setImage(UIImage(named:"user_center_eye_open"), for: .normal)
         eyeBtn.centerY = temp1Label.centerY
@@ -127,7 +129,9 @@ class UserTopCell: UITableViewCell {
 
 
         let acoutMBtn = UIButton(type: .custom)
-        acoutMBtn.frame = CGRect(x: temp2Label.x, y: temp2Label.y, width: partLabel.maxX - temp2Label.x, height: partLabel.maxY - temp2Label.y)
+        acoutMBtn.frame = moneyBgView.bounds
+        acoutMBtn.y = eyeBtn.maxY + 30
+        acoutMBtn.height = acoutMBtn.height - eyeBtn.maxY - 30
         acoutMBtn.tag = 102
         acoutMBtn.addTarget(self, action: #selector(self.setClick(_:)), for: .touchUpInside)
         moneyBgView.addSubview(acoutMBtn)
@@ -144,7 +148,7 @@ class UserTopCell: UITableViewCell {
             eyeBtn.setImage(UIImage(named:"user_center_eye_open"), for: .normal)
             self.changLabelNum()
         }else{
-            if temp as! String == "1" {
+            if temp as! String == "1"{
                 eyeBtn.setImage(UIImage(named:"user_center_eye_open"), for: .normal)
                 self.changLabelNum()
             }else{
@@ -163,6 +167,7 @@ class UserTopCell: UITableViewCell {
     }
 
     func changLabelNum() {
+        eyeBtn.isUserInteractionEnabled = false
         let  tempformat = NumberFormatter()
         tempformat.numberStyle = .decimal
 
@@ -174,6 +179,12 @@ class UserTopCell: UITableViewCell {
 
         let partNum = tempformat.number(from: partStr)
         self.partLabel.changNum(toNumber:partNum as! Double , withDurTime: 1, withStrnumber: partStr)
+        let time: TimeInterval = 1.0
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + time) {
+            [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.eyeBtn.isUserInteractionEnabled = true
+        }
     }
     
     func setClick(_ sender:UIButton) {
@@ -187,7 +198,7 @@ class UserTopCell: UITableViewCell {
 
     func eyeClick( _sender:UIButton) {
         let temp = UserDefaults.standard.value(forKey: "eyeFlag") as? String
-            if temp == "0"{
+            if temp == "0" {
                 eyeBtn.setImage(UIImage(named:"user_center_eye_open"), for: .normal)
                 UserDefaults.standard.set("1", forKey: "eyeFlag")
                 self.changLabelNum()
@@ -198,6 +209,7 @@ class UserTopCell: UITableViewCell {
                 self.acountMoneyLabel.text = "****"
                 self.partLabel.text = "****"
             }
+        self.callBack!(true)
     }
     
     required init?(coder aDecoder: NSCoder) {

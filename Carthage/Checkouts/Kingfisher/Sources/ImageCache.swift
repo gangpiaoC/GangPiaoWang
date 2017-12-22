@@ -556,7 +556,7 @@ open class ImageCache {
     /// - Returns: A `CacheType` instance which indicates the cache status. `.none` means the image is not in cache yet.
     open func imageCachedType(forKey key: String, processorIdentifier identifier: String = "") -> CacheType {
         let computedKey = key.computedKey(with: identifier)
-        
+
         if memoryCache.object(forKey: computedKey as NSString) != nil {
             return .memory
         }

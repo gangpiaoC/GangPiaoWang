@@ -1,7 +1,7 @@
 //
 //  GPWOutRcordController.swift
 //  GangPiaoWang
-//
+//  出借记录
 //  Created by gangpiaowang on 2016/12/23.
 //  Copyright © 2016年 GC. All rights reserved.
 //
@@ -10,9 +10,12 @@ import UIKit
 class GPWOutRcordController: GPWSecBaseViewController,LazyScrollViewDelegate{
     var _startIndex = 0
     let contentArray = [
-        ["title":"已出借","type":""],
-        ["title":"收益中","type":""],
-        ["title":"已完成","type":""]
+        //已出借
+        ["title":"已出借","type":"loaned"],
+        //收益中
+        ["title":"收益中","type":"revenue"],
+        //已完成
+        ["title":"已完成","type":"finish"]
     ]
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,8 +24,6 @@ class GPWOutRcordController: GPWSecBaseViewController,LazyScrollViewDelegate{
         //设置顶部信息
         self.initTopView()
         let  lazyScrollView = LazyScrollView(frame: CGRect(x: 0, y: 110, width: SCREEN_WIDTH, height: self.bgView.height - 110), delegate: self, dataArray: contentArray)
-        printLog(message: "qqqqqq1===\(String(describing: lazyScrollView?.height))")
-        lazyScrollView?.setTopOffSetWith(Int32(_startIndex))
         self.bgView.addSubview(lazyScrollView!)
     }
     //顶部视图
@@ -32,8 +33,8 @@ class GPWOutRcordController: GPWSecBaseViewController,LazyScrollViewDelegate{
         self.bgView.addSubview(imgView)
 
         let  array = [
-            ["title":"待收本金(元)","money": GPWUser.sharedInstance().capital],
-            ["title":"待收利息(元)","money": GPWUser.sharedInstance().wait_accrual]
+            ["title":"待收本金(元)","money": GPWUser.sharedInstance().capital ?? ""],
+            ["title":"待收利息(元)","money": GPWUser.sharedInstance().wait_accrual ?? ""]
         ]
         for i in  0 ..< array.count {
             let titleLabel = UILabel(frame: CGRect(x:  SCREEN_WIDTH / 2  *  CGFloat(i), y: 38, width: SCREEN_WIDTH / 2, height: 22))

@@ -19,6 +19,9 @@ class UserController: GPWBaseViewController,UITableViewDelegate,UITableViewDataS
     
     //展示客服电话
     var flag = false
+
+    //未登录背景
+    var noLoginView:UIView!
     
     let imgArray = ["user_jilu","user_liushui","user_jiangli","user_yaoqing","user_fankui"]
     let titleArray = ["出借记录","资金流水","我的奖励","我的邀请","意见反馈"]
@@ -26,11 +29,13 @@ class UserController: GPWBaseViewController,UITableViewDelegate,UITableViewDataS
         super.viewWillAppear(animated)
         self.getMessageNum()
        self.navigationController?.navigationBar.barStyle = .black
-        self.bgView.viewWithTag(10000)?.removeFromSuperview()
         if GPWUser.sharedInstance().isLogin {
+            if noLoginView != nil {
+                noLoginView.isHidden = true
+            }
            self.showTableView.reloadData()
         }else{
-            self.noLogin()
+            noLoginView.isHidden = false
         }
 
         //开通存管
@@ -51,7 +56,7 @@ class UserController: GPWBaseViewController,UITableViewDelegate,UITableViewDataS
     override func viewDidLoad() {
         super.viewDidLoad()
         self.isBarHidden = true
-        self.bgView.height += 64
+        self.bgView.height = SCREEN_HEIGHT - 44
         showTableView = UITableView(frame: self.bgView.bounds, style: .plain)
         showTableView.backgroundColor = UIColor.clear
         showTableView.addTwitterCover(with: UIImage(named: "user_center_topbg"))
@@ -69,13 +74,8 @@ class UserController: GPWBaseViewController,UITableViewDelegate,UITableViewDataS
             showTableView.contentInset = UIEdgeInsetsMake(0, 0, 64, 0)//导航栏如果使用系统原生半透明的，top设置为64
             showTableView.scrollIndicatorInsets = showTableView.contentInset
         }
-
         self.addMessageBtn()
-
-        if GPWUser.sharedInstance().isLogin == false {
-            //未登录
-            self.noLogin()
-        }
+         self.noLogin()
     }
 
     //快捷注册后如果没有实名就会提示
@@ -155,7 +155,7 @@ class UserController: GPWBaseViewController,UITableViewDelegate,UITableViewDataS
     func addMessageBtn() {
         let  messageBtn = UIButton(type: .custom)
         messageBtn.tag = 101
-        messageBtn.frame = CGRect(x: SCREEN_WIDTH - 28 - 16, y: 22, width: 35, height: 35)
+        messageBtn.frame = CGRect(x: SCREEN_WIDTH - 28 - 16, y: 32, width: 35, height: 35)
         messageBtn.addTarget(self, action: #selector(self.toMessageControll), for: .touchUpInside)
         self.showTableView.addSubview(messageBtn)
 
@@ -197,9 +197,11 @@ class UserController: GPWBaseViewController,UITableViewDelegate,UITableViewDataS
         }
     }
     func noLogin() {
-        let noLoginView = UIView(frame: self.bgView.bounds)
+        noLoginView = UIView(frame: self.bgView.bounds)
         noLoginView.backgroundColor = UIColor.white
-        noLoginView.tag = 10000
+        if GPWUser.sharedInstance().isLogin {
+            noLoginView.isHidden = true
+        }
         self.bgView.addSubview(noLoginView)
         
         //背景图片
@@ -310,6 +312,12 @@ class UserController: GPWBaseViewController,UITableViewDelegate,UITableViewDataS
             var cell = tableView.dequeueReusableCell(withIdentifier: "topCell") as? UserTopCell
             if cell == nil {
                 cell = UserTopCell(style: .default, reuseIdentifier: "topCell")
+                cell?.callBack = { [weak self] flag in
+                    guard let strongSelf = self else { return }
+                    let  indexPath = IndexPath.init(row: 0, section: 3)
+                    let tempCell = tableView.cellForRow(at: indexPath) as! UserThridCell
+                    tempCell.updata(strongSelf.getDic(), superControl: strongSelf)
+                }
             }
             if GPWUser.sharedInstance().isLogin {
                 //余额  GPWUser.sharedInstance().money
@@ -339,6 +347,7 @@ class UserController: GPWBaseViewController,UITableViewDelegate,UITableViewDataS
             if cell == nil {
                 cell = GPWUserYouhuiCell(style: .default, reuseIdentifier: "GPWUserYouhuiCell")
             }
+            cell?.updata()
             cell?.superControl = self
             return cell!
         }else if indexPath.section == 3 {
@@ -346,16 +355,7 @@ class UserController: GPWBaseViewController,UITableViewDelegate,UITableViewDataS
             if cell == nil {
                 cell = UserThridCell(style: .default, reuseIdentifier: "UserThridCell")
             }
-            var dicArray = [
-                [ "img":"user_center_jilu","title":"出借记录","detail":"待收:\(GPWUser.sharedInstance().money_collection)"],
-                [ "img":"user_center_rili","title":"回款日历","detail":"出借规划一目了然"],
-                [ "img":"user_center_liushui","title":"资金流水","detail":"了解资金进出"]
-            ]
-            if GPWUser.sharedInstance().show_iden == 0 {
-                dicArray.append( [ "img":"user_center_fengxian","title":"风险测评","detail": (GPWUser.sharedInstance().risk > 0 ? self.checkRiskType() : "检测承受类型")])
-            }else{
-                dicArray.append( [ "img":"user_center_yaoqing","title":"我的邀请","detail":"查看邀请收益"])
-            }
+          let   dicArray = self.getDic()
             cell?.updata(dicArray, superControl: self)
             return cell!
         }else{
@@ -397,5 +397,20 @@ class UserController: GPWBaseViewController,UITableViewDelegate,UITableViewDataS
             type = "进取型"
         }
         return type
+    }
+
+    //获取数据
+    func getDic() -> [[String:String]] {
+        var dicArray = [
+            [ "img":"user_center_jilu","title":"出借记录","detail":"待收:\(GPWUser.sharedInstance().money_collection)"],
+            [ "img":"user_center_rili","title":"回款日历","detail":"出借规划一目了然"],
+            [ "img":"user_center_liushui","title":"资金流水","detail":"了解资金进出"]
+        ]
+        if GPWUser.sharedInstance().show_iden == 0 {
+            dicArray.append( [ "img":"user_center_fengxian","title":"风险测评","detail": (GPWUser.sharedInstance().risk > 0 ? self.checkRiskType() : "检测承受类型")])
+        }else{
+            dicArray.append( [ "img":"user_center_yaoqing","title":"我的邀请","detail":"查看邀请收益"])
+        }
+        return dicArray
     }
 }
