@@ -131,7 +131,7 @@ class GPWHomeViewController: GPWBaseViewController,UITableViewDelegate,UITableVi
         self.appInfo()
     }
     
-    func getNetData(){
+    override func getNetData(){
         GPWNetwork.requetWithGet(url: Index, parameters: nil, responseJSON:  {
             [weak self] (json, msg) in
             printLog(message: json)

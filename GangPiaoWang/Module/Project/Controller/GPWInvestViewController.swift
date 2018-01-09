@@ -98,6 +98,9 @@ class GPWInvestViewController: GPWSecBaseViewController,UIScrollViewDelegate{
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
+        self.getNetData()
+    }
+    override func getNetData() {
         GPWNetwork.requetWithGet(url: Financing_display, parameters: ["item_id": itemID!, "user_id": GPWUser.sharedInstance().user_id!], responseJSON: { [weak self] (json, msg) in
             printLog(message: json)
             guard let strongSelf = self else { return }
@@ -117,14 +120,14 @@ class GPWInvestViewController: GPWSecBaseViewController,UIScrollViewDelegate{
                 let rateCoupon = RateCoupon(object)
                 strongSelf.rateCoupons.append(rateCoupon)
             }
-            
+
             if strongSelf.redEnvelops.count > 0 {
                 strongSelf.reduceLabel.text = "输入金额自动匹配"
             }
-             strongSelf.rateCoupons.sort { Double($0.rate) ?? 0 > Double($1.rate) ?? 0 }
+            strongSelf.rateCoupons.sort { Double($0.rate) ?? 0 > Double($1.rate) ?? 0 }
             strongSelf.commonInit()
             strongSelf.balanceLabel.text = json["balance_amount"].stringValue + "元"
-            
+
             strongSelf.queryBestRateCoupon()
             if let rateCoupon = strongSelf.currentRateCoupon {
                 strongSelf.rateLabel.text = "加息\(rateCoupon.rate)%"
@@ -138,7 +141,6 @@ class GPWInvestViewController: GPWSecBaseViewController,UIScrollViewDelegate{
             }, failure: { error in
         })
     }
-    
     private func commonInit() {
         addContentView()
         addCell1()

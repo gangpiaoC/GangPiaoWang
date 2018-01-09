@@ -58,6 +58,10 @@ class GPWHomeGetBageController: GPWSecBaseViewController {
         num = 2
         allnumber = 2
         dicArray = [String]()
+        self.getNetData()
+    }
+
+    override func getNetData() {
         GPWNetwork.requetWithGet(url: Gredred_moneylist, parameters: nil, responseJSON: { [weak self] (json, msg) in
             printLog(message: json)
             guard let strongSelf = self else { return }
@@ -70,7 +74,7 @@ class GPWHomeGetBageController: GPWSecBaseViewController {
             }
             strongSelf.initView()
             if strongSelf.num == 0 {
-               strongSelf.qiangBtn.isHidden = true
+                strongSelf.qiangBtn.isHidden = true
                 strongSelf.chanceLabel.width = pixw(p: 200)
                 strongSelf.chanceLabel.centerX = SCREEN_WIDTH / 2
                 strongSelf.chanceLabel.text = "今天机会已用完，明天再来哦"
@@ -78,11 +82,11 @@ class GPWHomeGetBageController: GPWSecBaseViewController {
                 strongSelf.showTodayPrize()
             }
         }) { (error) in
-            
+
         }
     }
+
     func initView()  {
-        
         bgScrollview = UIScrollView(frame: self.bgView.bounds)
         bgScrollview.backgroundColor = UIColor.clear
         self.bgView.addSubview(bgScrollview)

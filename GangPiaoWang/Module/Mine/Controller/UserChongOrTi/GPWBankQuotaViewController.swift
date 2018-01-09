@@ -32,7 +32,7 @@ class GPWBankQuotaViewController: GPWSecBaseViewController,UITableViewDelegate,U
         self.getNetData()
     }
     
-    func getNetData() {
+    override func getNetData() {
         GPWNetwork.requetWithGet(url: Bank_limit, parameters: nil, responseJSON:  {
             [weak self] (json, msg) in
             printLog(message: json)

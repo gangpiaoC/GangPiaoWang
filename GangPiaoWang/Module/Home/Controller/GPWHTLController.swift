@@ -41,7 +41,7 @@ class GPWHTLController: GPWSecBaseViewController,UITableViewDelegate,UITableView
         self.getNetData()
     }
 
-    func getNetData() {
+    override func getNetData() {
         GPWNetwork.requetWithGet(url: Exper_invest_list, parameters: ["page":self.page], responseJSON:  {
             [weak self] (json, msg) in
             printLog(message: json)

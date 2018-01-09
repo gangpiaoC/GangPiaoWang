@@ -74,7 +74,7 @@ class GPWGetFriendRcordController: GPWSecBaseViewController,UITableViewDelegate,
     func shareYao() {
         GPWShare.shared.shareYao()
     }
-    func getNetData() {
+    override func getNetData() {
         GPWNetwork.requetWithGet(url: Api_my_invite, parameters: ["page":"\(page)"], responseJSON:  {
             [weak self] (json,msg) in
             guard let strongSelf = self else { return }

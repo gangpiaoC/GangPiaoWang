@@ -23,6 +23,9 @@ class GPWOutRcordDetailController: GPWSecBaseViewController {
         scrollView.backgroundColor = UIColor.white
         self.bgView.addSubview(scrollView)
         
+      self.getNetData()
+    }
+    override func getNetData() {
         GPWNetwork.requetWithPost(url: Invest_record_content, parameters:  ["auto_id":rcordID ?? "0"], responseJSON: {
             [weak self] (json, msg) in
             guard let strongSelf = self else { return }
@@ -31,10 +34,9 @@ class GPWOutRcordDetailController: GPWSecBaseViewController {
             strongSelf.topView()
             strongSelf.sceView()
         }) { (error) in
-            
+
         }
     }
-    
     func btnClick() {
         let  control = DownHTongController()
         control.urlStr = self.dicJson?["contract"].stringValue ?? ""

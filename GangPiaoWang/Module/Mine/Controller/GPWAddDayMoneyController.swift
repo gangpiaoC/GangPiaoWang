@@ -31,7 +31,7 @@ class GPWAddDayMoneyController: GPWSecBaseViewController,UITableViewDelegate,UIT
         self.bgView.addSubview(showTableView)
     }
     
-    func getNetData() {
+    override func getNetData() {
         GPWNetwork.requetWithPost(url: Api_cumulative, parameters: nil, responseJSON:  {
             [weak self] (json,msg) in
             printLog(message: json)

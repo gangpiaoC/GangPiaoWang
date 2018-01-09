@@ -64,7 +64,7 @@ class GPWUserMessageController: GPWSecBaseViewController,UITableViewDelegate,UIT
         })
     }
     
-    func getNetData() {
+    override func getNetData() {
         GPWNetwork.requetWithPost(url: User_message, parameters: ["page":self.page,"type":"message"], responseJSON:  {
             [weak self] (json, msg) in
             printLog(message: json)

@@ -52,14 +52,17 @@ class GPWInvestSuccessViewController: GPWSecBaseViewController {
         GPWGlobal.sharedInstance().vipSucessFlag = true
         self.leftButton.isHidden = true
         setupViews()
+        self.getNetData()
+    }
+    override func getNetData() {
         if vipFlag && GPWUser.sharedInstance().identity == 1{
             GPWNetwork.requetWithGet(url:Invest_success_share, parameters: ["invest_id":self.sureSucessID], responseJSON: { [weak self] (json, msg) in
                 printLog(message: json)
                 guard let strongSelf = self else { return }
                 strongSelf.shareJson = json
                 strongSelf.showVipShareView()
-            }, failure: { (error) in
-                
+                }, failure: { (error) in
+
             })
         }else{
             if Int(self.money)! >= self.shareJson?["share_money"].intValue ?? 0 && vipFlag == false {
@@ -67,7 +70,6 @@ class GPWInvestSuccessViewController: GPWSecBaseViewController {
             }
         }
     }
-    
     //领头人投资成功以后展示
     func showVipShareView() {
         let bgView = UIView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))

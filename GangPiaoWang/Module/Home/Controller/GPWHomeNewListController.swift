@@ -27,17 +27,17 @@ class GPWHomeNewListController: GPWSecBaseViewController,UITableViewDelegate,UIT
         showTableView.setUpHeaderRefresh { [weak self] in
             guard let strongSelf = self else { return }
             strongSelf.page = 1
-            strongSelf.requestNetData()
+            strongSelf.getNetData()
         }
         
         showTableView.setUpFooterRefresh { [weak self] in
             guard let strongSelf = self else { return }
-            strongSelf.requestNetData()
+            strongSelf.getNetData()
         }
-        self.requestNetData()
+        self.getNetData()
     }
     
-    func requestNetData(){
+    override func getNetData(){
         printLog(message: self.page)
         GPWNetwork.requetWithGet(url: Media_report, parameters: ["page":"\(self.page!)"], responseJSON:  {
             [weak self] (json, msg) in

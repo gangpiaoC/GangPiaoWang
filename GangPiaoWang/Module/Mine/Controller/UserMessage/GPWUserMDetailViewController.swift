@@ -24,11 +24,7 @@ class GPWUserMDetailViewController: GPWSecBaseViewController {
         self.title = "消息详情"
         
         printLog(message: "\(self.dicData!["auto_id"])")
-        GPWNetwork.requetWithPost(url: Update_messages, parameters: ["auto_id":"\(self.dicData!["auto_id"])"], responseJSON:  { (json, msg) in
-            printLog(message: json)
-        }, failure: { error in
-            
-        })
+        self.getNetData()
         self.bgView.backgroundColor = UIColor.white
         let titleLabel = UILabel(frame: CGRect(x: pixw(p:16), y:pixw(p: 30), width: SCREEN_WIDTH - pixw(p:32), height: pixw(p:18)))
         titleLabel.text = self.dicData?["title"].stringValue
@@ -53,6 +49,14 @@ class GPWUserMDetailViewController: GPWSecBaseViewController {
         contentLabel.height = contentLabel.optimumSize.height
         self.bgView.addSubview(contentLabel)
         
+    }
+
+    override func getNetData() {
+        GPWNetwork.requetWithPost(url: Update_messages, parameters: ["auto_id":"\(self.dicData!["auto_id"])"], responseJSON:  { (json, msg) in
+            printLog(message: json)
+        }, failure: { error in
+
+        })
     }
 
     override func didReceiveMemoryWarning() {

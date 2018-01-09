@@ -49,7 +49,7 @@ class GPWHomeTiyanViewController: GPWSecBaseViewController,UITableViewDelegate, 
         self.getNetData()
         }
     
-    func  getNetData()  {
+    override func  getNetData()  {
         GPWNetwork.requetWithPost(url: Exper_details, parameters: ["exper_id":self.tiyanid!], responseJSON:  { [weak self] (json, msg) in
             guard let strongSelf = self else { return }
             strongSelf.dic = json

@@ -33,11 +33,11 @@ class GPWFHelpViewController: GPWSecBaseViewController,UITableViewDelegate,UITab
         showTableView.register(GPWFoundThreeCell.self, forCellReuseIdentifier: "GPWFoundThreeCell")
         showTableView.register(GPWFoundFourCell.self, forCellReuseIdentifier: "GPWFoundFourCell")
         self.bgView.addSubview(showTableView)
-        self.requestNetData()
+        self.getNetData()
         showTableView.setUpHeaderRefresh { [weak self] in
             guard let strongSelf = self else { return }
             strongSelf.page = 1
-            strongSelf.requestNetData()
+            strongSelf.getNetData()
         }
     }
     
@@ -53,7 +53,7 @@ class GPWFHelpViewController: GPWSecBaseViewController,UITableViewDelegate,UITab
         self.showTableView.reloadData()
     }
     
-    func requestNetData() {
+    override func getNetData() {
         GPWNetwork.requetWithGet(url: Help_center, parameters: nil, responseJSON: {  [weak self] (json, msg) in
             printLog(message: json)
             guard let strongSelf = self else { return }

@@ -43,7 +43,7 @@ class GPWVFschooliewController: GPWSecBaseViewController,UITableViewDelegate,UIT
         self.getNetData()
     }
     
-    func getNetData() {
+    override func getNetData() {
         GPWNetwork.requetWithGet(url: Find_ticket, parameters: ["page":"\(page)"], responseJSON:  {
             [weak self] (json, msg) in
             printLog(message: json)

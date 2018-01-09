@@ -30,13 +30,15 @@ class GPWFoundViewController: GPWBaseViewController,UITableViewDelegate,UITableV
         showTableView.separatorStyle = .none
         showTableView.register(GPWFoundTopCell.self, forCellReuseIdentifier: "GPWFoundTopCell")
         showTableView.register(GPWFoundSecCell.self, forCellReuseIdentifier: "GPWFoundSecCell")
+        showTableView.register(GPWMallTopCell.self, forCellReuseIdentifier: "GPWMallTopCell")
+        showTableView.register(GPWMallProsCell.self, forCellReuseIdentifier: "GPWMallProsCell")
         showTableView.register(GPWFNewsTopCell.self, forCellReuseIdentifier: "GPWFNewsTopCell")
         showTableView.register(GPWHomeNewListCell.self, forCellReuseIdentifier: "GPWHomeNewListCell")
         self.bgView.addSubview(showTableView)
-        requestNetData()
+        getNetData()
         showTableView.setUpHeaderRefresh { [weak self] in
             guard let strongSelf = self else { return }
-            strongSelf.requestNetData()
+            strongSelf.getNetData()
         }
     }
     private func addkefuButton() {
@@ -58,7 +60,7 @@ class GPWFoundViewController: GPWBaseViewController,UITableViewDelegate,UITableV
         self.navigationController?.pushViewController(GPWFHelpViewController(), animated: true)
     }
 
-    func requestNetData() {
+    override func getNetData() {
         GPWNetwork.requetWithGet(url: Find, parameters: nil, responseJSON: {
             [weak self] (json, msg) in
             printLog(message: json)
@@ -83,7 +85,7 @@ extension GPWFoundViewController{
             return 0
         }
          printLog(message: self.dataDic?["coverage"].arrayValue.count ?? 0)
-        return 3 +  ( self.dataDic?["coverage"].arrayValue.count ?? 0 )
+        return 5 +  ( self.dataDic?["coverage"].arrayValue.count ?? 0 )
 
     }
     
@@ -99,9 +101,11 @@ extension GPWFoundViewController{
         if indexPath.row == 0 {
             return pixw(p: 138) + 12 + 10
         }else if indexPath.row == 1{
-            return 93 + 10
-        }else if indexPath.row == 2{
-            return  44
+            return 93
+        }else if indexPath.row == 2 || indexPath.row == 4{
+            return  54
+        }else if indexPath.row == 3{
+            return 201
         }else{
             return 120
         }
@@ -119,6 +123,12 @@ extension GPWFoundViewController{
             cell.superControl = self
             return cell
         }else if indexPath.row == 2{
+            let cell: GPWMallTopCell = tableView.dequeueReusableCell(withIdentifier: "GPWMallTopCell", for: indexPath) as! GPWMallTopCell
+            return cell
+        }else if indexPath.row == 3{
+            let cell: GPWMallProsCell = tableView.dequeueReusableCell(withIdentifier: "GPWMallProsCell", for: indexPath) as! GPWMallProsCell
+            return cell
+        }else if indexPath.row == 4{
             let cell: GPWFNewsTopCell = tableView.dequeueReusableCell(withIdentifier: "GPWFNewsTopCell", for: indexPath) as! GPWFNewsTopCell
             return cell
         }else{
@@ -128,10 +138,15 @@ extension GPWFoundViewController{
         }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row < 2 {
-            return
+
+        if indexPath.row == 2{
+            self.navigationController?.pushViewController(GPWFMallController(), animated: true)
         }
-        if indexPath.row == 2 {
+        return
+        if indexPath.row < 3 {
+
+        }
+        if indexPath.row == 4 {
             self.navigationController?.pushViewController(GPWHomeNewListController(), animated: true)
         }else {
             let  vc = GPWWebViewController(subtitle: "报道详情", url: "\(HTML_SERVER)/Web/account_newshows.html?auto_id=\(self.dataDic?["coverage"][indexPath.row - 3]["auto_id"].intValue ?? 0)")

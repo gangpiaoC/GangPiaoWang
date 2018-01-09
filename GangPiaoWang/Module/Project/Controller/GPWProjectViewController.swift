@@ -27,7 +27,7 @@ class GPWProjectViewController: GPWBaseViewController, GPWTableViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        requestNetData()
+        getNetData()
     }
     
     private func commonInit() {
@@ -38,12 +38,12 @@ class GPWProjectViewController: GPWBaseViewController, GPWTableViewDelegate {
         
         tableView.setUpHeaderRefresh { [weak self] in
             guard let strongSelf = self else { return }
-            strongSelf.requestNetData()
+            strongSelf.getNetData()
         }
         
     }
     
-    private func requestNetData() {
+    override func getNetData() {
         GPWNetwork.requetWithGet(url: Financing_lists, parameters:nil, responseJSON:  {
             [weak self] (json, msg) in
             printLog(message: json)

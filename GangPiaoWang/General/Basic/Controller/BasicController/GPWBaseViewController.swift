@@ -26,6 +26,10 @@ class GPWBaseViewController: UIViewController {
         }
     }
 
+    func getNetData(){
+        
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.automaticallyAdjustsScrollViewInsets = false

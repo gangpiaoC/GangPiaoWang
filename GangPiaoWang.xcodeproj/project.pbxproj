@@ -92,9 +92,9 @@
 		8010FC761E852E3600A94577 /* GPWHomeMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8010FC751E852E3600A94577 /* GPWHomeMessageController.swift */; };
 		80118F6E1F78E0AC00A18370 /* GPWHTLCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80118F6D1F78E0AC00A18370 /* GPWHTLCell.swift */; };
 		80118F701F78E5E500A18370 /* GPWHTLController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80118F6F1F78E5E500A18370 /* GPWHTLController.swift */; };
+		80243EB21FF388A300310BCF /* GPWMallTopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80243EB11FF388A300310BCF /* GPWMallTopCell.swift */; };
+		80243EB41FF38F5600310BCF /* GPWMallProsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80243EB31FF38F5600310BCF /* GPWMallProsCell.swift */; };
 		8027DDB11F41D7EB00CC923A /* GPWVFschooliewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8027DDB01F41D7EB00CC923A /* GPWVFschooliewController.swift */; };
-		8027DDB31F41DA3400CC923A /* GPWFschoolCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8027DDB21F41DA3400CC923A /* GPWFschoolCell.swift */; };
-		8027DDB51F46BBC200CC923A /* GPWFoundBottomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8027DDB41F46BBC200CC923A /* GPWFoundBottomCell.swift */; };
 		80297A4E1F219CEE009B471A /* GPWHomeGetBageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80297A4D1F219CEE009B471A /* GPWHomeGetBageController.swift */; };
 		802C34C41F726E29007A504D /* UILabel+YXYNumberAnimationLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 802C34C31F726E29007A504D /* UILabel+YXYNumberAnimationLabel.m */; };
 		803D052D1E0D09EE0098C2AD /* GPWAddDayMoneyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803D052C1E0D09EE0098C2AD /* GPWAddDayMoneyController.swift */; };
@@ -175,13 +175,7 @@
 		806EDCFF1F3AE9AF006A06AF /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 806EDCEF1F3AE9AF006A06AF /* README.txt */; };
 		806EDD001F3AE9AF006A06AF /* ShareSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 806EDCF41F3AE9AF006A06AF /* ShareSDK.bundle */; };
 		806EDD011F3AE9AF006A06AF /* ShareSDKConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 806EDCF51F3AE9AF006A06AF /* ShareSDKConnector.framework */; };
-		806EDD031F3AF52D006A06AF /* GPWFoundTopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806EDD021F3AF52D006A06AF /* GPWFoundTopCell.swift */; };
-		806EDD051F3B0A3A006A06AF /* GPWFoundSecCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806EDD041F3B0A3A006A06AF /* GPWFoundSecCell.swift */; };
-		806EDD071F3B0CB0006A06AF /* GPWFoundThreeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806EDD061F3B0CB0006A06AF /* GPWFoundThreeCell.swift */; };
-		806EDD091F3B136E006A06AF /* GPWFoundFourCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806EDD081F3B136E006A06AF /* GPWFoundFourCell.swift */; };
 		806EDD0B1F3C347D006A06AF /* GPWFHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806EDD0A1F3C347D006A06AF /* GPWFHelpViewController.swift */; };
-		806EDD0D1F3C36A8006A06AF /* GPWFHelpTopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806EDD0C1F3C36A8006A06AF /* GPWFHelpTopCell.swift */; };
-		806EDD0F1F3C430E006A06AF /* GPWFHelpSecCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806EDD0E1F3C430E006A06AF /* GPWFHelpSecCell.swift */; };
 		806EDD211F3C77DA006A06AF /* AnswerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 806EDD161F3C77DA006A06AF /* AnswerModel.m */; };
 		806EDD221F3C77DA006A06AF /* problemCenter.plist in Resources */ = {isa = PBXBuildFile; fileRef = 806EDD171F3C77DA006A06AF /* problemCenter.plist */; };
 		806EDD231F3C77DA006A06AF /* ProblemTitleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 806EDD191F3C77DA006A06AF /* ProblemTitleModel.m */; };
@@ -419,6 +413,16 @@
 		80DCE6291F594CC800FF8CC5 /* GPWVipListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DCE6281F594CC800FF8CC5 /* GPWVipListViewController.swift */; };
 		80E696801F7CEFE20088A880 /* GPWFailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E6967F1F7CEFE20088A880 /* GPWFailController.swift */; };
 		80E737C81E9E22DF006BA745 /* GPWProjectIntroduceCell0.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E737C71E9E22DF006BA745 /* GPWProjectIntroduceCell0.swift */; };
+		80EE1A7F1FF4CFE500726933 /* GPWFMallController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EE1A7E1FF4CFE500726933 /* GPWFMallController.swift */; };
+		80EE1A891FF4D02F00726933 /* GPWFHelpTopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EE1A811FF4D02F00726933 /* GPWFHelpTopCell.swift */; };
+		80EE1A8A1FF4D02F00726933 /* GPWFoundTopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EE1A821FF4D02F00726933 /* GPWFoundTopCell.swift */; };
+		80EE1A8B1FF4D02F00726933 /* GPWFoundThreeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EE1A831FF4D02F00726933 /* GPWFoundThreeCell.swift */; };
+		80EE1A8C1FF4D02F00726933 /* GPWFoundSecCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EE1A841FF4D02F00726933 /* GPWFoundSecCell.swift */; };
+		80EE1A8D1FF4D02F00726933 /* GPWFHelpSecCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EE1A851FF4D02F00726933 /* GPWFHelpSecCell.swift */; };
+		80EE1A8E1FF4D02F00726933 /* GPWFschoolCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EE1A861FF4D02F00726933 /* GPWFschoolCell.swift */; };
+		80EE1A8F1FF4D02F00726933 /* GPWFoundFourCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EE1A871FF4D02F00726933 /* GPWFoundFourCell.swift */; };
+		80EE1A901FF4D02F00726933 /* GPWFoundBottomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EE1A881FF4D02F00726933 /* GPWFoundBottomCell.swift */; };
+		80EE1A931FF4D32900726933 /* MallTopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EE1A921FF4D32900726933 /* MallTopCell.swift */; };
 		80EF03931F5FB0C500368493 /* GPWFVFirstDetailCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EF03921F5FB0C500368493 /* GPWFVFirstDetailCell1.swift */; };
 		80F095A41EE942590039318C /* UserThridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F095A31EE942590039318C /* UserThridCell.swift */; };
 		80F487501FBE7A9F0082D19D /* GPWUserYouhuiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F4874F1FBE7A9F0082D19D /* GPWUserYouhuiCell.swift */; };
@@ -556,9 +560,9 @@
 		8010FC751E852E3600A94577 /* GPWHomeMessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWHomeMessageController.swift; sourceTree = "<group>"; };
 		80118F6D1F78E0AC00A18370 /* GPWHTLCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWHTLCell.swift; sourceTree = "<group>"; };
 		80118F6F1F78E5E500A18370 /* GPWHTLController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWHTLController.swift; sourceTree = "<group>"; };
+		80243EB11FF388A300310BCF /* GPWMallTopCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWMallTopCell.swift; sourceTree = "<group>"; };
+		80243EB31FF38F5600310BCF /* GPWMallProsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWMallProsCell.swift; sourceTree = "<group>"; };
 		8027DDB01F41D7EB00CC923A /* GPWVFschooliewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWVFschooliewController.swift; sourceTree = "<group>"; };
-		8027DDB21F41DA3400CC923A /* GPWFschoolCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWFschoolCell.swift; sourceTree = "<group>"; };
-		8027DDB41F46BBC200CC923A /* GPWFoundBottomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWFoundBottomCell.swift; sourceTree = "<group>"; };
 		80297A4D1F219CEE009B471A /* GPWHomeGetBageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWHomeGetBageController.swift; sourceTree = "<group>"; };
 		802C34C21F726E29007A504D /* UILabel+YXYNumberAnimationLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+YXYNumberAnimationLabel.h"; sourceTree = "<group>"; };
 		802C34C31F726E29007A504D /* UILabel+YXYNumberAnimationLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+YXYNumberAnimationLabel.m"; sourceTree = "<group>"; };
@@ -671,13 +675,7 @@
 		806EDCF21F3AE9AF006A06AF /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		806EDCF41F3AE9AF006A06AF /* ShareSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ShareSDK.bundle; sourceTree = "<group>"; };
 		806EDCF51F3AE9AF006A06AF /* ShareSDKConnector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKConnector.framework; sourceTree = "<group>"; };
-		806EDD021F3AF52D006A06AF /* GPWFoundTopCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWFoundTopCell.swift; sourceTree = "<group>"; };
-		806EDD041F3B0A3A006A06AF /* GPWFoundSecCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWFoundSecCell.swift; sourceTree = "<group>"; };
-		806EDD061F3B0CB0006A06AF /* GPWFoundThreeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWFoundThreeCell.swift; sourceTree = "<group>"; };
-		806EDD081F3B136E006A06AF /* GPWFoundFourCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWFoundFourCell.swift; sourceTree = "<group>"; };
 		806EDD0A1F3C347D006A06AF /* GPWFHelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWFHelpViewController.swift; sourceTree = "<group>"; };
-		806EDD0C1F3C36A8006A06AF /* GPWFHelpTopCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWFHelpTopCell.swift; sourceTree = "<group>"; };
-		806EDD0E1F3C430E006A06AF /* GPWFHelpSecCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWFHelpSecCell.swift; sourceTree = "<group>"; };
 		806EDD151F3C77DA006A06AF /* AnswerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswerModel.h; sourceTree = "<group>"; };
 		806EDD161F3C77DA006A06AF /* AnswerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerModel.m; sourceTree = "<group>"; };
 		806EDD171F3C77DA006A06AF /* problemCenter.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = problemCenter.plist; sourceTree = "<group>"; };
@@ -1026,6 +1024,16 @@
 		80DCE6281F594CC800FF8CC5 /* GPWVipListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWVipListViewController.swift; sourceTree = "<group>"; };
 		80E6967F1F7CEFE20088A880 /* GPWFailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWFailController.swift; sourceTree = "<group>"; };
 		80E737C71E9E22DF006BA745 /* GPWProjectIntroduceCell0.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWProjectIntroduceCell0.swift; sourceTree = "<group>"; };
+		80EE1A7E1FF4CFE500726933 /* GPWFMallController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWFMallController.swift; sourceTree = "<group>"; };
+		80EE1A811FF4D02F00726933 /* GPWFHelpTopCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWFHelpTopCell.swift; sourceTree = "<group>"; };
+		80EE1A821FF4D02F00726933 /* GPWFoundTopCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWFoundTopCell.swift; sourceTree = "<group>"; };
+		80EE1A831FF4D02F00726933 /* GPWFoundThreeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWFoundThreeCell.swift; sourceTree = "<group>"; };
+		80EE1A841FF4D02F00726933 /* GPWFoundSecCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWFoundSecCell.swift; sourceTree = "<group>"; };
+		80EE1A851FF4D02F00726933 /* GPWFHelpSecCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWFHelpSecCell.swift; sourceTree = "<group>"; };
+		80EE1A861FF4D02F00726933 /* GPWFschoolCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWFschoolCell.swift; sourceTree = "<group>"; };
+		80EE1A871FF4D02F00726933 /* GPWFoundFourCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWFoundFourCell.swift; sourceTree = "<group>"; };
+		80EE1A881FF4D02F00726933 /* GPWFoundBottomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWFoundBottomCell.swift; sourceTree = "<group>"; };
+		80EE1A921FF4D32900726933 /* MallTopCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MallTopCell.swift; sourceTree = "<group>"; };
 		80EF03921F5FB0C500368493 /* GPWFVFirstDetailCell1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWFVFirstDetailCell1.swift; sourceTree = "<group>"; };
 		80F095A31EE942590039318C /* UserThridCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserThridCell.swift; sourceTree = "<group>"; };
 		80F4874F1FBE7A9F0082D19D /* GPWUserYouhuiCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWUserYouhuiCell.swift; sourceTree = "<group>"; };
@@ -1766,7 +1774,8 @@
 		806EDCB71F3AA98C006A06AF /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				80DCE6251F594CB100FF8CC5 /* Vip */,
+				80EE1A7D1FF4CF8300726933 /* FMall（积分商城） */,
+				80DCE6251F594CB100FF8CC5 /* Vip（团团赚） */,
 				806EDCBA1F3AA99F006A06AF /* GPWFoundViewController.swift */,
 				806EDD0A1F3C347D006A06AF /* GPWFHelpViewController.swift */,
 				8027DDB01F41D7EB00CC923A /* GPWVFschooliewController.swift */,
@@ -1784,16 +1793,12 @@
 		806EDCB91F3AA98C006A06AF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				80EE1A911FF4D05000726933 /* Mall */,
+				80EE1A801FF4D02F00726933 /* Found */,
 				808690441F5D30FA008F4FB7 /* Vip */,
-				806EDD0E1F3C430E006A06AF /* GPWFHelpSecCell.swift */,
-				806EDD0C1F3C36A8006A06AF /* GPWFHelpTopCell.swift */,
-				806EDD081F3B136E006A06AF /* GPWFoundFourCell.swift */,
-				806EDD061F3B0CB0006A06AF /* GPWFoundThreeCell.swift */,
-				806EDD041F3B0A3A006A06AF /* GPWFoundSecCell.swift */,
-				806EDD021F3AF52D006A06AF /* GPWFoundTopCell.swift */,
-				8027DDB21F41DA3400CC923A /* GPWFschoolCell.swift */,
-				8027DDB41F46BBC200CC923A /* GPWFoundBottomCell.swift */,
 				80BF385B1FBC596D00C2AB85 /* GPWFNewsTopCell.swift */,
+				80243EB11FF388A300310BCF /* GPWMallTopCell.swift */,
+				80243EB31FF38F5600310BCF /* GPWMallProsCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2654,7 +2659,7 @@
 			path = jiguang;
 			sourceTree = "<group>";
 		};
-		80DCE6251F594CB100FF8CC5 /* Vip */ = {
+		80DCE6251F594CB100FF8CC5 /* Vip（团团赚） */ = {
 			isa = PBXGroup;
 			children = (
 				808690471F5D35DC008F4FB7 /* GPWVipFDetailViewController.swift */,
@@ -2662,7 +2667,38 @@
 				80DCE6261F594CB100FF8CC5 /* GPWFTTZHController.swift */,
 				80DCE6281F594CC800FF8CC5 /* GPWVipListViewController.swift */,
 			);
-			path = Vip;
+			path = "Vip（团团赚）";
+			sourceTree = "<group>";
+		};
+		80EE1A7D1FF4CF8300726933 /* FMall（积分商城） */ = {
+			isa = PBXGroup;
+			children = (
+				80EE1A7E1FF4CFE500726933 /* GPWFMallController.swift */,
+			);
+			path = "FMall（积分商城）";
+			sourceTree = "<group>";
+		};
+		80EE1A801FF4D02F00726933 /* Found */ = {
+			isa = PBXGroup;
+			children = (
+				80EE1A811FF4D02F00726933 /* GPWFHelpTopCell.swift */,
+				80EE1A821FF4D02F00726933 /* GPWFoundTopCell.swift */,
+				80EE1A831FF4D02F00726933 /* GPWFoundThreeCell.swift */,
+				80EE1A841FF4D02F00726933 /* GPWFoundSecCell.swift */,
+				80EE1A851FF4D02F00726933 /* GPWFHelpSecCell.swift */,
+				80EE1A861FF4D02F00726933 /* GPWFschoolCell.swift */,
+				80EE1A871FF4D02F00726933 /* GPWFoundFourCell.swift */,
+				80EE1A881FF4D02F00726933 /* GPWFoundBottomCell.swift */,
+			);
+			path = Found;
+			sourceTree = "<group>";
+		};
+		80EE1A911FF4D05000726933 /* Mall */ = {
+			isa = PBXGroup;
+			children = (
+				80EE1A921FF4D32900726933 /* MallTopCell.swift */,
+			);
+			path = Mall;
 			sourceTree = "<group>";
 		};
 		80F095C31EEAA1B60039318C /* animation */ = {
@@ -2955,6 +2991,7 @@
 				808690461F5D312A008F4FB7 /* GPWFVListCell.swift in Sources */,
 				80D207A21FC5680E00D99C45 /* NSDictionary+XML.m in Sources */,
 				809A87E81FC3CB6100FE0067 /* DefaultRefreshFooter.swift in Sources */,
+				80EE1A8D1FF4D02F00726933 /* GPWFHelpSecCell.swift in Sources */,
 				80D207E31FC5680E00D99C45 /* NSObject+EasyCopy.m in Sources */,
 				5B6115491E0974A7000BA2DC /* GPWIndicatorView.swift in Sources */,
 				80D207BC1FC5680E00D99C45 /* NSString+RegexCategory.m in Sources */,
@@ -2970,9 +3007,7 @@
 				80A570B01E8246BC00CCB2C7 /* GPWUserRBCell.swift in Sources */,
 				806EDD0B1F3C347D006A06AF /* GPWFHelpViewController.swift in Sources */,
 				80F7FC1E1E53434F0026C508 /* GPWBankWebViewController.swift in Sources */,
-				8027DDB31F41DA3400CC923A /* GPWFschoolCell.swift in Sources */,
 				5B6115451E097006000BA2DC /* GPWProjectIntroduceCell3.swift in Sources */,
-				806EDD071F3B0CB0006A06AF /* GPWFoundThreeCell.swift in Sources */,
 				80D207BF1FC5680E00D99C45 /* NSString+Pinyin.m in Sources */,
 				8051098B1F26089D001010CA /* myImageView.m in Sources */,
 				80A570A51E8246BC00CCB2C7 /* GPWGetFriendsThreeCell.swift in Sources */,
@@ -2988,8 +3023,8 @@
 				80D207BA1FC5680E00D99C45 /* NSString+Hash.m in Sources */,
 				80A570AA1E8246BC00CCB2C7 /* GPWUserBottom2Cell.swift in Sources */,
 				80A570B11E8246BC00CCB2C7 /* GPWUserRCell.swift in Sources */,
-				806EDD091F3B136E006A06AF /* GPWFoundFourCell.swift in Sources */,
 				80A570AC1E8246BC00CCB2C7 /* UserOtherCell.swift in Sources */,
+				80EE1A8A1FF4D02F00726933 /* GPWFoundTopCell.swift in Sources */,
 				5B1FA7BE1E0A20CF002E3993 /* GPWBidRecordCell.swift in Sources */,
 				80625F421E095A4B00456B63 /* PNScatterChartData.m in Sources */,
 				80BE2A401F1361CC00D6F718 /* GPWProjectTypeController.swift in Sources */,
@@ -3007,6 +3042,7 @@
 				5B7F2E581E2CBDE8009F8276 /* GPWMarkAlertView.swift in Sources */,
 				5B781F991DF176C100748955 /* GPWTableCell.swift in Sources */,
 				80D207E41FC5680E00D99C45 /* NSObject+Blocks.m in Sources */,
+				80EE1A7F1FF4CFE500726933 /* GPWFMallController.swift in Sources */,
 				5B84DC9E1DF1280A00C4CABC /* GPWHomeViewController.swift in Sources */,
 				80625F581E0A23B600456B63 /* LazyScrollView.m in Sources */,
 				80D207D51FC5680E00D99C45 /* NSUserDefaults+iCloudSync.m in Sources */,
@@ -3034,6 +3070,7 @@
 				80625F341E095A4B00456B63 /* PNBar.m in Sources */,
 				80D207EB1FC5680E00D99C45 /* NSDate+Formatter.m in Sources */,
 				80A570B31E8246BC00CCB2C7 /* GPWUserMessageCell.swift in Sources */,
+				80EE1A901FF4D02F00726933 /* GPWFoundBottomCell.swift in Sources */,
 				80625F3A1E095A4B00456B63 /* PNLineChart.m in Sources */,
 				80D207C41FC5680E00D99C45 /* NSString+Contains.m in Sources */,
 				80D207A31FC5680E00D99C45 /* NSDictionary+Block.m in Sources */,
@@ -3090,6 +3127,7 @@
 				809212391FB43B8700A6D65C /* UIImage+Gif.swift in Sources */,
 				80D207B71FC5680E00D99C45 /* NSURL+QueryDictionary.m in Sources */,
 				809C4B381E71701A00816DD5 /* GPWFriendSectionModel.swift in Sources */,
+				80EE1A8F1FF4D02F00726933 /* GPWFoundFourCell.swift in Sources */,
 				8086904A1F5D35DD008F4FB7 /* GPWVipPDetailViewController.swift in Sources */,
 				5B84DBFB1DEBDB2200C4CABC /* GPWButton.swift in Sources */,
 				808B98F01EBB0F0B0066AA40 /* GYCircleConst.swift in Sources */,
@@ -3105,7 +3143,6 @@
 				80D207E21FC5680E00D99C45 /* NSObject+AppInfo.m in Sources */,
 				80A93C261F3ED0760006C1E0 /* AFURLResponseSerialization.m in Sources */,
 				5B1FA7C21E0A5498002E3993 /* GPWEvidenceCell.swift in Sources */,
-				806EDD051F3B0A3A006A06AF /* GPWFoundSecCell.swift in Sources */,
 				80F7F62A1F4057FF00400889 /* GPWBankQCell.swift in Sources */,
 				5BB265B81E14E00200A601A0 /* GPWRedEnvelop.swift in Sources */,
 				80D207E01FC5680E00D99C45 /* NSObject+MKBlockTimer.m in Sources */,
@@ -3143,6 +3180,7 @@
 				80AC6CDE1FCD7110006C5E88 /* GPWCalendarView.swift in Sources */,
 				803D05351E0D1FAB0098C2AD /* GPWOutRcordCell.swift in Sources */,
 				806EDCBB1F3AA99F006A06AF /* GPWFoundViewController.swift in Sources */,
+				80EE1A8C1FF4D02F00726933 /* GPWFoundSecCell.swift in Sources */,
 				80D206CD1FC55FF800D99C45 /* GPWUserBCSecondCell.swift in Sources */,
 				80A570AF1E8246BC00CCB2C7 /* GPWUserMoneyToSubView.swift in Sources */,
 				80A93C2C1F3ED0760006C1E0 /* UIButton+AFNetworking.m in Sources */,
@@ -3151,13 +3189,12 @@
 				80A570A21E8246BC00CCB2C7 /* GPWGetFriendsCell.swift in Sources */,
 				806EDD211F3C77DA006A06AF /* AnswerModel.m in Sources */,
 				80D207EF1FC5680E00D99C45 /* NSDate+InternetDateTime.m in Sources */,
-				806EDD0F1F3C430E006A06AF /* GPWFHelpSecCell.swift in Sources */,
+				80EE1A891FF4D02F00726933 /* GPWFHelpTopCell.swift in Sources */,
 				80D208051FC679C900D99C45 /* SFCalendarItemModel.m in Sources */,
 				80D207B81FC5680E00D99C45 /* NSIndexPath+Offset.m in Sources */,
 				80A5703D1E81008A00CCB2C7 /* GPWHomeNewListCell.swift in Sources */,
 				80A5703F1E8123DD00CCB2C7 /* GPWProjectIRuleController.swift in Sources */,
 				80D207C01FC5680E00D99C45 /* NSString+Emoji.m in Sources */,
-				806EDD0D1F3C36A8006A06AF /* GPWFHelpTopCell.swift in Sources */,
 				80A183431F0DE09800F5EA57 /* GPWFirstDetailCell2_1.swift in Sources */,
 				5B84DC741DEC3B0800C4CABC /* GPWGlobal.swift in Sources */,
 				80625F351E095A4B00456B63 /* PNBarChart.m in Sources */,
@@ -3168,6 +3205,7 @@
 				80D207A71FC5680E00D99C45 /* NSHTTPCookieStorage+FreezeDry.m in Sources */,
 				80D207BD1FC5680E00D99C45 /* NSString+Ruby.m in Sources */,
 				5BD1D16B1E1F829A00C4198F /* GPWShareView.swift in Sources */,
+				80243EB21FF388A300310BCF /* GPWMallTopCell.swift in Sources */,
 				80A5706A1E82451100CCB2C7 /* GPWSafeMangerController.swift in Sources */,
 				80A570371E80DA6600CCB2C7 /* GPWMessagesCell.swift in Sources */,
 				80EF03931F5FB0C500368493 /* GPWFVFirstDetailCell1.swift in Sources */,
@@ -3181,8 +3219,10 @@
 				80BE2A3E1F134B4F00D6F718 /* GPWListTopCell.swift in Sources */,
 				5B9C79841E0A7A60005525D0 /* GPWInvestViewController.swift in Sources */,
 				5B84DCA21DF149D600C4CABC /* GPWTableView.swift in Sources */,
+				80EE1A8E1FF4D02F00726933 /* GPWFschoolCell.swift in Sources */,
 				80D207AC1FC5680E00D99C45 /* NSURLConnection+SelfSigned.m in Sources */,
 				80A570681E82451100CCB2C7 /* GPWAboutMeViewController.swift in Sources */,
+				80EE1A931FF4D32900726933 /* MallTopCell.swift in Sources */,
 				5B781F901DF16CB000748955 /* GPWBaseViewController.swift in Sources */,
 				80D207A51FC5680E00D99C45 /* NSDictionary+JSONString.m in Sources */,
 				80D207A41FC5680E00D99C45 /* NSDictionary+SafeAccess.m in Sources */,
@@ -3202,7 +3242,6 @@
 				80D207B01FC5680E00D99C45 /* NSData+zlib.m in Sources */,
 				80A570701E82451100CCB2C7 /* UserAboutMeViewController.swift in Sources */,
 				80625F411E095A4B00456B63 /* PNScatterChart.m in Sources */,
-				8027DDB51F46BBC200CC923A /* GPWFoundBottomCell.swift in Sources */,
 				8045C1061EC03F0C00DEFB5D /* GPWActiveViewController.swift in Sources */,
 				80D207E91FC5680E00D99C45 /* NSRunLoop+PerformBlock.m in Sources */,
 				5B68B65C1E08CA5C000355B5 /* GPWFirstDetailViewController.swift in Sources */,
@@ -3214,6 +3253,7 @@
 				80625EF21E07C23000456B63 /* RTLabel.m in Sources */,
 				8045C1081EC0420100DEFB5D /* GPWActiveCell.swift in Sources */,
 				80625F671E0A91D200456B63 /* GPWMoneyToCell.swift in Sources */,
+				80243EB41FF38F5600310BCF /* GPWMallProsCell.swift in Sources */,
 				80D207C21FC5680E00D99C45 /* NSString+DictionaryValue.m in Sources */,
 				802C34C41F726E29007A504D /* UILabel+YXYNumberAnimationLabel.m in Sources */,
 				80A518601EE6947D003C9093 /* GPWRiskAssessmentViewController.swift in Sources */,
@@ -3239,6 +3279,7 @@
 				80D207F11FC5680E00D99C45 /* NSDate+TimeAgo.m in Sources */,
 				80D207B11FC5680E00D99C45 /* NSData+SDDataCache.m in Sources */,
 				80D207AA1FC5680E00D99C45 /* NSException+Trace.m in Sources */,
+				80EE1A8B1FF4D02F00726933 /* GPWFoundThreeCell.swift in Sources */,
 				80D207C61FC5680E00D99C45 /* NSString+UrlEncode.m in Sources */,
 				80D207E51FC5680E00D99C45 /* NSObject+AddProperty.m in Sources */,
 				80625F0E1E0955FB00456B63 /* GPWUserFackViewController.swift in Sources */,
@@ -3246,7 +3287,6 @@
 				80D207AB1FC5680E00D99C45 /* NSDateFormatter+Make.m in Sources */,
 				80625EF31E07C23000456B63 /* XHLongPressView.m in Sources */,
 				5B3EEC0C1E0E93790092014C /* UIViewExtension.swift in Sources */,
-				806EDD031F3AF52D006A06AF /* GPWFoundTopCell.swift in Sources */,
 				80625F3B1E095A4B00456B63 /* PNLineChartData.m in Sources */,
 				80A570711E82451100CCB2C7 /* UserAcountSafeViewController.swift in Sources */,
 				80A93C241F3ED0760006C1E0 /* AFSecurityPolicy.m in Sources */,

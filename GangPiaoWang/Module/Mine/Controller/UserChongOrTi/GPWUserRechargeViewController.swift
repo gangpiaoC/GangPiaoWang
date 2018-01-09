@@ -139,7 +139,10 @@ class GPWUserRechargeViewController: GPWSecBaseViewController ,UITextFieldDelega
         btn.tag = 101
         btn.addTarget(self, action: #selector(self.btnClick(sender:)), for: .touchUpInside)
         self.bgView.addSubview(btn)
-        
+        self.getNetData()
+    }
+
+    override func getNetData() {
         GPWNetwork.requetWithGet(url: Api_user_accounts_recharge, parameters: nil, responseJSON:  {
             [weak self] (json, msg) in
             guard let strongSelf = self else { return }
@@ -147,7 +150,7 @@ class GPWUserRechargeViewController: GPWSecBaseViewController ,UITextFieldDelega
             strongSelf.moneyTextField.placeholder = "\(json["min_amount"])元起"
             printLog(message: json)
             }, failure: { error in
-                
+
         })
     }
     

@@ -38,6 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         MobClick.start(withConfigure: config)
         MobClick.setEncryptEnabled(true)
         
+        
         //极光注册
         self.registerJG(launchOptions: launchOptions)
         UIApplication.shared.applicationIconBadgeNumber = 0;

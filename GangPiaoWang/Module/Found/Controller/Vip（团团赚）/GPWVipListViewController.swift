@@ -21,7 +21,7 @@ class GPWVipListViewController: GPWSecBaseViewController, GPWTableViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         page = 1
-        requestNetData()
+        getNetData()
     }
     
     private func commonInit() {
@@ -33,16 +33,16 @@ class GPWVipListViewController: GPWSecBaseViewController, GPWTableViewDelegate {
         tableView.setUpHeaderRefresh { [weak self] in
             guard let strongSelf = self else { return }
             strongSelf.page = 1
-            strongSelf.requestNetData()
+            strongSelf.getNetData()
         }
         
         tableView.setUpFooterRefresh { [weak self] in
             guard let strongSelf = self else { return }
-            strongSelf.requestNetData()
+            strongSelf.getNetData()
         }
     }
     
-    private func requestNetData() {
+    override func getNetData() {
         GPWNetwork.requetWithGet(url: TTZ_list, parameters: ["page": page], responseJSON:  {
             [weak self] (json, msg) in
             guard let strongSelf = self else { return }

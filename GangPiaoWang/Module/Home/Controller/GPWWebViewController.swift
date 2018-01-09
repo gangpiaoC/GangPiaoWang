@@ -102,7 +102,7 @@ class GPWWebViewController: GPWSecBaseViewController,WKUIDelegate,WKNavigationDe
         let date = NSDate()
         let timeInterval = date.timeIntervalSince1970
         if let tempDic = shareJson{
-            if tempDic["due_time"].doubleValue > timeInterval && tempDic["descion"].stringValue.characters.count > 0 {
+            if tempDic["due_time"].doubleValue > timeInterval && tempDic["descion"].stringValue.count > 0 {
                 let button = UIButton(type: .custom)
                 button.frame = CGRect(x: SCREEN_WIDTH  - 40, y: 23, width: 40, height: 40)
                 button.setImage(UIImage(named: "share"), for: .normal)

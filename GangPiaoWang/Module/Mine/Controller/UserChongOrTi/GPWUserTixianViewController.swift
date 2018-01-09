@@ -299,7 +299,7 @@ class GPWUserTixianViewController: GPWSecBaseViewController,UITextFieldDelegate,
         wid?.viewWithTag(DELEVIEWTAG)?.removeFromSuperview()
     }
 
-    func getNetData() {
+    override func getNetData() {
         GPWNetwork.requetWithGet(url: Api_newcash_fee, parameters: nil, responseJSON: {
             [weak self] (json, msg) in
             guard let strongSelf = self else { return }

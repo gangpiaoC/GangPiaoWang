@@ -15,11 +15,15 @@ class GPWFNewsTopCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
-        imgView = UIImageView(frame: CGRect(x:  16,y: 14,width:  3,height:  16))
+        let block = UIView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: 10))
+        block.backgroundColor = bgColor
+        self.contentView.addSubview(block)
+
+        imgView = UIImageView(frame: CGRect(x:  16,y: block.maxY + 14,width:  3,height:  16))
         imgView.image = UIImage(named:"user_record_shu")
         self.contentView.addSubview(imgView)
 
-        titleLabel = UILabel(frame: CGRect(x: imgView.maxX +  9, y: 0, width:  200,height:  19))
+        titleLabel = UILabel(frame: CGRect(x: imgView.maxX +  9, y: block.maxY , width:  200,height:  19))
         titleLabel.centerY = imgView.centerY
         titleLabel.textColor = UIColor.hex("333333")
         titleLabel.text = "媒体报道"
@@ -31,7 +35,7 @@ class GPWFNewsTopCell: UITableViewCell {
         rightImbView.centerY = titleLabel.centerY
         self.contentView.addSubview(rightImbView)
 
-        let line = UIView(frame: CGRect(x: 16, y: 44 - 0.5, width: SCREEN_WIDTH, height: 0.5))
+        let line = UIView(frame: CGRect(x: 16, y: 54 - 0.5, width: SCREEN_WIDTH, height: 0.5))
         line.backgroundColor = lineColor
         self.contentView.addSubview(line)
     }

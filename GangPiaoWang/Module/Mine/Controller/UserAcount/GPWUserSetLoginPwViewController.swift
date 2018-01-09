@@ -56,12 +56,12 @@ class GPWUserSetLoginPwViewController: GPWSecBaseViewController {
         self.bgView.addSubview(btn)
     }
     
-    func getNetData() {
+    override func getNetData() {
         
         let regex = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$"
         let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
         var dic = ["mobile":acountPhone!]
-        if pwtextField.text?.characters.count == 0 {
+        if pwtextField.text?.count == 0 {
             bgView.makeToast("请输入密码")
             return
         }

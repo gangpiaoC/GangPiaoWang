@@ -75,6 +75,9 @@ class UserReadInfoViewController: GPWSecBaseViewController,UITextFieldDelegate,U
         self.title = "开通存管账户"
         cityArray = [JSON]()
         showPickViewFlag = false
+        self.getNetData()
+    }
+    override func getNetData() {
         GPWNetwork.requetWithGet(url: CityAddress, parameters: nil, responseJSON: {
             [weak self] (json, msg) in
             guard let strongSelf = self else { return }
