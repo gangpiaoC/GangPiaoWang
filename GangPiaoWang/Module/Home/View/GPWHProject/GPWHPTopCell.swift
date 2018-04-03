@@ -50,7 +50,7 @@ class GPWHPTopCell: UITableViewCell {
     fileprivate let rightTtileLabel: UILabel = {
         let companyLabel = UILabel()
         companyLabel.text = "中建二局"
-        companyLabel.textColor = UIColor.hex("f6390c")
+        companyLabel.textColor = redTitleColor
         companyLabel.textAlignment = .center
         companyLabel.layer.masksToBounds = true
         companyLabel.layer.cornerRadius = 10

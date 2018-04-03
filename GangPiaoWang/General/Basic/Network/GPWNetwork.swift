@@ -13,10 +13,7 @@ import SwiftyJSON
 public class GPWSessionManager: SessionManager {
     
     enum ServerHost: String {
-        case trust1 = "www.gangpiaowang.com"
-        case trust2 = "picture.gangpiaowang.com"
-        case trust3 = "m.gangpiaowang.com"
-        case trust4 = "api.gangpiaowang.com"
+        case trust1 = ".gangpiaowang.com"
     }
     
     static let share: GPWSessionManager = {
@@ -26,21 +23,7 @@ public class GPWSessionManager: SessionManager {
                 validateCertificateChain: true,
                 validateHost: true
             ),
-            ServerHost.trust2.rawValue: .pinCertificates(
-                certificates: ServerTrustPolicy.certificates(),
-                validateCertificateChain: true,
-                validateHost: true
-            ),
-            ServerHost.trust3.rawValue: .pinCertificates(
-                certificates: ServerTrustPolicy.certificates(),
-                validateCertificateChain: true,
-                validateHost: true
-            ),
-            ServerHost.trust4.rawValue: .pinCertificates(
-                certificates: ServerTrustPolicy.certificates(),
-                validateCertificateChain: true,
-                validateHost: true
-            )
+
         ]
         let sessionManager = GPWSessionManager(serverTrustPolicyManager: ServerTrustPolicyManager(policies: serverTrustPolicies))
         return sessionManager

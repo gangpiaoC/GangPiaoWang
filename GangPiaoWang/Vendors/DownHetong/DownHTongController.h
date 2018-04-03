@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
 @interface DownHTongController : UIViewController
+//链接
 @property(nonatomic,retain) NSString *urlStr;
+//标题
+@property(nonatomic,retain) NSString *navTitle;
 @end
 

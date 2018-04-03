@@ -220,7 +220,7 @@ class GPWInvestViewController: GPWSecBaseViewController,UIScrollViewDelegate{
             maker.left.equalTo(scrollView)
             maker.width.equalTo(SCREEN_WIDTH)
             maker.top.equalTo(block.snp.bottom)
-            maker.height.equalTo(211)
+            maker.height.equalTo(235)
         }
         
         let staticAmountLabel = UILabel(title: "出借金额(元)", color: titleColor, fontSize: 16)
@@ -247,6 +247,10 @@ class GPWInvestViewController: GPWSecBaseViewController,UIScrollViewDelegate{
         incomeLabel.backgroundColor = UIColor.clear
         cell2.addSubview(bgImgView)
         cell2.addSubview(line)
+
+        //说明文字
+        let  tempDetailLabel = UILabel(title: "利息 = 出借金额 * 借款期限 * 利率 / 365", color: UIColor.hex("999999"), fontSize: 14)
+        cell2.addSubview(tempDetailLabel)
         
         staticAmountLabel.snp.makeConstraints { (maker) in
             maker.top.equalTo(cell2).offset(20)
@@ -286,6 +290,12 @@ class GPWInvestViewController: GPWSecBaseViewController,UIScrollViewDelegate{
             maker.width.equalTo(150)
             maker.height.equalTo(34)
             maker.centerX.equalTo(cell2).offset(cell2.width / 2)
+        }
+
+        tempDetailLabel.snp.makeConstraints { (maker) in
+            maker.top.equalTo(bgImgView.snp.bottom).offset(15)
+            maker.width.equalTo(300)
+            maker.left.equalTo(16)
         }
     }
     

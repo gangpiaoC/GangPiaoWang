@@ -46,6 +46,9 @@ class GPWWebViewController: GPWSecBaseViewController,WKUIDelegate,WKNavigationDe
     fileprivate var url:String?
     fileprivate var _webView:WKWebView!
 
+    // 创建配置
+     fileprivate var config:WKWebViewConfiguration?
+
     var startImgView:UIImageView!
     init(subtitle:String,url:String){
         super.init(nibName: nil, bundle: nil)
@@ -113,15 +116,15 @@ class GPWWebViewController: GPWSecBaseViewController,WKUIDelegate,WKNavigationDe
         }
 
         // 创建配置
-        let config = WKWebViewConfiguration()
+        config = WKWebViewConfiguration()
         // 创建UserContentController（提供JavaScript向webView发送消息的方法）
         let userContent = WKUserContentController()
         // 添加消息处理，注意：self指代的对象需要遵守WKScriptMessageHandler协议，结束时需要移除
         userContent.add(self , name: "NativeMethod")
 
         // 将UserConttentController设置到配置文件
-        config.userContentController = userContent
-        _webView = WKWebView(frame: self.bgView.bounds, configuration: config)
+        config?.userContentController = userContent
+        _webView = WKWebView(frame: self.bgView.bounds, configuration: config!)
         _webView.uiDelegate = self
         _webView.navigationDelegate = self
         self.bgView.addSubview(_webView)
@@ -237,6 +240,7 @@ class GPWWebViewController: GPWSecBaseViewController,WKUIDelegate,WKNavigationDe
     }
     
     override func back(sender: GPWButton) {
+        _webView.configuration.userContentController.removeScriptMessageHandler(forName: "NativeMethod")
         if backRootFlag {
             _ = self.navigationController?.popToRootViewController(animated: true)
         }else{
@@ -286,6 +290,5 @@ extension GPWWebViewController{
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        _webView.configuration.userContentController.removeScriptMessageHandler(forName: "NativeMethod")
     }
 }

@@ -21,7 +21,6 @@ public class GPWUser:NSObject {
     //体验金
     var  data_exper:String = ""
 
-    
     //真实名字
     var name:String? = ""
     

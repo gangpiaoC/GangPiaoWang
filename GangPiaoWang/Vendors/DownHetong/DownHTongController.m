@@ -25,12 +25,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"出借合同";
+    self.title = self.navTitle;
     UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"nav_left"] style:UIBarButtonItemStyleDone target:self action:@selector(back)];
     self.navigationItem.leftBarButtonItem = barButtonItem;
     [self.navigationController.navigationBar setHidden:NO];
     NSURL *url = [NSURL URLWithString:self.urlStr];
-    
+    NSLog(@"dddd===%@",self.urlStr);
     //创建管理类NSURLSessionConfiguration
     NSURLSessionConfiguration *config =[NSURLSessionConfiguration defaultSessionConfiguration];
     
@@ -76,6 +76,7 @@ didCompleteWithError:(nullable NSError *)error{
     self.qlpreView.delegate= self;
     self.qlpreView.dataSource = self;
     [self.view addSubview:self.qlpreView.view];
+    [self.qlpreView reloadData];
 }
 
 #pragma mark  ====  接收到数据调用

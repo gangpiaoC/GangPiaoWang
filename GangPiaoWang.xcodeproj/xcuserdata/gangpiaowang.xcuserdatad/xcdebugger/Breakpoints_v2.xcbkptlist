@@ -116,11 +116,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GangPiaoWang/Module/Project/Controller/GPWInvestViewController.swift"
-            timestampString = "536060463.851981"
+            timestampString = "543740675.442018"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "512"
-            endingLineNumber = "512"
+            startingLineNumber = "522"
+            endingLineNumber = "522"
             landmarkName = "showBtnClick(sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -131,14 +131,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GangPiaoWang/Module/Mine/View/UserCenter/UserThridCell.swift"
-            timestampString = "534852651.792777"
+            filePath = "GangPiaoWang/Module/Mine/Controller/UserChongOrTi/GPWUserTixianViewController.swift"
+            timestampString = "538563702.896103"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "observeValue(forKeyPath:of:change:context:)"
-            landmarkType = "7">
+            startingLineNumber = "194"
+            endingLineNumber = "194"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

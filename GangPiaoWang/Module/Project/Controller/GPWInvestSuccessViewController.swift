@@ -210,7 +210,7 @@ class GPWInvestSuccessViewController: GPWSecBaseViewController {
             moneyLabel.centerY = titleLabel.centerY
             tempBgView.addSubview(moneyLabel)
             if i == 1 {
-                moneyLabel.textColor = UIColor.hex("f6390c")
+                moneyLabel.textColor = redTitleColor
             }
             
             maxY = moneyLabel.maxY

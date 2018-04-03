@@ -22,7 +22,6 @@ class GPWOutRcordDetailController: GPWSecBaseViewController {
         scrollView = UIScrollView(frame: self.bgView.bounds)
         scrollView.backgroundColor = UIColor.white
         self.bgView.addSubview(scrollView)
-        
       self.getNetData()
     }
     override func getNetData() {
@@ -39,7 +38,9 @@ class GPWOutRcordDetailController: GPWSecBaseViewController {
     }
     func btnClick() {
         let  control = DownHTongController()
-        control.urlStr = self.dicJson?["contract"].stringValue ?? ""
+        control.urlStr = self.dicJson!["contract"].stringValue
+        print(control.urlStr)
+        control.navTitle = "出借合同"
         control.navigationItem.hidesBackButton = true
         self.navigationController?.pushViewController(control, animated: false)
     }

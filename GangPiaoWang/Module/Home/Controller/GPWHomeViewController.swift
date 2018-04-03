@@ -30,6 +30,7 @@ class GPWHomeViewController: GPWBaseViewController,UITableViewDelegate,UITableVi
         }
          self.navigationController?.navigationBar.barStyle = .black
         self.getNetData()
+          self.appInfo()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -127,8 +128,6 @@ class GPWHomeViewController: GPWBaseViewController,UITableViewDelegate,UITableVi
             guard let self1 = self else {return}
             self1.getNetData()
         }
-
-        self.appInfo()
     }
     
     override func getNetData(){

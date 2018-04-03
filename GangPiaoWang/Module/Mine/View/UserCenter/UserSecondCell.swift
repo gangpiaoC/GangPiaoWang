@@ -55,7 +55,18 @@ class UserSecondCell: UITableViewCell {
                 block.y = 76
         }else{
                 block.y = cunBtn.maxY
+        }
+    }
 
+    //风险测评
+    func safeViewShow(flag:Bool) {
+        cunBtn.isHidden = flag
+        cunBtn.tag = 103
+        cunBtn.setTitle("先完成风险测评再出借 >", for: .normal)
+        if flag {
+            block.y = 76
+        }else{
+            block.y = cunBtn.maxY
         }
     }
     
@@ -69,10 +80,12 @@ class UserSecondCell: UITableViewCell {
                 MobClick.event("mine", label: "充值")
                 let control = GPWUserRechargeViewController(money: 0.00)
                 superControl?.navigationController?.pushViewController(control, animated: true)
-            }else{
+            }else if sender.tag == 102{
                 MobClick.event("mine_withdraw", label: nil)
                 let control = GPWUserTixianViewController()
                 superControl?.navigationController?.pushViewController(control, animated: true)
+            }else if sender.tag == 103 {
+                 superControl?.navigationController?.pushViewController(GPWRiskAssessmentViewController(), animated: true)
             }
         }
     }

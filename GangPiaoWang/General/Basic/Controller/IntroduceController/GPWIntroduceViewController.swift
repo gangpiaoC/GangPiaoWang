@@ -69,16 +69,29 @@ class GPWIntroduceViewController: UIViewController, UIScrollViewDelegate {
     func remove() {
         isRemoved = true
         if let dic = GPWGlobal.sharedInstance().initJson{
+            printLog(message: "1111111")
             if dic["app_info"]["advert_picture"].stringValue.count > 5  && dic["app_info"]["is_vaild"].intValue == 1 {
+                 printLog(message: "222222")
                 let adController = GPWADViewController(imgStr: dic["app_info"]["advert_picture"].stringValue, toUrl: dic["app_info"]["advert_url"].stringValue)
                 let wid = UIApplication.shared.delegate?.window
                 wid??.rootViewController = adController
+            }else{
+                let wid = UIApplication.shared.delegate?.window
+                if  GPWGlobal.sharedInstance().gpwbarController == nil {
+                    GPWGlobal.sharedInstance().gpwbarController = GPWTabBarController()
+                }
+                wid??.rootViewController = GPWGlobal.sharedInstance().gpwbarController
             }
         }else{
+             printLog(message: "33333333")
             UIView.animate(withDuration: 0.25, animations: {
                 self.view.alpha = 0.0
             }) { (isFinished) in
+                 printLog(message: "444444")
                 let wid = UIApplication.shared.delegate?.window
+                if  GPWGlobal.sharedInstance().gpwbarController == nil {
+                    GPWGlobal.sharedInstance().gpwbarController = GPWTabBarController()
+                }
                 wid??.rootViewController = GPWGlobal.sharedInstance().gpwbarController
             }
         }

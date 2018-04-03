@@ -196,12 +196,6 @@ class GPWUserTixianViewController: GPWSecBaseViewController,UITextFieldDelegate,
             printLog(message: "银行")
             self.navigationController?.pushViewController(UserBankViewController(), animated: true)
         }else{
-            
-            
-            
-            
-            
-            
             //账户余额
             let  yue = Double(GPWUser.sharedInstance().money ?? "0.00")  ?? 0
             
@@ -216,7 +210,7 @@ class GPWUserTixianViewController: GPWSecBaseViewController,UITextFieldDelegate,
                 self.bgView.makeToast("账户余额不足")
                 return
             }
-            if tixianMoneyTextField.text!.characters.count > 0 {
+            if tixianMoneyTextField.text!.count > 0 {
                 if bool {
                     GPWNetwork.requetWithPost(url: Api_user_withdrawals, parameters: ["amount":tixianMoneyTextField.text ?? "0"], responseJSON: {
                         [weak self] (json, msg) in
@@ -340,8 +334,9 @@ class GPWUserTixianViewController: GPWSecBaseViewController,UITextFieldDelegate,
             //充值未出借
             let money_deposit = Double((self.dic?["money_deposit"].stringValue.replacingOccurrences(of: ",", with: ""))!) ?? 0
             
-            var  doubleMoney = Double(sender.text!)  ?? 0
-            if doubleMoney >  money_award + money_return + money_deposit {
+            let  doubleMoney = Double(sender.text!)  ?? 0
+            let tempAll = self.notRounding(money_award + money_return + money_deposit, afterPoint: 2)
+            if doubleMoney > tempAll {
                 let index =  sender.text?.index( (sender.text?.endIndex)!, offsetBy: -1)
                 sender.text = sender.text?.substring(to: index!)
                 sender.text = self.dic?["money_cash"].string ?? "0.00"
@@ -371,6 +366,14 @@ class GPWUserTixianViewController: GPWSecBaseViewController,UITextFieldDelegate,
             tixianLvLabel.text = "\(tempStr)元"
             shouxu = CGFloat(tempStr)
         }
+    }
+
+    //MARK: /*************截取小数不四舍五入***************
+    func notRounding(_ price: Double, afterPoint position: Int) -> Double {
+        let roundingBehavior = NSDecimalNumberHandler(roundingMode: .down, scale: Int16(position), raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
+        let ouncesDecimal = NSDecimalNumber(value: price)
+        let roundedOunces = ouncesDecimal.rounding(accordingToBehavior: roundingBehavior)
+        return Double(roundedOunces)
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {

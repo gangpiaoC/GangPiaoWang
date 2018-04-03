@@ -22,7 +22,7 @@ class GPWSecondDetailViewController: UIViewController, UIScrollViewDelegate {
     
     private var dic:JSON?
     
-    var titles = ["项目简介", "常见问题", "出借记录"]
+    var titles = ["项目简介", "常见问题", "出借记录","还款计划"]
     lazy  var containerView: UIScrollView! = { [unowned self] in
         let containerView = UIScrollView(frame: CGRect(x: 0, y: menuHeight, width: self.view.bounds.width, height: self.view.bounds.height - menuHeight))
         containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -80,7 +80,7 @@ class GPWSecondDetailViewController: UIViewController, UIScrollViewDelegate {
     
     func initView() {
         if billType == 2 {
-            titles = ["项目简介",  "出借记录"]
+            titles = ["项目简介",  "出借记录","还款计划"]
         }
         self.navigationController?.navigationBar.isHidden = true
         self.view.backgroundColor = UIColor.white

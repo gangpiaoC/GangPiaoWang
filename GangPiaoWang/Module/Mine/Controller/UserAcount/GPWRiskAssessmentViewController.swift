@@ -12,7 +12,6 @@ fileprivate let SELECTATAG = 10000
 fileprivate let SELECTBTAG = 10001
 fileprivate let SELECTCTAG = 10002
 fileprivate let SELECTDTAG = 10003
-
 fileprivate let BACKBTNTAG = 1000
 
 class GPWRiskAssessmentViewController: GPWSecBaseViewController {
@@ -45,9 +44,6 @@ class GPWRiskAssessmentViewController: GPWSecBaseViewController {
     
     //结果界面
     fileprivate var resultView:UIView!
-    
-    //结果顶部视图
-    fileprivate var resultTopView:UIView!
     
     //用户类型
     fileprivate var typeLabel:UILabel!
@@ -219,10 +215,9 @@ class GPWRiskAssessmentViewController: GPWSecBaseViewController {
             tpeDetail = "您属于进取型出借人。您倾向于通过承受较高的风险以获取较高的回报的出借人，可以承受一定的投资波动，应根据个人的需求，将资产在高风险和低风险的产品之间进行分配，以取得投资组合的均衡发展。"
         }
         
-        typeLabel.text = type
+        typeLabel.text = "\"\(type)\""
         typeDetailLabel.text =  "<font size=14 color='#666666'>\(tpeDetail)</font>"
         typeDetailLabel.height = typeDetailLabel.optimumSize.height
-        resultTopView.height = typeDetailLabel.maxY + 28
         
     }
     
@@ -270,50 +265,41 @@ class GPWRiskAssessmentViewController: GPWSecBaseViewController {
     func riskScuess() {
         resultView = UIView(frame: self.bgView.bounds)
         resultView.isHidden = true
-        resultView.backgroundColor = bgColor
+        resultView.backgroundColor = UIColor.white
         self.bgView.addSubview(resultView)
-        
-        let block =  UIView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: 10))
-        block.backgroundColor = bgColor
-       resultView.addSubview(block)
-        
-        
-        //顶部视图
-        resultTopView = UIView(frame: CGRect(x: 0, y: block.maxY, width: SCREEN_WIDTH, height: 388))
-        resultTopView.backgroundColor = UIColor.white
-        resultView.addSubview(resultTopView)
-        
+
         //您的风险评级为
-        let  titleLabel = UILabel(frame: CGRect(x: 0, y: 36, width: SCREEN_WIDTH, height: 20))
+        let  titleLabel = UILabel(frame: CGRect(x: 0, y: 44, width: SCREEN_WIDTH, height: 18))
         titleLabel.text = "您的风险评级为"
         titleLabel.textAlignment = .center
         titleLabel.font = UIFont.customFont(ofSize: 18)
         titleLabel.textColor = UIColor.hex("333333")
-        resultTopView.addSubview(titleLabel)
+        resultView.addSubview(titleLabel)
+
+        //类型
+        typeLabel = UILabel(frame: CGRect(x: 0, y: titleLabel.maxY + 24, width: SCREEN_WIDTH, height: 36))
+        typeLabel.textColor = redTitleColor
+        typeLabel.text = "\"保守型\""
+        typeLabel.textAlignment = .center
+        typeLabel.font = UIFont.boldSystemFont(ofSize: 36)
+        resultView.addSubview(typeLabel)
         
         //类型
-        let  typeImgView = UIImageView(frame: CGRect(x: 0, y: titleLabel.maxY + 20, width: 221, height: 169))
-        typeImgView.image = UIImage(named: "user_risk_result")
+        let  typeImgView = UIImageView(frame: CGRect(x: 0, y: typeLabel.maxY + 45, width: 90, height: 82))
+        typeImgView.image = UIImage(named: "user_risk_result_jq")
         typeImgView.centerX = SCREEN_WIDTH / 2
-        resultTopView.addSubview(typeImgView)
+        resultView.addSubview(typeImgView)
+
         
-        typeLabel = UILabel(frame: CGRect(x: 0, y: typeImgView.height - 35 - 33, width: typeImgView.width, height: 33))
-        typeLabel.textColor = UIColor.white
-        typeLabel.text = "保守型"
-        typeLabel.textAlignment = .center
-        typeLabel.font = UIFont.boldSystemFont(ofSize: 24)
-        typeImgView.addSubview(typeLabel)
-        
-        typeDetailLabel = RTLabel(frame: CGRect(x: 34, y: typeImgView.maxY + 40, width: SCREEN_WIDTH - 34 * 2, height: 10))
+        typeDetailLabel = RTLabel(frame: CGRect(x: 32, y: typeImgView.maxY + 18, width: SCREEN_WIDTH - 32 * 2, height: 10))
         typeDetailLabel.text = "<font size=14 color='#666666'>您属于保守型出借人，属于风险承受能力较低投资很谨慎的出借人。应尽量回避波动性事实较大的投资产品，保护本金不受损失和保持资产流动性是首要目标。</font>"
         typeDetailLabel.height = typeDetailLabel.optimumSize.height
-        resultTopView.height = typeDetailLabel.maxY + 28
-        resultTopView.addSubview(typeDetailLabel)
+        resultView.addSubview(typeDetailLabel)
         
         let seeBtn = UIButton(type: .custom)
-        seeBtn.frame = CGRect(x: 16, y: resultTopView.maxY + 32, width: SCREEN_WIDTH - 32, height: 64)
-        seeBtn.setBackgroundImage(UIImage(named:"btn_bg"), for: .normal)
-        seeBtn.setTitle("查看推荐产品", for: .normal)
+        seeBtn.frame = CGRect(x: 32, y: resultView.height - 126 - 44, width: SCREEN_WIDTH - 64, height: 44)
+        seeBtn.setBackgroundImage(UIImage(named:"user_safe_go_sure"), for: .normal)
+        seeBtn.setTitle("去出借", for: .normal)
         seeBtn.tag = 10000
         seeBtn.addTarget(self, action: #selector(self.bottomBtnClick(_:)), for: .touchUpInside)
         seeBtn.setTitleColor(UIColor.white, for: .normal)
@@ -321,15 +307,12 @@ class GPWRiskAssessmentViewController: GPWSecBaseViewController {
         resultView.addSubview(seeBtn)
         
         let resetBtn = UIButton(type: .custom)
-        resetBtn.frame = CGRect(x: 22, y: seeBtn.maxY + 18, width: SCREEN_WIDTH - 44, height: 48)
-        resetBtn.layer.masksToBounds = true
-        resetBtn.layer.cornerRadius = 5
-        resetBtn.layer.borderColor = UIColor.hex("b9b9b9").cgColor
-        resetBtn.layer.borderWidth = 0.5
+        resetBtn.frame = CGRect(x: 32, y: seeBtn.maxY + 29, width: SCREEN_WIDTH - 64, height: 44)
+        resetBtn.setBackgroundImage(UIImage(named:"user_safe_go_cancel"), for: .normal)
         resetBtn.tag = 10001
         resetBtn.addTarget(self, action: #selector(self.bottomBtnClick(_:)), for: .touchUpInside)
         resetBtn.setTitle("重新测评", for: .normal)
-        resetBtn.setTitleColor(UIColor.hex("999999"), for: .normal)
+        resetBtn.setTitleColor(redColor, for: .normal)
         resetBtn.titleLabel?.font = UIFont.customFont(ofSize: 18)
         resultView.addSubview(resetBtn)
     }

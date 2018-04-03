@@ -77,7 +77,6 @@
 		5BD1D1651E1E56F700C4198F /* GPWInvestSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD1D1641E1E56F700C4198F /* GPWInvestSuccessViewController.swift */; };
 		5BD1D1671E1F31FE00C4198F /* GPWExperienceSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD1D1661E1F31FE00C4198F /* GPWExperienceSuccessViewController.swift */; };
 		5BD1D16B1E1F829A00C4198F /* GPWShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD1D16A1E1F829A00C4198F /* GPWShareView.swift */; };
-		5BD1D1771E24C3B800C4198F /* Symantec Basic DV SSL CA - G1.cer in Resources */ = {isa = PBXBuildFile; fileRef = 5BD1D1761E24C3B800C4198F /* Symantec Basic DV SSL CA - G1.cer */; };
 		5BE67FD11DE8122C004DA71F /* PublicDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE67FD01DE8122C004DA71F /* PublicDefine.swift */; };
 		5BE67FD71DE81B16004DA71F /* GPWProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE67FD61DE81B16004DA71F /* GPWProjectViewController.swift */; };
 		8001ED2E1E94C6B1000A2C56 /* GPWADViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8001ED2D1E94C6B1000A2C56 /* GPWADViewController.swift */; };
@@ -108,6 +107,8 @@
 		8051098B1F26089D001010CA /* myImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 805109881F26089D001010CA /* myImageView.m */; };
 		8051098C1F26089D001010CA /* RedBagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8051098A1F26089D001010CA /* RedBagViewController.m */; };
 		805687FF1E837EED006E9C19 /* GPWUserQSetPWViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805687FE1E837EED006E9C19 /* GPWUserQSetPWViewController.swift */; };
+		805835872057B65F00A40CDE /* GPWWDKTViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805835862057B65F00A40CDE /* GPWWDKTViewController.swift */; };
+		805835892057B68400A40CDE /* GPWXXPLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805835882057B68400A40CDE /* GPWXXPLViewController.swift */; };
 		80625EBE1E06969100456B63 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80625EBB1E06969100456B63 /* UserController.swift */; };
 		80625EC81E0696E600456B63 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80625EC71E0696E600456B63 /* UIView+Extension.swift */; };
 		80625ECB1E06982C00456B63 /* UIScrollView+TwitterCover.m in Sources */ = {isa = PBXBuildFile; fileRef = 80625ECA1E06982C00456B63 /* UIScrollView+TwitterCover.m */; };
@@ -181,6 +182,8 @@
 		806EDD231F3C77DA006A06AF /* ProblemTitleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 806EDD191F3C77DA006A06AF /* ProblemTitleModel.m */; };
 		806EDD241F3C77DA006A06AF /* AnswerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 806EDD1C1F3C77DA006A06AF /* AnswerCell.m */; };
 		806EDD261F3C77DA006A06AF /* HeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 806EDD1F1F3C77DA006A06AF /* HeadView.m */; };
+		8072D2E52005D08600761D8F /* 214425299950570.cer in Resources */ = {isa = PBXBuildFile; fileRef = 8072D2E42005D08500761D8F /* 214425299950570.cer */; };
+		8072D2ED2005D42100761D8F /* Symantec Basic DV SSL CA - G1.cer in Resources */ = {isa = PBXBuildFile; fileRef = 8072D2EC2005D42100761D8F /* Symantec Basic DV SSL CA - G1.cer */; };
 		807825C41FC41861006C94CC /* pullStart.gif in Resources */ = {isa = PBXBuildFile; fileRef = 807825C21FC41861006C94CC /* pullStart.gif */; };
 		807825C51FC41861006C94CC /* pulling.gif in Resources */ = {isa = PBXBuildFile; fileRef = 807825C31FC41861006C94CC /* pulling.gif */; };
 		808690461F5D312A008F4FB7 /* GPWFVListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808690451F5D312A008F4FB7 /* GPWFVListCell.swift */; };
@@ -411,6 +414,7 @@
 		80D2080F1FC920C000D99C45 /* GPWHomeBottomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D2080E1FC920C000D99C45 /* GPWHomeBottomCell.swift */; };
 		80DCE6271F594CB100FF8CC5 /* GPWFTTZHController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DCE6261F594CB100FF8CC5 /* GPWFTTZHController.swift */; };
 		80DCE6291F594CC800FF8CC5 /* GPWVipListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DCE6281F594CC800FF8CC5 /* GPWVipListViewController.swift */; };
+		80E14506204EA8440051F918 /* GPWWDKTSubview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E14505204EA8440051F918 /* GPWWDKTSubview.swift */; };
 		80E696801F7CEFE20088A880 /* GPWFailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E6967F1F7CEFE20088A880 /* GPWFailController.swift */; };
 		80E737C81E9E22DF006BA745 /* GPWProjectIntroduceCell0.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E737C71E9E22DF006BA745 /* GPWProjectIntroduceCell0.swift */; };
 		80EE1A7F1FF4CFE500726933 /* GPWFMallController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EE1A7E1FF4CFE500726933 /* GPWFMallController.swift */; };
@@ -545,7 +549,6 @@
 		5BD1D1641E1E56F700C4198F /* GPWInvestSuccessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWInvestSuccessViewController.swift; sourceTree = "<group>"; };
 		5BD1D1661E1F31FE00C4198F /* GPWExperienceSuccessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWExperienceSuccessViewController.swift; sourceTree = "<group>"; };
 		5BD1D16A1E1F829A00C4198F /* GPWShareView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWShareView.swift; sourceTree = "<group>"; };
-		5BD1D1761E24C3B800C4198F /* Symantec Basic DV SSL CA - G1.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Symantec Basic DV SSL CA - G1.cer"; sourceTree = "<group>"; };
 		5BE67FD01DE8122C004DA71F /* PublicDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicDefine.swift; sourceTree = "<group>"; };
 		5BE67FD61DE81B16004DA71F /* GPWProjectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWProjectViewController.swift; sourceTree = "<group>"; };
 		8001ED2D1E94C6B1000A2C56 /* GPWADViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWADViewController.swift; sourceTree = "<group>"; };
@@ -581,6 +584,8 @@
 		805109891F26089D001010CA /* RedBagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedBagViewController.h; sourceTree = "<group>"; };
 		8051098A1F26089D001010CA /* RedBagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedBagViewController.m; sourceTree = "<group>"; };
 		805687FE1E837EED006E9C19 /* GPWUserQSetPWViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWUserQSetPWViewController.swift; sourceTree = "<group>"; };
+		805835862057B65F00A40CDE /* GPWWDKTViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWWDKTViewController.swift; sourceTree = "<group>"; };
+		805835882057B68400A40CDE /* GPWXXPLViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWXXPLViewController.swift; sourceTree = "<group>"; };
 		80625EBB1E06969100456B63 /* UserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		80625EC71E0696E600456B63 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		80625EC91E06982C00456B63 /* UIScrollView+TwitterCover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+TwitterCover.h"; sourceTree = "<group>"; };
@@ -685,6 +690,10 @@
 		806EDD1C1F3C77DA006A06AF /* AnswerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerCell.m; sourceTree = "<group>"; };
 		806EDD1E1F3C77DA006A06AF /* HeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadView.h; sourceTree = "<group>"; };
 		806EDD1F1F3C77DA006A06AF /* HeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadView.m; sourceTree = "<group>"; };
+		8072D2E42005D08500761D8F /* 214425299950570.cer */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 214425299950570.cer; sourceTree = "<group>"; };
+		8072D2EA2005D3C700761D8F /* Encryption Everywhere DV TLS CA - G1.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Encryption Everywhere DV TLS CA - G1.cer"; sourceTree = "<group>"; };
+		8072D2EB2005D3F100761D8F /* api.gangpiaowang.com.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = api.gangpiaowang.com.cer; sourceTree = "<group>"; };
+		8072D2EC2005D42100761D8F /* Symantec Basic DV SSL CA - G1.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Symantec Basic DV SSL CA - G1.cer"; sourceTree = "<group>"; };
 		807825C21FC41861006C94CC /* pullStart.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = pullStart.gif; sourceTree = "<group>"; };
 		807825C31FC41861006C94CC /* pulling.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = pulling.gif; sourceTree = "<group>"; };
 		808690451F5D312A008F4FB7 /* GPWFVListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWFVListCell.swift; sourceTree = "<group>"; };
@@ -1022,6 +1031,7 @@
 		80D2080E1FC920C000D99C45 /* GPWHomeBottomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWHomeBottomCell.swift; sourceTree = "<group>"; };
 		80DCE6261F594CB100FF8CC5 /* GPWFTTZHController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWFTTZHController.swift; sourceTree = "<group>"; };
 		80DCE6281F594CC800FF8CC5 /* GPWVipListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWVipListViewController.swift; sourceTree = "<group>"; };
+		80E14505204EA8440051F918 /* GPWWDKTSubview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWWDKTSubview.swift; sourceTree = "<group>"; };
 		80E6967F1F7CEFE20088A880 /* GPWFailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWFailController.swift; sourceTree = "<group>"; };
 		80E737C71E9E22DF006BA745 /* GPWProjectIntroduceCell0.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWProjectIntroduceCell0.swift; sourceTree = "<group>"; };
 		80EE1A7E1FF4CFE500726933 /* GPWFMallController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWFMallController.swift; sourceTree = "<group>"; };
@@ -1258,8 +1268,11 @@
 		5B84DC701DEC252E00C4CABC /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				8072D2EC2005D42100761D8F /* Symantec Basic DV SSL CA - G1.cer */,
+				8072D2EB2005D3F100761D8F /* api.gangpiaowang.com.cer */,
+				8072D2EA2005D3C700761D8F /* Encryption Everywhere DV TLS CA - G1.cer */,
+				8072D2E42005D08500761D8F /* 214425299950570.cer */,
 				5B84DC711DEC254900C4CABC /* GPWNetwork.swift */,
-				5BD1D1761E24C3B800C4198F /* Symantec Basic DV SSL CA - G1.cer */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1502,6 +1515,8 @@
 		5BE67F581DE59CF2004DA71F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				805835852057B65F00A40CDE /* WDKT（网贷课堂） */,
+				805835842057B65F00A40CDE /* XXPL（信息披露） */,
 				80A570451E82451100CCB2C7 /* UserAcount（用户信息） */,
 				80A570531E82451100CCB2C7 /* UserChongOrTi（充值提现） */,
 				80A570571E82451100CCB2C7 /* UserJiang（用户奖励） */,
@@ -1544,6 +1559,7 @@
 				803D05341E0D1FAB0098C2AD /* GPWOutRcordCell.swift */,
 				80F7F6291F4057FF00400889 /* GPWBankQCell.swift */,
 				80C787EE1FC27D7900E95AD2 /* GPWOutRcordView.swift */,
+				80E14505204EA8440051F918 /* GPWWDKTSubview.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1662,6 +1678,22 @@
 			);
 			name = "redBags(红包雨)";
 			path = redBags;
+			sourceTree = "<group>";
+		};
+		805835842057B65F00A40CDE /* XXPL（信息披露） */ = {
+			isa = PBXGroup;
+			children = (
+				805835882057B68400A40CDE /* GPWXXPLViewController.swift */,
+			);
+			path = "XXPL（信息披露）";
+			sourceTree = "<group>";
+		};
+		805835852057B65F00A40CDE /* WDKT（网贷课堂） */ = {
+			isa = PBXGroup;
+			children = (
+				805835862057B65F00A40CDE /* GPWWDKTViewController.swift */,
+			);
+			path = "WDKT（网贷课堂）";
 			sourceTree = "<group>";
 		};
 		80625ED61E07897500456B63 /* EScrollerView */ = {
@@ -2881,8 +2913,8 @@
 				808F05531E8F4FAC00BFF5CA /* introduce0_0.png in Resources */,
 				5BAE0A391DE342CA00B4EF3A /* Assets.xcassets in Resources */,
 				808F055A1E8F4FAC00BFF5CA /* introduce3.png in Resources */,
-				5BD1D1771E24C3B800C4198F /* Symantec Basic DV SSL CA - G1.cer in Resources */,
 				806EDD001F3AE9AF006A06AF /* ShareSDK.bundle in Resources */,
+				8072D2ED2005D42100761D8F /* Symantec Basic DV SSL CA - G1.cer in Resources */,
 				8002D1791E76AB02007E7B4C /* SobotLocalizable.strings in Resources */,
 				8002D1781E76AB02007E7B4C /* Main.strings in Resources */,
 				807825C41FC41861006C94CC /* pullStart.gif in Resources */,
@@ -2891,6 +2923,7 @@
 				8092123B1FB43CB500A6D65C /* pageStart.gif in Resources */,
 				807825C51FC41861006C94CC /* pulling.gif in Resources */,
 				809A87E31FC3CB6100FE0067 /* failure@3x.png in Resources */,
+				8072D2E52005D08600761D8F /* 214425299950570.cer in Resources */,
 				808F05541E8F4FAC00BFF5CA /* introduce0.png in Resources */,
 				80D207EA1FC5680E00D99C45 /* NSDateTimeAgo.bundle in Resources */,
 				808F05551E8F4FAC00BFF5CA /* introduce1_1.png in Resources */,
@@ -2988,6 +3021,7 @@
 				5B84DC8A1DEFC62C00C4CABC /* UIColor+hex.swift in Sources */,
 				80D207C71FC5680E00D99C45 /* NSMutableString+Ruby.m in Sources */,
 				805687FF1E837EED006E9C19 /* GPWUserQSetPWViewController.swift in Sources */,
+				80E14506204EA8440051F918 /* GPWWDKTSubview.swift in Sources */,
 				808690461F5D312A008F4FB7 /* GPWFVListCell.swift in Sources */,
 				80D207A21FC5680E00D99C45 /* NSDictionary+XML.m in Sources */,
 				809A87E81FC3CB6100FE0067 /* DefaultRefreshFooter.swift in Sources */,
@@ -3066,6 +3100,7 @@
 				5B68B6681E08CECA000355B5 /* GPWBidRecordViewController.swift in Sources */,
 				80D207BE1FC5680E00D99C45 /* NSString+Encrypt.m in Sources */,
 				80A570391E80DC6800CCB2C7 /* GPWHomeNewsCell.swift in Sources */,
+				805835872057B65F00A40CDE /* GPWWDKTViewController.swift in Sources */,
 				80D207DF1FC5680E00D99C45 /* NSObject+AutoCoding.m in Sources */,
 				80625F341E095A4B00456B63 /* PNBar.m in Sources */,
 				80D207EB1FC5680E00D99C45 /* NSDate+Formatter.m in Sources */,
@@ -3157,6 +3192,7 @@
 				806EDD261F3C77DA006A06AF /* HeadView.m in Sources */,
 				80A570A91E8246BC00CCB2C7 /* GPWUserBottom1Cell.swift in Sources */,
 				80297A4E1F219CEE009B471A /* GPWHomeGetBageController.swift in Sources */,
+				805835892057B68400A40CDE /* GPWXXPLViewController.swift in Sources */,
 				80A570811E82451100CCB2C7 /* GPWGetFriendRcordController.swift in Sources */,
 				80A570AE1E8246BC00CCB2C7 /* UserTopCell.swift in Sources */,
 				5B781F911DF16CB000748955 /* GPWSecBaseViewController.swift in Sources */,
@@ -3519,8 +3555,8 @@
 				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gangpiaowang.gangpiao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ceab9d12-dde2-45eb-9729-f539b52b8d82";
-				PROVISIONING_PROFILE_SPECIFIER = gangpiao_dev;
+				PROVISIONING_PROFILE = "9ea6607b-099e-429a-98f9-09ab46a228cf";
+				PROVISIONING_PROFILE_SPECIFIER = gangpiao_2018newdev;
 				SDKROOT = iphoneos;
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "GangPiaoWang/Main/GangPiaoWang-Bridging-Header.h";
@@ -3576,8 +3612,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gangpiaowang.gangpiao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3ff36262-9e4d-4979-b1d3-3f2f39a14df0";
-				PROVISIONING_PROFILE_SPECIFIER = gangpiao_dis;
+				PROVISIONING_PROFILE = "57b8c172-3cbe-416f-a36a-9aa8c50676c6";
+				PROVISIONING_PROFILE_SPECIFIER = gangpiao_2018dis;
 				SDKROOT = iphoneos;
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "GangPiaoWang/Main/GangPiaoWang-Bridging-Header.h";

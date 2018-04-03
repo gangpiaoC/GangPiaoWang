@@ -28,7 +28,7 @@ class UserOtherCell: UITableViewCell {
         titleLabel.font = UIFont.customFont(ofSize: 16)
         self.contentView.addSubview(titleLabel)
         
-        rightImbView = UIImageView(frame: CGRect(x: SCREEN_WIDTH -  pixw(p: 16 + 6), y: 0, width:  pixw(p: 6), height:  pixw(p: 11)))
+        rightImbView = UIImageView(frame: CGRect(x: SCREEN_WIDTH -  pixw(p: 16 + 6), y: 0, width:  pixw(p: 8), height:  pixw(p: 16)))
         rightImbView.image = UIImage(named: "user_rightImg")
         rightImbView.centerY = titleLabel.centerY
         self.contentView.addSubview(rightImbView)

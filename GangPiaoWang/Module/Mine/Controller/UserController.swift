@@ -290,12 +290,16 @@ class UserController: GPWBaseViewController,UITableViewDelegate,UITableViewDataS
             if GPWUser.sharedInstance().is_idcard == 0{
                 return  76 + 32 + 10
             }else{
-                return  76 + 10
+                if GPWUser.sharedInstance().show_iden == 0 {
+                    return  76 + 32 + 10
+                }else{
+                    return  76 + 10
+                }
             }
         }else if indexPath.section == 2{
             return 105 + 10
         }else if indexPath.section == 3{
-            return  189
+            return  283
         }else{
             if indexPath.row == 0 {
                 return  32 + 50 + 20
@@ -339,7 +343,12 @@ class UserController: GPWBaseViewController,UITableViewDelegate,UITableViewDataS
             if GPWUser.sharedInstance().is_idcard == 0{
                cell?.updata(flag: false)
             }else{
-                cell?.updata(flag: true)
+                 cell?.updata(flag: true)
+                if GPWUser.sharedInstance().show_iden == 0 {
+                    cell?.safeViewShow(flag: false)
+                }else{
+                     cell?.safeViewShow(flag: true)
+                }
             }
             return cell!
         } else if indexPath.section == 2 {
@@ -411,6 +420,8 @@ class UserController: GPWBaseViewController,UITableViewDelegate,UITableViewDataS
         }else{
             dicArray.append( [ "img":"user_center_yaoqing","title":"我的邀请","detail":"查看邀请收益"])
         }
+         dicArray.append( [ "img":"user_center_wdkt","title":"网贷课堂","detail":"金融法律"])
+         dicArray.append( [ "img":"user_center_xxpl","title":"信息披露","detail":"平台信息展示"])
         return dicArray
     }
 }

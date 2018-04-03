@@ -16,14 +16,19 @@ class UserThridCell: UITableViewCell {
         self.selectionStyle = .none
         
         //横线
-        let verLine = UIView(frame: CGRect(x: SCREEN_WIDTH / 2, y: 29, width: 0.5, height: 189 - 29 * 2))
+        let verLine = UIView(frame: CGRect(x: SCREEN_WIDTH / 2, y: 17, width: 0.5, height: 283 - 17 * 2))
         verLine.backgroundColor = lineColor
         contentView.addSubview(verLine)
         
-        //竖线
-        let horLine = UIView(frame: CGRect(x: 16, y: 189 / 2, width: SCREEN_WIDTH - 16 * 2, height: 0.5))
-        horLine.backgroundColor = lineColor
-        contentView.addSubview(horLine)
+        //竖线1
+        let hor1Line = UIView(frame: CGRect(x: 16, y: 189 / 2, width: SCREEN_WIDTH - 16 * 2, height: 0.5))
+        hor1Line.backgroundColor = lineColor
+        contentView.addSubview(hor1Line)
+
+        //竖线2
+        let hor2Line = UIView(frame: CGRect(x: 16, y: 189, width: SCREEN_WIDTH - 16 * 2, height: 0.5))
+        hor2Line.backgroundColor = lineColor
+        contentView.addSubview(hor2Line)
     }
     
     func updata(_ dicArray:[[String:String]],superControl:UserController) {
@@ -34,7 +39,7 @@ class UserThridCell: UITableViewCell {
             }
         }
         
-        for i in 0 ..< 2 {
+        for i in 0 ..< 3 {
             for j in 0 ..< 2 {
                 let  btn = UIButton(type: .custom)
                 btn.frame = CGRect(x: SCREEN_WIDTH / 2 * CGFloat(j), y: 189 / 2 * CGFloat(i), width: SCREEN_WIDTH / 2, height: 189 / 2)
@@ -72,12 +77,6 @@ class UserThridCell: UITableViewCell {
             }
         }
     }
-
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-            if let newValue = change?[NSKeyValueChangeKey.newKey] {
-                print("Date changed: \(newValue)")
-            }
-    }
     func changLabelNum( _ label:UILabel,_ num :String ) {
         let  array = num.components(separatedBy: ":")
         let  tempformat = NumberFormatter()
@@ -106,13 +105,21 @@ class UserThridCell: UITableViewCell {
             
             if sender.title(for: .normal) == "风险测评" {
                 //风险测评
-                MobClick.event("mine", label: "分享测评")
+                MobClick.event("mine", label: "风险测评")
                 self.superControl?.navigationController?.pushViewController(GPWRiskAssessmentViewController(), animated: true)
             }else{
                 //邀请奖励
                 MobClick.event("mine", label: "邀请奖励")
                 self.superControl?.navigationController?.pushViewController(GPWGetFriendRcordController(), animated: true)
             }
+            break
+             case 10004:
+                //网贷课堂
+                self.superControl?.navigationController?.pushViewController(GPWWDKTViewController(), animated: true)
+            break
+             case 10005:
+                //信息披露
+                self.superControl?.navigationController?.pushViewController(GPWXXPLViewController(), animated: true)
             break
         default:
             printLog(message: "不知道是啥")
